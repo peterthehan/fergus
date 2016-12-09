@@ -19,12 +19,10 @@
 				"accuracy": [0],
 				"evasion": [0],
 				"background": "Leon has just started his adventure and he has no idea what he's doing. He spends more time cleaning up his messes than saving damsels.",
-				"skill": [
-					{
+				"skill": {
 						"level": 1,
 						"passive": ""
-					}
-				],
+				},
 				"howToGet": [
 					"Ancient Dungeon: Clear Reward!"
 				]
@@ -33,7 +31,7 @@
 				"name": "Skilled Leon",
 				"star": 2,
 				"level": 20,
-				"atkpower": [46.7, 51.4],
+				"atkPower": [46.7, 51.4],
 				"hp": [1040.7, 1144.8],
 				"critChance": [11.5, 11.5],
 				"armor": [165.9, 182.5],
@@ -42,12 +40,10 @@
 				"accuracy": [0, 0],
 				"evasion": [0, 0],
 				"background": "Leon has learned from his mistakes (and his scrapes and bruises) and has become a competent if not spectacular hero.",
-				"skill": [
-					{
+				"skill": {
 						"level": 1,
 						"passive": ""
-					}
-				],
+				},
 				"howToGet": [
 					"Promote Hero: Promoting Heroes!"
 				]
@@ -56,7 +52,7 @@
 				"name": "Famous Leon",
 				"star": 3,
 				"level": 30,
-				"atkpower": [112.7, 124, 135.2],
+				"atkPower": [112.7, 124, 135.2],
 				"hp": [1773.2, 1950.5, 2127.8],
 				"critChance": [11.5, 11.5, 11.5],
 				"armor": [216.7, 238.4, 260.1],
@@ -65,12 +61,10 @@
 				"accuracy": [0, 0, 0],
 				"evasion": [0, 0, 0],
 				"background": "Leon's famous now and he lets it get to his head. He draws his pen faster to sign autographs than he draws his sword for combat.",
-				"skill": [
-					{
+				"skill": {
 						"level": 1,
 						"passive": ""
-					}
-				],
+				},
 				"howToGet": [
 					"Promote Hero: Promoting Heroes!"
 				]
@@ -79,7 +73,7 @@
 				"name": "Leon of Destiny",
 				"star": 4,
 				"level": 40,
-				"atkpower": [180, 198, 216, 234],
+				"atkPower": [180, 198, 216, 234],
 				"hp": [2739.3, 3013.2, 3287.1, 3561.1],
 				"critChance": [11.5, 11.5, 11.5, 11.5],
 				"armor": [267.6, 294.4, 321.2, 347.9],
@@ -88,12 +82,10 @@
 				"accuracy": [0, 0, 0, 0],
 				"evasion": [0, 0, 0, 0],
 				"background": "Leon's big shot attitude almost cost him his life and the lives of those he had sworn to protect. He realizes now that he set out to become a hero to save people, not to be rewarded with fame and fortune.",
-				"skill": [
-					{
+				"skill": {
 						"level": 2,
 						"passive": "Summons the ultimate Holy Sword every 4 blocks. Deals physical damage equal to 380% of attack power and ignores target's armor equal to 50% of own armor."
-					}
-				],
+				},
 				"howToGet": [
 					"Promote Hero: Promoting Heroes!"
 				]
@@ -102,7 +94,7 @@
 				"name": "Leon of Fate",
 				"star": 5,
 				"level": 50,
-				"atkpower": [305.9, 336.5, 367.1, 397.7, 428.3],
+				"atkPower": [305.9, 336.5, 367.1, 397.7, 428.3],
 				"hp": [4184.3, 4602.7, 5021.1, 5439.5, 5858],
 				"critChance": [11.5, 11.5, 11.5, 11.5, 11.5],
 				"armor": [318.4, 350.2, 382.1, 413.9, 445.7],
@@ -111,12 +103,10 @@
 				"accuracy": [0, 0, 0, 0, 0],
 				"evasion": [0, 0, 0, 0, 0],
 				"background": "Leon has been charged by the goddesses to save the world. Finally, he can put all that adventuring to good use!",
-				"skill": [
-					{
+				"skill": {
 						"level": 2,
 						"passive": "Summons the ultimate Holy Sword every 4 blocks. Deals physical damage equal to 380% of attack power and ignores target's armor equal to 50% of own armor."
-					}
-				],
+				},
 				"howToGet": [
 					"Promote Hero: Promoting Heroes!"
 				]
@@ -125,7 +115,7 @@
 				"name": "Leon of Light",
 				"star": 6,
 				"level": 60,
-				"atkpower": [459.3, 505.2, 551.1, 597.1, 643, 688.9, 863.9],
+				"atkPower": [459.3, 505.2, 551.1, 597.1, 643, 688.9, 863.9],
 				"hp": [6082.3, 6690.5, 7298.7, 7906.9, 8515.2, 9123.4, 12194.4],
 				"critChance": [11.5, 11.5, 11.5, 11.5, 11.5, 11.5, 24.2],
 				"armor": [369.3, 406.2, 443.1, 480.1, 517, 553.9, 932.9],
@@ -134,12 +124,10 @@
 				"accuracy": [0, 0, 0, 0, 0, 0, 15],
 				"evasion": [0, 0, 0, 0, 0, 0, 15],
 				"background": "Every time Leon fights against evil, dazzling lights cover his entire body, radiating an unbreachable energy. The monsters tremble at his sight, let them fall to Leon of Light",
-				"skill": [
-					{
+				"skill": {
 						"level": 3,
 						"passive": "Summons Ultimate Holy Sword whenever the hero uses a chain-3 skill, that deals physical damage equal to 380% of the hero's attack power and also deals extra physical damage equal to 10% of the hero's HP. The bonus damage ignores enemy's armor equal to 100% of the hero's armor."
-					}
-				],
+				},
 				"howToGet": [
 					"Promote Hero: Promoting Heroes!"
 				]
@@ -157,7 +145,7 @@
 				"name": "Rochefort",
 				"star": 1,
 				"level": 10,
-				"atkpower": [32.2],
+				"atkPower": [32.2],
 				"hp": [593.6],
 				"critChance": [20],
 				"armor": [88.5],
@@ -166,12 +154,10 @@
 				"accuracy": [0],
 				"evasion": [0],
 				"background": "Rochefort was a simple fencing instructor until he was drafted into the Tristan army.",
-				"skill": [
-					{
+				"skill": {
 						"level": 1,
 						"passive": ""
-					}
-				],
+				},
 				"howToGet": [
 					"Ancient Dungeon: Clear Reward!"
 				]
@@ -180,7 +166,7 @@
 				"name": "Libertine Rochefort",
 				"star": 2,
 				"level": 20,
-				"atkpower": [57.5, 63.3],
+				"atkPower": [57.5, 63.3],
 				"hp": [907, 997.7],
 				"critChance": [20, 20],
 				"armor": [127.7, 140.5],
@@ -189,12 +175,10 @@
 				"accuracy": [0, 0],
 				"evasion": [0, 0],
 				"background": "Rochefort became so sick of his life that he illegally escaped from the army seeking freedom and beautiful women.",
-				"skill": [
-					{
+				"skill": {
 						"level": 1,
 						"passive": ""
-					}
-				],
+				},
 				"howToGet": [
 					"Promote Hero: Promoting Heroes!"
 				]
@@ -203,7 +187,7 @@
 				"name": "Romantic Rochefort",
 				"star": 3,
 				"level": 30,
-				"atkpower": [125.4, 138, 150.5],
+				"atkPower": [125.4, 138, 150.5],
 				"hp": [1545.5, 1700.1, 1854.6],
 				"critChance": [20, 20, 20],
 				"armor": [166.8, 183.5, 200.2],
@@ -212,12 +196,10 @@
 				"accuracy": [0, 0, 0],
 				"evasion": [0, 0, 0],
 				"background": "As Rochefort entered the war with the Neth Empire, he encountered D'artagnan and fell in love. He lost an eye while trying to protect her in a fierce battle.",
-				"skill": [
-					{
+				"skill": {
 						"level": 1,
 						"passive": ""
-					}
-				],
+				},
 				"howToGet": [
 					"Promote Hero: Promoting Heroes!"
 				]
@@ -226,7 +208,7 @@
 				"name": "One-Eyed Rochefort",
 				"star": 4,
 				"level": 40,
-				"atkpower": [209.6, 230.6, 251.6, 272.5],
+				"atkPower": [209.6, 230.6, 251.6, 272.5],
 				"hp": [2387.5, 2626.3, 2865, 3103.8],
 				"critChance": [20, 20, 20, 20],
 				"armor": [206, 226.6, 247.2, 267.8],
@@ -235,12 +217,10 @@
 				"accuracy": [0, 0, 0, 0],
 				"evasion": [0, 0, 0, 0],
 				"background": "Rochefort announced his desire to join the Musketeers. His request is denied, but he continued to train.",
-				"skill": [
-					{
+				"skill": {
 						"level": 2,
 						"passive": "If an attack is blocked, the Hero immediately counterattacks dealing physical damage equal to 100% of the Hero's defense. When a skill block is used after the counterattack, the Hero counterattacks 3 additional times. (Activates once every second)"
-					}
-				],
+				},
 				"howToGet": [
 					"Promote Hero: Promoting Heroes!"
 				]
@@ -249,7 +229,7 @@
 				"name": "Musketeer Rochefort",
 				"star": 5,
 				"level": 50,
-				"atkpower": [361.3, 397.4, 433.5, 469.7, 505.8],
+				"atkPower": [361.3, 397.4, 433.5, 469.7, 505.8],
 				"hp": [3646.7, 4011.4, 4376.1, 4740.7, 5105.4],
 				"critChance": [20, 20, 20, 20, 20],
 				"armor": [244.9, 269.4, 293.9, 318.3, 342.8],
@@ -258,12 +238,10 @@
 				"accuracy": [0, 0, 0, 0, 0],
 				"evasion": [0, 0, 0, 0, 0],
 				"background": "Rochefort's exploits could no longer be ignored, and he was allowed admission into the Musketeers.",
-				"skill": [
-					{
+				"skill": {
 						"level": 2,
 						"passive": "If an attack is blocked, the Hero immediately counterattacks dealing physical damage equal to 100% of the Hero's defense. When a skill block is used after the counterattack, the Hero counterattacks 3 additional times. (Activates once every second)"
-					}
-				],
+				},
 				"howToGet": [
 					"Promote Hero: Promoting Heroes!"
 				]
@@ -272,7 +250,7 @@
 				"name": "Victor Rochefort",
 				"star": 6,
 				"level": 60,
-				"atkpower": [551.3, 606.5, 661.6, 716.7, 771.8, 827, 1007],
+				"atkPower": [551.3, 606.5, 661.6, 716.7, 771.8, 827, 1007],
 				"hp": [5301.1, 5831.2, 6361.3, 6891.4, 7421.5, 7951.6, 10559.6],
 				"critChance": [20, 20, 20, 20, 20, 20, 38.3],
 				"armor": [284.3, 312.7, 341.2, 369.6, 398, 426.5, 754.5],
@@ -281,12 +259,10 @@
 				"accuracy": [0, 0, 0, 0, 0, 0, 14],
 				"evasion": [0, 0, 0, 0, 0, 0, 10],
 				"background": "His name became a symbol of victory in Trista, and his legend grew among the people. However, his heart belonged to a single person.",
-				"skill": [
-					{
+				"skill": {
 						"level": 3,
 						"passive": "If an attack is blocked, the Hero immediately counterattacks dealing physical damage equal to 200% of the Hero's defense. When a skill block is used after the counterattack, the Hero counterattacks 3 additional times. When the counterattack is a critical hit, the Hero immediately generates a block of its own. (Activates once every second)"
-					}
-				],
+				},
 				"howToGet": [
 					"Promote Hero: Promoting Heroes!"
 				]
@@ -304,7 +280,7 @@
 				"name": "Joan of Arc",
 				"star": 4,
 				"level": 40,
-				"atkpower": [127.7, 140.5, 153.3, 166],
+				"atkPower": [127.7, 140.5, 153.3, 166],
 				"hp": [3036.1, 3339.7, 3643.3, 3946.9],
 				"critChance": [10, 10, 10, 10],
 				"armor": [179.1, 197, 214.9, 232.8],
@@ -313,12 +289,10 @@
 				"accuracy": [0, 0, 0, 0],
 				"evasion": [0, 0, 0, 0],
 				"background": "A girl who wants to become a knight to avenge her parent's death. However, she knows it is difficult for a girl become a knight, but she hopes she can become strong enough to overcome their prejudice.",
-				"skill": [
-					{
+				"skill": {
 						"level": 2,
 						"passive": "Increases leader's SP by 15 whenever a block is used."
-					}
-				],
+				},
 				"howToGet": [
 					"Contract: Buy Contracts!",
 					"Promote Hero: Promoting Heroes!",
@@ -329,7 +303,7 @@
 				"name": "Knight Joan of Arc",
 				"star": 5,
 				"level": 50,
-				"atkpower": [220.1, 242.2, 264.2, 286.2, 308.2],
+				"atkPower": [220.1, 242.2, 264.2, 286.2, 308.2],
 				"hp": [4637.5, 5101.3, 5565, 6028.8, 6492.5],
 				"critChance": [10, 10, 10, 10, 10],
 				"armor": [213, 234.3, 255.6, 276.9, 298.2],
@@ -338,12 +312,10 @@
 				"accuracy": [0, 0, 0, 0, 0],
 				"evasion": [0, 0, 0, 0, 0],
 				"background": "Joan of Arc becomes a knight after rigorous training, but she must hide the fact that she is a girl. Luckily, the armor for men isn't as revealing as the armor for women.",
-				"skill": [
-					{
+				"skill": {
 						"level": 2,
 						"passive": "Increases leader's SP by 15 whenever a block is used."
-					}
-				],
+				},
 				"howToGet": [
 					"Contract: Buy Contracts!",
 					"Promote Hero: Promoting Heroes!",
@@ -354,7 +326,7 @@
 				"name": "Steel Knight Joan of Arc",
 				"star": 6,
 				"level": 60,
-				"atkpower": [335.4, 368.9, 402.5, 436, 469.5, 503.1, 595.1],
+				"atkPower": [335.4, 368.9, 402.5, 436, 469.5, 503.1, 595.1],
 				"hp": [6740.7, 7414.8, 8088.8, 8762.9, 9437, 10111, 13573],
 				"critChance": [10, 10, 10, 10, 10, 10, 21.7],
 				"armor": [247.1, 271.9, 296.6, 321.3, 346, 370.7, 676.7],
@@ -362,19 +334,17 @@
 				"critDamage": [50, 50, 50, 50, 50, 50, 114],
 				"accuracy": [0, 0, 0, 0, 0, 0, 15],
 				"evasion": [0, 0, 0, 0, 0, 0, 27],
-				"background": "Even afer she revealed that she was indeed female, her stoic demeanor and calm in battle earned her the title of Steel Knight.",
-				"skill": [
-					{
+				"background": "Even after she revealed that she was indeed female, her stoic demeanor and calm in battle earned her the title of Steel Knight.",
+				"skill": {
 						"level": 3,
 						"passive": "Increases leader's SP by 30 and takes allies' damage for 5 seconds whenever a block is used."
-					}
-				],
+				},
 				"howToGet": [
 					"Contract: Buy Contracts!",
 					"Promote Hero: Promoting Heroes!"
 				]
 			}
 		]
-	},
+	}
 
 }
