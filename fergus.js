@@ -5,19 +5,20 @@ const H = require('./heroes.json');
 const B = require('./bread.json');
 const G = require('./goddesses.json');
 
-// helper functions
+// helper function
 function getName(hero, star) {
 	let str = '';
 	str += '__**' + H[hero].form[star].name + '**__ ' +
 		'(' + '★'.repeat(H[hero].form[star].star) + ') | ';
-	let p =	H[hero].faction;
-	if(p !== '') {
-		str += p + ', ';
+	let t =	H[hero].faction;
+	if(t !== '') {
+		str += t + ', ';
 	}
 	str += H[hero].type + ', ' + H[hero].class + '\n';
 	return str;
 }
 
+// helper function
 function getInfo(hero, star) {
 	let str = '';
 	str += '_' + H[hero].form[star].background + '_\n' +
@@ -25,6 +26,7 @@ function getInfo(hero, star) {
 	return str;
 }
 
+// helper function
 function getStats(hero, star) {
 	let str = '';
 	str += '```' +
@@ -40,13 +42,14 @@ function getStats(hero, star) {
 	return str;
 }
 
+// helper function
 function getSkill(hero, star) {
 	let str = '';
 	str += '**' + H[hero].skillName + '** (Lv.' + H[hero].form[star].skill.level +
 		'): ' + H[hero].skillDescription + '\n';
-	let p =	H[hero].form[star].skill.passive;
-	if(p !== '') {
-		str += '**Passive**: ' + p + '\n';
+	let t =	H[hero].form[star].skill.passive;
+	if(t !== '') {
+		str += '**Passive**: ' + t + '\n';
 	}
 	return str;
 }
@@ -125,25 +128,59 @@ function getHero(args) {
 	return str;
 }
 
+// helper function
+function getBreadStar() {
+
+}
+
 function getBread(args) {
 	let str = '', len = args.length;
 	if(len === 1) {
 		str += 'help';
 	}
 	else {
-		let bread = args[1];
-		if(B[bread]) {
-			str += 'bread';
+		if(isNaN(parseInt(args[1]))) {
+			let bread = args[1];
+			if(B[bread]) {
+				str += '__**' + B[bread].name + '**__ ' +
+					'(' + '★'.repeat(B[bread].star) + ')\n';
+				str += '```' +
+					'     Value: ' + B[bread].value + "\n" +
+					'Great rate: ' + B[bread].greatRate * 100 + '%\n' +
+					'      Sell: ' + B[bread].sell +
+					'```';
+			}
+			else {
+				str += `"${bread}" is not a valid bread!`;
+			}
 		}
 		else {
-			str += `"${bread}" is not a valid bread!`;
+			args[1] = parseInt(args[1]);
+			let star;
+			if(args[1] > 0 && args[1] < 7) {
+				star = args[1];
+			}
+			else {
+				star = 6; // default to highest
+			}
+
+			str += '(' + '★'.repeat(star) + '): ';
+			let t = [];
+			Object.keys(B).forEach(key => {
+				if(B[key].star === star) {
+					t.push(B[key].name);
+				}
+			});
+			str += t.join(', ');
+
 		}
 	}
 	return str;
 }
+
 function getGoddess(args) {
-	let str = '', len = args.length;
-	if(len === 1) {
+	let str = '';
+	if(args.length === 1) {
 		str += 'help';
 	}
 	else {
