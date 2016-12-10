@@ -2,6 +2,8 @@ const DISCORD = require('discord.js');
 const CLIENT = new DISCORD.Client();
 const T = require('./token.json');
 const H = require('./heroes.json');
+const B = require('./bread.json');
+const G = require('./goddesses.json');
 
 // helper functions
 function getName(hero, star) {
@@ -120,6 +122,41 @@ function getHero(args) {
 		}
 	}
 
+	return str;
+}
+
+function getBread(args) {
+	let str = '', len = args.length;
+	if(len === 1) {
+		str += 'help';
+	}
+	else {
+		let bread = args[1];
+		if(B[bread]) {
+			str += 'bread';
+		}
+		else {
+			str += `"${bread}" is not a valid bread!`;
+		}
+	}
+	return str;
+}
+function getGoddess(args) {
+	let str = '', len = args.length;
+	if(len === 1) {
+		str += 'help';
+	}
+	else {
+		let goddess = args[1];
+		if(G[goddess]) {
+			str += '__**' + G[goddess].name + '**__\n' +
+				'**' + G[goddess].skillName + "**: " +
+				G[goddess].skillDescription + '\n';
+		}
+		else {
+			str += `"${goddess}" is not a valid goddess!`;
+		}
+	}
 	return str;
 }
 
