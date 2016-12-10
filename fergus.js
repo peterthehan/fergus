@@ -1,10 +1,10 @@
 const DISCORD = require('discord.js');
 const CLIENT = new DISCORD.Client();
 const T = require('./token.json');
-const H = require('./heroes.json');
-const B = require('./bread.json');
-const G = require('./goddesses.json');
-const S = require('./skins.json');
+const H = require('./json/heroes.json');
+const B = require('./json/bread.json');
+const G = require('./json/goddesses.json');
+const S = require('./json/skins.json');
 
 // helper function
 function getName(hero, star) {
