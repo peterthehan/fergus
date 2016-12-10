@@ -4,6 +4,7 @@ const T = require('./token.json');
 const H = require('./heroes.json');
 const B = require('./bread.json');
 const G = require('./goddesses.json');
+const S = require('./skins.json');
 
 // helper function
 function getName(hero, star) {
@@ -179,8 +180,8 @@ function getBread(args) {
 }
 
 function getGoddess(args) {
-	let str = '';
-	if(args.length === 1) {
+	let str = '', len = args.length;
+	if(len === 1) {
 		str += 'help';
 	}
 	else {
@@ -192,6 +193,23 @@ function getGoddess(args) {
 		}
 		else {
 			str += `"${goddess}" is not a valid goddess!`;
+		}
+	}
+	return str;
+}
+
+function getSkin(args) {
+	let str = '';
+	if(args.length === 1) {
+		str += 'help';
+	}
+	else {
+		let hero = args[1];
+		if(S[hero]) {
+			str += "skin";
+		}
+		else {
+			str += `"${hero}" is not a valid hero!`;
 		}
 	}
 	return str;
@@ -233,6 +251,11 @@ CLIENT.on('message', message => {
 		// !goddess: help
 		// !goddess: goddessName: goddess information
 		message.channel.sendMessage(getGoddess(msg.split(' ')));
+	}
+	else if(msg.startsWith(prefix + 'skin')) {
+		// !skin: help
+		// !skin: heroName: skin information
+		message.channel.sendMessage(getSkin(msg.split(' ')));
 	}
 	else if(msg.startsWith(prefix + 'lenny')) {
 		message.channel.sendMessage('( ͡° ͜ʖ ͡°)');
