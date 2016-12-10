@@ -33,12 +33,12 @@ function getStats(hero, star) {
 	str += '```' +
 		' Atk. Power: ' + H[hero].form[star].atkPower.join(' → ') + '\n' +
 		'         HP: ' + H[hero].form[star].hp.join(' → ') + '\n' +
-		'Crit.Chance: ' + H[hero].form[star].critChance.join(' → ') + '\n' +
+		'Crit.Chance: ' + H[hero].form[star].critChance.map(x => {return (x * 100).toPrecision(3);}).join(' → ') + '\n' +
 		'      Armor: ' + H[hero].form[star].armor.join(' → ') + '\n' +
 		' Resistance: ' + H[hero].form[star].resistance.join(' → ') + '\n' +
-		'Crit.Damage: ' + H[hero].form[star].critDamage.join(' → ') + '\n' +
-		'   Accuracy: ' + H[hero].form[star].accuracy.join(' → ') + '\n' +
-		'    Evasion: ' + H[hero].form[star].evasion.join(' → ') + '\n' +
+		'Crit.Damage: ' + H[hero].form[star].critDamage.map(x => {return (x * 100).toPrecision(3);}).join(' → ') + '\n' +
+		'   Accuracy: ' + H[hero].form[star].accuracy.map(x => {return (x * 100).toPrecision(3);}).join(' → ') + '\n' +
+		'    Evasion: ' + H[hero].form[star].evasion.map(x => {return (x * 100).toPrecision(3);}).join(' → ') + '\n' +
 		'```\n';
 	return str;
 }
@@ -231,17 +231,45 @@ function getGoddess(args) {
 }
 
 function getSkin(args) {
-	let str = '';
+	let str = '** **\n';
 	if(args.length === 1) {
 		str += 'help';
 	}
 	else {
 		let hero = args[1];
 		if(S[hero]) {
-			str += "skin";
+			for(i = 0; i < S[hero].form.length; ++i) {
+				str += '__**' + S[hero].form[i].name + '**__';
+				str += '```';
+				if(S[hero].form[i].atkPower !== 0) {
+					str += ' Atk. Power: ' + S[hero].form[i].atkPower + "\n";
+				}
+				if(S[hero].form[i].hp !== 0) {
+					str += '         HP: ' + S[hero].form[i].hp + "\n";
+				}
+				if(S[hero].form[i].critChance !== 0) {
+					str += 'Crit.Chance: ' + S[hero].form[i].critChance * 100 + "%\n";
+				}
+				if(S[hero].form[i].armor !== 0) {
+					str += '      Armor: ' + S[hero].form[i].armor + "\n";
+				}
+				if(S[hero].form[i].resistance !== 0) {
+					str += ' Resistance: ' + S[hero].form[i].resistance + "\n";
+				}
+				if(S[hero].form[i].critDamage !== 0) {
+					str += 'Crit.Damage: ' + S[hero].form[i].critDamage * 100 + "%\n";
+				}
+				if(S[hero].form[i].accuracy !== 0) {
+					str += '   Accuracy: ' + S[hero].form[i].accuracy * 100 + "%\n";
+				}
+				if(S[hero].form[i].evasion !== 0) {
+					str += '    Evasion: ' + S[hero].form[i].evasion * 100 + "\n";
+				}
+				str += '```\n';
+			}
 		}
 		else {
-			str += `"${hero}" is not a valid hero!`;
+			str += `"${hero}" is not a valid hero or does not have a skin yet!`;
 		}
 	}
 	return str;
