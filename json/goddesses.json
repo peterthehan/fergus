@@ -35,7 +35,7 @@
 		"skillDescription": "The enemy team's movement speed is decreased by 50% for 4 seconds. When this effect ends, the last skill that was used during the effect by each ally hero will be used once again."
 	},
 	"sylunis": {
-		"name": "sylunis",
+		"name": "Sylunis",
 		"skillName": "Light and Darkness",
 		"skillDescription": "Ability stats of the entire ally will be increased by 20% each for 4 seconds. After the effect, evasion will be decreased by 50%."
 	}

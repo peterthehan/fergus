@@ -1,10 +1,14 @@
 const DISCORD = require('discord.js');
 const CLIENT = new DISCORD.Client();
+
 const T = require('./token.json');
-const H = require('./json/heroes.json');
-const B = require('./json/bread.json');
-const G = require('./json/goddesses.json');
-const S = require('./json/skins.json');
+const BRD = require('./json/bread.json');
+const GDS = require('./json/goddesses.json');
+const HRS = require('./json/heroes.json');
+const SBW = require('./json/sbws.json');
+const SKL = require('./json/skills.json');
+const SKN = require('./json/skins.json');
+const WPN = require('./json/weapons.json');
 
 // helper function
 function getName(hero, star) {
@@ -58,7 +62,11 @@ function getSkill(hero, star) {
 function getHero(args) {
 	let str = '', len = args.length;
 	if(len === 1) {
-		str += 'help';
+		str += '```' +
+			'!hero <hero name> [<info|stats|skill> <star>]\n\n' +
+			'hero name: name of hero, omitting all spaces\n' +
+			'<info|stats|skill'
+			'e.g. !hero leon'
 	}
 	else {
 		let hero = args[1];
@@ -321,8 +329,8 @@ CLIENT.on('message', message => {
 		message.channel.sendMessage('( ͡° ͜ʖ ͡°)');
 	}
 	else if(msg.startsWith(prefix + 'fergus')) {
-		message.reply('No.');
-		message.channel.sendFile(CLIENT.user.avatarURL);
+		//message.reply('No.');
+		message.channel.sendFile(CLIENT.user.avatarURL, '', `${message.author}, No.`);
 	}
 });
 
