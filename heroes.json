@@ -1,5 +1,5 @@
 {
-	"Leon": {
+	"leon": {
 		"faction": "Grancia Empire",
 		"type": "Legendary",
 		"class": "Warrior",
@@ -134,7 +134,7 @@
 			}
 		]
 	},
-	"Rochefort": {
+	"rochefort": {
 		"faction": "Unknown",
 		"type": "Legendary",
 		"class": "Warrior",
@@ -269,7 +269,7 @@
 			}
 		]
 	},
-	"Joan": {
+	"joan": {
 		"faction": "Grancia Empire",
 		"type": "Promote",
 		"class": "Warrior",
@@ -342,6 +342,105 @@
 				"howToGet": [
 					"Contract: Buy Contracts!",
 					"Promote Hero: Promoting Heroes!"
+				]
+			}
+		]
+	},
+	"bravedog": {
+		"faction": "",
+		"type": "Normal",
+		"class": "Warrior",
+		"skillName": "Call of Demon Sword",
+		"skillDescription": "Summons a demon sword that deals magic damage equal to (56/178/322)% of attack power based on the chain number.",
+		"form": [
+			{
+				"name": "Brave Dog",
+				"star": 3,
+				"level": 30,
+				"atkPower": [142, 156.2, 170.4],
+				"hp": [1058, 1163.8, 1269.6],
+				"critChance": [10, 10, 10],
+				"armor": [145.1, 159.6, 174.1],
+				"resistance": [26, 28.6, 31.2],
+				"critDamage": [50, 50, 50],
+				"accuracy": [0, 0, 0],
+				"evasion": [0, 0, 0],
+				"background": "There are two things you can count on in this world: Brave Dog being brave and Goblins smelling like old milk.",
+				"skill": {
+						"level": 1,
+						"passive": ""
+				},
+				"howToGet": [
+					"Contract: Buy Contracts!",
+					"Promote Hero: Promoting Heroes!",
+					"Stage: Volcano 4-13",
+					"Stage: Volcano 4-13 Hard.",
+					"Noble Honor Box: Acquired chance to get Noble honor box!"
+				]
+			}
+		]
+	},
+	"warrior": {
+		"faction": "",
+		"type": "Normal",
+		"class": "Warrior",
+		"skillName": "Sword Shot",
+		"skillDescription": "A piercing attack that deals physical damage equal to (49/150/271)% of attack power.",
+		"form": [
+			{
+				"name": "Warrior",
+				"star": 2,
+				"level": 20,
+				"atkPower": [49.9, 54.9],
+				"hp": [787.5, 866.2],
+				"critChance": [17.5, 17.5],
+				"armor": [111, 122.1],
+				"resistance": [20, 22],
+				"critDamage": [50, 50],
+				"accuracy": [0, 0],
+				"evasion": [0, 0],
+				"background": "As a warrior of the East, he trains to reach a higher state of being by battling against the strongest opponents he can find.",
+				"skill": {
+						"level": 1,
+						"passive": ""
+				},
+				"howToGet": [
+					"Contract: Buy Contracts!",
+					"Promote Hero: Promoting Heroes!",
+					"Stage: Deep Sea 3-13",
+					"Stage: Appears at Deep Sea 3-13 Hard.",
+					"Noble Honor Box: Acquired chance to get Noble honor box!"
+				]
+			}
+		]
+	},
+	"farmboy": {
+		"faction": "",
+		"type": "Normal",
+		"class": "Warrior",
+		"skillName": "Sonic Wave",
+		"skillDescription": "Throws a wave of energy that deals magic damage equal to (49/122/221)% of attack power based on the chain number.",
+		"form": [
+			{
+				"name": "Farm Boy",
+				"star": 1,
+				"level": 10,
+				"atkPower": [19.6],
+				"hp": [728],
+				"critChance": [10],
+				"armor": [77],
+				"resistance": [14],
+				"critDamage": [50],
+				"accuracy": [0],
+				"evasion": [0],
+				"background": "He worked hard on the farm, but now he's set out on a quest to save his cabbages from monsters.",
+				"skill": {
+						"level": 1,
+						"passive": ""
+				},
+				"howToGet": [
+					"Stage: Forest 1-23",
+					"Stage: Appears at Forest 1-23 Hard."
 				]
 			}
 		]

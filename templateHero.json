@@ -1,4 +1,3 @@
-
 "": {
 	"faction": "",
 	"type": "Normal|Secret|Supply",
@@ -19,15 +18,14 @@
 			"accuracy": [0],
 			"evasion": [0],
 			"background": "",
-			"skill": [
-				{
+			"skill": {
 					"level": 1,
 					"passive": ""
-				}
-			],
+			},
 			"howToGet": [
 				"Contract: Buy Contracts!",
 				"Promote Hero: Promoting Heroes!",
+				"Stage: ",
 				"Noble Honor Box: Acquired chance to get Noble honor box!",
 				"Contract!: Only Contracts! (Except Noble Honor Box)",
 				"Quest: Epic Quest Reward!",
@@ -47,15 +45,14 @@
 			"accuracy": [0, 0],
 			"evasion": [0, 0],
 			"background": "",
-			"skill": [
-				{
+			"skill": {
 					"level": 1,
 					"passive": ""
-				}
-			],
+			},
 			"howToGet": [
 				"Contract: Buy Contracts!",
 				"Promote Hero: Promoting Heroes!",
+				"Stage: ",
 				"Noble Honor Box: Acquired chance to get Noble honor box!",
 				"Contract!: Only Contracts! (Except Noble Honor Box)",
 				"Quest: Epic Quest Reward!",
@@ -75,20 +72,19 @@
 			"accuracy": [0, 0, 0],
 			"evasion": [0, 0, 0],
 			"background": "",
-			"skill": [
-				{
+			"skill": {
 					"level": 1,
 					"passive": ""
-				}
-			],
+			},
 			"howToGet": [
 				"Contract: Buy Contracts!",
 				"Promote Hero: Promoting Heroes!",
+				"Stage: ",
 				"Noble Honor Box: Acquired chance to get Noble honor box!",
 				"Contract!: Only Contracts! (Except Noble Honor Box)",
 				"Quest: Epic Quest Reward!",
 				"Event: Get by event!"
 			]
-		},
+		}
 	]
 },

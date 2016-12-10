@@ -18,12 +18,10 @@
 			"accuracy": [0, 0, 0, 0],
 			"evasion": [0, 0, 0, 0],
 			"background": "",
-			"skill": [
-				{
+			"skill": {
 					"level": 2,
 					"passive": ""
-				}
-			],
+			},
 			"howToGet": [
 				"Contract: Buy Contracts!",
 				"Promote Hero: Promoting Heroes!",
@@ -46,12 +44,10 @@
 			"accuracy": [0, 0, 0, 0, 0],
 			"evasion": [0, 0, 0, 0, 0],
 			"background": "",
-			"skill": [
-				{
+			"skill": {
 					"level": 2,
 					"passive": ""
-				}
-			],
+			},
 			"howToGet": [
 				"Contract: Buy Contracts!",
 				"Promote Hero: Promoting Heroes!",
@@ -74,12 +70,10 @@
 			"accuracy": [0, 0, 0, 0, 0, 0, ],
 			"evasion": [0, 0, 0, 0, 0, 0, ],
 			"background": "",
-			"skill": [
-				{
+			"skill": {
 					"level": 3,
 					"passive": ""
-				}
-			],
+			},
 			"howToGet": [
 				"Contract: Buy Contracts!",
 				"Promote Hero: Promoting Heroes!",
