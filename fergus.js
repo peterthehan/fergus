@@ -86,7 +86,10 @@ function getHero(args) {
 						str += getSkill(hero, star);
 					}
 					else {
-						str += '';
+						str += getName(hero, star);
+						str += getInfo(hero, star);
+						str += getStats(hero, star);
+						str += getSkill(hero, star);
 					}
 				}
 				// second arg is star#
@@ -110,15 +113,49 @@ function getHero(args) {
 				}
 			}
 			else {
-				str += '4';
-				/*
 				let data;
-				if(isNaN(parseInt(args[2]))) {
-					data = args[2];
+				let num, txt;
+				if(isNaN(parseInt(args[2])) && !isNaN(parseInt(args[3]))) {
+					num = 3;
+					txt = 2;
+				}
+				else if(isNaN(parseInt(args[3])) && !isNaN(parseInt(args[2]))) {
+					num = 2;
+					txt = 3;
 				}
 				else {
+					return 'bad';
+				}
+				// 3-line heroes
+				if(H[hero].form.length === 3) {
+					if(args[num] > 3 && args[num] < 7) {
+						star = args[num] - 4;
+					}
+				}
+				// 6-line heroes
+				else if(H[hero].form.length === 6){
+					if(args[num] > 0 && args[num] < 7) {
+						star = args[num] - 1;
+					}
+				}
 
-				}*/
+				data = args[txt];
+				str += getName(hero, star);
+				if(data === 'info') {
+					str += getInfo(hero, star);
+				}
+				else if(data === 'stats') {
+					str += getStats(hero, star);
+				}
+				else if(data === 'skill') {
+					str += getSkill(hero, star);
+				}
+				else {
+					str += getName(hero, star);
+					str += getInfo(hero, star);
+					str += getStats(hero, star);
+					str += getSkill(hero, star);
+				}
 			}
 		}
 		else {
@@ -127,11 +164,6 @@ function getHero(args) {
 	}
 
 	return str;
-}
-
-// helper function
-function getBreadStar() {
-
 }
 
 function getBread(args) {
