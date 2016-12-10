@@ -1,0 +1,184 @@
+{
+	"macaroon": {
+		"name": "Macaroon",
+		"value": 600,
+		"greatRate": 0,
+		"star": 6,
+		"sell": 600
+	},
+	"hamburger": {
+		"name": "Hamburger",
+		"value": 480,
+		"greatRate": 0.2,
+		"star": 6,
+		"sell": 600
+	},
+	"specialdonut": {
+		"name": "Special Donut",
+		"value": 360,
+		"greatRate": 0.4,
+		"star": 6,
+		"sell": 600
+	},
+	"strawberrypie": {
+		"name": "Strawberry Pie",
+		"value": 330,
+		"greatRate": 0,
+		"star": 5,
+		"sell": 400
+	},
+	"pizza": {
+		"name": "Pizza",
+		"value": 264,
+		"greatRate": 0.2,
+		"star": 5,
+		"sell": 400
+	},
+	"strawberrydonut": {
+		"name": "Strawberry Donut",
+		"value": 198,
+		"greatRate": 0.4,
+		"star": 5,
+		"sell": 400
+	},
+	"chocolate": {
+		"name": "Chocolate",
+		"value": 280,
+		"greatRate": 0,
+		"star": 4,
+		"sell": 214
+	},
+	"chocolatewitchbread": {
+		"name": "Chocolate Witch Bread",
+		"value": 270,
+		"greatRate": 0,
+		"star": 4,
+		"sell": 300
+	},
+	"chococupcake": {
+		"name": "Choco Cup Cake",
+		"value": 240,
+		"greatRate": 0.15,
+		"star": 4,
+		"sell": 214
+	},
+	"tiramisu": {
+		"name": "Tiramisu",
+		"value": 216,
+		"greatRate": 0.2,
+		"star": 4,
+		"sell": 888
+	},
+	"shamrockcupcake": {
+		"name": "Shamrock Cupcake",
+		"value": 200,
+		"greatRate": 0.3,
+		"star": 4,
+		"sell": 350
+	},
+	"creambread": {
+		"name": "Cream Bread",
+		"value": 180,
+		"greatRate": 0,
+		"star": 4,
+		"sell": 260
+	},
+	"christmascake": {
+		"name": "Christmas Cake",
+		"value": 150,
+		"greatRate": 0.25,
+		"star": 4,
+		"sell": 350
+	},
+	"halloweencake": {
+		"name": "Halloween Cake",
+		"value": 150,
+		"greatRate": 0.25,
+		"star": 4,
+		"sell": -1
+	},
+	"sandwich": {
+		"name": "Sandwich",
+		"value": 144,
+		"greatRate": 0.2,
+		"star": 4,
+		"sell": 260
+	},
+	"bigchococcake": {
+		"name": "Big Choco Cake",
+		"value": 140,
+		"greatRate": 0.5,
+		"star": 4,
+		"sell": 214
+	},
+	"ricedonut": {
+		"name": "Rice Donut",
+		"value": 108,
+		"greatRate": 0.4,
+		"star": 4,
+		"sell": 260
+	},
+	"croissant": {
+		"name": "Croissant",
+		"value": 100,
+		"greatRate": 0,
+		"star": 3,
+		"sell": 170
+	},
+	"snackwrap": {
+		"name": "Snack Wrap",
+		"value": 80,
+		"greatRate": 0.2,
+		"star": 3,
+		"sell": 170
+	},
+	"jellyroll": {
+		"name": "Jelly Roll",
+		"value": 60,
+		"greatRate": 0.4,
+		"star": 3,
+		"sell": 170
+	},
+	"bread": {
+		"name": "Bread",
+		"value": 50,
+		"greatRate": 0,
+		"star": 2,
+		"sell": 110
+	},
+	"hotdog": {
+		"name": "Hot Dog",
+		"value": 40,
+		"greatRate": 0.2,
+		"star": 2,
+		"sell": 110
+	},
+	"chocodonut": {
+		"name": "Choco Donut",
+		"value": 30,
+		"greatRate": 0.4,
+		"star": 2,
+		"sell": 110
+	},
+	"morningbread": {
+		"name": "Morning Bread",
+		"value": 30,
+		"greatRate": 0,
+		"star": 1,
+		"sell": 70
+	},
+	"sausagebread": {
+		"name": "Sausage Bread",
+		"value": 24,
+		"greatRate": 0.2,
+		"star": 1,
+		"sell": 70
+	},
+	"donut": {
+		"name": "Donut",
+		"value": 18,
+		"greatRate": 0.4,
+		"star": 1,
+		"sell": 70
+	}
+}
