@@ -1,0 +1,1 @@
+web: node fergus.js
