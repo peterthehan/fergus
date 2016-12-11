@@ -1,8 +1,3 @@
-// !hero: help
-// !hero heroName: all hero information for 6 star
-// !hero heroName star#: all hero information for # star
-// !hero heroName info|stats|skill: hero information for 6 star
-// !hero heroName (info|stats|skill star#): hero information for # star
 function getName(hero, star, arr) {
 	let str = '';
 	str += '__**' + arr[hero].form[star].name + '**__ ' +
@@ -14,12 +9,14 @@ function getName(hero, star, arr) {
 	str += arr[hero].type + ', ' + arr[hero].class + '\n';
 	return str;
 }
+
 function getInfo(hero, star, arr) {
 	let str = '';
 	str += '_' + arr[hero].form[star].background + '_\n' +
 		'**Acquire**: ' + arr[hero].form[star].howToGet.join(', ') + '\n';
 	return str;
 }
+
 function getStats(hero, star, arr) {
 	let str = '';
 	str += '```' +
@@ -34,6 +31,7 @@ function getStats(hero, star, arr) {
 		'```\n';
 	return str;
 }
+
 function getSkill(hero, star, arr) {
 	let str = '';
 	str += '**' + arr[hero].skillName + '** (Lv.' + arr[hero].form[star].skill.level +
@@ -48,13 +46,12 @@ function getSkill(hero, star, arr) {
 module.exports = {
 	getHero: function(args, arr) {
 		let str = '', len = args.length;
+		// 0 arguments
 		if(len === 1) {
-			str += '```' +
-				'!hero <hero name> [<info|stats|skill> <star>]\n\n' +
-				'hero name: name of hero, omitting all spaces\n' +
-				'<info|stats|skill'
-				'e.g. !hero leon'
+			str += '**!hero list|<name> [<>]**, ' +
+				'e.g. !goddess list, !goddess sera';
 		}
+		// 1 or more arguments
 		else {
 			let hero = args[1];
 			if(arr[hero]) {
