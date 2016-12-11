@@ -12,7 +12,7 @@ module.exports = {
 			if(args[1] === 'list') {
 				str += '```' + Object.keys(arr).join(', ') + '```';
 			}
-			// name
+			// <name>
 			else if(arr[args[1]]) {
 				str += '__**' + arr[args[1]].name + '**__\n' +
 					'**' + arr[args[1]].skillName + "**: " +

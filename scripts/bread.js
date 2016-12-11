@@ -12,7 +12,7 @@ module.exports = {
 			if(args[1] === 'list') {
 				str += '```' + Object.keys(arr).join(', ') + '```';
 			}
-			// star
+			// <star>
 			else if(!isNaN(parseInt(args[1]))){
 				args[1] = parseInt(args[1]);
 				// if star is within bounds
@@ -34,21 +34,18 @@ module.exports = {
 					str += `${args[1]}-star breads do not exist!`;
 				}
 			}
-			// name
+			// <name>
+			else if(arr[args[1]]) {
+				str += '__**' + arr[args[1]].name + '**__ ' +
+					'(' + '★'.repeat(arr[args[1]].star) + ')\n' +
+					'```' +
+					'     Value: ' + arr[args[1]].value + "\n" +
+					'Great rate: ' + arr[args[1]].greatRate * 100 + '%\n' +
+					'      Sell: ' + arr[args[1]].sell +
+					'```';
+			}
 			else {
-				// if bread exists
-				if(arr[args[1]]) {
-					str += '__**' + arr[args[1]].name + '**__ ' +
-						'(' + '★'.repeat(arr[args[1]].star) + ')\n' +
-						'```' +
-						'     Value: ' + arr[args[1]].value + "\n" +
-						'Great rate: ' + arr[args[1]].greatRate * 100 + '%\n' +
-						'      Sell: ' + arr[args[1]].sell +
-						'```';
-				}
-				else {
-					str += `"${args[1]}" is not a valid bread name!`;
-				}
+				str += `"${args[1]}" is not a valid bread name!`;
 			}
 		}
 		return str;
