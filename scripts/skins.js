@@ -1,3 +1,5 @@
+// !skin: help
+// !skin: heroName: skin information
 module.exports = {
 	getSkin: function(args, arr) {
 		let str = '';

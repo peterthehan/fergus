@@ -1,3 +1,5 @@
+// !goddess: help
+// !goddess: goddessName: goddess information
 module.exports = {
 	getGoddess: function(args, arr) {
 		let str = '', len = args.length;

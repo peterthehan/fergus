@@ -1,3 +1,5 @@
+// !bread: help
+// !bread breadName: bread information
 module.exports = {
 	getBread: function(args, arr) {
 		let str = '', len = args.length;

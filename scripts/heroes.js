@@ -1,3 +1,8 @@
+// !hero: help
+// !hero heroName: all hero information for 6 star
+// !hero heroName star#: all hero information for # star
+// !hero heroName info|stats|skill: hero information for 6 star
+// !hero heroName (info|stats|skill star#): hero information for # star
 function getName(hero, star, arr) {
 	let str = '';
 	str += '__**' + arr[hero].form[star].name + '**__ ' +

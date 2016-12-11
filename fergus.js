@@ -1,26 +1,29 @@
 const DISCORD = require('discord.js');
 const CLIENT = new DISCORD.Client();
-const T = require('./token.json');
 
-const BREAD_JSON = require('./json/bread.json');
-const GODDESSES_JSON = require('./json/goddesses.json');
-const HEROES_JSON = require('./json/heroes.json');
-//const SBWS_JSON = require('./json/sbws.json');
-//const SKILLS_JSON = require('./json/skills.json');
-const SKINS_JSON = require('./json/skins.json');
-//const WEAPONS_JSON = require('./json/weapons.json');
+// make json objects
+const BREAD = require('./json/bread.json');
+const GODDESSES = require('./json/goddesses.json');
+const HEROES = require('./json/heroes.json');
+//const SBWS = require('./json/sbws.json');
+//const SKILLS = require('./json/skills.json');
+const SKINS = require('./json/skins.json');
+//const WEAPONS = require('./json/weapons.json');
 
-const BREAD_JS = require('./scripts/bread.js');
-const GODDESSES_JS = require('./scripts/goddesses.js');
-const HEROES_JS = require('./scripts/heroes.js');
-//const SBWS_JS = require('./scripts/sbws.js');
-const SKILLS_JS = require('./scripts/skills.js');
-const SKINS_JS = require('./scripts/skins.js');
-//const WEAPONS_JS = require('./scripts/weapons.js');
+// get command functions
+let etc = require('./scripts/etc.js');
+let bread = require('./scripts/bread.js');
+let goddess = require('./scripts/goddesses.js');
+let hero = require('./scripts/heroes.js');
+//let sbw = require('./scripts/sbws.js');
+let skill = require('./scripts/skills.js');
+let skin = require('./scripts/skins.js');
+//const weapon = require('./scripts/weapons.js');
 
 // asynchronous event handler
 CLIENT.on('ready', () => {
-  console.log(`${CLIENT.user.username}#${CLIENT.user.discriminator} is online.`);
+  console.log(`${CLIENT.user.username}#${CLIENT.user.discriminator}` +
+		' is online.');
 });
 
 // message event handler
@@ -30,46 +33,41 @@ CLIENT.on('message', message => {
 		return;
 	}
 
-	// case-insensitive
-	let msg = message.content.toLowerCase();
+	let msg = message.content.toLowerCase(); // case-insensitive
 
 	// command list
 	if(msg.startsWith(prefix + 'help')) {
-		message.channel.sendMessage();
+		message.channel.sendMessage(etc.getHelp());
 	}
-	else if(msg.startsWith(prefix + 'hero')) {
-		// !hero: help
-		// !hero heroName: all hero information for 6 star
-		// !hero heroName star#: all hero information for # star
-		// !hero heroName info|stats|skill: hero information for 6 star
-		// !hero heroName (info|stats|skill star#): hero information for # star
-		message.channel.sendMessage(HEROES_JS.getHero(msg.split(' '), HEROES_JSON));
+	else if(msg.startsWith(prefix + 'about')) {
+			message.channel.sendMessage(etc.getAbout());
 	}
 	else if(msg.startsWith(prefix + 'bread')) {
-		// !bread: help
-		// !bread breadName: bread information
-		message.channel.sendMessage(BREAD_JS.getBread(msg.split(' '), BREAD_JSON));
+		message.channel.sendMessage(bread.getBread(msg.split(' '),
+			BREAD));
 	}
 	else if(msg.startsWith(prefix + 'goddess')) {
-		// !goddess: help
-		// !goddess: goddessName: goddess information
-		message.channel.sendMessage(GODDESSES_JS.getGoddess(msg.split(' '), GODDESSES_JSON));
+		message.channel.sendMessage(goddess.getGoddess(msg.split(' '),
+			GODDESSES));
 	}
+	else if(msg.startsWith(prefix + 'hero')) {
+		message.channel.sendMessage(hero.getHero(msg.split(' '),
+			HEROES));
+	}
+	//else if(msg.startsWith(prefix + 'sbw')) {}
+	//else if(msg.startsWith(prefix + 'skill')) {}
 	else if(msg.startsWith(prefix + 'skin')) {
-		// !skin: help
-		// !skin: heroName: skin information
-		message.channel.sendMessage(SKINS_JS.getSkin(msg.split(' '), SKINS_JSON));
+		message.channel.sendMessage(skin.getSkin(msg.split(' '),
+			SKINS));
 	}
-	else if(msg.startsWith(prefix + 'test')) {
-		message.channel.sendMessage(test.test(BREAD_JSON));
-	}
+	//else if(msg.startsWith(prefix + 'weapon')) {}
 	else if(msg.startsWith(prefix + 'lenny')) {
 		message.channel.sendMessage('( ͡° ͜ʖ ͡°)');
 	}
 	else if(msg.startsWith(prefix + 'fergus')) {
-		//message.reply('No.');
-		message.channel.sendFile(CLIENT.user.avatarURL, '', `${message.author}, No.`);
+		message.channel.sendFile(CLIENT.user.avatarURL,
+			'', `${message.author}, No.`); //message.reply('No.');
 	}
 });
 
-CLIENT.login(T.token);
+CLIENT.login(require('./token.json').token);
