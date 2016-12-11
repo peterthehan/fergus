@@ -1,46 +1,54 @@
-// !bread: help
-// !bread breadName: bread information
 module.exports = {
 	getBread: function(args, arr) {
 		let str = '', len = args.length;
+		// 0 arguments
 		if(len === 1) {
-			str += 'help';
+			str += '**!bread list|<star>|<name>**, ' +
+				'e.g. !bread list, !bread 6, !bread macaroon';
 		}
+		// 1 or more arguments
 		else {
-			if(isNaN(parseInt(args[1]))) {
-				let bread = args[1];
-				if(arr[bread]) {
-					str += '__**' + arr[bread].name + '**__ ' +
-						'(' + '★'.repeat(arr[bread].star) + ')\n';
-					str += '```' +
-						'     Value: ' + arr[bread].value + "\n" +
-						'Great rate: ' + arr[bread].greatRate * 100 + '%\n' +
-						'      Sell: ' + arr[bread].sell +
+			// list
+			if(args[1] === 'list') {
+				str += '```' + Object.keys(arr).join(', ') + '```';
+			}
+			// star
+			else if(!isNaN(parseInt(args[1]))){
+				args[1] = parseInt(args[1]);
+				// if star is within bounds
+				if(args[1] > 0 && args[1] < 7) {
+					str += '(' + '★'.repeat(args[1]) + ')\n' +
+						'```';
+
+					let t = [];
+					Object.keys(arr).forEach(key => {
+						if(arr[key].star === args[1]) {
+							t.push(arr[key].name);
+						}
+					});
+
+					str += t.join(', ') +
 						'```';
 				}
 				else {
-					str += `"${bread}" is not a valid bread!`;
+					str += `${args[1]}-star breads do not exist!`;
 				}
 			}
+			// name
 			else {
-				args[1] = parseInt(args[1]);
-				let star;
-				if(args[1] > 0 && args[1] < 7) {
-					star = args[1];
+				// if bread exists
+				if(arr[args[1]]) {
+					str += '__**' + arr[args[1]].name + '**__ ' +
+						'(' + '★'.repeat(arr[args[1]].star) + ')\n' +
+						'```' +
+						'     Value: ' + arr[args[1]].value + "\n" +
+						'Great rate: ' + arr[args[1]].greatRate * 100 + '%\n' +
+						'      Sell: ' + arr[args[1]].sell +
+						'```';
 				}
 				else {
-					star = 6; // default to highest
+					str += `"${args[1]}" is not a valid bread name!`;
 				}
-
-				str += '(' + '★'.repeat(star) + '): ';
-				let t = [];
-				Object.keys(arr).forEach(key => {
-					if(arr[key].star === star) {
-						t.push(arr[key].name);
-					}
-				});
-				str += t.join(', ');
-
 			}
 		}
 		return str;
