@@ -3,18 +3,25 @@
 module.exports = {
 	getGoddess: function(args, arr) {
 		let str = '', len = args.length;
+		// 0 arguments
 		if(len === 1) {
-			str += 'help';
+			str += '**!goddess list|<name>**, ' +
+				'e.g. !goddess list, !goddess sera';
 		}
+		// 1 or more arguments
 		else {
-			let goddess = args[1];
-			if(arr[goddess]) {
-				str += '__**' + arr[goddess].name + '**__\n' +
-					'**' + arr[goddess].skillName + "**: " +
-					arr[goddess].skillDescription + '\n';
+			// list
+			if(args[1] === 'list') {
+				str += '```' + Object.keys(arr).join(', ') + '```';
+			}
+			// name
+			else if(arr[args[1]]) {
+				str += '__**' + arr[args[1]].name + '**__\n' +
+					'**' + arr[args[1]].skillName + "**: " +
+					arr[args[1]].skillDescription + '\n';
 			}
 			else {
-				str += `"${goddess}" is not a valid goddess!`;
+				str += `"${args[1]}" is not a valid goddess name!`;
 			}
 		}
 		return str;
