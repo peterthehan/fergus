@@ -1,50 +1,109 @@
-function getName(hero, star, arr) {
+// helper function, get string
+function getName(h, s, arr) {
 	let str = '';
-	str += '__**' + arr[hero].form[star].name + '**__ ' +
-		'(' + '★'.repeat(arr[hero].form[star].star) + ') | ';
-	let t =	arr[hero].faction;
+	str += '__**' + arr[h].form[s].name + '**__ ' +
+		'(' + '★'.repeat(arr[h].form[s].star) + ') | ';
+	let t =	arr[h].faction;
 	if(t !== '') {
 		str += t + ', ';
 	}
-	str += arr[hero].type + ', ' + arr[hero].class + '\n';
+	str += arr[h].type + ', ' + arr[h].class + '\n';
 	return str;
 }
 
-function getInfo(hero, star, arr) {
-	let str = '';
-	str += '_' + arr[hero].form[star].background + '_\n' +
-		'**Acquire**: ' + arr[hero].form[star].howToGet.join(', ') + '\n';
-	return str;
+// helper function, get string
+function getInfo(h, s, arr) {
+	return '_' + arr[h].form[s].background + '_\n' +
+		'**Acquire**: ' + arr[h].form[s].howToGet.join(', ') + '\n';
 }
 
-function getStats(hero, star, arr) {
-	let str = '';
-	str += '```' +
-		' Atk. Power: ' + arr[hero].form[star].atkPower.join(' → ') + '\n' +
-		'         HP: ' + arr[hero].form[star].hp.join(' → ') + '\n' +
-		'Crit.Chance: ' + arr[hero].form[star].critChance.map(x => {return (x * 100).toPrecision(3);}).join(' → ') + '\n' +
-		'      Armor: ' + arr[hero].form[star].armor.join(' → ') + '\n' +
-		' Resistance: ' + arr[hero].form[star].resistance.join(' → ') + '\n' +
-		'Crit.Damage: ' + arr[hero].form[star].critDamage.map(x => {return (x * 100).toPrecision(3);}).join(' → ') + '\n' +
-		'   Accuracy: ' + arr[hero].form[star].accuracy.map(x => {return (x * 100).toPrecision(3);}).join(' → ') + '\n' +
-		'    Evasion: ' + arr[hero].form[star].evasion.map(x => {return (x * 100).toPrecision(3);}).join(' → ') + '\n' +
+// helper function, get string
+function getStats(h, s, arr) {
+	return '```' +
+		'\xa0Atk. Power: ' + arr[h].form[s].atkPower.join(' → ') + '\n' +
+		'         HP: ' + arr[h].form[s].hp.join(' → ') + '\n' +
+		'Crit.Chance: ' + arr[h].form[s].critChance.map(x => (x * 100).toPrecision(3)).join(' → ') + '\n' +
+		'      Armor: ' + arr[h].form[s].armor.join(' → ') + '\n' +
+		' Resistance: ' + arr[h].form[s].resistance.join(' → ') + '\n' +
+		'Crit.Damage: ' + arr[h].form[s].critDamage.map(x => (x * 100).toPrecision(3)).join(' → ') + '\n' +
+		'   Accuracy: ' + arr[h].form[s].accuracy.map(x => (x * 100).toPrecision(3)).join(' → ') + '\n' +
+		'    Evasion: ' + arr[h].form[s].evasion.map(x => (x * 100).toPrecision(3)).join(' → ') +
 		'```\n';
-	return str;
 }
 
-function getSkill(hero, star, arr) {
+// helper function, get string
+function getSkill(h, s, arr) {
 	let str = '';
-	str += '**' + arr[hero].skillName + '** (Lv.' + arr[hero].form[star].skill.level +
-		'): ' + arr[hero].skillDescription + '\n';
-	let t =	arr[hero].form[star].skill.passive;
+	str += '**' + arr[h].skillName + '** (Lv.' + arr[h].form[s].skill.level +
+		'): ' + arr[h].skillDescription + '\n';
+	let t =	arr[h].form[s].skill.passive;
 	if(t !== '') {
-		str += '**Passive**: ' + t + '\n';
+		str += '**Passive**: ' + t;
 	}
 	return str;
 }
 
-function getData(h, s, arr) {
+// helper function, get string
+function getAll(h, s, arr) {
 	return getInfo(h, s, arr) + getStats(h, s, arr) + getSkill(h, s, arr);
+}
+
+// helper function, get star
+function getStar(h, s, arr) {
+	let star;
+	// no promotion heroes
+	if(arr[h].form.length === 1) {
+		// star is accounted for when initialized
+		// user star input is ignored for these heroes
+		star = arr[h].form.length - 1;
+	}
+	// 3-promotion heroes
+	else if(arr[h].form.length === 3) {
+		s = parseInt(s);
+		if(s > 3 && s < 7) {
+			star = s - 4;
+		}
+		else {
+			return `"${h}" does not have a ${s}-star form!`;
+		}
+	}
+	// 6-promotion heroes
+	else if(arr[h].form.length === 6){
+		s = parseInt(s);
+		if(s > 0 && s < 7) {
+			star = s - 1;
+		}
+		else {
+			return `"${h}" does not have a ${s}-star form!`;
+		}
+	}
+	// exception, should not be possible to enter this case
+	else {
+		return 'error0';
+	}
+	return star;
+}
+
+// helper function, get data
+function getData(h, s, d, arr) {
+	let str = '';
+	str += getName(h, s, arr);
+	if(d === 'info') {
+		str += getInfo(h, s, arr);
+	}
+	else if(d === 'stats') {
+		str += getStats(h, s, arr);
+	}
+	else if(d === 'skill') {
+		str += getSkill(h, s, arr);
+	}
+	// treat !hero <name> <junk> as if !hero <name>
+	// treat !hero <name> <junk> <star> as if !hero <name> <star>
+	// treat !hero <name> <star> <junk> as if !hero <name> <star>
+	else {
+		str += getAll(h, s, arr);
+	}
+	return str;
 }
 
 module.exports = {
@@ -53,11 +112,11 @@ module.exports = {
 		// 0 arguments
 		if(len === 1) {
 			str += '**!hero list|<name> ' +
-				'(info|stats|skill)|<star> <star>**, ' +
+				'(info|stats|skill)|<star> <star>|(info|stats|skill)**, ' +
 				'e.g. !hero list, ' +
 				'!hero mew, !hero mew info, !hero mew 3, ' +
 				'!hero mew stats 4; ' +
-				'defaults to 6-star whenever <star> is not specified.';
+				'Defaults to 6-star whenever <star> is not specified.';
 		}
 		// 1 or more arguments
 		else {
@@ -65,163 +124,98 @@ module.exports = {
 			if(args[1] === 'list') {
 				str += '```' + Object.keys(arr).join(', ') + '```';
 			}
-			// <name>
+			// <name> exists
 			else if(arr[args[1]]) {
 				// default to highest form index
 				let star = arr[args[1]].form.length - 1;
-				// <name>
+
+				// 1 argument, <name>
 				if(len === 2) {
 					str += getName(args[1], star, arr);
-					str += getData(args[1], star, arr);
+					str += getAll(args[1], star, arr);
 				}
-				// <name> info|stats|skill|<star>
+				// 2 arguments, <name> (info|stats|skill)|<star>
 				else if(len === 3) {
-					// info|stats|skill
+					// <name> (info|stats|skill)
 					if(isNaN(parseInt(args[2]))) {
-						str += getName(args[1], star, arr);
-						if(args[2] === 'info') {
-							str += getInfo(args[1], star, arr);
-						}
-						else if(args[2] === 'stats') {
-							str += getStats(args[1], star, arr);
-						}
-						else if(args[2] === 'skill') {
-							str += getSkill(args[1], star, arr);
-						}
-						// treat !hero <name> <junk> as if !hero <name>
-						else {
-							str += getData(args[1], star, arr);
-						}
+						str += getData(args[1], star, args[2], arr);
 					}
-					// <star>
+					// <name> <star>
 					else {
-						// no promotion heroes
-						if(arr[args[1]].form.length === 1) {
-							// star is accounted for when initialized
-							// user star input is ignored for these heroes
+						star = getStar(args[1], args[2], arr);
+						if(isNaN(parseInt(star))) {
+							str += star;
 						}
-						// 3-promotion heroes
-						else if(arr[args[1]].form.length === 3) {
-							args[2] = parseInt(args[2]);
-							if(args[2] > 3 && args[2] < 7) {
-								star = args[2] - 4;
-							}
-							else {
-								return `"${args[1]}" does not have a ${args[2]}-star form!`;
-							}
-						}
-						// 6-promotion heroes
-						else if(arr[args[1]].form.length === 6){
-							args[2] = parseInt(args[2]);
-							if(args[2] > 0 && args[2] < 7) {
-								star = args[2] - 1;
-							}
-							else {
-								return `"${args[1]}" does not have a ${args[2]}-star form!`;
-							}
-						}
-						// exception, should not be possible to enter this case
 						else {
-							return 'error1';
+							str += getName(args[1], star, arr);
+							str += getAll(args[1], star, arr);
 						}
-						str += getName(args[1], star, arr);
-						str += getData(args[1], star, arr);
 					}
 				}
-				// 4 arguments
+				// 3 arguments
+				// <name> (info|stats|skill)|<star> <star>|(info|stats|skill)
 				else {
-					// info|stats|skill <star>
-					if(isNaN(parseInt(args[2]))) {
-						// no promotion heroes
-						if(arr[args[1]].form.length === 1) {
-							// star is accounted for when initialized
-							// user star input is ignored for these heroes
+					// <name> (info|stats|skill) <star>
+					if(isNaN(parseInt(args[2])) && !isNaN(parseInt(args[3]))) {
+						star = getStar(args[1], args[3], arr);
+						if(isNaN(parseInt(star))) {
+							str += star;
 						}
-						// 3-promotion heroes
-						else if(arr[args[1]].form.length === 3) {
-							args[3] = parseInt(args[3]);
-							if(args[3] > 3 && args[3] < 7) {
-								star = args[3] - 4;
-							}
-							else {
-								return `"${args[1]}" does not have a ${args[3]}-star form!`;
-							}
-						}
-						// 6-promotion heroes
-						else if(arr[args[1]].form.length === 6){
-							args[3] = parseInt(args[3]);
-							if(args[3] > 0 && args[3] < 7) {
-								star = args[3] - 1;
-							}
-							else {
-								return `"${args[1]}" does not have a ${args[3]}-star form!`;
-							}
-						}
-						// exception, should not be possible to enter this case
 						else {
-							return 'error2';
-						}
-
-						str += getName(args[1], star, arr);
-						if(args[2] === 'info') {
-							str += getInfo(args[1], star, arr);
-						}
-						else if(args[2] === 'stats') {
-							str += getStats(args[1], star, arr);
-						}
-						else if(args[2] === 'skill') {
-							str += getSkill(args[1], star, arr);
-						}
-						// treat !hero <name> <junk> <star> as if !hero <name> <star>
-						else {
-							str += getData(args[1], star, arr);
+							str += getData(args[1], star, args[2], arr);
 						}
 					}
-					// <star> info|stats|skill
+					// <name> <star> (info|stats|skill)
+					else if(!isNaN(parseInt(args[2])) && isNaN(parseInt(args[3]))){
+						star = getStar(args[1], args[2], arr);
+						if(isNaN(parseInt(star))) {
+							str += star;
+						}
+						else {
+							str += getData(args[1], star, args[3], arr);
+						}
+					}
+					// one of the inputs is junk, treat as if 2 arguments
 					else {
-						// no promotion heroes
-						if(arr[args[1]].form.length === 1) {
-							// star is accounted for when initialized
-							// user star input is ignored for these heroes
-						}
-						// 3-promotion heroes
-						else if(arr[args[1]].form.length === 3) {
-							args[2] = parseInt(args[2]);
-							if(args[2] > 3 && args[2] < 7) {
-								star = args[2] - 4;
+						if(isNaN(parseInt(args[2])) && isNaN(parseInt(args[3]))) {
+							if(args[2] === 'info' || args[2] === 'stats' || args[2] === 'skill') {
+								str += getData(args[1], star, args[2], arr);
 							}
+							else if(args[3] === 'info' || args[3] === 'stats' || args[3] === 'skill') {
+								str += getData(args[1], star, args[3], arr);
+							}
+							// both inputs are junk, treat as if 1 argument
 							else {
-								return `"${args[1]}" does not have a ${args[2]}-star form!`;
+								str += getName(args[1], star, arr);
+								str += getAll(args[1], star, arr);
 							}
 						}
-						// 6-promotion heroes
-						else if(arr[args[1]].form.length === 6){
-							args[2] = parseInt(args[2]);
+						else {
 							if(args[2] > 0 && args[2] < 7) {
-								star = args[2] - 1;
+								star = getStar(args[1], args[2], arr);
+								if(isNaN(parseInt(star))) {
+									str += star;
+								}
+								else {
+									str += getName(args[1], star, arr);
+									str += getAll(args[1], star, arr);
+								}
 							}
+							else if(args[3] > 0 && args[3] < 7) {
+								star = getStar(args[1], args[3], arr);
+								if(isNaN(parseInt(star))) {
+									str += star;
+								}
+								else {
+									str += getName(args[1], star, arr);
+									str += getAll(args[1], star, arr);
+								}
+							}
+							// both inputs are junk, treat as if 1 argument
 							else {
-								return `"${args[1]}" does not have a ${args[2]}-star form!`;
+								str += getName(args[1], star, arr);
+								str += getAll(args[1], star, arr);
 							}
-						}
-						// exception, should not be possible to enter this case
-						else {
-							return 'error2';
-						}
-
-						str += getName(args[1], star, arr);
-						if(args[3] === 'info') {
-							str += getInfo(args[1], star, arr);
-						}
-						else if(args[3] === 'stats') {
-							str += getStats(args[1], star, arr);
-						}
-						else if(args[3] === 'skill') {
-							str += getSkill(args[1], star, arr);
-						}
-						// treat !hero <name> <star> <junk> as if !hero <name> <star>
-						else {
-							str += 'wip'
 						}
 					}
 				}

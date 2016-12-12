@@ -6,7 +6,7 @@ const COMMANDS = [
 
 module.exports = {
 	getHelp: function() {
-		return '**Commands**: ' + COMMANDS.map(i => '!' + i).join(', ');
+		return '**Commands**: ' + COMMANDS.map(x => '!' + x).join(', ');
 	},
 	getAbout: function() {
 		return '**By Peter Han (Saarja)**; ' +
