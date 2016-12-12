@@ -17,7 +17,7 @@ module.exports = {
 				args[1] = parseInt(args[1]);
 				// if star is within bounds
 				if(args[1] > 0 && args[1] < 7) {
-					str += '(' + '★'.repeat(args[1]) + ')' + '```';
+					str += '(' + '★'.repeat(args[1]) + ')\n```';
 
 					let t = [];
 					Object.keys(arr).forEach((key) => {
@@ -35,12 +35,10 @@ module.exports = {
 			// <name>
 			else if(arr[args[1]]) {
 				str += '__**' + arr[args[1]].name + '**__ ' +
-					'(' + '★'.repeat(arr[args[1]].star) + ')\n' +
-					'```' +
-					'     Value: ' + arr[args[1]].value + "\n" +
+					'(' + '★'.repeat(arr[args[1]].star) + ')\n```' +
+					'\xa0    Value: ' + arr[args[1]].value + "\n" +
 					'Great rate: ' + arr[args[1]].greatRate * 100 + '%\n' +
-					'      Sell: ' + arr[args[1]].sell +
-					'```';
+					'      Sell: ' + arr[args[1]].sell + '```';
 			}
 			else {
 				str += `"${args[1]}" is not a valid bread name!`;
