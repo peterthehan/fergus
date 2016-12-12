@@ -16,7 +16,7 @@ module.exports = {
 			else if(arr[args[1]]) {
 				str += '__**' + arr[args[1]].name + '**__\n' +
 					'**' + arr[args[1]].skillName + "**: " +
-					arr[args[1]].skillDescription + '\n';
+					arr[args[1]].skillDescription;
 			}
 			else {
 				str += `"${args[1]}" is not a valid goddess name!`;
