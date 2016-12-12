@@ -7,14 +7,13 @@ const COMMANDS = [
 module.exports = {
 	getHelp: function() {
 		let str = '';
-		str += '**Commands**: ' +
-			COMMANDS.map(i => {return '!' + i}).join(', ');
+		str += '**Commands**: ' +	COMMANDS.map((i) => {return '!' + i}).join(', ');
 		return str;
 	},
 	getAbout: function() {
 		let str = '';
 		str += `**Fergus by Peter Han (Saarja)**\n` +
-			'Want to contribute, request a feature, or submit an issue?\n' +
+			'Want to contribute, request a feature, or submit an issue? ' +
 			'Visit: https://github.com/Johj/fergus';
 		return str;
 	}
