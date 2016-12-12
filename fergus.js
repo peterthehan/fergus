@@ -7,13 +7,13 @@ const CONFIG = require('./config.json');
 const PREFIX = CONFIG.prefix;
 
 // get json objects
-const BREAD = require('./json/bread.json');
-const GODDESSES = require('./json/goddesses.json');
-const HEROES = require('./json/heroes.json');
-//const SBWS = require('./json/sbws.json');
-//const SKILLS = require('./json/skills.json');
-const SKINS = require('./json/skins.json');
-//const WEAPONS = require('./json/weapons.json');
+const BREAD = require('./cqdb/bread.json');
+const GODDESSES = require('./cqdb/goddesses.json');
+const HEROES = require('./cqdb/heroes.json');
+//const SBWS = require('./cqdb/sbws.json');
+//const SKILLS = require('./cqdb/skills.json');
+const SKINS = require('./cqdb/skins.json');
+//const WEAPONS = require('./cqdb/weapons.json');
 
 // get command functions
 let etc = require('./scripts/etc.js'); // !help, !about
