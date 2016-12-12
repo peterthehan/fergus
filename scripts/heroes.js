@@ -79,7 +79,8 @@ function getStar(h, s, arr) {
 	}
 	// exception, should not be possible to enter this case
 	else {
-		return 'error0';
+		console.log('error');
+		return 'Error: Please let the bot author know or submit an issue at https://github.com/Johj/fergus/issues';
 	}
 	return star;
 }

@@ -37,6 +37,7 @@ CLIENT.on('guildMemberAdd', (member) => {
 	GUILD.channels.get(GUILD.id).sendMessage(
 		CONFIG.welcomePre + member + CONFIG.welcomePost
 	);
+	console.log(member + ' joined.');
 });
 
 // farewell event handler
@@ -45,6 +46,7 @@ CLIENT.on('guildMemberRemove', (member) => {
 	GUILD.channels.get(GUILD.id).sendMessage(
 		CONFIG.farewellPre + member + CONFIG.farewellPost
 	);
+	console.log(member + ' left.')
 });
 
 // message event handler
@@ -58,32 +60,40 @@ CLIENT.on('message', (message) => {
 	// command list
 	if(msg.startsWith(PREFIX + 'help')) {
 		message.channel.sendMessage(etc.getHelp());
+		console.log(msg);
 	}
 	else if(msg.startsWith(PREFIX + 'about')) {
-			message.channel.sendMessage(etc.getAbout());
+		message.channel.sendMessage(etc.getAbout());
+		console.log(msg);
 	}
 	else if(msg.startsWith(PREFIX + 'bread')) {
 		message.channel.sendMessage(bread.getBread(msg.split(' '), BREAD));
+		console.log(msg);
 	}
 	else if(msg.startsWith(PREFIX + 'goddess')) {
 		message.channel.sendMessage(goddess.getGoddess(msg.split(' '), GODDESSES));
+		console.log(msg);
 	}
 	else if(msg.startsWith(PREFIX + 'hero')) {
 		message.channel.sendMessage(hero.getHero(msg.split(' '), HEROES));
+		console.log(msg);
 	}
 	//else if(msg.startsWith(PREFIX + 'sbw')) {}
 	//else if(msg.startsWith(PREFIX + 'skill')) {}
 	else if(msg.startsWith(PREFIX + 'skin')) {
 		message.channel.sendMessage(skin.getSkin(msg.split(' '), SKINS));
+		console.log(msg);
 	}
 	//else if(msg.startsWith(PREFIX + 'weapon')) {}
 	else if(msg.startsWith(PREFIX + 'lenny')) {
 		message.channel.sendMessage('( ͡° ͜ʖ ͡°)');
+		console.log(msg);
 	}
 	else if(msg.startsWith(PREFIX + 'fergus')) {
 		message.channel.sendFile(
 			CLIENT.user.avatarURL,	'',	`${message.author}, No.`
 		); //message.reply('No.');
+		console.log(msg);
 	}
 });
 
