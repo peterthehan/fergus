@@ -1,1 +1,1 @@
-web: node fergus.js
+worker: node fergus.js
