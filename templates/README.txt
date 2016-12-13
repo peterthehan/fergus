@@ -44,8 +44,7 @@ This section concerns where it says THIS:
 ]
 
 Put these stats in decimal form.
-e.g. Hero has 11.7 crit. chance -> 0.117
-		 Hero has 120 crit. damage -> 1.2
+e.g. 11.7 crit. chance -> 0.117, 120 crit. damage -> 1.2
 
 Place a leading 0.
 e.g. 0.25, NOT .25
