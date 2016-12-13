@@ -1,7 +1,16 @@
 const COMMANDS = [
-	'help', 'about',
-	'bread', 'goddess', 'hero', 'sbw', 'skill', 'skin', 'weapon',
-	'lenny', 'fergus'
+	'help',
+	'about',
+	'bread',
+	'goddess',
+	'hero',
+	//'sbw',
+	//'skill',
+	'skin',
+	//'weapon',
+	'lenny',
+	'shrug',
+	'fergus'
 ];
 
 module.exports = {
@@ -12,5 +21,8 @@ module.exports = {
 		return '**By Peter Han (Saarja)**; ' +
 			'Want to contribute, request a feature, or submit an issue? ' +
 			'Visit: https://github.com/Johj/fergus';
+	},
+	log: function(user, msg) { // for debugging
+		console.log(`${user.username}#${user.discriminator}: ${msg}`);
 	}
 };
