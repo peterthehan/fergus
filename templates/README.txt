@@ -4,11 +4,17 @@ STYLE GUIDE ON CRUSADERS QUEST DATABASE (CQDB) JSON FORMAT
 Please read through this short document first before doing anything.
 If you EVER get confused, refer to sample.txt or message me directly.
 
+Resources can be found: https://github.com/Johj/fergus/tree/master/templates
+Click the desired hero template and then click the "Raw" button. Copy-paste the
+text into your desired text editor and proceed.
+
 Please send me your data as an attached .txt file only after you fully complete
-a hero entry. I will double-check before adding it to the database.
+a hero entry. I will double-check the data before adding it to the database.
 
 I will make sure to credit all contributors, no matter how small the
 contribution. Let's Make Fergus Great Again!
+
+Please continue reading the contents below.
 
 *******************************************************************************
 This section concerns where it says THIS:
