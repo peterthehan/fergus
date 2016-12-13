@@ -11,7 +11,7 @@ const PREFIX = CONFIG.prefix;
 const BREAD = require('./cqdb/bread.json');
 const GODDESSES = require('./cqdb/goddesses.json');
 const HEROES = require('./cqdb/heroes.json');
-//const SBWS = require('./cqdb/sbws.json');
+const SBWS = require('./cqdb/sbws.json');
 //const SKILLS = require('./cqdb/skills.json');
 const SKINS = require('./cqdb/skins.json');
 //const WEAPONS = require('./cqdb/weapons.json');
@@ -21,7 +21,7 @@ let etc = require('./scripts/etc.js'); // !help, !about
 let bread = require('./scripts/bread.js');
 let goddess = require('./scripts/goddesses.js');
 let hero = require('./scripts/heroes.js');
-//let sbw = require('./scripts/sbws.js');
+let sbw = require('./scripts/sbws.js');
 //let skill = require('./scripts/skills.js');
 let skin = require('./scripts/skins.js');
 //let weapon = require('./scripts/weapons.js');
@@ -77,7 +77,10 @@ CLIENT.on('message', (message) => {
 		message.channel.sendMessage(hero.getHero(MSG.split(' '), HEROES));
 		etc.log(message.author, MSG);
 	}
-	//else if(MSG.startsWith(PREFIX + 'sbw')) {}
+	else if(MSG.startsWith(PREFIX + 'sbw')) {
+		message.channel.sendMessage(hero.getSbw(MSG.split(' '), SBWS));
+		etc.log(message.author, MSG);
+	}
 	//else if(MSG.startsWith(PREFIX + 'skill')) {}
 	else if(MSG.startsWith(PREFIX + 'skin')) {
 		message.channel.sendMessage(skin.getSkin(MSG.split(' '), SKINS));

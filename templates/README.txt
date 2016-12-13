@@ -8,9 +8,15 @@ Resources can be found: https://github.com/Johj/fergus/tree/master/templates
 Click the desired hero template and then click the "Raw" button. Copy-paste the
 text into your desired text editor and proceed.
 
+If you do decide to contribute, PLEASE MAKE SURE TO CLAIM THE HERO(ES) IN #claim
+TO AVOID CONFLICTS WITH OTHER CONTRIBUTORS.
+
 Please send me an attached .txt file through private message only after you
 fully complete a hero entry. I will double-check the data before adding it to
 the database.
+
+Also, let me know if there are missing breads, missing skins, incorrect input,
+etc.
 
 I will make sure to credit all contributors, no matter how small the
 contribution. Let's Make Fergus Great Again!

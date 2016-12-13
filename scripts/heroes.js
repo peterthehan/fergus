@@ -116,7 +116,7 @@ module.exports = {
 				'(info|stats|skill)|<star> <star>|(info|stats|skill)*, ' +
 				'e.g. !hero list, ' +
 				'!hero mew, !hero mew info, !hero mew 3, ' +
-				'!hero mew stats 4; ' +
+				'!hero mew stats 4, !hero mew 4 skill; ' +
 				'Defaults to 6-star whenever *<star>* is not specified.';
 		}
 		// 1 or more arguments
