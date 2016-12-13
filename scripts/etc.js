@@ -19,7 +19,7 @@ module.exports = {
 	},
 	getAbout: function() {
 		return 'By Peter Han (Saarja); ' +
-			'Want to contribute, request a feature, or submit an issue? ' +
+			'Want to help contribute, suggest a feature, or submit an issue? ' +
 			'Visit: https://github.com/Johj/fergus';
 	},
 	log: function(user, msg) { // for debugging
