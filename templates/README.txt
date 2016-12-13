@@ -8,8 +8,9 @@ Resources can be found: https://github.com/Johj/fergus/tree/master/templates
 Click the desired hero template and then click the "Raw" button. Copy-paste the
 text into your desired text editor and proceed.
 
-Please send me your data as an attached .txt file only after you fully complete
-a hero entry. I will double-check the data before adding it to the database.
+Please send me an attached .txt file through private message only after you
+fully complete a hero entry. I will double-check the data before adding it to
+the database.
 
 I will make sure to credit all contributors, no matter how small the
 contribution. Let's Make Fergus Great Again!

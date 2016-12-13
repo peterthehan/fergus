@@ -8,6 +8,7 @@ Fergus is a Crusaders Quest (CQ) database Discord server bot.
  - [Commands](#commands)
  - [Known Issues](#known-issues)
  - [To Do](#to-do)
+ - [Special Thanks](#special-thanks)
  - [Open Source Libraries](#open-source-libraries)
  - [License](#license)
 
@@ -23,6 +24,10 @@ None so far.
  - Add !skill command.
  - Add !weapon command.
  - Make Fergus a public bot.
+
+## Special Thanks
+Special thanks to the following individuals for contributing to the database:
+ - Fastrail (mew)
 
 ## Open Source Libraries
  - [discord.js 10.0.1](https://github.com/hydrabolt/discord.js/)
