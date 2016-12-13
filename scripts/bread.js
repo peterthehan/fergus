@@ -3,7 +3,7 @@ module.exports = {
 		let str = '', len = args.length;
 		// 0 arguments
 		if(len === 1) {
-			str += '**!bread list|<star>|<name>**, ' +
+			str += '*!bread list|<star>|<name>*, ' +
 				'e.g. !bread list, !bread 6, !bread macaroon';
 		}
 		// 1 or more arguments

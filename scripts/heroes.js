@@ -112,12 +112,12 @@ module.exports = {
 		let str = '', len = args.length;
 		// 0 arguments
 		if(len === 1) {
-			str += '**!hero list|<name> ' +
-				'(info|stats|skill)|<star> <star>|(info|stats|skill)**, ' +
+			str += '*!hero list|<name> ' +
+				'(info|stats|skill)|<star> <star>|(info|stats|skill)*, ' +
 				'e.g. !hero list, ' +
 				'!hero mew, !hero mew info, !hero mew 3, ' +
 				'!hero mew stats 4; ' +
-				'Defaults to 6-star whenever <star> is not specified.';
+				'Defaults to 6-star whenever *<star>* is not specified.';
 		}
 		// 1 or more arguments
 		else {

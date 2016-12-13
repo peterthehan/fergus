@@ -3,7 +3,7 @@ module.exports = {
 		let str = '', len = args.length;
 		// 0 arguments
 		if(len === 1) {
-			str += '**!goddess list|<name>**, ' +
+			str += '*!goddess list|<name>*, ' +
 				'e.g. !goddess list, !goddess sera';
 		}
 		// 1 or more arguments

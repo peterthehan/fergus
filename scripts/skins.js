@@ -37,7 +37,7 @@ module.exports = {
 		let str = '', len = args.length;
 		// 0 arguments
 		if(len === 1) {
-			str += '**!skin list|<name>**, ' +
+			str += '*!skin list|<name>*, ' +
 				'e.g. !skin list, !skin mew';
 		}
 		// 1 or more arguments
