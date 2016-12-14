@@ -21,8 +21,9 @@ None so far.
 ## To Do
  - [ ] Make README nicer.
  - [ ] Add all hero data.
- - [ ] Add all sbw ability.
- - [ ] Add all weapon sell/salvage price.
+ - [ ] Add all sbw ability data.
+ - [ ] Add event skins data.
+ - [ ] Add all weapon sell/salvage price data.
  - [x] Add !sbw command.
  - [ ] Add !skill command.
  - [x] Add !weapon command.
@@ -30,8 +31,9 @@ None so far.
 
 ## Special Thanks
 Special thanks to the following individuals for their contributions to the database:
- - Poiya (thor, alexander, achilles, drake, vane, cain, stanya, mundeok, v, hector, athena, siegfried, dullahan, captain, wolfgang, jin-kyung, rebecca, may, sinkiske, bearguy, fergus)
- - Fastrail (mew, yeowoodong)
+ - Poiya (thor, alexander, achilles, drake, vane, cain, stanya, mundeok, v, hector, athena, siegfried, dullahan, captain, wolfgang, gon, hanzo, robinhood, r, giparang, hikari, niven, arona, magnus, atalante, mamba, lee, rahima, viola, kaguya, jin-kyung, rebecca, may, sinkiske, hong-ran, altair, chippzanuff, bearguy, fergus, greenelf)
+ - Fastrail (mew, yeowoodong, nurspy, woopa)
+ - F1r3man (event skins)
 
 ## Open Source Libraries
  - [discord.js 10.0.1](https://github.com/hydrabolt/discord.js/)

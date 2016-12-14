@@ -1,4 +1,6 @@
-/cqdb
+/cqdb/*.json
+/cqdb/LICENSE
+/cqdb/README.md
 /images
 /node_modules
 /authorize.txt
