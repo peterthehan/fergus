@@ -3,11 +3,11 @@
 Welcome! If you are reading this, you probably decided that you want to help contribute with data-entry for Fergus. Here are some guidelines on how to contribute properly:
 
 1. Read this entire document **first**.
-1. Message me for a `@Contributor` role.
-2. Check `#tasks` to avoid working on something that is already claimed by another `@Contributer`.
-3. Navigate to the appropriate hero template and then click the `Raw` button. Copy-paste the text into your preferred text editor and proceed with the data-entry.
-4. Once a hero entry is fully complete, send the .txt file via private message.
-8. If you ever get confused, refer to [sample.txt](https://raw.githubusercontent.com/Johj/fergus/master/templates/sample.txt) or message me directly.
+2. Message me for a `@Contributor` role.
+3. Check `#tasks` to avoid working on something that is already claimed by another `@Contributer`.
+4. Navigate to the appropriate hero template and then click the `Raw` button. Copy-paste the text into your preferred text editor and proceed with the data-entry.
+5. Once a hero entry is fully complete, send the .txt file via private message.
+6. If you ever get confused, refer to [sample.txt](https://raw.githubusercontent.com/Johj/fergus/master/templates/sample.txt) or message me directly.
 
 All contributors will be credited, no matter the scale of the contribution. Everything counts!
 
