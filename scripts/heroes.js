@@ -64,7 +64,7 @@ function getStar(h, s, arr) {
 			star = s - 4;
 		}
 		else {
-			return `"${h}" does not have a ${s}-star form!`;
+			return `${h} does not have a ${s}-star form!`;
 		}
 	}
 	// 6-promotion heroes
@@ -74,7 +74,7 @@ function getStar(h, s, arr) {
 			star = s - 1;
 		}
 		else {
-			return `"${h}" does not have a ${s}-star form!`;
+			return `${h} does not have a ${s}-star form!`;
 		}
 	}
 	// exception, should not be possible to enter this case
@@ -223,7 +223,7 @@ module.exports = {
 				}
 			}
 			else {
-				str += `"${args[1]}" is not a valid hero name!`;
+				str += `${args[1]} is not a valid hero name!`;
 			}
 		}
 		return str;

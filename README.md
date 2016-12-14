@@ -28,9 +28,9 @@ None so far.
  - [ ] Make Fergus a public bot.
 
 ## Special Thanks
-Special thanks to the following individuals for contributing to the database:
- - Poiya (vane, cain, mundeok, v, hector, siegfried, dullahan, wolfgang)
- - Fastrail (mew)
+Special thanks to the following individuals for their contributions to the database:
+ - Poiya (vane, cain, mundeok, v, hector, siegfried, dullahan, wolfgang, jin-kyung, rebecca, may, sinkiske, bearguy, fergus)
+ - Fastrail (mew, yeowoodong)
 
 ## Open Source Libraries
  - [discord.js 10.0.1](https://github.com/hydrabolt/discord.js/)

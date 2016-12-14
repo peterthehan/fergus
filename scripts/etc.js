@@ -18,7 +18,9 @@ module.exports = {
 		return 'Commands: ' + COMMANDS.map(x => '!' + x).join(', ');
 	},
 	getAbout: function() {
-		return 'By Peter Han (Saarja); ' +
+		return 'Fergus by Peter Han (Saarja); ' +
+			'Special thanks to the following individuals for their contributions to the database:\n```' +
+			'Poiya, Fastrail```\n' +
 			'Want to help contribute, suggest a feature, or submit an issue? ' +
 			'Visit: https://github.com/Johj/fergus';
 	},
