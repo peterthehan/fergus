@@ -32,15 +32,15 @@ function getStar(h, s, arr) {
 module.exports = {
 	getSbw: function(args, arr) {
 		let str = '', len = args.length;
-		// 0 arguments
+		// 0 arguments, !sbw
 		if(len === 1) {
-			str += '*!sbw list|<name> <star>*, ' +
+			str = '*!sbw list|<name> <star>*, ' +
 				'e.g. !sbw list, !sbw mew, !sbw mew 6; ' +
 				'Defaults to 6-star whenever *<star>* is not specified.';
 		}
-		// 1 argument or more
+		// 1 argument or more, !sbw list|<name> <star>
 		else {
-			// list
+			// !sbw list
 			if(args[1] === 'list') {
 				let t = [];
 				Object.keys(arr).forEach((key) => {
@@ -48,42 +48,43 @@ module.exports = {
 						t.push(key);
 					}
 				});
-				str += '```' + t.join(', ') + '```';
+				str = '```' + t.join(', ') + '```';
 			}
-			// <name> exists
+			// !sbw <name> [<star>]
 			else if(arr[args[1]]) {
 				if(arr[args[1]].form.length !== 0) {
 					// default to highest form index
 					let star = arr[args[1]].form.length - 1;
 
-					// 1 argument, <name>
+					// 1 argument, !sbw <name>
 					if(len === 2) {
-						str += getStats(args[1], star, arr);
+						str = getStats(args[1], star, arr);
 					}
-					// 2 arguments or more, <name> <star>
+					// 2 arguments or more, !sbw <name> <star>
 					else {
-						// <name> <star>
+						// !sbw <name> <star>
 						if(!isNaN(parseInt(args[2]))) {
 							star = getStar(args[1], args[2], arr);
 							if(isNaN(parseInt(star))) {
-								str += star;
+								str = star;
 							}
 							else {
-								str += getStats(args[1], star, arr);
+								str = getStats(args[1], star, arr);
 							}
 						}
-						// <star> is junk, treat as if !sbw <hero>
+						// !sbw <name> <junk>, treat as if !sbw <name>
 						else {
-							str += getStats(args[1], star, arr);
+							str = getStats(args[1], star, arr);
 						}
 					}
 				}
 				else {
-					str += `${args[1]} does not have an sbw yet!`;
+					str = `${args[1]} does not have an sbw yet!`;
 				}
 			}
+			// !sbw <junk>
 			else {
-				str += `${args[1]} is not a valid hero name!`;
+				str = `${args[1]} is not a valid hero name!`;
 			}
 		}
 		return str;
