@@ -3,11 +3,11 @@ STYLE GUIDE ON CRUSADERS QUEST DATABASE JSON FORMAT
 *******************************************************************************
 If you're going to help with doing data-entry, make sure to do the following:
 
-1.	Read through the rest of this short document first before doing anything.
-		If you ever get confused, refer to sample.txt or message me directly.
+1.  Read through the rest of this short document first before doing anything.
+    If you ever get confused, refer to sample.txt or message me directly.
 
-2.	Check #claim to make sure you didn't choose a hero already claimed by
-		another @contributor.
+2.  Check #claim to make sure you didn't choose a hero already claimed by
+    another @contributor.
 
 Resources can be found: https://github.com/Johj/fergus/tree/master/templates
 
