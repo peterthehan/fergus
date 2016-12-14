@@ -147,13 +147,14 @@ module.exports = {
 						if(isNaN(parseInt(star))) {
 							str += star;
 						}
+						// <star> is junk, treat as if !hero <hero>
 						else {
 							str += getName(args[1], star, arr);
 							str += getAll(args[1], star, arr);
 						}
 					}
 				}
-				// 3 arguments
+				// 3 arguments or more
 				// <name> (info|stats|skill)|<star> <star>|(info|stats|skill)
 				else {
 					// <name> (info|stats|skill) <star>

@@ -6,7 +6,7 @@ module.exports = {
 			str += '*!bread list|<star>|<name>*, ' +
 				'e.g. !bread list, !bread 6, !bread macaroon';
 		}
-		// 1 or more arguments
+		// 1 argument or more
 		else {
 			// list
 			if(args[1] === 'list') {

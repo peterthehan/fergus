@@ -6,7 +6,7 @@ module.exports = {
 			str += '*!goddess list|<name>*, ' +
 				'e.g. !goddess list, !goddess sera';
 		}
-		// 1 or more arguments
+		// 1 argument or more
 		else {
 			// list
 			if(args[1] === 'list') {

@@ -78,7 +78,7 @@ CLIENT.on('message', (message) => {
 		etc.log(message.author, MSG);
 	}
 	else if(MSG.startsWith(PREFIX + 'sbw')) {
-		message.channel.sendMessage(hero.getSbw(MSG.split(' '), SBWS));
+		message.channel.sendMessage(sbw.getSbw(MSG.split(' '), SBWS));
 		etc.log(message.author, MSG);
 	}
 	//else if(MSG.startsWith(PREFIX + 'skill')) {}
