@@ -17,19 +17,16 @@ module.exports = {
 				args[1] = parseInt(args[1]);
 				// if <star> is within bounds
 				if(args[1] > 0 && args[1] < 7) {
-					str += '(' + '★'.repeat(args[1]) + ')\n```';
-
 					let t = [];
 					Object.keys(arr).forEach((key) => {
 						if(arr[key].star === args[1]) {
 							t.push(arr[key].name);
 						}
 					});
-
-					str += t.join(', ') +	'```';
+					str = '(' + '★'.repeat(args[1]) + ')\n```' + t.join(', ') +	'```';
 				}
 				else {
-					str += `${args[1]}-star breads do not exist!`;
+					str = `${args[1]}-star breads do not exist!`;
 				}
 			}
 			// !bread <name>
