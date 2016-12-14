@@ -1,6 +1,6 @@
-/cqdb
-!/cqdb/templates
-/images
-/node_modules
-/authorize.txt
-/config.json
+cqdb
+!cqdb/templates
+images
+node_modules
+authorize.txt
+config.json
