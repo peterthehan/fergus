@@ -1,4 +1,5 @@
-/cqdb
+/cqdb/*
+!/cqdb/template
 /images
 /node_modules
 /authorize.txt
