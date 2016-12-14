@@ -35,14 +35,14 @@ function getStats(h, arr) {
 module.exports = {
 	getSkin: function(args, arr) {
 		let str = '', len = args.length;
-		// 0 arguments
+		// 0 arguments, !skin
 		if(len === 1) {
-			str += '*!skin list|<name>*, ' +
+			str = '*!skin list|<name>*, ' +
 				'e.g. !skin list, !skin mew';
 		}
-		// 1 or more arguments
+		// 1 argument or more, !skin list|<name>
 		else {
-			// list
+			// !skin list
 			if(args[1] === 'list') {
 				let t = [];
 				Object.keys(arr).forEach((key) => {
@@ -50,19 +50,20 @@ module.exports = {
 						t.push(key);
 					}
 				});
-				str += '```' + t.join(', ') + '```';
+				str = '```' + t.join(', ') + '```';
 			}
-			// <name>
+			// !skin <name>
 			else if(arr[args[1]]) {
 				if(arr[args[1]].form.length !== 0) {
-					str += getStats(args[1], arr);
+					str = getStats(args[1], arr);
 				}
 				else {
-					str += `"${args[1]}" does not have a skin yet!`;
+					str = `${args[1]} does not have a skin yet!`;
 				}
 			}
+			// !skin <junk>
 			else {
-				str += `"${args[1]}" is not a valid hero name!`;
+				str = `${args[1]} is not a valid hero name!`;
 			}
 		}
 		return str;
