@@ -20,8 +20,8 @@
 				"evasion": [0],
 				"background": "Leon has just started his adventure and he has no idea what he's doing. He spends more time cleaning up his messes than saving damsels.",
 				"skill": {
-						"level": 1,
-						"passive": ""
+					"level": 1,
+					"passive": ""
 				},
 				"howToGet": [
 					"Ancient Dungeon: Clear Reward!"
@@ -41,8 +41,8 @@
 				"evasion": [0, 0],
 				"background": "Leon has learned from his mistakes (and his scrapes and bruises) and has become a competent if not spectacular hero.",
 				"skill": {
-						"level": 1,
-						"passive": ""
+					"level": 1,
+					"passive": ""
 				},
 				"howToGet": [
 					"Promote Hero: Promoting Heroes!"
@@ -62,8 +62,8 @@
 				"evasion": [0, 0, 0],
 				"background": "Leon's famous now and he lets it get to his head. He draws his pen faster to sign autographs than he draws his sword for combat.",
 				"skill": {
-						"level": 1,
-						"passive": ""
+					"level": 1,
+					"passive": ""
 				},
 				"howToGet": [
 					"Promote Hero: Promoting Heroes!"
@@ -83,8 +83,8 @@
 				"evasion": [0, 0, 0, 0],
 				"background": "Leon's big shot attitude almost cost him his life and the lives of those he had sworn to protect. He realizes now that he set out to become a hero to save people, not to be rewarded with fame and fortune.",
 				"skill": {
-						"level": 2,
-						"passive": "Summons the ultimate Holy Sword every 4 blocks. Deals physical damage equal to 380% of attack power and ignores target's armor equal to 50% of own armor."
+					"level": 2,
+					"passive": "Summons the ultimate Holy Sword every 4 blocks. Deals physical damage equal to 380% of attack power and ignores target's armor equal to 50% of own armor."
 				},
 				"howToGet": [
 					"Promote Hero: Promoting Heroes!"
@@ -104,8 +104,8 @@
 				"evasion": [0, 0, 0, 0, 0],
 				"background": "Leon has been charged by the goddesses to save the world. Finally, he can put all that adventuring to good use!",
 				"skill": {
-						"level": 2,
-						"passive": "Summons the ultimate Holy Sword every 4 blocks. Deals physical damage equal to 380% of attack power and ignores target's armor equal to 50% of own armor."
+					"level": 2,
+					"passive": "Summons the ultimate Holy Sword every 4 blocks. Deals physical damage equal to 380% of attack power and ignores target's armor equal to 50% of own armor."
 				},
 				"howToGet": [
 					"Promote Hero: Promoting Heroes!"
@@ -125,8 +125,8 @@
 				"evasion": [0, 0, 0, 0, 0, 0, 0.15],
 				"background": "Every time Leon fights against evil, dazzling lights cover his entire body, radiating an unbreachable energy. The monsters tremble at his sight, let them fall to Leon of Light",
 				"skill": {
-						"level": 3,
-						"passive": "Summons Ultimate Holy Sword whenever the hero uses a chain-3 skill, that deals physical damage equal to 380% of the hero's attack power and also deals extra physical damage equal to 10% of the hero's HP. The bonus damage ignores enemy's armor equal to 100% of the hero's armor."
+					"level": 3,
+					"passive": "Summons Ultimate Holy Sword whenever the hero uses a chain-3 skill, that deals physical damage equal to 380% of the hero's attack power and also deals extra physical damage equal to 10% of the hero's HP. The bonus damage ignores enemy's armor equal to 100% of the hero's armor."
 				},
 				"howToGet": [
 					"Promote Hero: Promoting Heroes!"
@@ -155,8 +155,8 @@
 				"evasion": [0, 0, 0, 0],
 				"background": "A girl who wants to become a knight to avenge her parent's death. However, she knows it is difficult for a girl become a knight, but she hopes she can become strong enough to overcome their prejudice.",
 				"skill": {
-						"level": 2,
-						"passive": "Increases leader's SP by 15 whenever a block is used."
+					"level": 2,
+					"passive": "Increases leader's SP by 15 whenever a block is used."
 				},
 				"howToGet": [
 					"Contract: Buy Contracts!",
@@ -178,8 +178,8 @@
 				"evasion": [0, 0, 0, 0, 0],
 				"background": "Joan of Arc becomes a knight after rigorous training, but she must hide the fact that she is a girl. Luckily, the armor for men isn't as revealing as the armor for women.",
 				"skill": {
-						"level": 2,
-						"passive": "Increases leader's SP by 15 whenever a block is used."
+					"level": 2,
+					"passive": "Increases leader's SP by 15 whenever a block is used."
 				},
 				"howToGet": [
 					"Contract: Buy Contracts!",
@@ -201,8 +201,8 @@
 				"evasion": [0, 0, 0, 0, 0, 0, 0.27],
 				"background": "Even after she revealed that she was indeed female, her stoic demeanor and calm in battle earned her the title of Steel Knight.",
 				"skill": {
-						"level": 3,
-						"passive": "Increases leader's SP by 30 and takes allies' damage for 5 seconds whenever a block is used."
+					"level": 3,
+					"passive": "Increases leader's SP by 30 and takes allies' damage for 5 seconds whenever a block is used."
 				},
 				"howToGet": [
 					"Contract: Buy Contracts!",
@@ -232,8 +232,8 @@
 				"evasion": [0, 0, 0],
 				"background": "There are two things you can count on in this world: Brave Dog being brave and Goblins smelling like old milk.",
 				"skill": {
-						"level": 1,
-						"passive": ""
+					"level": 1,
+					"passive": ""
 				},
 				"howToGet": [
 					"Contract: Buy Contracts!",
@@ -266,8 +266,8 @@
 				"evasion": [0, 0],
 				"background": "As a warrior of the East, he trains to reach a higher state of being by battling against the strongest opponents he can find.",
 				"skill": {
-						"level": 1,
-						"passive": ""
+					"level": 1,
+					"passive": ""
 				},
 				"howToGet": [
 					"Contract: Buy Contracts!",
@@ -300,8 +300,8 @@
 				"evasion": [0],
 				"background": "He worked hard on the farm, but now he's set out on a quest to save his cabbages from monsters.",
 				"skill": {
-						"level": 1,
-						"passive": ""
+					"level": 1,
+					"passive": ""
 				},
 				"howToGet": [
 					"Stage: Forest 1-23",

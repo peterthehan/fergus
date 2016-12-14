@@ -1,15 +1,18 @@
 *******************************************************************************
-STYLE GUIDE ON CRUSADERS QUEST DATABASE (CQDB) JSON FORMAT
+STYLE GUIDE ON CRUSADERS QUEST DATABASE JSON FORMAT
 *******************************************************************************
-Please read through this short document first before doing anything.
-If you EVER get confused, refer to sample.txt or message me directly.
+If you're going to help with doing data-entry, make sure to do the following:
+
+1.	Read through the rest of this short document first before doing anything.
+		If you ever get confused, refer to sample.txt or message me directly.
+
+2.	Check #claim to make sure you didn't choose a hero already claimed by
+		another @contributor.
 
 Resources can be found: https://github.com/Johj/fergus/tree/master/templates
-Click the desired hero template and then click the "Raw" button. Copy-paste the
-text into your desired text editor and proceed.
 
-If you do decide to contribute, PLEASE MAKE SURE TO CLAIM THE HERO(ES) IN #claim
-TO AVOID CONFLICTS WITH OTHER CONTRIBUTORS.
+Click the desired hero template and then click the "Raw" button. Copy-paste the
+text into your desired text editor and proceed to enter data.
 
 Please send me an attached .txt file through private message only after you
 fully complete a hero entry. I will double-check the data before adding it to
@@ -20,8 +23,6 @@ etc.
 
 I will make sure to credit all contributors, no matter how small the
 contribution. Let's Make Fergus Great Again!
-
-Please continue reading the contents below.
 
 *******************************************************************************
 This section concerns where it says THIS:
@@ -76,8 +77,8 @@ This section concerns where it says THIS:
 			...
 			"background": "THIS",
 			"skill": {
-					"level": 3,
-					"passive": "THIS"
+				"level": 3,
+				"passive": "THIS"
 			},
 			...
 		},

@@ -19,8 +19,8 @@
 			"evasion": [0],
 			"background": "",
 			"skill": {
-					"level": 1,
-					"passive": ""
+				"level": 1,
+				"passive": ""
 			},
 			"howToGet": [
 				"Ancient Dungeon: Clear Reward!"
@@ -40,8 +40,8 @@
 			"evasion": [0, 0],
 			"background": "",
 			"skill": {
-					"level": 1,
-					"passive": ""
+				"level": 1,
+				"passive": ""
 			},
 			"howToGet": [
 				"Promote Hero: Promoting Heroes!"
@@ -61,8 +61,8 @@
 			"evasion": [0, 0, 0],
 			"background": "",
 			"skill": {
-					"level": 1,
-					"passive": ""
+				"level": 1,
+				"passive": ""
 			},
 			"howToGet": [
 				"Promote Hero: Promoting Heroes!"
@@ -82,8 +82,8 @@
 			"evasion": [0, 0, 0, 0],
 			"background": "",
 			"skill": {
-					"level": 2,
-					"passive": ""
+				"level": 2,
+				"passive": ""
 			},
 			"howToGet": [
 				"Promote Hero: Promoting Heroes!"
@@ -103,8 +103,8 @@
 			"evasion": [0, 0, 0, 0, 0],
 			"background": "",
 			"skill": {
-					"level": 2,
-					"passive": ""
+				"level": 2,
+				"passive": ""
 			},
 			"howToGet": [
 				"Promote Hero: Promoting Heroes!"
@@ -124,8 +124,8 @@
 			"evasion": [0, 0, 0, 0, 0, 0, ],
 			"background": "",
 			"skill": {
-					"level": 3,
-					"passive": ""
+				"level": 3,
+				"passive": ""
 			},
 			"howToGet": [
 				"Promote Hero: Promoting Heroes!"

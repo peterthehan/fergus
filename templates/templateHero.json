@@ -19,8 +19,8 @@
 			"evasion": [0],
 			"background": "",
 			"skill": {
-					"level": 1,
-					"passive": ""
+				"level": 1,
+				"passive": ""
 			},
 			"howToGet": [
 				"Contract: Buy Contracts!",
@@ -46,8 +46,8 @@
 			"evasion": [0, 0],
 			"background": "",
 			"skill": {
-					"level": 1,
-					"passive": ""
+				"level": 1,
+				"passive": ""
 			},
 			"howToGet": [
 				"Contract: Buy Contracts!",
@@ -73,8 +73,8 @@
 			"evasion": [0, 0, 0],
 			"background": "",
 			"skill": {
-					"level": 1,
-					"passive": ""
+				"level": 1,
+				"passive": ""
 			},
 			"howToGet": [
 				"Contract: Buy Contracts!",
