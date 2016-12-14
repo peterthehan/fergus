@@ -1,6 +1,5 @@
-/cqdb/*.json
-/cqdb/LICENSE
-/cqdb/README.md
+/cqdb
+!/cqdb/templates
 /images
 /node_modules
 /authorize.txt
