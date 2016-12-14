@@ -2,7 +2,7 @@
 # Fergus
 [![Discord](https://discordapp.com/api/guilds/258167954913361930/widget.png)](https://discord.gg/WjEFnzC)
 
-Fergus is a Crusaders Quest (CQ) database Discord server bot.
+Fergus is a Crusaders Quest Discord server bot.
 
 ## Table of Contents
  - [Commands](#commands)
@@ -21,8 +21,8 @@ None so far.
 ## To Do
  - [ ] Make README nicer.
  - [ ] Add all hero data.
- - [x] Add !sbw command.
  - [ ] Add all sbw ability data.
+ - [x] Add !sbw command.
  - [ ] Add !skill command.
  - [ ] Add !weapon command.
  - [ ] Make Fergus a public bot.

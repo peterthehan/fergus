@@ -1,28 +1,25 @@
 *******************************************************************************
-STYLE GUIDE ON CRUSADERS QUEST DATABASE JSON FORMAT
+STYLE GUIDE ON CRUSADERS QUEST DATABASE'S JSON FORMAT
 *******************************************************************************
-If you're going to help with doing data-entry, make sure to do the following:
+Resources can be found: https://github.com/Johj/fergus/tree/master/templates
 
+If you're going to help with doing data-entry, do the following:
 1.  Read through the rest of this short document first before doing anything.
     If you ever get confused, refer to sample.txt or message me directly.
-
 2.  Check #claim to make sure you didn't choose a hero already claimed by
-    another @contributor.
-
-Resources can be found: https://github.com/Johj/fergus/tree/master/templates
+    another @Contributor.
 
 Click the desired hero template and then click the "Raw" button. Copy-paste the
 text into your desired text editor and proceed to enter data.
 
-Please send me an attached .txt file through private message only after you
+Please send me an attached txt file through private message only after you
 fully complete a hero entry. I will double-check the data before adding it to
 the database.
 
-Also, let me know if there are missing breads, missing skins, incorrect input,
-etc.
-
 I will make sure to credit all contributors, no matter how small the
-contribution. Let's Make Fergus Great Again!
+contribution.
+
+Let's Make Fergus Great Again!
 
 *******************************************************************************
 This section concerns where it says THIS:
@@ -57,7 +54,7 @@ This section concerns where it says THIS:
 	},
 ]
 
-Put these stats in decimal form.
+Put the above stats in decimal form.
 e.g. 11.7 crit. chance -> 0.117, 120 crit. damage -> 1.2
 
 Place a leading 0.
@@ -84,8 +81,10 @@ This section concerns where it says THIS:
 		},
 		...
 	]
+}
 
-Copy the text "AS IS". This means: include all typos, missing punctuations,
-incorrect grammar, etc; don't put your own interpretation of the text.
+Copy the ingame text "AS IS". This means: include all typos, missing
+punctuations, incorrect grammar, etc; don't put your own interpretation of the
+text.
 
 *******************************************************************************
