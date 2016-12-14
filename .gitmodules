@@ -1,0 +1,3 @@
+[submodule "cqdb"]
+	path = cqdb
+	url = https://github.com/Johj/cqdb.git
