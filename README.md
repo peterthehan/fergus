@@ -13,14 +13,13 @@ Fergus is a Crusaders Quest (CQ) database Discord server bot.
  - [License](#license)
 
 ## Commands
-!help, !about, !bread, !goddess, !hero, !skin, !lenny, !shrug, !fergus
+!help, !about, !bread, !goddess, !hero, !sbw, !skin, !lenny, !shrug, !fergus
 
 ## Known Issues
 None so far.
 
 ## To Do
  - Make README nicer.
- - Add !sbw command.
  - Add !skill command.
  - Add !weapon command.
  - Make Fergus a public bot.
