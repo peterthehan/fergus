@@ -4,28 +4,28 @@ function getStats(h, arr) {
 	for(i = 0; i < arr[h].form.length; ++i) {
 		str += '__**' + arr[h].form[i].name + '**__\n```';
 		if(arr[h].form[i].atkPower !== 0) {
-			str += '\xa0Atk. Power: ' + arr[h].form[i].atkPower + "\n";
+			str += '\xa0Atk. Power: ' + arr[h].form[i].atkPower + '\n';
 		}
 		if(arr[h].form[i].hp !== 0) {
-			str += '\xa0        HP: ' + arr[h].form[i].hp + "\n";
+			str += '\xa0        HP: ' + arr[h].form[i].hp + '\n';
 		}
 		if(arr[h].form[i].critChance !== 0) {
-			str += 'Crit.Chance: ' + arr[h].form[i].critChance * 100 + "%\n";
+			str += 'Crit.Chance: ' + arr[h].form[i].critChance * 100 + '%\n';
 		}
 		if(arr[h].form[i].armor !== 0) {
-			str += '\xa0     Armor: ' + arr[h].form[i].armor + "\n";
+			str += '\xa0     Armor: ' + arr[h].form[i].armor + '\n';
 		}
 		if(arr[h].form[i].resistance !== 0) {
-			str += '\xa0Resistance: ' + arr[h].form[i].resistance + "\n";
+			str += '\xa0Resistance: ' + arr[h].form[i].resistance + '\n';
 		}
 		if(arr[h].form[i].critDamage !== 0) {
-			str += 'Crit.Damage: ' + arr[h].form[i].critDamage * 100 + "%\n";
+			str += 'Crit.Damage: ' + arr[h].form[i].critDamage * 100 + '%\n';
 		}
 		if(arr[h].form[i].accuracy !== 0) {
-			str += '\xa0  Accuracy: ' + arr[h].form[i].accuracy * 100 + "%\n";
+			str += '\xa0  Accuracy: ' + arr[h].form[i].accuracy * 100 + '%\n';
 		}
 		if(arr[h].form[i].evasion !== 0) {
-			str += '\xa0   Evasion: ' + arr[h].form[i].evasion * 100 + "\n";
+			str += '\xa0   Evasion: ' + arr[h].form[i].evasion * 100 + '\n';
 		}
 		str += '```\n';
 	}

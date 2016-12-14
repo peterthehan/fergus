@@ -7,7 +7,7 @@ const COMMANDS = [
 	'sbw',
 	//'skill',
 	'skin',
-	//'weapon',
+	'weapon',
 	'lenny',
 	'shrug',
 	'fergus'

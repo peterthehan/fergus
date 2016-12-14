@@ -34,7 +34,7 @@ module.exports = {
 				if(arr[args[1]]) {
 					str = '__**' + arr[args[1]].name + '**__ ' +
 						'(' + '★'.repeat(arr[args[1]].star) + ')\n```' +
-						'\xa0    Value: ' + arr[args[1]].value + "\n" +
+						'\xa0    Value: ' + arr[args[1]].value + '\n' +
 						'Great rate: ' + arr[args[1]].greatRate * 100 + '%\n' +
 						'      Sell: ' + arr[args[1]].sell + '```';
 				}

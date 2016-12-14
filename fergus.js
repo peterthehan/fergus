@@ -14,7 +14,7 @@ const HEROES = require('./cqdb/heroes.json');
 const SBWS = require('./cqdb/sbws.json');
 //const SKILLS = require('./cqdb/skills.json');
 const SKINS = require('./cqdb/skins.json');
-//const WEAPONS = require('./cqdb/weapons.json');
+const WEAPONS = require('./cqdb/weapons.json');
 
 // get command functions
 let etc = require('./scripts/etc.js'); // !help, !about
@@ -24,7 +24,7 @@ let hero = require('./scripts/heroes.js');
 let sbw = require('./scripts/sbws.js');
 //let skill = require('./scripts/skills.js');
 let skin = require('./scripts/skins.js');
-//let weapon = require('./scripts/weapons.js');
+let weapon = require('./scripts/weapons.js');
 
 // asynchronous event handler, required for bot to read Discord messages
 CLIENT.on('ready', () => {
@@ -86,7 +86,10 @@ CLIENT.on('message', (message) => {
 		message.channel.sendMessage(skin.getSkin(MSG.split(' '), SKINS));
 		etc.log(message.author, MSG);
 	}
-	//else if(MSG.startsWith(PREFIX + 'weapon')) {}
+	else if(MSG.startsWith(PREFIX + 'weapon')) {
+		message.channel.sendMessage(weapon.getWeapon(MSG.split(' '), WEAPONS));
+		etc.log(message.author, MSG);
+	}
 	else if(MSG.startsWith(PREFIX + 'lenny')) {
 		message.channel.sendMessage('( ͡° ͜ʖ ͡°)');
 		etc.log(message.author, MSG);

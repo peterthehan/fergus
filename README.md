@@ -13,7 +13,7 @@ Fergus is a Crusaders Quest Discord server bot.
  - [License](#license)
 
 ## Commands
-!help, !about, !bread, !goddess, !hero, !sbw, !skin, !lenny, !shrug, !fergus
+!help, !about, !bread, !goddess, !hero, !sbw, !skin, !weapon, !lenny, !shrug, !fergus
 
 ## Known Issues
 None so far.
@@ -21,15 +21,16 @@ None so far.
 ## To Do
  - [ ] Make README nicer.
  - [ ] Add all hero data.
- - [ ] Add all sbw ability data.
+ - [ ] Add all sbw ability.
+ - [ ] Add all weapon sell/salvage price.
  - [x] Add !sbw command.
  - [ ] Add !skill command.
- - [ ] Add !weapon command.
+ - [x] Add !weapon command.
  - [ ] Make Fergus a public bot.
 
 ## Special Thanks
 Special thanks to the following individuals for their contributions to the database:
- - Poiya (vane, cain, mundeok, v, hector, siegfried, dullahan, wolfgang, jin-kyung, rebecca, may, sinkiske, bearguy, fergus)
+ - Poiya (thor, alexander, achilles, drake, vane, cain, stanya, mundeok, v, hector, athena, siegfried, dullahan, captain, wolfgang, jin-kyung, rebecca, may, sinkiske, bearguy, fergus)
  - Fastrail (mew, yeowoodong)
 
 ## Open Source Libraries

@@ -15,7 +15,7 @@ module.exports = {
 			// !goddess <name>
 			else if(arr[args[1]]) {
 				str = '__**' + arr[args[1]].name + '**__\n' +
-					'**' + arr[args[1]].skillName + "**: " +
+					'**' + arr[args[1]].skillName + '**: ' +
 					arr[args[1]].skillDescription;
 			}
 			// !goddess <junk>
