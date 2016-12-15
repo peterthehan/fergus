@@ -28,7 +28,7 @@ let weapon = require('./scripts/weapons.js');
 
 // asynchronous event handler, required for bot to read Discord messages
 CLIENT.on('ready', () => {
-	etc.log(CLIENT.user, 'online');
+	etc.log(CLIENT.user, `online: serving ${CLIENT.guilds.size} servers, ${CLIENT.channels.size} channels, and ${CLIENT.users.size} users`);
 });
 
 // welcome event handler
@@ -59,48 +59,44 @@ CLIENT.on('message', (message) => {
 	// command list
 	if(MSG.startsWith(PREFIX + 'help')) {
 		message.channel.sendMessage(etc.getHelp());
-		etc.log(message.author, MSG);
+		etc.log(message.author, MSG, message.channel.name);
 	}
 	else if(MSG.startsWith(PREFIX + 'about')) {
 		message.channel.sendMessage(etc.getAbout());
-		etc.log(message.author, MSG);
+		etc.log(message.author, MSG, message.channel.name);
 	}
 	else if(MSG.startsWith(PREFIX + 'bread')) {
 		message.channel.sendMessage(bread.getBread(MSG.split(' '), BREAD));
-		etc.log(message.author, MSG);
+		etc.log(message.author, MSG, message.channel.name);
 	}
 	else if(MSG.startsWith(PREFIX + 'goddess')) {
 		message.channel.sendMessage(goddess.getGoddess(MSG.split(' '), GODDESSES));
-		etc.log(message.author, MSG);
+		etc.log(message.author, MSG, message.channel.name);
 	}
 	else if(MSG.startsWith(PREFIX + 'hero')) {
 		message.channel.sendMessage(hero.getHero(MSG.split(' '), HEROES));
-		etc.log(message.author, MSG);
+		etc.log(message.author, MSG, message.channel.name);
 	}
 	else if(MSG.startsWith(PREFIX + 'sbw')) {
 		message.channel.sendMessage(sbw.getSbw(MSG.split(' '), SBWS));
-		etc.log(message.author, MSG);
+		etc.log(message.author, MSG, message.channel.name);
 	}
 	//else if(MSG.startsWith(PREFIX + 'skill')) {}
 	else if(MSG.startsWith(PREFIX + 'skin')) {
 		message.channel.sendMessage(skin.getSkin(MSG.split(' '), SKINS));
-		etc.log(message.author, MSG);
+		etc.log(message.author, MSG, message.channel.name);
 	}
 	else if(MSG.startsWith(PREFIX + 'weapon')) {
 		message.channel.sendMessage(weapon.getWeapon(MSG.split(' '), WEAPONS));
-		etc.log(message.author, MSG);
+		etc.log(message.author, MSG, message.channel.name);
 	}
 	else if(MSG.startsWith(PREFIX + 'lenny')) {
 		message.channel.sendMessage('( ͡° ͜ʖ ͡°)');
-		etc.log(message.author, MSG);
-	}
-	else if(MSG.startsWith(PREFIX + 'shrug')) {
-		message.channel.sendMessage('¯\\_(ツ)_/¯');
-		etc.log(message.author, MSG);
+		etc.log(message.author, MSG, message.channel.name);
 	}
 	else if(MSG.startsWith(PREFIX + 'fergus')) {
 		message.channel.sendFile(CLIENT.user.avatarURL,	'',	`${message.author}`);
-		etc.log(message.author, MSG);
+		etc.log(message.author, MSG, message.channel.name);
 	}
 });
 

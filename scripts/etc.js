@@ -9,7 +9,6 @@ const COMMANDS = [
 	'skin',
 	'weapon',
 	'lenny',
-	'shrug',
 	'fergus'
 ];
 
@@ -20,11 +19,14 @@ module.exports = {
 	getAbout: function() {
 		return 'Fergus by Peter Han (Saarja); ' +
 			'Special thanks to the following individuals for their contributions to the Crusaders Quest database:\n```' +
-			'Poiya, Fastrail, F1r3man```\n' +
+			'Poiya, Fastrail, F1r3man, TheEggCake```\n' +
 			'Want to help contribute, suggest a feature, or submit an issue? ' +
 			'Visit: https://github.com/Johj/fergus';
 	},
-	log: function(user, msg) { // for debugging
-		console.log(`${user.username}#${user.discriminator}: ${msg}`);
+	log: function(user, msg, channel = '') { // for debugging
+		console.log(
+			`${user.username}#${user.discriminator}: ` +
+			(channel === '' ? '' : `(#${channel}) `) +  `${msg}`
+		);
 	}
 };
