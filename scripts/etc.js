@@ -19,8 +19,8 @@ module.exports = {
 	},
 	getAbout: function() {
 		return 'Fergus by Peter Han (Saarja); ' +
-			'Special thanks to the following individuals for their contributions to the database:\n```' +
-			'Poiya, Fastrail```\n' +
+			'Special thanks to the following individuals for their contributions to the Crusaders Quest database:\n```' +
+			'Poiya, Fastrail, F1r3man```\n' +
 			'Want to help contribute, suggest a feature, or submit an issue? ' +
 			'Visit: https://github.com/Johj/fergus';
 	},
