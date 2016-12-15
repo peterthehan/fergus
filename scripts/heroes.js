@@ -38,7 +38,7 @@ function getSkill(h, s, arr) {
 		'): ' + arr[h].skillDescription + '\n';
 	let t =	arr[h].form[s].skill.passive;
 	if(t !== '') {
-		str += '**Passive**: ' + t;
+		str += '**' + arr[h].passiveSkillName + '**: ' + t;
 	}
 	return str;
 }

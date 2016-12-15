@@ -3,6 +3,7 @@
 	"type": "Premium|Promote|Secret",
 	"class": "",
 	"skillName": "",
+	"passiveSkillName": "",
 	"skillDescription": "",
 	"form": [
 		{

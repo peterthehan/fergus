@@ -4,6 +4,7 @@
 		"type": "Legendary",
 		"class": "Warrior",
 		"skillName": "Call of Holy Sword",
+		"passiveSkillName": "Ultimate Holy Sword",
 		"skillDescription": "Summons Holy Sword that deals physical damage equal to (80/180/340)% of hero's attack power based on chain length.",
 		"form": [
 			{
@@ -139,6 +140,7 @@
 		"type": "Promote",
 		"class": "Warrior",
 		"skillName": "Sonic Wave",
+		"passiveSkillName": "Will of Iron",
 		"skillDescription": "Throws a wave of energy that deals magic damage equal to (49/122/221)% of attack power based on the chain number.",
 		"form": [
 			{
@@ -216,6 +218,7 @@
 		"type": "Normal",
 		"class": "Warrior",
 		"skillName": "Call of Demon Sword",
+		"passiveSkillName": "",
 		"skillDescription": "Summons a demon sword that deals magic damage equal to (56/178/322)% of attack power based on the chain number.",
 		"form": [
 			{
@@ -245,70 +248,4 @@
 			}
 		]
 	},
-	"warrior": {
-		"faction": "",
-		"type": "Normal",
-		"class": "Warrior",
-		"skillName": "Sword Shot",
-		"skillDescription": "A piercing attack that deals physical damage equal to (49/150/271)% of attack power.",
-		"form": [
-			{
-				"name": "Warrior",
-				"star": 2,
-				"level": 20,
-				"atkPower": [49.9, 54.9],
-				"hp": [787.5, 866.2],
-				"critChance": [0.175, 0.175],
-				"armor": [111, 122.1],
-				"resistance": [20, 22],
-				"critDamage": [0.5, 0.5],
-				"accuracy": [0, 0],
-				"evasion": [0, 0],
-				"background": "As a warrior of the East, he trains to reach a higher state of being by battling against the strongest opponents he can find.",
-				"skill": {
-					"level": 1,
-					"passive": ""
-				},
-				"howToGet": [
-					"Contract: Buy Contracts!",
-					"Promote Hero: Promoting Heroes!",
-					"Stage: Deep Sea 3-13",
-					"Stage: Appears at Deep Sea 3-13 Hard.",
-					"Noble Honor Box: Acquired chance to get Noble honor box!"
-				]
-			}
-		]
-	},
-	"farmboy": {
-		"faction": "",
-		"type": "Normal",
-		"class": "Warrior",
-		"skillName": "Sonic Wave",
-		"skillDescription": "Throws a wave of energy that deals magic damage equal to (49/122/221)% of attack power based on the chain number.",
-		"form": [
-			{
-				"name": "Farm Boy",
-				"star": 1,
-				"level": 10,
-				"atkPower": [19.6],
-				"hp": [728],
-				"critChance": [0.1],
-				"armor": [77],
-				"resistance": [14],
-				"critDamage": [0.5],
-				"accuracy": [0],
-				"evasion": [0],
-				"background": "He worked hard on the farm, but now he's set out on a quest to save his cabbages from monsters.",
-				"skill": {
-					"level": 1,
-					"passive": ""
-				},
-				"howToGet": [
-					"Stage: Forest 1-23",
-					"Stage: Appears at Forest 1-23 Hard."
-				]
-			}
-		]
-	}
-
 }

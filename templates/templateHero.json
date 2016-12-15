@@ -3,6 +3,7 @@
 	"type": "Normal|Secret|Supply",
 	"class": "",
 	"skillName": "",
+	"passiveSkillName": "",
 	"skillDescription": "",
 	"form": [
 		{

@@ -1,18 +1,17 @@
 ![](https://raw.githubusercontent.com/Johj/fergus/master/fergus.png "( ͡° ͜ʖ ͡°)")
 
 # Fergus
-`Test Server:`
-[![](https://discordapp.com/api/guilds/258167954913361930/widget.png "Fergus Test Server")](https://discord.gg/WjEFnzC)
-`Official Server:`
-[![](https://discordapp.com/api/guilds/206599473282023424/widget.png "Official Server")](https://discord.gg/6TRnyhj)
+| Test Server | Official Server |
+|:-----------:|:---------------:|
+| [![](https://discordapp.com/api/guilds/258167954913361930/widget.png "Test Server")](https://discord.gg/WjEFnzC) | [![](https://discordapp.com/api/guilds/206599473282023424/widget.png "Official Server")](https://discord.gg/6TRnyhj) |
 
 Fergus is a Crusaders Quest Discord server bot.
 
 ## Commands
-!help, !about, !bread, !goddess, !hero, !sbw, !skin, !weapon, !lenny, !shrug, !fergus
+!help, !about, !bread, !goddess, !hero, !sbw, !skin, !weapon, !lenny, !fergus
 
 ## To Do
-- [ ] Make Fergus a public bot.
+- [x] Make Fergus a public bot.
 - [ ] Add hero data.
 - [ ] Add sbw ability data.
 - [ ] Add event skins data.
@@ -26,7 +25,7 @@ See the [contributing guide](https://github.com/Johj/fergus/tree/master/template
 
 ## Special Thanks
 Special thanks to the following individuals for their contributions to the Crusaders Quest database:
-- Poiya (thor, alexander, achilles, drake, vane, cain, stanya, mundeok, v, hector, athena, siegfried, dullahan, captain, wolfgang, gon, hanzo, robinhood, r, giparang, hikari, niven, arona, magnus, atalante, mamba, lee, rahima, viola, kaguya, jin-kyung, rebecca, may, sinkiske, hong-ran, altair, chippzanuff, bearguy, fergus, greenelf)
+- Poiya (thor, alexander, achilles, drake, vane, cain, stanya, mundeok, v, hector, athena, siegfried, dullahan, captain, wolfgang, gon, hanzo, robinhood, r, giparang, hikari, niven, arona, magnus, atalante, mamba, lee, rahima, viola, kaguya, jin-kyung, rebecca, may, sinkiske, billykane, hong-ran, altair, chippzanuff, bearguy, fergus, greenelf)
 - Fastrail (mew, yeowoodong, nurspy, woopa)
 - F1r3man (vivian, event skins)
 - TheEggCake (event skin)
