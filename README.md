@@ -2,6 +2,7 @@
 
 # Fergus
 [![](https://discordapp.com/api/guilds/258167954913361930/widget.png "Fergus Test Server")](https://discord.gg/WjEFnzC)
+
 Fergus is a Crusaders Quest Discord server bot.
 
 ## Commands
