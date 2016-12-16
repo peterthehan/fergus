@@ -14,7 +14,7 @@ Fergus is a Crusaders Quest Discord server bot.
 - [x] Make Fergus a public bot.
 - [ ] Add hero data.
 - [ ] Add sbw ability data.
-- [ ] Add event skins data.
+- [x] Add event skins data.
 - [ ] Add weapon sell/salvage price data.
 - [x] Add !sbw command.
 - [ ] Add !skill command.
@@ -25,7 +25,7 @@ See the [contributing guide](https://github.com/Johj/fergus/tree/master/template
 
 ## Special Thanks
 Special thanks to the following individuals for their contributions to the Crusaders Quest database:
-- Poiya (thor, alexander, achilles, drake, vane, cain, stanya, mundeok, v, hector, athena, siegfried, dullahan, captain, wolfgang, gon, hanzo, robinhood, r, giparang, hikari, niven, arona, magnus, atalante, mamba, lee, rahima, viola, kaguya, jin-kyung, rebecca, may, sinkiske, billykane, hong-ran, altair, chippzanuff, bearguy, fergus, greenelf)
+- Poiya (thor, alexander, achilles, drake, vane, cain, stanya, mundeok, v, hector, athena, siegfried, dullahan, captain, wolfgang, gon, hanzo, robinhood, r, giparang, hikari, niven, arona, magnus, atalante, mamba, lee, rahima, viola, kaguya, maxi, spyro, viper, crow, vincent, no.9, sentinel, mandy, wilhelm, saiga, tia, spiny, dox, lorelei, scarlet, ag01-neo, ag02-layla, ag03-mel, jin-kyung, rebecca, may, sinkiske, billykane, hong-ran, altair, chippzanuff, elpheltvalentine, leonaheidern, bearguy, fergus, greenelf, a.k.a.santa, halloweenchocolat)
 - Fastrail (mew, yeowoodong, nurspy, woopa)
 - F1r3man (vivian, event skins)
 - TheEggCake (event skin)
