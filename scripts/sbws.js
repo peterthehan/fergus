@@ -35,10 +35,10 @@ module.exports = {
 		// 0 arguments, !sbw
 		if(len === 1) {
 			str = '*!sbw list|<name> <star>*, ' +
-				'e.g. !sbw list, !sbw mew, !sbw mew 6; ' +
+				'e.g. !sbw list, !sbw mew, !sbw mew 4; ' +
 				'Defaults to 6-star whenever *<star>* is not specified.';
 		}
-		// 1 argument or more, !sbw list|<name> <star>
+		// 1 argument or more, !sbw list|<name> [<star>]
 		else {
 			// !sbw list
 			if(args[1] === 'list') {

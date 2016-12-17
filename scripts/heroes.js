@@ -1,7 +1,7 @@
 // helper function, get string
 function getName(h, s, arr) {
 	let str = '';
-	str += '__**' + arr[h].form[s].name + '**__ ' +
+	str = '__**' + arr[h].form[s].name + '**__ ' +
 		'(' + '★'.repeat(arr[h].form[s].star) + ') | ';
 	let t =	arr[h].faction;
 	if(t !== '') {
@@ -34,7 +34,7 @@ function getStats(h, s, arr) {
 // helper function, get string
 function getSkill(h, s, arr) {
 	let str = '';
-	str += '**' + arr[h].skillName + '** (Lv.' + arr[h].form[s].skill.level +
+	str = '**' + arr[h].skillName + '** (Lv.' + arr[h].form[s].skill.level +
 		'): ' + arr[h].skillDescription + '\n';
 	let t =	arr[h].form[s].skill.passive;
 	if(t !== '') {
@@ -80,7 +80,7 @@ function getStar(h, s, arr) {
 	// exception, should not be possible to enter this case
 	else {
 		console.log('error');
-		return 'Error: Please let the bot author know or submit an issue at https://github.com/Johj/fergus/issues';
+		return 'Error: Please let the Bot Author know or submit an issue at https://github.com/Johj/fergus/issues';
 	}
 	return star;
 }
@@ -88,7 +88,7 @@ function getStar(h, s, arr) {
 // helper function, get data
 function getData(h, s, d, arr) {
 	let str = '';
-	str += getName(h, s, arr);
+	str = getName(h, s, arr);
 	if(d === 'info') {
 		str += getInfo(h, s, arr);
 	}
@@ -110,18 +110,18 @@ function getData(h, s, d, arr) {
 module.exports = {
 	getHero: function(args, arr) {
 		let str = '', len = args.length;
-		// 0 arguments
+		// 0 arguments, !hero
 		if(len === 1) {
 			str += '*!hero list|<name> ' +
-				'(info|stats|skill)|<star> <star>|(info|stats|skill)*, ' +
+				'info|stats|skill|<star> <star>|info|stats|skill*, ' +
 				'e.g. !hero list, ' +
-				'!hero mew, !hero mew info, !hero mew 3, ' +
+				'!hero mew, !hero mew info, !hero mew 4, ' +
 				'!hero mew stats 4, !hero mew 4 skill; ' +
 				'Defaults to 6-star whenever *<star>* is not specified.';
 		}
-		// 1 or more arguments
+		// 1 or more arguments, !hero list|<name> [info|stats|skill|<star> <star>|list|stats|skill]
 		else {
-			// list
+			// !hero list
 			if(args[1] === 'list') {
 				str += '```' + Object.keys(arr).join(', ') + '```';
 			}
@@ -130,18 +130,18 @@ module.exports = {
 				// default to highest form index
 				let star = arr[args[1]].form.length - 1;
 
-				// 1 argument, <name>
+				// 1 argument, !hero <name>
 				if(len === 2) {
-					str += getName(args[1], star, arr);
+					str = getName(args[1], star, arr);
 					str += getAll(args[1], star, arr);
 				}
-				// 2 arguments, <name> (info|stats|skill)|<star>
+				// 2 arguments, !hero <name> info|stats|skill|<star>
 				else if(len === 3) {
-					// <name> (info|stats|skill)
+					// !hero <name> info|stats|skill
 					if(isNaN(parseInt(args[2]))) {
-						str += getData(args[1], star, args[2], arr);
+						str = getData(args[1], star, args[2], arr);
 					}
-					// <name> <star>
+					// !hero <name> <star>
 					else {
 						star = getStar(args[1], args[2], arr);
 						if(isNaN(parseInt(star))) {
@@ -149,46 +149,46 @@ module.exports = {
 						}
 						// <star> is junk, treat as if !hero <hero>
 						else {
-							str += getName(args[1], star, arr);
+							str = getName(args[1], star, arr);
 							str += getAll(args[1], star, arr);
 						}
 					}
 				}
 				// 3 arguments or more
-				// <name> (info|stats|skill)|<star> <star>|(info|stats|skill)
+				// !hero <name> info|stats|skill|<star> <star>|info|stats|skill
 				else {
-					// <name> (info|stats|skill) <star>
+					// !hero <name> info|stats|skill <star>
 					if(isNaN(parseInt(args[2])) && !isNaN(parseInt(args[3]))) {
 						star = getStar(args[1], args[3], arr);
 						if(isNaN(parseInt(star))) {
-							str += star;
+							str = star;
 						}
 						else {
-							str += getData(args[1], star, args[2], arr);
+							str = getData(args[1], star, args[2], arr);
 						}
 					}
-					// <name> <star> (info|stats|skill)
+					// !hero <name> <star> info|stats|skill
 					else if(!isNaN(parseInt(args[2])) && isNaN(parseInt(args[3]))){
 						star = getStar(args[1], args[2], arr);
 						if(isNaN(parseInt(star))) {
 							str += star;
 						}
 						else {
-							str += getData(args[1], star, args[3], arr);
+							str = getData(args[1], star, args[3], arr);
 						}
 					}
 					// one of the inputs is junk, treat as if 2 arguments
 					else {
 						if(isNaN(parseInt(args[2])) && isNaN(parseInt(args[3]))) {
 							if(args[2] === 'info' || args[2] === 'stats' || args[2] === 'skill') {
-								str += getData(args[1], star, args[2], arr);
+								str = getData(args[1], star, args[2], arr);
 							}
 							else if(args[3] === 'info' || args[3] === 'stats' || args[3] === 'skill') {
-								str += getData(args[1], star, args[3], arr);
+								str = getData(args[1], star, args[3], arr);
 							}
 							// both inputs are junk, treat as if 1 argument
 							else {
-								str += getName(args[1], star, arr);
+								str = getName(args[1], star, arr);
 								str += getAll(args[1], star, arr);
 							}
 						}
@@ -196,26 +196,26 @@ module.exports = {
 							if(args[2] > 0 && args[2] < 7) {
 								star = getStar(args[1], args[2], arr);
 								if(isNaN(parseInt(star))) {
-									str += star;
+									str = star;
 								}
 								else {
-									str += getName(args[1], star, arr);
+									str = getName(args[1], star, arr);
 									str += getAll(args[1], star, arr);
 								}
 							}
 							else if(args[3] > 0 && args[3] < 7) {
 								star = getStar(args[1], args[3], arr);
 								if(isNaN(parseInt(star))) {
-									str += star;
+									str = star;
 								}
 								else {
-									str += getName(args[1], star, arr);
+									str = getName(args[1], star, arr);
 									str += getAll(args[1], star, arr);
 								}
 							}
 							// both inputs are junk, treat as if 1 argument
 							else {
-								str += getName(args[1], star, arr);
+								str = getName(args[1], star, arr);
 								str += getAll(args[1], star, arr);
 							}
 						}
@@ -223,7 +223,7 @@ module.exports = {
 				}
 			}
 			else {
-				str += `${args[1]} is not a valid hero name!`;
+				str = `${args[1]} is not a valid hero name!`;
 			}
 		}
 		return str;

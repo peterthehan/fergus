@@ -8,7 +8,7 @@
 Fergus is a Crusaders Quest Discord server bot.
 
 ## Commands
-!help, !about, !bread, !goddess, !hero, !sbw, !skin, !weapon, !lenny, !fergus
+!help, !about, !bread, !goddess, !hero, !image, !sbw, !skin, !weapon, !lenny, !fergus
 
 ## To Do
 - [x] Make Fergus a public bot.
@@ -16,6 +16,7 @@ Fergus is a Crusaders Quest Discord server bot.
 - [ ] Add sbw ability data.
 - [x] Add event skins data.
 - [ ] Add weapon sell/salvage price data.
+- [ ] Add !image command.
 - [x] Add !sbw command.
 - [ ] Add !skill command.
 - [x] Add !weapon command.
@@ -26,8 +27,8 @@ See the [contributing guide](https://github.com/Johj/fergus/tree/master/template
 ## Special Thanks
 Special thanks to the following individuals for their contributions to the Crusaders Quest database:
 - Poiya (thor, alexander, achilles, drake, vane, cain, stanya, mundeok, v, hector, athena, siegfried, dullahan, captain, wolfgang, gon, hanzo, robinhood, r, giparang, hikari, niven, arona, magnus, atalante, mamba, lee, rahima, viola, kaguya, maxi, spyro, viper, crow, vincent, no.9, sentinel, mandy, wilhelm, saiga, tia, spiny, dox, lorelei, scarlet, ag01-neo, ag02-layla, ag03-mel, archon, korin, sasquatch, lilith, rachel, alice, nazrune, mondrian, necron, demeter, uriel, benjamin, lupeow, vesper, violet, yichui, jin-kyung, rebecca, may, sinkiske, billykane, hong-ran, altair, chippzanuff, elpheltvalentine, leonaheidern, ramlethalvalentine, jack-o\`, chizurukagura, bearguy, fergus, greenelf, a.k.a.santa, halloweenchocolat, santaclaus, lovelychocolat)
-- Fastrail (mew, yeowoodong, nurspy, woopa)
-- F1r3man (vivian, event skins)
+- Fastrail (mew, yeowoodong, nurspy, woopa, stein, aria, seiren)
+- F1r3man (vivian, susanoo, event skins)
 - Protease (sbw abilities: joan, susanoo, vivian, monte, kaori, achilles, aria)
 - TheEggCake (event skin)
 

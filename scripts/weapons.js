@@ -4,7 +4,7 @@ module.exports = {
 		// 0 arguments, !weapon
 		if(len === 1) {
 			str = '*!weapon list|<star>|<class>|<name>*, ' +
-				'e.g. !weapon list, !weapon 6, !weapon sword, !weapon redfalchion';
+				'e.g. !weapon list, !weapon 4, !weapon sword, !weapon redfalchion';
 		}
 		// 1 argument or more, !weapon list|<star>|<class>|<name>
 		else {

@@ -21,6 +21,7 @@ let etc = require('./scripts/etc.js'); // !help, !about
 let bread = require('./scripts/bread.js');
 let goddess = require('./scripts/goddesses.js');
 let hero = require('./scripts/heroes.js');
+let image = require('./scripts/images.js');
 let sbw = require('./scripts/sbws.js');
 //let skill = require('./scripts/skills.js');
 let skin = require('./scripts/skins.js');
@@ -33,17 +34,17 @@ CLIENT.on('ready', () => {
 
 // welcome event handler
 CLIENT.on('guildMemberAdd', (member) => {
-	member.guild.channels.get(member.guild.id).sendMessage(
+	/*member.guild.channels.get(member.guild.id).sendMessage(
 		CONFIG.welcomePre + member + CONFIG.welcomePost
-	);
+	);*/
 	etc.log(member.user, 'joined');
 });
 
 // farewell event handler
 CLIENT.on('guildMemberRemove', (member) => {
-	member.guild.channels.get(member.guild.id).sendMessage(
+	/*member.guild.channels.get(member.guild.id).sendMessage(
 		CONFIG.farewellPre + member + CONFIG.farewellPost
-	);
+	);*/
 	etc.log(member.user, 'left');
 });
 
@@ -75,6 +76,16 @@ CLIENT.on('message', (message) => {
 	}
 	else if(MSG.startsWith(PREFIX + 'hero')) {
 		message.channel.sendMessage(hero.getHero(MSG.split(' '), HEROES));
+		etc.log(message.author, MSG, message.channel.name);
+	}
+	else if(MSG.startsWith(PREFIX + 'image')) {
+		let str = image.getImage(MSG.split(' '), HEROES);
+		if(str.endsWith('.png')) {
+			message.channel.sendFile(str);
+		}
+		else {
+			message.channel.sendMessage(str);
+		}
 		etc.log(message.author, MSG, message.channel.name);
 	}
 	else if(MSG.startsWith(PREFIX + 'sbw')) {

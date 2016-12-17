@@ -4,7 +4,7 @@ module.exports = {
 		// 0 arguments, !bread
 		if(len === 1) {
 			str = '*!bread list|<star>|<name>*, ' +
-				'e.g. !bread list, !bread 6, !bread macaroon';
+				'e.g. !bread list, !bread 4, !bread macaroon';
 		}
 		// 1 argument or more, !bread list|<star>|<name>
 		else {

@@ -4,6 +4,7 @@ const COMMANDS = [
 	'bread',
 	'goddess',
 	'hero',
+	'image',
 	'sbw',
 	//'skill',
 	'skin',
