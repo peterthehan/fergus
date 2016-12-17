@@ -80,7 +80,7 @@ module.exports = {
 				else {
 					if(!isNaN(parseInt(args[2]))) {
 						star = getStar(args[1], args[2], arr);
-						if(isNaN(parseInt(star))) {
+						if(isNaN(parseInt(star)) && star !== '') {
 							str = star;
 						}
 						else {
