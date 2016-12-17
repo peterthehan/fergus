@@ -16,7 +16,7 @@ Fergus is a Crusaders Quest Discord server bot.
 - [ ] Add sbw ability data.
 - [x] Add event skins data.
 - [ ] Add weapon sell/salvage price data.
-- [ ] Add !image command.
+- [x] Add !image command.
 - [x] Add !sbw command.
 - [ ] Add !skill command.
 - [x] Add !weapon command.

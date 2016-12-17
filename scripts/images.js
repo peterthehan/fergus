@@ -5,13 +5,13 @@ function getStar(h, s, arr) {
 	if(arr[h].form.length === 1) {
 		// star is accounted for when initialized
 		// user star input is ignored for these heroes
-		star = arr[h].form.length - 1;
+		star = '';
 	}
 	// 3-promotion heroes
 	else if(arr[h].form.length === 3) {
 		s = parseInt(s);
 		if(s > 3 && s < 7) {
-			star = s - 4;
+			star = s;
 		}
 		else {
 			return `${h} does not have a ${s}-star form!`;
@@ -21,7 +21,7 @@ function getStar(h, s, arr) {
 	else if(arr[h].form.length === 6){
 		s = parseInt(s);
 		if(s > 0 && s < 7) {
-			star = s - 1;
+			star = s;
 		}
 		else {
 			return `${h} does not have a ${s}-star form!`;
@@ -33,6 +33,20 @@ function getStar(h, s, arr) {
 		return 'Error: Please let the Bot Author know or submit an issue at https://github.com/Johj/fergus/issues';
 	}
 	return star;
+}
+
+function getFile(h, s, arr) {
+	let str = '';
+	str = './cqdb/assets/heroes/' + arr[h].class.toLowerCase() + '/' + h;
+	if(s > 3) {
+		str += s.toString();
+	}
+	str += '.png';
+	let fs = require('fs');
+	if(!fs.existsSync(str)) {
+		str = `${h} does not have an image in the database yet!`;
+	}
+	return str;
 }
 
 module.exports = {
@@ -57,24 +71,29 @@ module.exports = {
 
 				// 1 argument, <name>
 				if(len === 2) {
-					str = './cqdb/assets/heroes/' + arr[args[1]].class.toLowerCase() +
-					'/' + args[1];
 					if(star === 3) {
 						star += 3;
 					}
-					if(star >= 6) {
-						str += star.toString();
-					}
-					str += '.png';
-
-					let fs = require('fs');
-					if(!fs.existsSync(str)) {
-					  str = `${args[1]} does not have an image in the database yet!`;
-					}
+					str = getFile(args[1], star, arr);
 				}
 				// 2 arguments or more, <name> <star>
 				else {
-					str = 'wip';
+					if(!isNaN(parseInt(args[2]))) {
+						star = getStar(args[1], args[2], arr);
+						if(isNaN(parseInt(star))) {
+							str = star;
+						}
+						else {
+							str = getFile(args[1], star, arr);
+						}
+					}
+					// treat !image <name> <junk> as if !image <name>
+					else {
+						if(star === 3) {
+							star += 3;
+						}
+						str = getFile(args[1], star, arr);
+					}
 				}
 			}
 			// !image <junk>
