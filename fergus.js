@@ -30,6 +30,16 @@ let weapon = require('./scripts/weapons.js');
 // asynchronous event handler, required for bot to read Discord messages
 CLIENT.on('ready', () => {
 	etc.log(CLIENT.user, `online: serving ${CLIENT.guilds.size} servers, ${CLIENT.channels.size} channels, and ${CLIENT.users.size} users`);
+
+	(function loop() {
+		let min = 30000, max = 60000; // in ms
+    setTimeout(
+			function() {
+				CLIENT.user.setGame(etc.setGame());
+	      loop();
+    	}, Math.floor(Math.random() * (max - min)) + min
+		);
+	}());
 });
 
 // welcome event handler
@@ -46,6 +56,14 @@ CLIENT.on('guildMemberRemove', (member) => {
 		CONFIG.farewellPre + member + CONFIG.farewellPost
 	);*/
 	etc.log(member.user, 'left');
+});
+
+// node's unhandledRejection event handler
+// http://eng.wealthfront.com/2016/11/03/handling-unhandledrejections-in-node-and-the-browser/
+process.on('unhandledRejection', (reason) => {
+  console.error('error: command used in a text channel that blocks fergus');
+	//console.error(reason);
+  //process.exit(1);
 });
 
 // message event handler

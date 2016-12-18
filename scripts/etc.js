@@ -1,3 +1,15 @@
+const GAMES = [
+	'!help',
+	'with your heart.',
+	'with your iron.',
+	'with your gold.',
+	'with your dream sbw.',
+	'with your jewels.',
+	'with Hellad.',
+	'with Chocolat.',
+	'( ͡° ͜ʖ ͡°)'
+];
+
 const COMMANDS = [
 	'help',
 	'about',
@@ -14,6 +26,9 @@ const COMMANDS = [
 ];
 
 module.exports = {
+	setGame: function() {
+		return GAMES[Math.floor((Math.random() * GAMES.length))];
+	},
 	getHelp: function() {
 		return 'Commands: ' + COMMANDS.map(x => '!' + x).join(', ');
 	},
