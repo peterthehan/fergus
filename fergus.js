@@ -34,13 +34,13 @@ CLIENT.on('ready', () => {
 	(function loop() {
 		let min = 45000, max = 75000; // in ms
 		let rand = Math.floor(Math.random() * (max - min)) + min;
-    setTimeout(
+		setTimeout(
 			function() {
 				let str = etc.setGame();
 				CLIENT.user.setGame(str);
 				etc.log(CLIENT.user, `Playing ${str} (waited ${rand} ms)`);
-	      loop();
-    	}, rand
+				loop();
+			}, rand
 		);
 	}());
 });
@@ -64,14 +64,14 @@ CLIENT.on('guildMemberRemove', (member) => {
 // node's unhandledRejection event handler
 // http://eng.wealthfront.com/2016/11/03/handling-unhandledrejections-in-node-and-the-browser/
 process.on('unhandledRejection', (reason) => {
-  console.error('error: command used in a text channel that blocks fergus');
+	console.error('error: command used in a text channel that blocks fergus');
 	//console.error(reason);
-  //process.exit(1);
+	//process.exit(1);
 });
 
 // message event handler
 CLIENT.on('message', (message) => {
-  if(!message.content.startsWith(PREFIX) || message.author.bot) {
+	if(!message.content.startsWith(PREFIX) || message.author.bot) {
 		return;
 	}
 
