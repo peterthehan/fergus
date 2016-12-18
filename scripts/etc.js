@@ -1,12 +1,16 @@
 const GAMES = [
 	'!help',
+	'with your dream sbw.',
+	'with your gold.',
 	'with your heart.',
 	'with your iron.',
-	'with your gold.',
-	'with your dream sbw.',
 	'with your jewels.',
-	'with Hellad.',
+	'with your rerolls.',
 	'with Chocolat.',
+	'with Hellad.',
+	'with Lednas.',
+	'with Popo.',
+	'(╯°□°）╯︵ ┻━┻',
 	'( ͡° ͜ʖ ͡°)'
 ];
 
@@ -34,8 +38,8 @@ module.exports = {
 	},
 	getAbout: function() {
 		return 'Fergus by Peter Han (Saarja); ' +
-			'Special thanks to the following individuals for their contributions to the Crusaders Quest database:\n```' +
-			'Poiya, Fastrail, F1r3man, Protease, TheEggCake```\n' +
+			'Special thanks to the following individuals for their contributions to the Crusaders Quest database:\n' +
+			'```Poiya, Fastrail, F1r3man, Protease, TheEggCake```\n' +
 			'Want to help contribute, suggest a feature, or submit an issue? ' +
 			'Visit: https://github.com/Johj/fergus';
 	},

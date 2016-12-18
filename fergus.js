@@ -1,13 +1,12 @@
 const DISCORD = require('discord.js');
 const CLIENT = new DISCORD.Client();
 
-// get json objects
-
-// contains token, prefix, welcomePre, welcomePost, farewellPre, farewellPost
+// get token, prefix, welcomePre, welcomePost, farewellPre, farewellPost
 // look at configEXAMPLE.json for formatting
 const CONFIG = require('./config.json');
 const PREFIX = CONFIG.prefix;
 
+// get json objects
 const BREAD = require('./cqdb/bread.json');
 const GODDESSES = require('./cqdb/goddesses.json');
 const HEROES = require('./cqdb/heroes.json');
@@ -29,32 +28,36 @@ let weapon = require('./scripts/weapons.js');
 
 // asynchronous event handler, required for bot to read Discord messages
 CLIENT.on('ready', () => {
-	etc.log(CLIENT.user, `online: serving ${CLIENT.guilds.size} servers, ${CLIENT.channels.size} channels, and ${CLIENT.users.size} users`);
+	etc.log(CLIENT.user, `online (serving ${CLIENT.guilds.size} server(s), ${CLIENT.channels.size} channel(s), ${CLIENT.users.size} user(s))`);
 
+	// http://stackoverflow.com/questions/6962658/randomize-setinterval-how-to-rewrite-same-random-after-random-interval
 	(function loop() {
-		let min = 30000, max = 60000; // in ms
+		let min = 45000, max = 75000; // in ms
+		let rand = Math.floor(Math.random() * (max - min)) + min;
     setTimeout(
 			function() {
-				CLIENT.user.setGame(etc.setGame());
+				let str = etc.setGame();
+				CLIENT.user.setGame(str);
+				etc.log(CLIENT.user, `Playing ${str} (waited ${rand} ms)`);
 	      loop();
-    	}, Math.floor(Math.random() * (max - min)) + min
+    	}, rand
 		);
 	}());
 });
 
 // welcome event handler
 CLIENT.on('guildMemberAdd', (member) => {
-	/*member.guild.channels.get(member.guild.id).sendMessage(
+	member.guild.channels.get(member.guild.id).sendMessage(
 		CONFIG.welcomePre + member + CONFIG.welcomePost
-	);*/
+	);
 	etc.log(member.user, 'joined');
 });
 
 // farewell event handler
 CLIENT.on('guildMemberRemove', (member) => {
-	/*member.guild.channels.get(member.guild.id).sendMessage(
+	member.guild.channels.get(member.guild.id).sendMessage(
 		CONFIG.farewellPre + member + CONFIG.farewellPost
-	);*/
+	);
 	etc.log(member.user, 'left');
 });
 

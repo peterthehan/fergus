@@ -11,7 +11,7 @@ Fergus is a Crusaders Quest Discord server bot.
 !help, !about, !bread, !goddess, !hero, !image, !sbw, !skin, !weapon, !lenny, !fergus
 
 ## To Do
-- [x] Make Fergus a public bot.
+- [x] Have Fergus go live.
 - [ ] Add hero data.
 - [ ] Add sbw ability data.
 - [x] Add event skins data.
