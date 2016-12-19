@@ -32,7 +32,7 @@ CLIENT.on('ready', () => {
 
 	// http://stackoverflow.com/questions/6962658/randomize-setinterval-how-to-rewrite-same-random-after-random-interval
 	(function loop() {
-		let min = 45000, max = 75000; // in ms
+		let min = 75000, max = 105000; // in ms
 		let rand = Math.floor(Math.random() * (max - min)) + min;
 		setTimeout(
 			function() {

@@ -6,9 +6,13 @@ const GAMES = [
 	'with your iron.',
 	'with your jewels.',
 	'with your rerolls.',
+	'with Arjuna.',
+	'with Bridget.',
+	'with Celine.',
 	'with Chocolat.',
 	'with Hellad.',
 	'with Lednas.',
+	'with Pandora.',
 	'with Popo.',
 	'(╯°□°）╯︵ ┻━┻',
 	'( ͡° ͜ʖ ͡°)'
