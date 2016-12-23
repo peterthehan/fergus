@@ -1,3 +1,5 @@
+assets/heroes/*/*
+!assets/heroes/*/*.png
 /cqdb
 /node_modules
 /authorize.txt

@@ -17,12 +17,12 @@ All contributors will be credited, no matter the scale of the contribution. Ever
 
 ```
 {
-	"THIS": {
-		...
-	},
-	"THIS": {
-		...
-	},
+  "THIS": {
+    ...
+  },
+  "THIS": {
+    ...
+  },
 }
 ```
 
@@ -41,12 +41,12 @@ This section concerns where it says `"THIS"`:
 
 ```
 "form": [
-	{
-		"critChance": [THIS],
-		"critDamage": [THIS],
-		"accuracy": [THIS],
-		"evasion": [THIS],
-	},
+  {
+    "critChance": [THIS],
+    "critDamage": [THIS],
+    "accuracy": [THIS],
+    "evasion": [THIS],
+  },
 ]
 ```
 
@@ -63,18 +63,18 @@ This section concerns where it says `THIS`:
 
 ```
 "": {
-	"skillName": "THIS",
-	"passiveSkillName": "THIS",
-	"skillDescription": "THIS",
-	"form": [
-		{
-			"background": "THIS",
-			"skill": {
-				"level": 3,
-				"passive": "THIS"
-			},
-		},
-	]
+  "skillName": "THIS",
+  "passiveSkillName": "THIS",
+  "skillDescription": "THIS",
+  "form": [
+    {
+      "background": "THIS",
+      "skill": {
+        "level": 3,
+        "passive": "THIS"
+      },
+    },
+  ]
 }
 ```
 

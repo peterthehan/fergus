@@ -2,12 +2,12 @@
   "name": "fergus",
   "version": "1.0.0",
   "description": "Crusaders Quest (CQ) Discord server bot",
-	"engines": {
-		"node": "7.1.0"
-	},
+  "engines": {
+    "node": "7.1.0"
+  },
   "main": "fergus.js",
   "dependencies": {
-    "discord.js": "^10.0.1"
+    "discord.js": "github:hydrabolt/discord.js#indev"
   },
   "devDependencies": {},
   "scripts": {

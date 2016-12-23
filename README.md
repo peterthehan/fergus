@@ -25,7 +25,7 @@ Fergus is a Crusaders Quest Discord server bot.
 See the [contributing guide](https://github.com/Johj/fergus/tree/master/templates).
 
 ## Special Thanks
-Special thanks to the following individuals for their contributions to the Crusaders Quest database:
+Special thanks to the following individuals for their contributions to the project:
 - Poiya (hero entries for all paladins, archers, hunters, and wizards)
 - Fastrail (hero entries for all priests sans orfeo, yuria, faust, and noel)
 - fioritura (sbw abilities for all paladins, archers, hunters, wizards, and priests)
