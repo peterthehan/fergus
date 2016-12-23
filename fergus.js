@@ -96,6 +96,7 @@ client.on('message', (message) => {
   } else if (msg.startsWith(prefix + 'skill')) {
   } else if (msg.startsWith(prefix + 'skin')) {
   } else if (msg.startsWith(prefix + 'weapon')) {
+    message.channel.sendEmbed(weapon.getWeapon(msg.split(' '), WEAPON_OBJECT));
   } else if (msg.startsWith(prefix + 'lenny')) {
   } else if (msg.startsWith(prefix + 'fergus')) {
   } else if (msg.startsWith(prefix + 'test')) {

@@ -20,8 +20,9 @@ function getBreadList(arr) {
 function getBreadStarList(star, arr) {
   let t = [];
   Object.keys(arr).forEach((key) => {
+    console.log(key + ' ' + key.length);
     if (arr[key].star === star) {
-      t.push(arr[key].name);
+      t.push(key);
     }
   });
   const discord = require('discord.js');
@@ -56,7 +57,7 @@ function getBreadStarError(star) {
 }
 
 function getBreadNameError(bread) {
-  bread = capStringLength(bread, 25);
+  bread = capStringLength(bread, 19);
   const discord = require('discord.js');
   const embed = new discord.RichEmbed()
     .setColor('#ebb74e')

@@ -1,4 +1,4 @@
-![](https://raw.githubusercontent.com/Johj/fergus/master/fergus.png "( ͡° ͜ʖ ͡°)")
+![](https://raw.githubusercontent.com/Johj/fergus/master/assets/fergus.png "( ͡° ͜ʖ ͡°)")
 
 # Fergus
 | Test Server | Official Server |
@@ -9,17 +9,6 @@ Fergus is a Crusaders Quest Discord server bot.
 
 ## Commands
 !help, !about, !bread, !goddess, !hero, !image, !sbw, !skin, !weapon, !lenny, !fergus
-
-## To Do
-- [x] Have Fergus go live.
-- [ ] Add hero data.
-- [ ] Add sbw ability data.
-- [x] Add event skins data.
-- [ ] Add weapon sell/salvage price data.
-- [x] Add !image command.
-- [x] Add !sbw command.
-- [ ] Add !skill command.
-- [x] Add !weapon command.
 
 ## Contributing
 See the [contributing guide](https://github.com/Johj/fergus/tree/master/templates).
