@@ -84,22 +84,37 @@ client.on('message', (message) => {
   // Command list.
   if (msg.startsWith(prefix + 'help')) {
     message.channel.sendEmbed(etc.getHelp());
+    etc.log(message.author, msg, message.channel.name);
   } else if (msg.startsWith(prefix + 'about')) {
     message.channel.sendEmbed(etc.getAbout());
+    etc.log(message.author, msg, message.channel.name);
   } else if (msg.startsWith(prefix + 'bread')) {
     message.channel.sendEmbed(bread.getBread(msg.split(' '), BREAD_OBJECT));
+    etc.log(message.author, msg, message.channel.name);
   } else if (msg.startsWith(prefix + 'goddess')) {
     message.channel.sendEmbed(goddess.getGoddess(msg.split(' '), GODDESS_OBJECT));
+    etc.log(message.author, msg, message.channel.name);
   } else if (msg.startsWith(prefix + 'hero')) {
+    message.channel.sendEmbed(hero.getHero(msg.split(' '), HERO_OBJECT));
+    etc.log(message.author, msg, message.channel.name);
   } else if (msg.startsWith(prefix + 'sbw')) {
-    message.channel.sendEmbed(sbw.getSbw(msg.split(' '), SBW_OBJECT));
+    // message.channel.sendEmbed(sbw.getSbw(msg.split(' '), SBW_OBJECT));
+    etc.log(message.author, msg, message.channel.name);
   } else if (msg.startsWith(prefix + 'skill')) {
+    // message.channel.sendEmbed(skill.getSkill(msg.split(' '), SKILL_OBJECT));
+    etc.log(message.author, msg, message.channel.name);
   } else if (msg.startsWith(prefix + 'skin')) {
+    message.channel.sendEmbed(skin.getSkin(msg.split(' '), SKIN_OBJECT));
+    etc.log(message.author, msg, message.channel.name);
   } else if (msg.startsWith(prefix + 'weapon')) {
     message.channel.sendEmbed(weapon.getWeapon(msg.split(' '), WEAPON_OBJECT));
+    etc.log(message.author, msg, message.channel.name);
   } else if (msg.startsWith(prefix + 'lenny')) {
+    message.channel.sendEmbed(etc.getLenny());
+    etc.log(message.author, msg, message.channel.name);
   } else if (msg.startsWith(prefix + 'fergus')) {
-  } else if (msg.startsWith(prefix + 'test')) {
+    message.channel.sendEmbed(etc.getFergus());
+    etc.log(message.author, msg, message.channel.name);
   }
 });
 

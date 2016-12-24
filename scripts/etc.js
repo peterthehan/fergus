@@ -25,7 +25,7 @@ const COMMANDS = [
   'bread',
   'goddess',
   'hero',
-  'sbw',
+  //'sbw',
   //'skill',
   'skin',
   'weapon',
@@ -37,29 +37,42 @@ function getGame() {
   return GAMES[Math.floor((Math.random() * GAMES.length))];
 }
 
-function getHelp() {
+function getEmbedStarter() {
   const discord = require('discord.js');
-  const embed = new discord.RichEmbed()
-    .setColor('#ebb74e')
+  const embed = new discord.RichEmbed().setColor('#ebb74e');
+  return embed;
+}
+
+function getHelp() {
+  const embed = getEmbedStarter()
     .setTitle('Commands')
     .setDescription(COMMANDS.map(i => '!' + i).join(', '));
   return embed;
 }
 
 function getAbout() {
-  const discord = require('discord.js');
-  const embed = new discord.RichEmbed()
-    .setColor('#ebb74e')
+  const embed = getEmbedStarter()
     .setTitle('Fergus')
     .setDescription('by Peter Han (Saarja)')
     .addField(
-      'Special thanks to the following individuals for their contributions ' +
-      'to the project',
+      'Special thanks to',
       'Poiya, Fastrail, fioritura, F1r3man, Protease, TheEggCake')
     .addField(
       'Want to help contribute, suggest a feature, or submit an issue?',
-      'Visit: https://github.com/Johj/fergus')
-    .setURL();
+      'Visit: https://github.com/Johj/fergus');
+    //.setURL();
+  return embed;
+}
+
+function getLenny() {
+  const embed = getEmbedStarter()
+    .setDescription(GAMES[GAMES.length - 1]);
+  return embed;
+}
+
+function getFergus() {
+  const embed = getEmbedStarter()
+    .setImage('https://raw.githubusercontent.com/Johj/fergus/master/assets/fergus.png');
   return embed;
 }
 
@@ -69,4 +82,4 @@ function log(user, message, channel = '') { // for debugging
     (channel === '' ? '' : `(#${channel}) `) +  `${message}`);
 }
 
-module.exports = {getGame, getHelp, getAbout, log};
+module.exports = {getGame, getHelp, getAbout, getLenny, getFergus, log};

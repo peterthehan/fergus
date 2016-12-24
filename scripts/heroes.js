@@ -1,231 +1,276 @@
-// helper function, get string
-function getName(h, s, arr) {
-	let str = '';
-	str = '__**' + arr[h].form[s].name + '**__ ' +
-		'(' + '★'.repeat(arr[h].form[s].star) + ') | ';
-	let t =	arr[h].faction;
-	if(t !== '') {
-		str += t + ', ';
-	}
-	str += arr[h].type + ', ' + arr[h].class + '\n';
-	return str;
+function getHeroEmbedStarter() {
+  const discord = require('discord.js');
+  const embed = new discord.RichEmbed().setColor('#ebb74e');
+  return embed;
 }
 
-// helper function, get string
-function getInfo(h, s, arr) {
-	return '_' + arr[h].form[s].background + '_\n' +
-		'**Acquire**: ' + arr[h].form[s].howToGet.join(', ') + '\n';
+function getHeroDataEmbedStarter(hero, star, arr) {
+  const embed = getHeroEmbedStarter()
+    .setThumbnail(getHeroImageURL(hero, star, arr))
+    .setTitle(getHeroHeader(hero, star, arr));
+  return embed;
+}
+function getHeroImageURL(hero, star, arr) {
+  return 'https://raw.githubusercontent.com/Johj/fergus/master/assets/heroes/' + arr[hero].class.toLowerCase() + '/' + hero +
+  convertIndexToStar(hero, star, arr) + '.png';
+}
+function getHeroHeader(hero, star, arr) {
+  let str =
+    arr[hero].form[star].name +
+    '(' + '★'.repeat(arr[hero].form[star].star) + ') | ';
+  if (arr[hero].faction !== '') {
+    str += arr[hero].faction + ', ';
+  }
+  str += arr[hero].type + ', ' + arr[hero].class;
+  return str;
 }
 
-// helper function, get string
-function getStats(h, s, arr) {
-	return '```' +
-		'\xa0Atk. Power: ' + arr[h].form[s].atkPower.join(' → ') + '\n' +
-		'         HP: ' + arr[h].form[s].hp.join(' → ') + '\n' +
-		'Crit.Chance: ' + arr[h].form[s].critChance.map(x => (x * 100).toPrecision(3)).join(' → ') + '\n' +
-		'      Armor: ' + arr[h].form[s].armor.join(' → ') + '\n' +
-		' Resistance: ' + arr[h].form[s].resistance.join(' → ') + '\n' +
-		'Crit.Damage: ' + arr[h].form[s].critDamage.map(x => (x * 100).toPrecision(3)).join(' → ') + '\n' +
-		'   Accuracy: ' + arr[h].form[s].accuracy.map(x => (x * 100).toPrecision(3)).join(' → ') + '\n' +
-		'    Evasion: ' + arr[h].form[s].evasion.map(x => (x * 100).toPrecision(3)).join(' → ') +
-		'```\n';
+function getHeroInstructions() {
+  const embed = getHeroEmbedStarter()
+    .setTitle('!hero [list|<class>|<name>] [info|stats|skill] [<star>]')
+    .addField('list', 'List all heroes.\n*e.g. !hero list*', true)
+    .addField('<class>', 'List all <class> heroes.\n*e.g. !hero priest*', true)
+    .addField('<name>', 'Get hero image.\n*e.g. !hero mew, !hero mew 4*', true)
+    .addField('info|stats|skill', 'Specify hero information.\n*e.g. !hero mew info*', true)
+    .addField('<star>', 'Specify <star> information.\n*e.g. !hero mew stats 5, !hero mew 6 skill*', true)
+    .setFooter('Defaults to hero\'s highest form when <star> is not specified.');
+  return embed;
 }
 
-// helper function, get string
-function getSkill(h, s, arr) {
-	let str = '';
-	str = '**' + arr[h].skillName + '** (Lv.' + arr[h].form[s].skill.level +
-		'): ' + arr[h].skillDescription + '\n';
-	let t =	arr[h].form[s].skill.passive;
-	if(t !== '') {
-		str += '**' + arr[h].passiveSkillName + '**: ' + t;
-	}
-	return str;
+function getHeroList(arr) {
+  const embed = getHeroEmbedStarter()
+    .setDescription(Object.keys(arr).join(', '));
+  return embed;
 }
 
-// helper function, get string
-function getAll(h, s, arr) {
-	return getInfo(h, s, arr) + getStats(h, s, arr) + getSkill(h, s, arr);
+function getHeroClassList(heroClass, arr) {
+  let t = [];
+  Object.keys(arr).forEach((key) => {
+    if (arr[key].class.toLowerCase() === heroClass) {
+      t.push(key);
+    }
+  });
+  const embed = getHeroEmbedStarter()
+    .setTitle(
+      heroClass.charAt(0).toUpperCase() + heroClass.substr(1).toLowerCase())
+    .setDescription(t.join(', '));
+  return embed;
 }
 
-// helper function, get star
-function getStar(h, s, arr) {
-	let star;
-	// no promotion heroes
-	if(arr[h].form.length === 1) {
-		// star is accounted for when initialized
-		// user star input is ignored for these heroes
-		star = arr[h].form.length - 1;
-	}
-	// 3-promotion heroes
-	else if(arr[h].form.length === 3) {
-		s = parseInt(s);
-		if(s > 3 && s < 7) {
-			star = s - 4;
-		}
-		else {
-			return `${h} does not have a ${s}-star form!`;
-		}
-	}
-	// 6-promotion heroes
-	else if(arr[h].form.length === 6){
-		s = parseInt(s);
-		if(s > 0 && s < 7) {
-			star = s - 1;
-		}
-		else {
-			return `${h} does not have a ${s}-star form!`;
-		}
-	}
-	// exception, should not be possible to enter this case
-	else {
-		console.log('error');
-		return 'Error: Please let the Bot Author know or submit an issue at https://github.com/Johj/fergus/issues';
-	}
-	return star;
+function getHeroImage(hero, star, arr, footer = '') {
+  const embed = getHeroEmbedStarter()
+    .setImage(getHeroImageURL(hero, star, arr));
+  if (footer !== '') {
+    embed.setFooter(footer);
+  }
+  return embed;
 }
 
-// helper function, get data
-function getData(h, s, d, arr) {
-	let str = '';
-	str = getName(h, s, arr);
-	if(d === 'info') {
-		str += getInfo(h, s, arr);
-	}
-	else if(d === 'stats') {
-		str += getStats(h, s, arr);
-	}
-	else if(d === 'skill') {
-		str += getSkill(h, s, arr);
-	}
-	// treat !hero <name> <junk> as if !hero <name>
-	// treat !hero <name> <junk> <star> as if !hero <name> <star>
-	// treat !hero <name> <star> <junk> as if !hero <name> <star>
-	else {
-		str += getAll(h, s, arr);
-	}
-	return str;
+function getHeroInfo(hero, star, arr, footer = '') {
+  let embed = getHeroDataEmbedStarter(hero, star, arr)
+    .setDescription(arr[hero].form[star].background)
+    .addField('Acquire', arr[hero].form[star].howToGet.join(', '), true);
+  if (footer !== '') {
+    embed.setFooter(footer);
+  }
+  return embed;
+}
+function getHeroStats(hero, star, arr, footer = '') {
+  let embed = getHeroDataEmbedStarter(hero, star, arr)
+    .addField('STATS', 'TODO', true);
+  if (footer !== '') {
+    embed.setFooter(footer);
+  }
+  return embed;
+}
+function getHeroSkill(hero, star, arr, footer = '') {
+  let embed = getHeroDataEmbedStarter(hero, star, arr)
+    .addField(arr[hero].skillName + ' (Lv.' + arr[hero].form[star].skill.level + ')', arr[hero].skillDescription, true);
+  if (arr[hero].form[star].skill.passive !== '') {
+    embed.addField(arr[hero].passiveSkillName, arr[hero].form[star].skill.passive, true);
+  }
+  if (footer !== '') {
+    embed.setFooter(footer);
+  }
+  return embed;
 }
 
-module.exports = {
-	getHero: function(args, arr) {
-		let str = '', len = args.length;
-		// 0 arguments, !hero
-		if(len === 1) {
-			str += '*!hero list|<name> ' +
-				'info|stats|skill|<star> <star>|info|stats|skill*, ' +
-				'e.g. !hero list, ' +
-				'!hero mew, !hero mew info, !hero mew 4, ' +
-				'!hero mew stats 4, !hero mew 4 skill; ' +
-				'Defaults to 6-star whenever *<star>* is not specified.';
-		}
-		// 1 or more arguments, !hero list|<name> [info|stats|skill|<star> <star>|list|stats|skill]
-		else {
-			// !hero list
-			if(args[1] === 'list') {
-				str += '```' + Object.keys(arr).join(', ') + '```';
-			}
-			// <name> exists
-			else if(arr[args[1]]) {
-				// default to highest form index
-				let star = arr[args[1]].form.length - 1;
+function getHeroError(hero, message) {
+  const embed = getHeroEmbedStarter()
+    .setDescription(
+      `${capStringLength(hero, 18)} is not a valid ${message} name!`);
+  return embed;
+}
 
-				// 1 argument, !hero <name>
-				if(len === 2) {
-					str = getName(args[1], star, arr);
-					str += getAll(args[1], star, arr);
-				}
-				// 2 arguments, !hero <name> info|stats|skill|<star>
-				else if(len === 3) {
-					// !hero <name> info|stats|skill
-					if(isNaN(parseInt(args[2]))) {
-						str = getData(args[1], star, args[2], arr);
-					}
-					// !hero <name> <star>
-					else {
-						star = getStar(args[1], args[2], arr);
-						if(isNaN(parseInt(star))) {
-							str += star;
-						}
-						// <star> is junk, treat as if !hero <hero>
-						else {
-							str = getName(args[1], star, arr);
-							str += getAll(args[1], star, arr);
-						}
-					}
-				}
-				// 3 arguments or more
-				// !hero <name> info|stats|skill|<star> <star>|info|stats|skill
-				else {
-					// !hero <name> info|stats|skill <star>
-					if(isNaN(parseInt(args[2])) && !isNaN(parseInt(args[3]))) {
-						star = getStar(args[1], args[3], arr);
-						if(isNaN(parseInt(star))) {
-							str = star;
-						}
-						else {
-							str = getData(args[1], star, args[2], arr);
-						}
-					}
-					// !hero <name> <star> info|stats|skill
-					else if(!isNaN(parseInt(args[2])) && isNaN(parseInt(args[3]))){
-						star = getStar(args[1], args[2], arr);
-						if(isNaN(parseInt(star))) {
-							str += star;
-						}
-						else {
-							str = getData(args[1], star, args[3], arr);
-						}
-					}
-					// one of the inputs is junk, treat as if 2 arguments
-					else {
-						if(isNaN(parseInt(args[2])) && isNaN(parseInt(args[3]))) {
-							if(args[2] === 'info' || args[2] === 'stats' || args[2] === 'skill') {
-								str = getData(args[1], star, args[2], arr);
-							}
-							else if(args[3] === 'info' || args[3] === 'stats' || args[3] === 'skill') {
-								str = getData(args[1], star, args[3], arr);
-							}
-							// both inputs are junk, treat as if 1 argument
-							else {
-								str = getName(args[1], star, arr);
-								str += getAll(args[1], star, arr);
-							}
-						}
-						else {
-							if(args[2] > 0 && args[2] < 7) {
-								star = getStar(args[1], args[2], arr);
-								if(isNaN(parseInt(star))) {
-									str = star;
-								}
-								else {
-									str = getName(args[1], star, arr);
-									str += getAll(args[1], star, arr);
-								}
-							}
-							else if(args[3] > 0 && args[3] < 7) {
-								star = getStar(args[1], args[3], arr);
-								if(isNaN(parseInt(star))) {
-									str = star;
-								}
-								else {
-									str = getName(args[1], star, arr);
-									str += getAll(args[1], star, arr);
-								}
-							}
-							// both inputs are junk, treat as if 1 argument
-							else {
-								str = getName(args[1], star, arr);
-								str += getAll(args[1], star, arr);
-							}
-						}
-					}
-				}
-			}
-			else {
-				str = `${args[1]} is not a valid hero name!`;
-			}
-		}
-		return str;
-	}
-};
+function starWithinBounds(hero, star, arr) {
+  const bound = arr[hero].form.length;
+  if (bound === 1) {
+    return true;
+  } else if (bound === 3) {
+    return ([4,5,6].includes(star) ? true : false);
+  } else {
+    return ([1,2,3,4,5,6].includes(star) ? true : false);
+  }
+}
+function convertStarToIndex(hero, star, arr) {
+  const bound = arr[hero].form.length;
+  if (bound === 1) {
+    return 0;
+  } else if (bound === 3) {
+    return star - 4;
+  } else {
+    return star - 1;
+  }
+}
+function convertIndexToStar(hero, star, arr) {
+  const bound = arr[hero].form.length;
+  if (bound === 1) {
+    return '';
+  } else if (bound === 3) {
+    return star + 4;
+  } else {
+    if ([0,1,2].includes(star)) {
+      return '';
+    } else {
+      return star + 1;
+    }
+  }
+}
+
+// helper function
+function capStringLength(s, max) {
+  let str = s.toString();
+  if (str.length > max && str.length - 6 > 0) {
+    str = str.substr(0, 3) + '...' + str.substr(str.length - 3, str.length - 1);
+  }
+  return str;
+}
+
+function getHero(args, arr) {
+  let embed;
+  if (args.length === 1) {
+    embed = getHeroInstructions();
+  } else if (args.length === 2) {
+    if (args[1].startsWith('list')) {
+      embed = getHeroList(arr);
+    } else if (
+      args[1].startsWith('warrior') || args[1].startsWith('paladin') ||
+      args[1].startsWith('archer') || args[1].startsWith('hunter') ||
+      args[1].startsWith('wizard') || args[1].startsWith('priest')) {
+      embed = getHeroClassList(args[1], arr);
+    } else if (arr[args[1]]) {
+      const star = arr[args[1]].form.length - 1; // highest form
+      embed = getHeroImage(args[1], star, arr);
+    } else {
+      embed = getHeroError(args[1], 'class or hero');
+    }
+  } else if (args.length === 3) {
+    if (arr[args[1]]) {
+      if (!isNaN(parseInt(args[2]))) {
+        args[2] = parseInt(args[2]);
+        if (starWithinBounds(args[1], args[2], arr)) {
+          const star = convertStarToIndex(args[1], args[2], arr);
+          embed = getHeroImage(args[1], star, arr);
+        } else {
+          const star = arr[args[1]].form.length - 1; // highest form
+          embed = getHeroImage(args[1], star, arr, `${args[1]} does not have a ${capStringLength(args[2], 6)}-star form! Defaulting to hero's highest form.`);
+        }
+      } else {
+        const star = arr[args[1]].form.length - 1; // highest form
+        if (args[2].startsWith('info')) {
+          embed = getHeroInfo(args[1], star, arr);
+        } else if (args[2].startsWith('stats')) {
+          embed = getHeroStats(args[1], star, arr);
+        } else if (args[2].startsWith('skill')) {
+          embed = getHeroSkill(args[1], star, arr);
+        } else {
+          embed = getHeroImage(args[1], star, arr, '2nd argument is invalid. Try either: "info", "stats", or "skill".');
+        }
+      }
+    } else {
+      embed = getHeroError(args[1], 'hero');
+    }
+  } else {
+    if (arr[args[1]]) {
+      if (!isNaN(parseInt(args[2]))) {
+        args[2] = parseInt(args[2]);
+        let star;
+        let footer;
+        if (starWithinBounds(args[1], args[2], arr)) {
+          star = convertStarToIndex(args[1], args[2], arr);
+          footer = '';
+        } else {
+          star = arr[args[1]].form.length - 1; // highest form
+          footer = `${args[1]} does not have a ${capStringLength(args[2], 6)}-star form! Defaulting to hero's highest form.`;
+        }
+
+        if (args[3].startsWith('info')) {
+          embed = getHeroInfo(args[1], star, arr, footer);
+        } else if (args[3].startsWith('stats')) {
+          embed = getHeroStats(args[1], star, arr, footer);
+        } else if (args[3].startsWith('skill')) {
+          embed = getHeroSkill(args[1], star, arr, footer);
+        } else {
+          footer += ' 3rd argument is invalid. Try either: "info", "stats", or "skill".';
+          embed = getHeroImage(args[1], star, arr, footer);
+        }
+      } else if (!isNaN(parseInt(args[3]))) {
+        args[3] = parseInt(args[3]);
+        let star;
+        let footer;
+        if (starWithinBounds(args[1], args[3], arr)) {
+          star = convertStarToIndex(args[1], args[3], arr);
+          footer = '';
+        } else {
+          star = arr[args[1]].form.length - 1; // highest form
+          footer = `${args[1]} does not have a ${capStringLength(args[3], 6)}-star form! Defaulting to hero's highest form.`;
+        }
+
+        if (args[2].startsWith('info')) {
+          embed = getHeroInfo(args[1], star, arr, footer);
+        } else if (args[2].startsWith('stats')) {
+          embed = getHeroStats(args[1], star, arr, footer);
+        } else if (args[2].startsWith('skill')) {
+          embed = getHeroSkill(args[1], star, arr, footer);
+        } else {
+          footer += ' 2nd argument is invalid. Try either: "info", "stats", or "skill".';
+          embed = getHeroImage(args[1], star, arr, footer);
+        }
+      } else {
+        const star = arr[args[1]].form.length - 1; // highest form
+        if (
+          args[2].startsWith('info') ||
+          args[2].startsWith('stats') ||
+          args[2].startsWith('skill')) {
+          let footer = '3nd argument is invalid. Try a <star> value.';
+          if (args[2].startsWith('info')) {
+            embed = getHeroInfo(args[1], star, arr, footer);
+          } else if (args[2].startsWith('stats')) {
+            embed = getHeroStats(args[1], star, arr, footer);
+          } else {
+            embed = getHeroSkill(args[1], star, arr, footer);
+          }
+        } else if (
+          args[3].startsWith('info') ||
+          args[3].startsWith('stats') ||
+          args[3].startsWith('skill')) {
+          let footer = '2nd argument is invalid. Try a <star> value.';
+          if (args[3].startsWith('info')) {
+            embed = getHeroInfo(args[1], star, arr, footer);
+          } else if (args[3].startsWith('stats')) {
+            embed = getHeroStats(args[1], star, arr, footer);
+          } else if (args[3].startsWith('skill')) {
+            embed = getHeroSkill(args[1], star, arr, footer);
+          }
+        } else {
+          embed = getHeroImage(args[1], star, arr, '2nd and 3rd arguments are invalid. Try either: "info", "stats", or "skill" for one and a <star> value for the other.');
+        }
+      }
+    } else {
+      embed = getHeroError(args[1], 'hero');
+    }
+  }
+  return embed;
+}
+
+module.exports = {getHero};

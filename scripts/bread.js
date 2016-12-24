@@ -1,7 +1,11 @@
-function getBreadInstructions() {
+function getBreadEmbedStarter() {
   const discord = require('discord.js');
-  const embed = new discord.RichEmbed()
-    .setColor('#ebb74e')
+  const embed = new discord.RichEmbed().setColor('#ebb74e');
+  return embed;
+}
+
+function getBreadInstructions() {
+  const embed = getBreadEmbedStarter()
     .setTitle('!bread [list|<star>|<name>]')
     .addField('list', 'List all breads.\n*e.g. !bread list*', true)
     .addField('<star>', 'List all <star> breads.\n*e.g. !bread 4*', true)
@@ -10,9 +14,7 @@ function getBreadInstructions() {
 }
 
 function getBreadList(arr) {
-  const discord = require('discord.js');
-  const embed = new discord.RichEmbed()
-    .setColor('#ebb74e')
+  const embed = getBreadEmbedStarter()
     .setDescription(Object.keys(arr).join(', '));
   return embed;
 }
@@ -20,23 +22,18 @@ function getBreadList(arr) {
 function getBreadStarList(star, arr) {
   let t = [];
   Object.keys(arr).forEach((key) => {
-    console.log(key + ' ' + key.length);
     if (arr[key].star === star) {
       t.push(key);
     }
   });
-  const discord = require('discord.js');
-  const embed = new discord.RichEmbed()
-    .setColor('#ebb74e')
+  const embed = getBreadEmbedStarter()
     .setTitle('(' + '★'.repeat(star) + ')')
     .setDescription(t.join(', '));
   return embed;
 }
 
 function getBreadInfo(bread, arr) {
-  const discord = require('discord.js');
-  const embed = new discord.RichEmbed()
-    .setColor('#ebb74e')
+  const embed = getBreadEmbedStarter()
     .setThumbnail(
       'https://raw.githubusercontent.com/Johj/fergus/master/assets/bread/' +
       bread + '.png')
@@ -48,20 +45,16 @@ function getBreadInfo(bread, arr) {
 }
 
 function getBreadStarError(star) {
-  star = capStringLength(star, 6);
-  const discord = require('discord.js');
-  const embed = new discord.RichEmbed()
-    .setColor('#ebb74e')
-    .setDescription(star + '-star breads do not exist!');
+  const embed = getBreadEmbedStarter()
+    .setDescription(
+      `${capStringLength(star, 6)}-star breads do not exist!`);
   return embed;
 }
 
 function getBreadNameError(bread) {
-  bread = capStringLength(bread, 19);
-  const discord = require('discord.js');
-  const embed = new discord.RichEmbed()
-    .setColor('#ebb74e')
-    .setDescription(bread + ' is not a valid bread name!');
+  const embed = getBreadEmbedStarter()
+    .setDescription(
+      `${capStringLength(bread, 19)} is not a valid bread name!`);
   return embed;
 }
 
@@ -79,7 +72,7 @@ function getBread(args, arr) {
   if (args.length === 1) {
     embed = getBreadInstructions();
   } else {
-    if (args[1] === 'list') {
+    if (args[1].startsWith('list')) {
       embed = getBreadList(arr);
     } else if (!isNaN(parseInt(args[1]))) {
       args[1] = parseInt(args[1]); // for js' weak typing

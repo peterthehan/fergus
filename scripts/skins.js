@@ -1,71 +1,107 @@
-// helper function, get string
-function getStats(h, arr) {
-	let str = '';
-	for(i = 0; i < arr[h].form.length; ++i) {
-		str += '__**' + arr[h].form[i].name + '**__\n```';
-		if(arr[h].form[i].atkPower !== 0) {
-			str += '\xa0Atk. Power: ' + arr[h].form[i].atkPower + '\n';
-		}
-		if(arr[h].form[i].hp !== 0) {
-			str += '\xa0        HP: ' + arr[h].form[i].hp + '\n';
-		}
-		if(arr[h].form[i].critChance !== 0) {
-			str += 'Crit.Chance: ' + arr[h].form[i].critChance * 100 + '%\n';
-		}
-		if(arr[h].form[i].armor !== 0) {
-			str += '\xa0     Armor: ' + arr[h].form[i].armor + '\n';
-		}
-		if(arr[h].form[i].resistance !== 0) {
-			str += '\xa0Resistance: ' + arr[h].form[i].resistance + '\n';
-		}
-		if(arr[h].form[i].critDamage !== 0) {
-			str += 'Crit.Damage: ' + arr[h].form[i].critDamage * 100 + '%\n';
-		}
-		if(arr[h].form[i].accuracy !== 0) {
-			str += '\xa0  Accuracy: ' + arr[h].form[i].accuracy * 100 + '%\n';
-		}
-		if(arr[h].form[i].evasion !== 0) {
-			str += '\xa0   Evasion: ' + arr[h].form[i].evasion * 100 + '\n';
-		}
-		str += '```\n';
-	}
-	return str;
+﻿function getSkinEmbedStarter() {
+  const discord = require('discord.js');
+  const embed = new discord.RichEmbed().setColor('#ebb74e');
+  return embed;
 }
 
-module.exports = {
-	getSkin: function(args, arr) {
-		let str = '', len = args.length;
-		// 0 arguments, !skin
-		if(len === 1) {
-			str = '*!skin list|<name>*, ' +
-				'e.g. !skin list, !skin mew';
-		}
-		// 1 argument or more, !skin list|<name>
-		else {
-			// !skin list
-			if(args[1] === 'list') {
-				let t = [];
-				Object.keys(arr).forEach((key) => {
-					if(arr[key].form.length !== 0) {
-						t.push(key);
-					}
-				});
-				str = '```' + t.join(', ') + '```';
-			}
-			// !skin <name>
-			else if(arr[args[1]]) {
-				if(arr[args[1]].form.length !== 0) {
-					str = getStats(args[1], arr);
-				}
-				else {
-					str = `${args[1]} does not have a skin yet!`;
-				}
-			}
-			// !skin <junk>
-			else {
-				str = `${args[1]} is not a valid hero name!`;
-			}
-		}
-		return str;
-	}
-};
+function getSkinInstructions() {
+  const embed = getSkinEmbedStarter()
+    .setTitle('!skin [list|<name>]')
+    .addField('list', 'List all skins.\n*e.g. !skin list*', true)
+    .addField('<name>', 'Get skin information.\n*e.g. !skin mew*', true);
+  return embed;
+}
+
+function getSkinList(arr) {
+  let t = [];
+  Object.keys(arr).forEach((key) => {
+    if(arr[key].form.length !== 0) {
+      t.push(key);
+    }
+  });
+  const embed = getSkinEmbedStarter()
+    .setDescription(t.join(', '));
+  return embed;
+}
+
+function getSkinInfo(hero, arr) {
+  let embed = getSkinEmbedStarter();
+  for (i = 0; i < arr[hero].form.length; ++i) {
+    let str = '';
+    if (arr[hero].form[i].atkPower !== 0) {
+      str += 'Atk. Power: ' + arr[hero].form[i].atkPower + '\n';
+    }
+    if (arr[hero].form[i].hp !== 0) {
+      str += 'HP: ' + arr[hero].form[i].hp + '\n';
+    }
+    if(arr[hero].form[i].critChance !== 0) {
+      str += 'Crit.Chance: ' + arr[hero].form[i].critChance * 100 + '%\n';
+    }
+    if(arr[hero].form[i].armor !== 0) {
+      str += 'Armor: ' + arr[hero].form[i].armor + '\n';
+    }
+    if(arr[hero].form[i].resistance !== 0) {
+      str += 'Resistance: ' + arr[hero].form[i].resistance + '\n';
+    }
+    if(arr[hero].form[i].critDamage !== 0) {
+      str += 'Crit.Damage: ' + arr[hero].form[i].critDamage * 100 + '%\n';
+    }
+    if(arr[hero].form[i].accuracy !== 0) {
+      str += 'Accuracy: ' + arr[hero].form[i].accuracy * 100 + '%\n';
+    }
+    if(arr[hero].form[i].evasion !== 0) {
+      str += 'Evasion: ' + arr[hero].form[i].evasion * 100 + '\n';
+    }
+    embed.addField(arr[hero].form[i].name, str, true);
+  }
+  return embed;
+}
+
+function getSkinDoesNotExistError(hero) {
+  const embed = getSkinEmbedStarter()
+    .setDescription(
+      `${capStringLength(hero, 18)} does not have a skin yet!`);
+  return embed;
+}
+
+function getSkinNameError(hero) {
+  const embed = getSkinEmbedStarter()
+    .setDescription(
+      `${capStringLength(hero, 18)} is not a valid hero name!`);
+  return embed;
+}
+
+// helper function
+function capStringLength(s, max) {
+  let str = s.toString();
+  if (str.length > max && str.length - 6 > 0) {
+    str = str.substr(0, 3) + '...' + str.substr(str.length - 3, str.length - 1);
+  }
+  return str;
+}
+
+function getSkin(args, arr) {
+  let embed;
+  if (args.length === 1) {
+    embed = getSkinInstructions();
+  }
+  else {
+    if (args[1].startsWith('list')) {
+      embed = getSkinList(arr);
+    }
+    else if(arr[args[1]]) {
+      if(arr[args[1]].form.length !== 0) {
+        embed = getSkinInfo(args[1], arr);
+      }
+      else {
+        embed = getSkinDoesNotExistError(args[1]);
+      }
+    }
+    else {
+      embed = getSkinNameError(args[1]);
+    }
+  }
+  return embed;
+}
+
+module.exports = {getSkin};

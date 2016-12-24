@@ -1,7 +1,11 @@
-function getGoddessInstructions() {
+function getGoddessEmbedStart() {
   const discord = require('discord.js');
-  const embed = new discord.RichEmbed()
-    .setColor('#ebb74e')
+  const embed = new discord.RichEmbed().setColor('#ebb74e');
+  return embed;
+}
+
+function getGoddessInstructions() {
+  const embed = getGoddessEmbedStart()
     .setTitle('!goddess [list|<name>]')
     .addField('list', 'List all goddesses.\n*e.g. !goddess list*', true)
     .addField('<name>', 'Get goddess information.\n*e.g. !goddess sera*', true);
@@ -9,17 +13,13 @@ function getGoddessInstructions() {
 }
 
 function getGoddessList(arr) {
-  const discord = require('discord.js');
-  const embed = new discord.RichEmbed()
-    .setColor('#ebb74e')
+  const embed = getGoddessEmbedStart()
     .setDescription(Object.keys(arr).join(', '));
   return embed;
 }
 
 function getGoddessInfo(goddess, arr) {
-  const discord = require('discord.js');
-  const embed = new discord.RichEmbed()
-    .setColor('#ebb74e')
+  const embed = getGoddessEmbedStart()
     .setTitle(arr[goddess].name)
     .addField(
       arr[goddess].skillName,
@@ -30,11 +30,9 @@ function getGoddessInfo(goddess, arr) {
 }
 
 function getGoddessNameError(goddess) {
-  goddess = capStringLength(goddess, 15);
-  const discord = require('discord.js');
-  const embed = new discord.RichEmbed()
-    .setColor('#ebb74e')
-    .setDescription(goddess + ' is not a valid goddess name!');
+  const embed = getGoddessEmbedStart()
+    .setDescription(
+      `${capStringLength(goddess, 15)} is not a valid goddess name!`);
   return embed;
 }
 
@@ -42,7 +40,8 @@ function getGoddessNameError(goddess) {
 function capStringLength(s, max) {
   let str = s.toString();
   if (str.length > max && str.length - 6 > 0) {
-    str = str.substr(0, 3) + '...' + str.substr(str.length - 3, str.length - 1);
+    str =
+      str.substr(0, 3) + '...' + str.substr(str.length - 3, str.length - 1);
   }
   return str;
 }
@@ -53,7 +52,7 @@ function getGoddess(args, arr) {
     embed = getGoddessInstructions();
   }
   else {
-    if (args[1] === 'list') {
+    if (args[1].startsWith('list')) {
       embed = getGoddessList(arr);
     } else {
       if (arr[args[1]]) {

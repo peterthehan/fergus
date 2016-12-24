@@ -8,7 +8,7 @@
 Fergus is a Crusaders Quest Discord server bot.
 
 ## Commands
-!help, !about, !bread, !goddess, !hero, !image, !sbw, !skin, !weapon, !lenny, !fergus
+!help, !about, !bread, !goddess, !hero, !skin, !weapon, !lenny, !fergus
 
 ## Contributing
 See the [contributing guide](https://github.com/Johj/fergus/tree/master/templates).

@@ -1,7 +1,11 @@
-function getWeaponInstructions() {
+function getWeaponEmbedStarter() {
   const discord = require('discord.js');
-  const embed = new discord.RichEmbed()
-    .setColor('#ebb74e')
+  const embed = new discord.RichEmbed().setColor('#ebb74e');
+  return embed;
+}
+
+function getWeaponInstructions() {
+  const embed = getWeaponEmbedStarter()
     .setTitle('!weapon [list|<star>|<class>|<name>]')
     .addField('list', 'List all weapons.\n*e.g. !weapon list*', true)
     .addField('<star>', 'List all <star> weapons.\n*e.g. !weapon 4*', true)
@@ -11,9 +15,7 @@ function getWeaponInstructions() {
 }
 
 function getWeaponList(arr) {
-  const discord = require('discord.js');
-  const embed = new discord.RichEmbed()
-    .setColor('#ebb74e')
+  const embed = getWeaponEmbedStarter()
     .setDescription(Object.keys(arr).join(', '));
   return embed;
 }
@@ -25,33 +27,29 @@ function getWeaponStarList(star, arr) {
       t.push(key);
     }
   });
-  const discord = require('discord.js');
-  const embed = new discord.RichEmbed()
-    .setColor('#ebb74e')
+  const embed = getWeaponEmbedStarter()
     .setTitle('(' + '★'.repeat(star) + ')')
     .setDescription(t.join(', '));
   return embed;
 }
 
-function getWeaponClassList(clas, arr) {
+function getWeaponClassList(weaponClass, arr) {
   let t = [];
   Object.keys(arr).forEach((key) => {
-    if (arr[key].class.toLowerCase() === clas) {
+    if (arr[key].class.toLowerCase() === weaponClass) {
       t.push(key);
     }
   });
-  const discord = require('discord.js');
-  const embed = new discord.RichEmbed()
-    .setColor('#ebb74e')
-    .setTitle(clas.charAt(0).toUpperCase() + clas.substr(1).toLowerCase())
+  const embed = getWeaponEmbedStarter()
+    .setTitle(
+      weaponClass.charAt(0).toUpperCase() +
+      weaponClass.substr(1).toLowerCase())
     .setDescription(t.join(', '));
   return embed;
 }
 
 function getWeaponInfo(weapon, arr) {
-  const discord = require('discord.js');
-  const embed = new discord.RichEmbed()
-    .setColor('#ebb74e')
+  const embed = getWeaponEmbedStarter()
     .setTitle(arr[weapon].name + ' (' + '★'.repeat(arr[weapon].star) + ') | ' + arr[weapon].class)
     .addField('Atk. Power', arr[weapon].atkPower, true)
     .addField('Atk. Speed', arr[weapon].atkSpeed, true)
@@ -61,20 +59,16 @@ function getWeaponInfo(weapon, arr) {
 }
 
 function getWeaponStarError(star) {
-  star = capStringLength(star, 6);
-  const discord = require('discord.js');
-  const embed = new discord.RichEmbed()
-    .setColor('#ebb74e')
-    .setDescription(star + '-star weapons do not exist!');
+  const embed = getWeaponEmbedStarter()
+    .setDescription(
+      `${capStringLength(star, 6)}-star weapons do not exist!`);
   return embed;
 }
 
 function getWeaponNameError(name) {
-  name = capStringLength(name, 15);
-  const discord = require('discord.js');
-  const embed = new discord.RichEmbed()
-    .setColor('#ebb74e')
-    .setDescription(name + ' is not a valid weapon class or name!');
+  const embed = getWeaponEmbedStarter()
+    .setDescription(
+      `${capStringLength(name, 15)} is not a valid weapon class or name!`);
   return embed;
 }
 
@@ -92,9 +86,9 @@ function getWeapon(args, arr) {
   if (args.length === 1) {
     embed = getWeaponInstructions();
   } else {
-    if (args[1] === 'list') {
+    if (args[1].startsWith('list')) {
       embed = getWeaponList(arr);
-    } else if (!isNaN(parseInt(args[1]))){
+    } else if (!isNaN(parseInt(args[1]))) {
       args[1] = parseInt(args[1]); // for js' weak typing
       if (args[1] > 0 && args[1] < 7) {
         embed = getWeaponStarList(args[1], arr);
@@ -103,9 +97,9 @@ function getWeapon(args, arr) {
       }
     } else {
       if (
-        args[1] === 'sword' || args[1] === 'hammer' ||
-        args[1] === 'bow' || args[1] === 'gun' ||
-        args[1] === 'staff' || args[1] === 'orb') {
+        args[1].startsWith('sword') || args[1].startsWith('hammer') ||
+        args[1].startsWith('bow') || args[1].startsWith('gun') ||
+        args[1].startsWith('staff') || args[1].startsWith('orb')) {
         embed = getWeaponClassList(args[1], arr);
       } else if (arr[args[1]]) {
         embed = getWeaponInfo(args[1], arr);
