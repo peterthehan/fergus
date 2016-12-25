@@ -50,7 +50,7 @@ function getSkinInfo(hero, arr) {
       str += 'Accuracy: ' + arr[hero].form[i].accuracy * 100 + '%\n';
     }
     if(arr[hero].form[i].evasion !== 0) {
-      str += 'Evasion: ' + arr[hero].form[i].evasion * 100 + '\n';
+      str += 'Evasion: ' + arr[hero].form[i].evasion * 100 + '%\n';
     }
     embed.addField(arr[hero].form[i].name, str, true);
   }
