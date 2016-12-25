@@ -64,9 +64,23 @@ function getAbout() {
   return embed;
 }
 
-function getLenny() {
+function getLenny(args) {
+  let times = 1;
+  if (args.length > 1) {
+    if (!isNaN(parseInt(args[1]))) {
+      args[1] = parseInt(args[1]);
+      if (args[1] > 10) {
+        times = 10;
+      } else if (args[1] < 1) {
+        times = 1;
+      } else {
+        times = args[1];
+      }
+    }
+  }
   const embed = getEmbedStarter()
-    .setDescription(GAMES[GAMES.length - 1]);
+    .setDescription(
+      new Array(times + 1).join(GAMES[GAMES.length - 1] + ' '));
   return embed;
 }
 

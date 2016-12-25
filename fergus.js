@@ -102,7 +102,7 @@ client.on('message', (message) => {
     message.channel.sendEmbed(weapon.getWeapon(msg.split(' '), WEAPON_OBJECT));
     etc.log(message.author, msg, message.channel.name);
   } else if (msg.startsWith(prefix + 'lenny')) {
-    message.channel.sendEmbed(etc.getLenny());
+    message.channel.sendEmbed(etc.getLenny(msg.split(' ')));
     etc.log(message.author, msg, message.channel.name);
   } else if (msg.startsWith(prefix + 'fergus')) {
     message.channel.sendEmbed(etc.getFergus());
