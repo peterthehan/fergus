@@ -167,7 +167,7 @@ function getHero(args, arr) {
   } else if (args.length === 3) {
     if (arr[args[1]]) {
       if (!isNaN(parseInt(args[2]))) {
-        args[2] = parseInt(args[2]);
+        args[2] = parseInt(args[2]); // for js' weak typing
         if (starWithinBounds(args[1], args[2], arr)) {
           const star = convertStarToIndex(args[1], args[2], arr);
           embed = getHeroImage(args[1], star, arr);
@@ -193,7 +193,7 @@ function getHero(args, arr) {
   } else {
     if (arr[args[1]]) {
       if (!isNaN(parseInt(args[2]))) {
-        args[2] = parseInt(args[2]);
+        args[2] = parseInt(args[2]); // for js' weak typing
         let star;
         let footer;
         if (starWithinBounds(args[1], args[2], arr)) {
@@ -215,7 +215,7 @@ function getHero(args, arr) {
           embed = getHeroImage(args[1], star, arr, footer);
         }
       } else if (!isNaN(parseInt(args[3]))) {
-        args[3] = parseInt(args[3]);
+        args[3] = parseInt(args[3]); // for js' weak typing
         let star;
         let footer;
         if (starWithinBounds(args[1], args[3], arr)) {
