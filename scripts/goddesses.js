@@ -20,6 +20,9 @@ function getGoddessList(arr) {
 
 function getGoddessInfo(goddess, arr) {
   const embed = getGoddessEmbedStart()
+    .setThumbnail(
+      'https://raw.githubusercontent.com/Johj/fergus/master/assets/goddesses/' +
+      goddess + '.png')
     .setTitle(arr[goddess].name)
     .addField(
       arr[goddess].skillName,

@@ -50,6 +50,9 @@ function getWeaponClassList(weaponClass, arr) {
 
 function getWeaponInfo(weapon, arr) {
   const embed = getWeaponEmbedStarter()
+    .setThumbnail(
+      'https://raw.githubusercontent.com/Johj/fergus/master/assets/weapons/' +
+      arr[weapon].class.toLowerCase() + '/' + weapon + '.png')
     .setTitle(arr[weapon].name + ' (' + '★'.repeat(arr[weapon].star) + ') | ' + arr[weapon].class)
     .addField('Atk. Power', arr[weapon].atkPower, true)
     .addField('Atk. Speed', arr[weapon].atkSpeed, true)

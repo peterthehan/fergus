@@ -52,14 +52,6 @@ client.on('ready', () => {
   }());
 });
 
-// Node's unhandledRejection event handler.
-// Do nothing.
-// http://eng.wealthfront.com/2016/11/03/handling-unhandledrejections-in-node-and-the-browser/
-process.on('unhandledRejection', (err) => {
-  console.error(
-    'Uncaught Promise Error: \n' + err.stack);
-});
-
 // Welcome event handler.
 client.on('guildMemberAdd', (member) => {
   member.guild.channels.get(member.guild.id).sendMessage(
@@ -116,6 +108,14 @@ client.on('message', (message) => {
     message.channel.sendEmbed(etc.getFergus());
     etc.log(message.author, msg, message.channel.name);
   }
+});
+
+// Node's unhandledRejection event handler.
+// Do nothing.
+// http://eng.wealthfront.com/2016/11/03/handling-unhandledrejections-in-node-and-the-browser/
+process.on('unhandledRejection', (err) => {
+  console.error(
+    'Uncaught Promise Error: \n' + err.stack);
 });
 
 client.login(CONFIG.token);
