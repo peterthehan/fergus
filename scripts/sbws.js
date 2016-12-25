@@ -55,6 +55,10 @@ function getStats(h, s, arr) {
 
 function getSbwInfo(hero, star, arr, footer = '') {
   let embed = getSbwEmbedStarter()
+    .setThumbnail(
+      'https://raw.githubusercontent.com/Johj/fergus/master/assets/sbws/' +
+      arr[hero].class.toLowerCase() + '/' + hero + arr[hero].form[star].star +
+      '.png')
     .setTitle(
       arr[hero].form[star].name +
       ' (' + '★'.repeat(arr[hero].form[star].star) + ')')
