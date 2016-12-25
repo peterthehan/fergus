@@ -8,7 +8,7 @@
 Fergus is a Crusaders Quest Discord server bot.
 
 ## Commands
-!help, !about, !bread, !goddess, !hero, !skin, !weapon, !lenny, !fergus
+!help, !about, !bread, !goddess, !hero, !sbw, !skin, !weapon, !lenny, !fergus
 
 ## Contributing
 See the [contributing guide](https://github.com/Johj/fergus/tree/master/templates).
@@ -20,7 +20,7 @@ Special thanks to the following individuals for their contributions to the proje
 - fioritura (sbw abilities for all paladins, archers, hunters, wizards, and priests)
 - F1r3man (hero entries for vivian, susanoo, and arita and event skins)
 - Protease (sbw abilities for all warriors)
-- TheEggCake (event skin)
+- TheEggCake (event skins)
 
 ## Open Source Libraries
 - [discord.js 10.0.1](https://github.com/hydrabolt/discord.js/)
