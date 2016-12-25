@@ -32,10 +32,10 @@ function getGoddessInfo(goddess, arr) {
   return embed;
 }
 
-function getGoddessNameError(goddess) {
+function getGoddessError(error, cap, message) {
   const embed = getGoddessEmbedStart()
     .setDescription(
-      `${capStringLength(goddess, 15)} is not a valid goddess name!`);
+      `${capStringLength(error, cap)}${message}`);
   return embed;
 }
 
@@ -61,7 +61,7 @@ function getGoddess(args, arr) {
       if (arr[args[1]]) {
         embed = getGoddessInfo(args[1], arr);
       } else {
-        embed = getGoddessNameError(args[1]);
+        embed = getGoddessError(args[1], 15, ' is not a valid goddess name!');
       }
     }
   }

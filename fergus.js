@@ -90,7 +90,7 @@ client.on('message', (message) => {
     message.channel.sendEmbed(hero.getHero(msg.split(' '), HERO_OBJECT));
     etc.log(message.author, msg, message.channel.name);
   } else if (msg.startsWith(prefix + 'sbw')) {
-    // message.channel.sendEmbed(sbw.getSbw(msg.split(' '), SBW_OBJECT));
+    message.channel.sendEmbed(sbw.getSbw(msg.split(' '), SBW_OBJECT));
     etc.log(message.author, msg, message.channel.name);
   } else if (msg.startsWith(prefix + 'skill')) {
     // message.channel.sendEmbed(skill.getSkill(msg.split(' '), SKILL_OBJECT));

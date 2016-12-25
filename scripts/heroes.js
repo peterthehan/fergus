@@ -95,10 +95,10 @@ function getHeroSkill(hero, star, arr, footer = '') {
   return embed;
 }
 
-function getHeroError(hero, message) {
+function getHeroError(error, cap, message) {
   const embed = getHeroEmbedStarter()
     .setDescription(
-      `${capStringLength(hero, 18)} is not a valid ${message} name!`);
+      `${capStringLength(error, cap)}${message}`);
   return embed;
 }
 
@@ -162,7 +162,7 @@ function getHero(args, arr) {
       const star = arr[args[1]].form.length - 1; // highest form
       embed = getHeroImage(args[1], star, arr);
     } else {
-      embed = getHeroError(args[1], 'class or hero');
+      embed = getHeroError(args[1], 18, ' is not a valid class or hero name!');
     }
   } else if (args.length === 3) {
     if (arr[args[1]]) {
@@ -188,7 +188,7 @@ function getHero(args, arr) {
         }
       }
     } else {
-      embed = getHeroError(args[1], 'hero');
+      embed = getHeroError(args[1], 18, ' is not a valid hero name!');
     }
   } else {
     if (arr[args[1]]) {
@@ -267,7 +267,7 @@ function getHero(args, arr) {
         }
       }
     } else {
-      embed = getHeroError(args[1], 'hero');
+      embed = getHeroError(args[1], 18, ' is not a valid hero name!');
     }
   }
   return embed;

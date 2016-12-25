@@ -57,17 +57,10 @@ function getSkinInfo(hero, arr) {
   return embed;
 }
 
-function getSkinDoesNotExistError(hero) {
+function getSkinError(error, cap, message) {
   const embed = getSkinEmbedStarter()
     .setDescription(
-      `${capStringLength(hero, 18)} does not have a skin yet!`);
-  return embed;
-}
-
-function getSkinNameError(hero) {
-  const embed = getSkinEmbedStarter()
-    .setDescription(
-      `${capStringLength(hero, 18)} is not a valid hero name!`);
+      `${capStringLength(error, cap)}${message}`);
   return embed;
 }
 
@@ -94,11 +87,11 @@ function getSkin(args, arr) {
         embed = getSkinInfo(args[1], arr);
       }
       else {
-        embed = getSkinDoesNotExistError(args[1]);
+        embed = getSkinError(args[1], 18, ' does not have a skin yet!');
       }
     }
     else {
-      embed = getSkinNameError(args[1]);
+      embed = getSkinError(args[1], 18, ' is not a valid hero name!');
     }
   }
   return embed;

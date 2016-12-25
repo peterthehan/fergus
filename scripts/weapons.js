@@ -61,17 +61,10 @@ function getWeaponInfo(weapon, arr) {
   return embed;
 }
 
-function getWeaponStarError(star) {
+function getWeaponError(error, cap, message) {
   const embed = getWeaponEmbedStarter()
     .setDescription(
-      `${capStringLength(star, 6)}-star weapons do not exist!`);
-  return embed;
-}
-
-function getWeaponNameError(name) {
-  const embed = getWeaponEmbedStarter()
-    .setDescription(
-      `${capStringLength(name, 15)} is not a valid weapon class or name!`);
+      `${capStringLength(error, cap)}${message}`);
   return embed;
 }
 
@@ -96,7 +89,7 @@ function getWeapon(args, arr) {
       if (args[1] > 0 && args[1] < 7) {
         embed = getWeaponStarList(args[1], arr);
       } else {
-        embed = getWeaponStarError(args[1]);
+        embed = getWeaponError(args[1], 6, '-star weapons do not exist!');
       }
     } else {
       if (
@@ -107,7 +100,7 @@ function getWeapon(args, arr) {
       } else if (arr[args[1]]) {
         embed = getWeaponInfo(args[1], arr);
       } else {
-        embed = getWeaponNameError(args[1]);
+        embed = getWeaponError(args[1], 15, ' is not a valid weapon class or name!');
       }
     }
   }

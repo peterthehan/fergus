@@ -1,92 +1,111 @@
+function getSbwEmbedStarter() {
+  const discord = require('discord.js');
+  const embed = new discord.RichEmbed().setColor('#ebb74e');
+  return embed;
+}
+
+function getSbwInstructions() {
+  const embed = getSbwEmbedStarter()
+    .setTitle('!sbw [list|<class>|<name>] [<star>]')
+    .addField('list', 'List all sbws.\n*e.g. !sbw list*', true)
+    .addField('<class>', 'List all <class> sbws.\n*e.g. !sbw orb*', true)
+    .addField('<name>', 'Get hero\'s sbw information.\n*e.g. !sbw mew*', true)
+    .addField('<star>', 'Get hero\'s <star> sbw information.\n*e.g. !sbw mew 4*', true)
+    .setFooter('Defaults to sbw\'s highest form when <star> is not specified.');
+  return embed;
+}
+
+function getSbwList(arr) {
+  let t = [];
+  Object.keys(arr).forEach((key) => {
+    if (arr[key].form.length !== 0) {
+      t.push(key);
+    }
+  });
+  const embed = getSbwEmbedStarter()
+    .setDescription(t.join(', '));
+  return embed;
+}
+
+function getSbwClassList(sbwClass, arr) {
+  let t = [];
+  Object.keys(arr).forEach((key) => {
+    if (
+      arr[key].form.length !== 0 &&
+      arr[key].class.toLowerCase() === sbwClass) {
+      t.push(key);
+    }
+  });
+  const embed = getSbwEmbedStarter()
+    .setTitle(
+      sbwClass.charAt(0).toUpperCase() +
+      sbwClass.substr(1).toLowerCase())
+    .setDescription(t.join(', '));
+  return embed;
+}
+
 // helper function, get string
 function getStats(h, s, arr) {
-	return '__**' + arr[h].form[s].name + '**__ ' +
-		'(' + '★'.repeat(arr[h].form[s].star) + ')\n```' +
-		'Atk. Power: ' + arr[h].form[s].atkPower + '\n' +
-		'Atk. Speed: ' + arr[h].form[s].atkSpeed + '```\n' +
-		'**Ability**: ' + arr[h].form[s].ability;
+  return '__**' + arr[h].form[s].name + '**__ ' +
+    '(' + '★'.repeat(arr[h].form[s].star) + ')\n```' +
+    'Atk. Power: ' + arr[h].form[s].atkPower + '\n' +
+    'Atk. Speed: ' + arr[h].form[s].atkSpeed + '```\n' +
+    '**Ability**: ' + arr[h].form[s].ability;
 }
 
-// helper function, get star
-function getStar(h, s, arr) {
-	let star;
-
-	// all sbws have 3-promotion
-	if(arr[h].form.length === 3) {
-		s = parseInt(s);
-		if(s > 3 && s < 7) {
-			star = s - 4;
-		}
-		else {
-			return `${h}'s sbw does not have a ${s}-star form!`;
-		}
-	}
-	// exception, should not be possible to enter this case
-	else {
-		console.log('error');
-		return 'Error: Please let the bot author know or submit an issue at https://github.com/Johj/fergus/issues';
-	}
-	return star;
+function getSbwInfo(hero, star, arr) {
+  const embed = getSbwEmbedStarter()
+    .setTitle(
+      arr[hero].form[star].name +
+      ' (' + '★'.repeat(arr[hero].form[star].star) + ')')
+    .setDescription(arr[hero].form[star].ability)
+    .addField('Atk. Power', arr[hero].form[star].atkPower, true)
+    .addField('Atk. Speed', arr[hero].form[star].atkSpeed, true);
+  return embed;
 }
 
-module.exports = {
-	getSbw: function(args, arr) {
-		let str = '', len = args.length;
-		// 0 arguments, !sbw
-		if(len === 1) {
-			str = '*!sbw list|<name> <star>*, ' +
-				'e.g. !sbw list, !sbw mew, !sbw mew 4; ' +
-				'Defaults to 6-star whenever *<star>* is not specified.';
-		}
-		// 1 argument or more, !sbw list|<name> [<star>]
-		else {
-			// !sbw list
-			if(args[1] === 'list') {
-				let t = [];
-				Object.keys(arr).forEach((key) => {
-					if(arr[key].form.length !== 0) {
-						t.push(key);
-					}
-				});
-				str = '```' + t.join(', ') + '```';
-			}
-			// !sbw <name> [<star>]
-			else if(arr[args[1]]) {
-				if(arr[args[1]].form.length !== 0) {
-					// default to highest form index
-					let star = arr[args[1]].form.length - 1;
+function getSbwError(error, cap, message) {
+  const embed = getSbwEmbedStarter()
+    .setDescription(
+      `${capStringLength(error, cap)}${message}`);
+  return embed;
+}
 
-					// 1 argument, !sbw <name>
-					if(len === 2) {
-						str = getStats(args[1], star, arr);
-					}
-					// 2 arguments or more, !sbw <name> <star>
-					else {
-						// !sbw <name> <star>
-						if(!isNaN(parseInt(args[2]))) {
-							star = getStar(args[1], args[2], arr);
-							if(isNaN(parseInt(star))) {
-								str = star;
-							}
-							else {
-								str = getStats(args[1], star, arr);
-							}
-						}
-						// !sbw <name> <junk>, treat as if !sbw <name>
-						else {
-							str = getStats(args[1], star, arr);
-						}
-					}
-				}
-				else {
-					str = `${args[1]} does not have an sbw yet!`;
-				}
-			}
-			// !sbw <junk>
-			else {
-				str = `${args[1]} is not a valid hero name!`;
-			}
-		}
-		return str;
-	}
-};
+// helper function
+function capStringLength(s, max) {
+  let str = s.toString();
+  if (str.length > max && str.length - 6 > 0) {
+    str = str.substr(0, 3) + '...' + str.substr(str.length - 3, str.length - 1);
+  }
+  return str;
+}
+
+function getSbw(args, arr) {
+  let embed;
+  if (args.length === 1) {
+    embed = getSbwInstructions();
+  } else if (args.length === 2) {
+    if (args[1].startsWith('list')) {
+      embed = getSbwList(arr);
+    } else if (
+      args[1].startsWith('sword') || args[1].startsWith('hammer') ||
+      args[1].startsWith('bow') || args[1].startsWith('gun') ||
+      args[1].startsWith('staff') || args[1].startsWith('orb')) {
+      embed = getSbwClassList(args[1], arr);
+    } else if (arr[args[1]]) {
+      if (arr[args[1]].form.length !== 0) {
+        const star = arr[args[1]].form.length - 1; // highest form
+        embed = getSbwInfo(args[1], star, arr);
+      } else {
+        embed = getSbwError(args[1], 18, ' does not have an sbw yet!');
+      }
+    } else {
+      embed = getSbwError(args[1], 18, ' is not a valid class or hero name!');
+    }
+  } else {
+    embed = getSbwInstructions();
+  }
+  return embed;
+}
+
+module.exports = {getSbw};

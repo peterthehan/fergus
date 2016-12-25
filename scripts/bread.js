@@ -44,17 +44,10 @@ function getBreadInfo(bread, arr) {
   return embed;
 }
 
-function getBreadStarError(star) {
+function getBreadError(error, cap, message) {
   const embed = getBreadEmbedStarter()
     .setDescription(
-      `${capStringLength(star, 6)}-star breads do not exist!`);
-  return embed;
-}
-
-function getBreadNameError(bread) {
-  const embed = getBreadEmbedStarter()
-    .setDescription(
-      `${capStringLength(bread, 19)} is not a valid bread name!`);
+      `${capStringLength(error, cap)}${message}`);
   return embed;
 }
 
@@ -79,13 +72,13 @@ function getBread(args, arr) {
       if (args[1] > 0 && args[1] < 7) {
         embed = getBreadStarList(args[1], arr);
       } else {
-        embed = getBreadStarError(args[1]);
+        embed = getBreadError(args[1], 6, '-star breads do not exist!');
       }
     } else {
       if (arr[args[1]]) {
         embed = getBreadInfo(args[1], arr);
       } else {
-        embed = getBreadNameError(args[1]);
+        embed = getBreadError(args[1], 19, ' is not a valid bread name!');
       }
     }
   }
