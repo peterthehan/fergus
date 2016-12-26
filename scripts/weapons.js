@@ -49,15 +49,17 @@ function getWeaponClassList(weaponClass, arr) {
 }
 
 function getWeaponInfo(weapon, arr) {
-  const embed = getWeaponEmbedStarter()
+  let embed = getWeaponEmbedStarter()
     .setThumbnail(
       'https://raw.githubusercontent.com/Johj/fergus/master/assets/weapons/' +
       arr[weapon].class.toLowerCase() + '/' + weapon + '.png')
     .setTitle(arr[weapon].name + ' (' + '★'.repeat(arr[weapon].star) + ') | ' + arr[weapon].class)
     .addField('Atk. Power', arr[weapon].atkPower, true)
-    .addField('Atk. Speed', arr[weapon].atkSpeed, true)
-    .addField('Options', arr[weapon].options.join(', '), true)
-    .addField('Acquire', arr[weapon].howToGet.join(', '), true);
+    .addField('Atk. Speed', arr[weapon].atkSpeed, true);
+    if (arr[weapon].options.length !== 0) {
+      embed.addField('Options', arr[weapon].options.join(', '), true);
+    }
+    embed.addField('Acquire', arr[weapon].howToGet.join(', '), true);
   return embed;
 }
 
