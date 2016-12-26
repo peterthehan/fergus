@@ -26,7 +26,6 @@ const discord = require('discord.js');
 const client = new discord.Client();
 
 // Asynchronous event handler emits ready when ready to start working.
-// Also starts the Playing status of the bot.
 client.on('ready', () => {
   etc.log(
     client.user,
@@ -34,22 +33,14 @@ client.on('ready', () => {
     client.guilds.size + ' server(s), ' +
     client.channels.size + ' channel(s), ' +
     client.users.size + ' user(s))');
+});
 
-  // http://stackoverflow.com/questions/6962658/randomize-setinterval-how-to-rewrite-same-random-after-random-interval
-  (function loop() {
-    // 1m 30s plus-minus 15s, in ms.
-    const min = 75000;
-    const max = 105000;
-    const random = Math.floor(Math.random() * (max - min)) + min;
-    setTimeout(
-      () => {
-        const str = etc.getGame();
-        etc.log(client.user, `Playing ${str} (waited ${random} ms)`);
-        client.user.setGame(str);
-        loop();
-      },
-      random);
-  }());
+client.on('disconnect', () => {
+  console.log('disconnected.');
+});
+
+client.on('reconnecting', () => {
+  console.log('reconnecting.');
 });
 
 // Welcome event handler.
@@ -65,6 +56,7 @@ client.on('guildMemberRemove', (member) => {
     CONFIG.farewellPre + member + CONFIG.farewellPost);
   etc.log(member.user, 'left');
 });
+
 
 // Message event handler.
 client.on('message', (message) => {
