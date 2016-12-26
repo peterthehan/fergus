@@ -69,8 +69,9 @@ function getLenny(args) {
   if (args.length > 1) {
     if (!isNaN(parseInt(args[1]))) {
       args[1] = parseInt(args[1]);
-      if (args[1] > 10) {
-        times = 10;
+      const max = 69;
+      if (args[1] > max) {
+        times = max;
       } else if (args[1] < 1) {
         times = 1;
       } else {
@@ -90,10 +91,17 @@ function getFergus() {
   return embed;
 }
 
+function getMime(user, message) {
+  const embed = getEmbedStarter()
+    .setDescription(message.slice(5))
+    .setFooter(`${user.username}#${user.discriminator}`);
+  return embed;
+}
+
 function log(user, message, channel = '') { // for debugging
   console.log(
     `${user.username}#${user.discriminator}: ` +
     (channel === '' ? '' : `(#${channel}) `) +  `${message}`);
 }
 
-module.exports = {getGame, getHelp, getAbout, getLenny, getFergus, log};
+module.exports = {getGame, getHelp, getAbout, getLenny, getFergus, getMime, log};

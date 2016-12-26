@@ -102,10 +102,16 @@ client.on('message', (message) => {
     message.channel.sendEmbed(weapon.getWeapon(msg.split(' '), WEAPON_OBJECT));
     etc.log(message.author, msg, message.channel.name);
   } else if (msg.startsWith(prefix + 'lenny')) {
+    message.delete();
     message.channel.sendEmbed(etc.getLenny(msg.split(' ')));
     etc.log(message.author, msg, message.channel.name);
   } else if (msg.startsWith(prefix + 'fergus')) {
+    message.delete();
     message.channel.sendEmbed(etc.getFergus());
+    etc.log(message.author, msg, message.channel.name);
+  } else if (msg.startsWith(prefix + 'mime')) {
+    message.delete();
+    message.channel.sendEmbed(etc.getMime(message.author, msg));
     etc.log(message.author, msg, message.channel.name);
   }
 });
