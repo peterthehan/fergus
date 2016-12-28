@@ -1,12 +1,13 @@
 exports.run = function(message, args) {
-  if (message.author.id === '206161807491072000') { // my id
-    if (!isNaN(parseInt(args[1])) && parseInt(args[1]) > 1) {
-      let messagecount = parseInt(args[1]);
-      if (messagecount > 5) {
-        messagecount = 5;
+  if (message.author.id === '206161807491072000') { // limit to me
+    let messageCount = 2; // by default, delete one message above
+    if (!isNaN(parseInt(args[1])) && parseInt(args[1]) > messageCount) {
+      messageCount = parseInt(args[1]) + 1;
+      if (messageCount > 7) {
+        messageCount = 7;
       }
-      message.channel.fetchMessages({limit: messagecount})
-        .then((messages) => message.channel.bulkDelete(messages));
     }
+    message.channel.fetchMessages({limit: messageCount})
+      .then((messages) => message.channel.bulkDelete(messages));
   }
 };
