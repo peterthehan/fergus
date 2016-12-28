@@ -23,7 +23,7 @@ Special thanks to the following individuals for their contributions to the proje
 - TheEggCake (event skins)
 
 ## Open Source Libraries
-- [discord.js 10.0.1](https://github.com/hydrabolt/discord.js/)
+- [discord.js indev](https://github.com/hydrabolt/discord.js/tree/indev)
 
 ## License
 [GPL-3.0](https://raw.githubusercontent.com/Johj/fergus/master/LICENSE)

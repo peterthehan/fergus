@@ -1,7 +1,8 @@
 const config = require('../config.json');
 module.exports = (member) => {
-  member.guild.channels.get(member.guild.id).sendMessage(
-    config.farewellPre + member + config.farewellPost);
+  const embed = require('../util/embed.js').run()
+    .setDescription(config.farewellPre + member + config.farewellPost);
+  member.guild.channels.get(member.guild.id).sendEmbed(embed);
   console.log(
     `${member.user.username}#${member.user.discriminator}: left`);
 };

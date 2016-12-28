@@ -1,3 +1,3 @@
 module.exports = (error) => {
-  console.error(`uncaught promise error:\n${error.stack}`);
+  console.error(`${error.name}: ${error.message}`);
 };

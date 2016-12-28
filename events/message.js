@@ -12,6 +12,6 @@ module.exports = (message) => {
     const commandFile = require(`../commands/${command}`);
     commandFile.run(message, args);
   } catch (error) {
-    console.log(`invalid command:\n${error.stack}`);
+    console.error(`${error.name}: ${error.message}`);
   }
 };
