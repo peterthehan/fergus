@@ -1,11 +1,5 @@
-function getSbwEmbedStarter() {
-  const discord = require('discord.js');
-  const embed = new discord.RichEmbed().setColor('#ebb74e');
-  return embed;
-}
-
 function getSbwInstructions() {
-  const embed = getSbwEmbedStarter()
+  const embed = require('../util/embed.js').run()
     .setTitle('!sbw [list|<class>|<name>] [<star>]')
     .addField('list', 'List all sbws.\n*e.g. !sbw list*', true)
     .addField('<class>', 'List all <class> sbws.\n*e.g. !sbw orb*', true)
@@ -22,7 +16,7 @@ function getSbwList(arr) {
       t.push(key);
     }
   });
-  const embed = getSbwEmbedStarter()
+  const embed = require('../util/embed.js').run()
     .setDescription(t.join(', '));
   return embed;
 }
@@ -36,7 +30,7 @@ function getSbwClassList(sbwClass, arr) {
       t.push(key);
     }
   });
-  const embed = getSbwEmbedStarter()
+  const embed = require('../util/embed.js').run()
     .setTitle(
       sbwClass.charAt(0).toUpperCase() +
       sbwClass.substr(1).toLowerCase())
@@ -54,7 +48,7 @@ function getStats(h, s, arr) {
 }
 
 function getSbwInfo(hero, star, arr, footer = '') {
-  let embed = getSbwEmbedStarter()
+  let embed = require('../util/embed.js').run()
     .setThumbnail(
       'https://raw.githubusercontent.com/Johj/fergus/master/assets/sbws/' +
       arr[hero].class.toLowerCase() + '/' + hero + arr[hero].form[star].star +
@@ -72,7 +66,7 @@ function getSbwInfo(hero, star, arr, footer = '') {
 }
 
 function getSbwError(error, cap, message) {
-  const embed = getSbwEmbedStarter()
+  const embed = require('../util/embed.js').run()
     .setDescription(
       `${capStringLength(error, cap)}${message}`);
   return embed;
@@ -91,7 +85,8 @@ function capStringLength(s, max) {
   return str;
 }
 
-function getSbw(args, arr) {
+const arr = require('../cqdb/sbws.json');
+exports.run = function(message, args) {
   let embed;
   if (args.length === 1) {
     embed = getSbwInstructions();
@@ -137,7 +132,5 @@ function getSbw(args, arr) {
       embed = getSbwError(args[1], 18, ' is not a valid hero name!');
     }
   }
-  return embed;
-}
-
-module.exports = {getSbw};
+  message.channel.sendEmbed(embed);
+};

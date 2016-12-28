@@ -1,11 +1,5 @@
-function getGoddessEmbedStart() {
-  const discord = require('discord.js');
-  const embed = new discord.RichEmbed().setColor('#ebb74e');
-  return embed;
-}
-
 function getGoddessInstructions() {
-  const embed = getGoddessEmbedStart()
+  const embed = require('../util/embed.js').run()
     .setTitle('!goddess [list|<name>]')
     .addField('list', 'List all goddesses.\n*e.g. !goddess list*', true)
     .addField('<name>', 'Get goddess information.\n*e.g. !goddess sera*', true);
@@ -13,13 +7,13 @@ function getGoddessInstructions() {
 }
 
 function getGoddessList(arr) {
-  const embed = getGoddessEmbedStart()
+  const embed = require('../util/embed.js').run()
     .setDescription(Object.keys(arr).join(', '));
   return embed;
 }
 
 function getGoddessInfo(goddess, arr) {
-  const embed = getGoddessEmbedStart()
+  const embed = require('../util/embed.js').run()
     .setThumbnail(
       'https://raw.githubusercontent.com/Johj/fergus/master/assets/goddesses/' +
       goddess + '.png')
@@ -33,7 +27,7 @@ function getGoddessInfo(goddess, arr) {
 }
 
 function getGoddessError(error, cap, message) {
-  const embed = getGoddessEmbedStart()
+  const embed = require('../util/embed.js').run()
     .setDescription(
       `${capStringLength(error, cap)}${message}`);
   return embed;
@@ -49,7 +43,8 @@ function capStringLength(s, max) {
   return str;
 }
 
-function getGoddess(args, arr) {
+const arr = require('../cqdb/goddesses.json');
+exports.run = function(message, args) {
   let embed;
   if (args.length === 1) {
     embed = getGoddessInstructions();
@@ -65,7 +60,5 @@ function getGoddess(args, arr) {
       }
     }
   }
-  return embed;
-}
-
-﻿module.exports = {getGoddess};
+  message.channel.sendEmbed(embed);
+};

@@ -1,11 +1,5 @@
-function getWeaponEmbedStarter() {
-  const discord = require('discord.js');
-  const embed = new discord.RichEmbed().setColor('#ebb74e');
-  return embed;
-}
-
 function getWeaponInstructions() {
-  const embed = getWeaponEmbedStarter()
+  const embed = require('../util/embed.js').run()
     .setTitle('!weapon [list|<star>|<class>|<name>]')
     .addField('list', 'List all weapons.\n*e.g. !weapon list*', true)
     .addField('<star>', 'List all <star> weapons.\n*e.g. !weapon 4*', true)
@@ -15,7 +9,7 @@ function getWeaponInstructions() {
 }
 
 function getWeaponList(arr) {
-  const embed = getWeaponEmbedStarter()
+  const embed = require('../util/embed.js').run()
     .setDescription(Object.keys(arr).join(', '));
   return embed;
 }
@@ -27,7 +21,7 @@ function getWeaponStarList(star, arr) {
       t.push(key);
     }
   });
-  const embed = getWeaponEmbedStarter()
+  const embed = require('../util/embed.js').run()
     .setTitle('(' + '★'.repeat(star) + ')')
     .setDescription(t.join(', '));
   return embed;
@@ -40,7 +34,7 @@ function getWeaponClassList(weaponClass, arr) {
       t.push(key);
     }
   });
-  const embed = getWeaponEmbedStarter()
+  const embed = require('../util/embed.js').run()
     .setTitle(
       weaponClass.charAt(0).toUpperCase() +
       weaponClass.substr(1).toLowerCase())
@@ -49,7 +43,7 @@ function getWeaponClassList(weaponClass, arr) {
 }
 
 function getWeaponInfo(weapon, arr) {
-  let embed = getWeaponEmbedStarter()
+  let embed = require('../util/embed.js').run()
     .setThumbnail(
       'https://raw.githubusercontent.com/Johj/fergus/master/assets/weapons/' +
       arr[weapon].class.toLowerCase() + '/' + weapon + '.png')
@@ -64,7 +58,7 @@ function getWeaponInfo(weapon, arr) {
 }
 
 function getWeaponError(error, cap, message) {
-  const embed = getWeaponEmbedStarter()
+  const embed = require('../util/embed.js').run()
     .setDescription(
       `${capStringLength(error, cap)}${message}`);
   return embed;
@@ -79,7 +73,8 @@ function capStringLength(s, max) {
   return str;
 }
 
-function getWeapon(args, arr) {
+const arr = require('../cqdb/weapons.json');
+exports.run = function(message, args) {
   let embed;
   if (args.length === 1) {
     embed = getWeaponInstructions();
@@ -106,7 +101,5 @@ function getWeapon(args, arr) {
       }
     }
   }
-  return embed;
-}
-
-module.exports = {getWeapon};
+  message.channel.sendEmbed(embed);
+};

@@ -1,11 +1,5 @@
-function getHeroEmbedStarter() {
-  const discord = require('discord.js');
-  const embed = new discord.RichEmbed().setColor('#ebb74e');
-  return embed;
-}
-
 function getHeroDataEmbedStarter(hero, star, arr) {
-  const embed = getHeroEmbedStarter()
+  const embed = require('../util/embed.js').run()
     .setThumbnail(getHeroImageURL(hero, star, arr))
     .setTitle(getHeroHeader(hero, star, arr));
   return embed;
@@ -26,7 +20,7 @@ function getHeroHeader(hero, star, arr) {
 }
 
 function getHeroInstructions() {
-  const embed = getHeroEmbedStarter()
+  const embed = require('../util/embed.js').run()
     .setTitle('!hero [list|<class>|<name>] [info|stats|skill] [<star>]')
     .addField('list', 'List all heroes.\n*e.g. !hero list*', true)
     .addField('<class>', 'List all <class> heroes.\n*e.g. !hero priest*', true)
@@ -38,7 +32,7 @@ function getHeroInstructions() {
 }
 
 function getHeroList(arr) {
-  const embed = getHeroEmbedStarter()
+  const embed = require('../util/embed.js').run()
     .setDescription(Object.keys(arr).join(', '));
   return embed;
 }
@@ -50,7 +44,7 @@ function getHeroClassList(heroClass, arr) {
       t.push(key);
     }
   });
-  const embed = getHeroEmbedStarter()
+  const embed = require('../util/embed.js').run()
     .setTitle(
       heroClass.charAt(0).toUpperCase() + heroClass.substr(1).toLowerCase())
     .setDescription(t.join(', '));
@@ -58,7 +52,7 @@ function getHeroClassList(heroClass, arr) {
 }
 
 function getHeroImage(hero, star, arr, footer = '') {
-  const embed = getHeroEmbedStarter()
+  const embed = require('../util/embed.js').run()
     .setImage(getHeroImageURL(hero, star, arr));
   if (footer !== '') {
     embed.setFooter(footer);
@@ -96,7 +90,7 @@ function getHeroSkill(hero, star, arr, footer = '') {
 }
 
 function getHeroError(error, cap, message) {
-  const embed = getHeroEmbedStarter()
+  const embed = require('../util/embed.js').run()
     .setDescription(
       `${capStringLength(error, cap)}${message}`);
   return embed;
@@ -146,7 +140,8 @@ function capStringLength(s, max) {
   return str;
 }
 
-function getHero(args, arr) {
+const arr = require('../cqdb/heroes.json');
+exports.run = function(message, args) {
   let embed;
   if (args.length === 1) {
     embed = getHeroInstructions();
@@ -270,7 +265,5 @@ function getHero(args, arr) {
       embed = getHeroError(args[1], 18, ' is not a valid hero name!');
     }
   }
-  return embed;
-}
-
-module.exports = {getHero};
+  message.channel.sendEmbed(embed);
+};

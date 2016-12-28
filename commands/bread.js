@@ -1,11 +1,5 @@
-function getBreadEmbedStarter() {
-  const discord = require('discord.js');
-  const embed = new discord.RichEmbed().setColor('#ebb74e');
-  return embed;
-}
-
 function getBreadInstructions() {
-  const embed = getBreadEmbedStarter()
+  const embed = require('../util/embed.js').run()
     .setTitle('!bread [list|<star>|<name>]')
     .addField('list', 'List all breads.\n*e.g. !bread list*', true)
     .addField('<star>', 'List all <star> breads.\n*e.g. !bread 4*', true)
@@ -14,7 +8,7 @@ function getBreadInstructions() {
 }
 
 function getBreadList(arr) {
-  const embed = getBreadEmbedStarter()
+  const embed = require('../util/embed.js').run()
     .setDescription(Object.keys(arr).join(', '));
   return embed;
 }
@@ -26,14 +20,14 @@ function getBreadStarList(star, arr) {
       t.push(key);
     }
   });
-  const embed = getBreadEmbedStarter()
+  const embed = require('../util/embed.js').run()
     .setTitle('(' + '★'.repeat(star) + ')')
     .setDescription(t.join(', '));
   return embed;
 }
 
 function getBreadInfo(bread, arr) {
-  const embed = getBreadEmbedStarter()
+  const embed = require('../util/embed.js').run()
     .setThumbnail(
       'https://raw.githubusercontent.com/Johj/fergus/master/assets/bread/' +
       bread + '.png')
@@ -45,7 +39,7 @@ function getBreadInfo(bread, arr) {
 }
 
 function getBreadError(error, cap, message) {
-  const embed = getBreadEmbedStarter()
+  const embed = require('../util/embed.js').run()
     .setDescription(
       `${capStringLength(error, cap)}${message}`);
   return embed;
@@ -60,7 +54,8 @@ function capStringLength(s, max) {
   return str;
 }
 
-function getBread(args, arr) {
+const arr = require('../cqdb/bread.json');
+exports.run = function(message, args) {
   let embed;
   if (args.length === 1) {
     embed = getBreadInstructions();
@@ -82,7 +77,5 @@ function getBread(args, arr) {
       }
     }
   }
-  return embed;
-}
-
-module.exports = {getBread};
+  message.channel.sendEmbed(embed);
+};

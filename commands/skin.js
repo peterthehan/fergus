@@ -1,11 +1,5 @@
-﻿function getSkinEmbedStarter() {
-  const discord = require('discord.js');
-  const embed = new discord.RichEmbed().setColor('#ebb74e');
-  return embed;
-}
-
 function getSkinInstructions() {
-  const embed = getSkinEmbedStarter()
+  const embed = require('../util/embed.js').run()
     .setTitle('!skin [list|<name>]')
     .addField('list', 'List all skins.\n*e.g. !skin list*', true)
     .addField('<name>', 'Get skin information.\n*e.g. !skin mew*', true);
@@ -19,13 +13,13 @@ function getSkinList(arr) {
       t.push(key);
     }
   });
-  const embed = getSkinEmbedStarter()
+  const embed = require('../util/embed.js').run()
     .setDescription(t.join(', '));
   return embed;
 }
 
 function getSkinInfo(hero, arr) {
-  let embed = getSkinEmbedStarter();
+  let embed = require('../util/embed.js').run();
   for (i = 0; i < arr[hero].form.length; ++i) {
     let str = '';
     if (arr[hero].form[i].atkPower !== 0) {
@@ -58,7 +52,7 @@ function getSkinInfo(hero, arr) {
 }
 
 function getSkinError(error, cap, message) {
-  const embed = getSkinEmbedStarter()
+  const embed = require('../util/embed.js').run()
     .setDescription(
       `${capStringLength(error, cap)}${message}`);
   return embed;
@@ -73,7 +67,8 @@ function capStringLength(s, max) {
   return str;
 }
 
-function getSkin(args, arr) {
+const arr = require('../cqdb/skins.json');
+exports.run = function(message, args) {
   let embed;
   if (args.length === 1) {
     embed = getSkinInstructions();
@@ -94,7 +89,5 @@ function getSkin(args, arr) {
       embed = getSkinError(args[1], 18, ' is not a valid hero name!');
     }
   }
-  return embed;
-}
-
-module.exports = {getSkin};
+  message.channel.sendEmbed(embed);
+};
