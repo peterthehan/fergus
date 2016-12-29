@@ -4,5 +4,6 @@ module.exports = (member) => {
     .setDescription(config.welcomePre + member + config.welcomePost);
   member.guild.channels.get(member.guild.id).sendEmbed(embed);
   console.log(
-    `${member.user.username}#${member.user.discriminator}: joined`);
+    `${member.user.username}#${member.user.discriminator}: ` +
+    `joined ${member.guild.name}`);
 };

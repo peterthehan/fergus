@@ -5,7 +5,8 @@ function getHeroDataEmbedStarter(hero, star, arr) {
   return embed;
 }
 function getHeroImageURL(hero, star, arr) {
-  return 'https://raw.githubusercontent.com/Johj/fergus/master/assets/heroes/' + arr[hero].class.toLowerCase() + '/' + hero +
+  return 'https://raw.githubusercontent.com/Johj/fergus/master/assets/heroes/' +
+  arr[hero].class.toLowerCase() + '/' + hero + 
   convertIndexToStar(hero, star, arr) + '.png';
 }
 function getHeroHeader(hero, star, arr) {

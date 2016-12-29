@@ -1,5 +1,6 @@
 exports.run = function(message, args) {
   const embed = require('../util/embed.js').run()
+    .setThumbnail('https://raw.githubusercontent.com/Johj/fergus/master/assets/fergus.png')
     .setTitle('Fergus')
     .setDescription('by Peter Han (Saarja)')
     .addField(
@@ -13,6 +14,10 @@ exports.run = function(message, args) {
       'https://discord.gg/6TRnyhj', true)
     .addField(
       'GitHub',
-      'https://github.com/Johj/fergus');
+      'https://github.com/Johj/fergus')
+    .setFooter(
+      'This bot is not affiliated, associated, authorized, endorsed by, or in' +
+      ' any way officially connected with HANGAME or NHN Entertainment Corp.,' +
+      ' or any of their subsidiaries or their affiliates.');
   message.channel.sendEmbed(embed);
 };

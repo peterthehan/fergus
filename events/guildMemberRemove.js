@@ -4,5 +4,6 @@ module.exports = (member) => {
     .setDescription(config.farewellPre + member + config.farewellPost);
   member.guild.channels.get(member.guild.id).sendEmbed(embed);
   console.log(
-    `${member.user.username}#${member.user.discriminator}: left`);
+    `${member.user.username}#${member.user.discriminator}: ` +
+    `left ${member.guild.name}`);
 };

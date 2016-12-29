@@ -11,6 +11,7 @@ const COMMANDS = [
   'sbw',
   //'skill',
   'skin',
+  'stats',
   'user',
   'weapon',
 ];
