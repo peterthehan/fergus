@@ -51,22 +51,6 @@ function getSkinInfo(hero, arr) {
   return embed;
 }
 
-function getSkinError(error, cap, message) {
-  const embed = require('../util/embed.js').run()
-    .setDescription(
-      `${capStringLength(error, cap)}${message}`);
-  return embed;
-}
-
-// helper function
-function capStringLength(s, max) {
-  let str = s.toString();
-  if (str.length > max && str.length - 6 > 0) {
-    str = str.substr(0, 3) + '...' + str.substr(str.length - 3, str.length - 1);
-  }
-  return str;
-}
-
 const arr = require('../cqdb/skins.json');
 exports.run = function(message, args) {
   let embed;
@@ -82,11 +66,13 @@ exports.run = function(message, args) {
         embed = getSkinInfo(args[1], arr);
       }
       else {
-        embed = getSkinError(args[1], 18, ' does not have a skin yet!');
+        embed = require('../util/getError.js')
+          .run(args[1], 18, ' does not have a skin yet!');
       }
     }
     else {
-      embed = getSkinError(args[1], 18, ' is not a valid hero name!');
+      embed = require('../util/getError.js')
+        .run(args[1], 18, ' is not a valid hero name!');
     }
   }
   message.channel.sendEmbed(embed);

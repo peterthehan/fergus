@@ -65,24 +65,8 @@ function getSbwInfo(hero, star, arr, footer = '') {
   return embed;
 }
 
-function getSbwError(error, cap, message) {
-  const embed = require('../util/embed.js').run()
-    .setDescription(
-      `${capStringLength(error, cap)}${message}`);
-  return embed;
-}
-
 function convertStarToIndex(star) {
   return star - 4;
-}
-
-// helper function
-function capStringLength(s, max) {
-  let str = s.toString();
-  if (str.length > max && str.length - 6 > 0) {
-    str = str.substr(0, 3) + '...' + str.substr(str.length - 3, str.length - 1);
-  }
-  return str;
 }
 
 const arr = require('../cqdb/sbws.json');
@@ -103,10 +87,12 @@ exports.run = function(message, args) {
         const star = arr[args[1]].form.length - 1; // highest form
         embed = getSbwInfo(args[1], star, arr);
       } else {
-        embed = getSbwError(args[1], 18, ' does not have an sbw yet!');
+        embed = require('../util/getError.js')
+          .run(args[1], 18, ' does not have an sbw yet!');
       }
     } else {
-      embed = getSbwError(args[1], 18, ' is not a valid class or hero name!');
+      embed = require('../util/getError.js')
+        .run(args[1], 18, ' is not a valid class or hero name!');
     }
   } else {
     if (arr[args[1]]) {
@@ -118,7 +104,7 @@ exports.run = function(message, args) {
           if (args[2] > 3 && args[2] < 7) {
             star = convertStarToIndex(args[2]);
           } else {
-            footer = `${args[1]}'s sbw does not have a ${capStringLength(args[2], 6)}-star form! Defaulting to sbw's highest form.`
+            footer = `${args[1]}'s sbw does not have a ${require('../util/capStringLength.js').run(args[2], 6)}-star form! Defaulting to sbw's highest form.`
           }
           embed = getSbwInfo(args[1], star, arr, footer);
         } else {
@@ -126,10 +112,12 @@ exports.run = function(message, args) {
           embed = getSbwInfo(args[1], star, arr, '2nd argument is invalid. Try a <star> value between 4 and 6.');
         }
       } else {
-        embed = getSbwError(args[1], 18, ' does not have an sbw yet!');
+        embed = require('../util/getError.js')
+          .run(args[1], 18, ' does not have an sbw yet!');
       }
     } else {
-      embed = getSbwError(args[1], 18, ' is not a valid hero name!');
+      embed = require('../util/getError.js')
+        .run(args[1], 18, ' is not a valid hero name!');
     }
   }
   message.channel.sendEmbed(embed);

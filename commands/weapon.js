@@ -57,22 +57,6 @@ function getWeaponInfo(weapon, arr) {
   return embed;
 }
 
-function getWeaponError(error, cap, message) {
-  const embed = require('../util/embed.js').run()
-    .setDescription(
-      `${capStringLength(error, cap)}${message}`);
-  return embed;
-}
-
-// helper function
-function capStringLength(s, max) {
-  let str = s.toString();
-  if (str.length > max && str.length - 6 > 0) {
-    str = str.substr(0, 3) + '...' + str.substr(str.length - 3, str.length - 1);
-  }
-  return str;
-}
-
 const arr = require('../cqdb/weapons.json');
 exports.run = function(message, args) {
   let embed;
@@ -86,7 +70,8 @@ exports.run = function(message, args) {
       if (args[1] > 0 && args[1] < 7) {
         embed = getWeaponStarList(args[1], arr);
       } else {
-        embed = getWeaponError(args[1], 6, '-star weapons do not exist!');
+        embed = require('../util/getError.js')
+          .run(args[1], 6, '-star weapons do not exist!');
       }
     } else {
       if (
@@ -97,7 +82,8 @@ exports.run = function(message, args) {
       } else if (arr[args[1]]) {
         embed = getWeaponInfo(args[1], arr);
       } else {
-        embed = getWeaponError(args[1], 15, ' is not a valid weapon class or name!');
+        embed = require('../util/getError.js')
+          .run(args[1], 15, ' is not a valid weapon class or name!');
       }
     }
   }

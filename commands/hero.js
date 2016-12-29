@@ -89,13 +89,6 @@ function getHeroSkill(hero, star, arr, footer = '') {
   return embed;
 }
 
-function getHeroError(error, cap, message) {
-  const embed = require('../util/embed.js').run()
-    .setDescription(
-      `${capStringLength(error, cap)}${message}`);
-  return embed;
-}
-
 function starWithinBounds(hero, star, arr) {
   const bound = arr[hero].form.length;
   if (bound === 1) {
@@ -131,15 +124,6 @@ function convertIndexToStar(hero, star, arr) {
   }
 }
 
-// helper function
-function capStringLength(s, max) {
-  let str = s.toString();
-  if (str.length > max && str.length - 6 > 0) {
-    str = str.substr(0, 3) + '...' + str.substr(str.length - 3, str.length - 1);
-  }
-  return str;
-}
-
 const arr = require('../cqdb/heroes.json');
 exports.run = function(message, args) {
   let embed;
@@ -157,7 +141,8 @@ exports.run = function(message, args) {
       const star = arr[args[1]].form.length - 1; // highest form
       embed = getHeroImage(args[1], star, arr);
     } else {
-      embed = getHeroError(args[1], 18, ' is not a valid class or hero name!');
+      embed = require('../util/getError.js')
+        .run(args[1], 18, ' is not a valid class or hero name!');
     }
   } else if (args.length === 3) {
     if (arr[args[1]]) {
@@ -168,7 +153,7 @@ exports.run = function(message, args) {
           embed = getHeroImage(args[1], star, arr);
         } else {
           const star = arr[args[1]].form.length - 1; // highest form
-          embed = getHeroImage(args[1], star, arr, `${args[1]} does not have a ${capStringLength(args[2], 6)}-star form! Defaulting to hero's highest form.`);
+          embed = getHeroImage(args[1], star, arr, `${args[1]} does not have a ${require('../util/capStringLength.js').run(args[2], 6)}-star form! Defaulting to hero's highest form.`);
         }
       } else {
         const star = arr[args[1]].form.length - 1; // highest form
@@ -183,7 +168,8 @@ exports.run = function(message, args) {
         }
       }
     } else {
-      embed = getHeroError(args[1], 18, ' is not a valid hero name!');
+      embed = require('../util/getError.js')
+        .run(args[1], 18, ' is not a valid hero name!');
     }
   } else {
     if (arr[args[1]]) {
@@ -196,7 +182,7 @@ exports.run = function(message, args) {
           footer = '';
         } else {
           star = arr[args[1]].form.length - 1; // highest form
-          footer = `${args[1]} does not have a ${capStringLength(args[2], 6)}-star form! Defaulting to hero's highest form.`;
+          footer = `${args[1]} does not have a ${require('../util/capStringLength.js').run(args[2], 6)}-star form! Defaulting to hero's highest form.`;
         }
 
         if (args[3].startsWith('info')) {
@@ -218,7 +204,7 @@ exports.run = function(message, args) {
           footer = '';
         } else {
           star = arr[args[1]].form.length - 1; // highest form
-          footer = `${args[1]} does not have a ${capStringLength(args[3], 6)}-star form! Defaulting to hero's highest form.`;
+          footer = `${args[1]} does not have a ${require('../util/capStringLength.js').run(args[3], 6)}-star form! Defaulting to hero's highest form.`;
         }
 
         if (args[2].startsWith('info')) {
@@ -262,7 +248,8 @@ exports.run = function(message, args) {
         }
       }
     } else {
-      embed = getHeroError(args[1], 18, ' is not a valid hero name!');
+      embed = require('../util/getError.js')
+        .run(args[1], 18, ' is not a valid hero name!');
     }
   }
   message.channel.sendEmbed(embed);

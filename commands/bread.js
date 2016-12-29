@@ -38,22 +38,6 @@ function getBreadInfo(bread, arr) {
   return embed;
 }
 
-function getBreadError(error, cap, message) {
-  const embed = require('../util/embed.js').run()
-    .setDescription(
-      `${capStringLength(error, cap)}${message}`);
-  return embed;
-}
-
-// helper function
-function capStringLength(s, max) {
-  let str = s.toString();
-  if (str.length > max && str.length - 6 > 0) {
-    str = str.substr(0, 3) + '...' + str.substr(str.length - 3, str.length - 1);
-  }
-  return str;
-}
-
 const arr = require('../cqdb/bread.json');
 exports.run = function(message, args) {
   let embed;
@@ -67,13 +51,15 @@ exports.run = function(message, args) {
       if (args[1] > 0 && args[1] < 7) {
         embed = getBreadStarList(args[1], arr);
       } else {
-        embed = getBreadError(args[1], 6, '-star breads do not exist!');
+        embed = require('../util/getError.js')
+          .run(args[1], 6, '-star breads do not exist!');
       }
     } else {
       if (arr[args[1]]) {
         embed = getBreadInfo(args[1], arr);
       } else {
-        embed = getBreadError(args[1], 19, ' is not a valid bread name!');
+        embed = require('../util/getError.js')
+          .run(args[1], 19, ' is not a valid bread name!');
       }
     }
   }
