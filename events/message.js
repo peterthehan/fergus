@@ -7,7 +7,9 @@ module.exports = (message) => {
   const args = msg.split(' ');
   const command = args[0].slice(prefix.length);
   console.log(
-    `${message.author.username}#${message.author.discriminator}: ${msg}`);
+    `${message.author.username}#${message.author.discriminator}: ` +
+    `(${message.guild.name}/#${message.channel.name}) ` +
+    `${msg}`);
   try {
     const commandFile = require(`../commands/${command}`);
     commandFile.run(message, args);

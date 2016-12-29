@@ -2,14 +2,17 @@ const COMMANDS = [
   'help',
   'about',
   'bread',
+  'fergus',
   'goddess',
   'hero',
+  'lenny',
+  'ping',
+  'print',
   'sbw',
   //'skill',
   'skin',
+  'user',
   'weapon',
-  'lenny',
-  'fergus',
 ];
 
 exports.run = function(message, args) {
