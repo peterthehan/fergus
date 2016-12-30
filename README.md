@@ -24,7 +24,7 @@ Special thanks to the following individuals for their contributions to the proje
 - TheEggCake (event skins)
 
 ## Dependencies
-- [discord.js indev](https://github.com/hydrabolt/discord.js/tree/indev)
+- [discord.js 11.0.0](https://github.com/hydrabolt/discord.js)
 
 ## License
 [GPL-3.0](https://raw.githubusercontent.com/Johj/fergus/master/LICENSE)
