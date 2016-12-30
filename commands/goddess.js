@@ -32,6 +32,7 @@ exports.run = function(message, args) {
   if (args.length === 1) {
     embed = getGoddessInstructions();
   } else {
+    args = args.join(' ').toLowerCase().split(' ');
     if (args[1].startsWith('list')) {
       embed = getGoddessList(arr);
     } else {

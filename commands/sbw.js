@@ -71,6 +71,7 @@ function convertStarToIndex(star) {
 
 const arr = require('../cqdb/sbws.json');
 exports.run = function(message, args) {
+  args = args.join(' ').toLowerCase().split(' ');
   let embed;
   if (args.length === 1) {
     embed = getSbwInstructions();

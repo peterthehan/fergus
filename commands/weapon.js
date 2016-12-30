@@ -63,6 +63,7 @@ exports.run = function(message, args) {
   if (args.length === 1) {
     embed = getWeaponInstructions();
   } else {
+    args = args.join(' ').toLowerCase().split(' ');
     if (args[1].startsWith('list')) {
       embed = getWeaponList(arr);
     } else if (!isNaN(parseInt(args[1]))) {

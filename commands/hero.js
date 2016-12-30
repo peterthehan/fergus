@@ -6,7 +6,7 @@ function getHeroDataEmbedStarter(hero, star, arr) {
 }
 function getHeroImageURL(hero, star, arr) {
   return 'https://raw.githubusercontent.com/Johj/fergus/master/assets/heroes/' +
-  arr[hero].class.toLowerCase() + '/' + hero + 
+  arr[hero].class.toLowerCase() + '/' + hero +
   convertIndexToStar(hero, star, arr) + '.png';
 }
 function getHeroHeader(hero, star, arr) {
@@ -127,6 +127,7 @@ function convertIndexToStar(hero, star, arr) {
 
 const arr = require('../cqdb/heroes.json');
 exports.run = function(message, args) {
+  args = args.join(' ').toLowerCase().split(' ');
   let embed;
   if (args.length === 1) {
     embed = getHeroInstructions();

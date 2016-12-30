@@ -44,6 +44,7 @@ exports.run = function(message, args) {
   if (args.length === 1) {
     embed = getBreadInstructions();
   } else {
+    args = args.join(' ').toLowerCase().split(' ');
     if (args[1].startsWith('list')) {
       embed = getBreadList(arr);
     } else if (!isNaN(parseInt(args[1]))) {

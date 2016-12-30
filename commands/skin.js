@@ -58,6 +58,7 @@ exports.run = function(message, args) {
     embed = getSkinInstructions();
   }
   else {
+    args = args.join(' ').toLowerCase().split(' ');
     if (args[1].startsWith('list')) {
       embed = getSkinList(arr);
     }
