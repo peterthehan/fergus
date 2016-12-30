@@ -20,7 +20,7 @@ Special thanks to the following individuals for their contributions to the proje
 - Fastrail (hero entries for all priests sans orfeo, yuria, faust, and noel)
 - F1r3man (hero entries for vivian, susanoo, and arita and event skins)
 - Protease (sbw abilities for all warriors)
-- Choveck (event skins)
+- Choveck (hero portrait for remi and event skins)
 - TheEggCake (event skins)
 
 ## Dependencies

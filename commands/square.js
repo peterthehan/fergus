@@ -25,7 +25,7 @@ exports.run = function(message, args) {
   let embed;
   if (args.length === 1) {
     embed = require('../util/embed.js').run()
-      .setDescription('Put an argument!');
+      .setDescription('Type something!');
   } else {
     if (args[1].length <= 10) {
       embed = getSquare(args[1]);
