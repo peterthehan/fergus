@@ -1,26 +1,38 @@
-exports.run = function(message, args) {
-  if (args.length > 1) {
-    let str = '```';
-
-    if (args[1].length === 1) {
-      str += args[1];
-    } else if (args[1].length === 2) {
-      str += args[1].split('').join(' ') + '\n';
-      str += args[1].split('').reverse().join(' ');
-    } else {
-      str += args[1].split('').join(' ') + '\n';
-      for (let i = 1; i < args[1].length - 1; ++i) {
-        str +=
-          args[1].charAt(i) +
-          ' '.repeat((args[1].length * 2) - 1 - 2) +
-          args[1].charAt(args[1].length - i - 1) + '\n';
+function getSquare(str) {
+  let ret = '```';
+  if (str.length === 1) {
+    ret += str;
+  } else {
+    ret += str.split('').join(' ') + '\n';
+    if (str.length > 2) {
+      for (let i = 1; i < str.length - 1; ++i) {
+        ret +=
+          str.charAt(i) +
+          ' '.repeat((str.length * 2) - 1 - 2) +
+          str.charAt(str.length - i - 1) + '\n';
       }
-      str += args[1].split('').reverse().join(' ');
     }
-    str += '```';
-
-  	const embed = require('../util/embed.js').run()
-      .setDescription(str);
-    message.channel.sendEmbed(embed);
+    ret += str.split('').reverse().join(' ');
   }
+  ret += '```';
+
+  const embed = require('../util/embed.js').run()
+    .setDescription(ret);
+  return embed;
+}
+
+exports.run = function(message, args) {
+  let embed;
+  if (args.length === 1) {
+    embed = require('../util/embed.js').run()
+      .setDescription('Put an argument!');
+  } else {
+    if (args[1].length <= 10) {
+      embed = getSquare(args[1]);
+    } else {
+      embed = require('../util/getError.js')
+        .run(args[1], 10, ' is too long of a message!');
+    }
+  }
+  message.channel.sendEmbed(embed);
 };
