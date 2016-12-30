@@ -5,5 +5,8 @@ module.exports = {
   },
   incrementCount: function() {
     ++count;
+  },
+  resetCount: function() {
+    count = 0;
   }
 };
