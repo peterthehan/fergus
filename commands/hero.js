@@ -70,9 +70,33 @@ function getHeroInfo(hero, star, arr, footer = '') {
   }
   return embed;
 }
+
+function makeColumnifyData(hero, star, arr) {
+  let data = [];
+  for (i = 0; i < arr[hero].form[star].atkPower.length; ++i) {
+    const row = {
+      'TRN': (i === 6 ? 'MAX' : `+${i + 1}`),
+      'HA': arr[hero].form[star].atkPower[i],
+      'HP': arr[hero].form[star].hp[i],
+      'CC': arr[hero].form[star].critChance[i],
+      'ARM': arr[hero].form[star].armor[i],
+      'RES': arr[hero].form[star].resistance[i],
+      'CD': arr[hero].form[star].critDamage[i],
+      'ACC': arr[hero].form[star].accuracy[i],
+      'EVA': arr[hero].form[star].evasion[i],
+    };
+    data.push(row);
+  }
+  return data;
+}
 function getHeroStats(hero, star, arr, footer = '') {
+  const columnify = require('columnify');
+  const stats =
+    '`' + columnify(makeColumnifyData(hero, star, arr))
+      .replace(/(?:\r\n|\r|\n)/g, '`\n`') + '`';
+
   let embed = getHeroDataEmbedStarter(hero, star, arr)
-    .addField('STATS', 'TODO', true);
+    .setDescription(stats);
   if (footer !== '') {
     embed.setFooter(footer);
   }

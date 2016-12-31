@@ -7,6 +7,7 @@
   },
   "main": "fergus.js",
   "dependencies": {
+    "columnify": "^1.5.4",
     "discord.js": "^11.0.0"
   },
   "devDependencies": {},
