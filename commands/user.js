@@ -57,7 +57,8 @@ exports.run = function(message, args) {
     .then(guildMember => {
       embed
         .addField(
-          'Joined Server On', guildMember.joinedAt.toLocaleString(), true);
+          'Joined Server On', guildMember.joinedAt.toLocaleString(), true)
+        .setTimestamp(message.createdAt);
       message.channel.sendEmbed(embed);
     })
     .catch(error => console.error(`${error.name}: ${error.message}`));

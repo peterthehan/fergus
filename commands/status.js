@@ -35,6 +35,7 @@ exports.run = function(message, args) {
       'Memory Usage',
       `${Math.round(process.memoryUsage().heapUsed / 1024 / 1024)} MB`,
       true)
-    .addField('Commands this Session', require('../util/count').getCount());
+    .addField('Commands this Session', require('../util/count').getCount())
+    .setTimestamp(message.createdAt);
   message.channel.sendEmbed(embed);
 };

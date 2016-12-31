@@ -9,7 +9,7 @@ exports.run = function(message, args) {
         `${message.author.username}#${message.author.discriminator}`,
         message.author.avatarURL)
       .setDescription(args.join(' ').slice(args[0].length))
-      .setFooter(message.createdAt.toString());
+      .setTimestamp(message.createdAt);
   }
   message.channel.sendEmbed(embed);
 };
