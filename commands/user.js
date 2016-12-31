@@ -2,13 +2,22 @@ exports.run = function(message, args) {
   const client = message.client;
   const guild = message.guild;
   let id;
+
+  let embed = require('../util/embed.js').run();
   if (args.length === 1) {
     id = message.author.id;
   } else {
     id = args[1].substr(2, args[1].toString().length - 3);
+    guild.fetchMember(id)
+      .then()
+      .catch((error) => {
+        embed.setDescription('@tag a user!');
+        message.channel.sendEmbed(embed);
+        console.error(`${error.name}: ${error.message}`)
+        return;
+      });
   }
 
-  let embed = require('../util/embed.js').run();
   guild.fetchMember(id)
     .then(guildMember => {
       embed

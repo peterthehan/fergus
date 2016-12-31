@@ -38,15 +38,6 @@ function getSbwClassList(sbwClass, arr) {
   return embed;
 }
 
-// helper function, get string
-function getStats(h, s, arr) {
-  return '__**' + arr[h].form[s].name + '**__ ' +
-    '(' + '★'.repeat(arr[h].form[s].star) + ')\n```' +
-    'Atk. Power: ' + arr[h].form[s].atkPower + '\n' +
-    'Atk. Speed: ' + arr[h].form[s].atkSpeed + '```\n' +
-    '**Ability**: ' + arr[h].form[s].ability;
-}
-
 function getSbwInfo(hero, star, arr, footer = '') {
   let embed = require('../util/embed.js').run()
     .setThumbnail(

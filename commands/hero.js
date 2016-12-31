@@ -4,11 +4,13 @@ function getHeroDataEmbedStarter(hero, star, arr) {
     .setTitle(getHeroHeader(hero, star, arr));
   return embed;
 }
+
 function getHeroImageURL(hero, star, arr) {
   return 'https://raw.githubusercontent.com/Johj/fergus/master/assets/heroes/' +
   arr[hero].class.toLowerCase() + '/' + hero +
   convertIndexToStar(hero, star, arr) + '.png';
 }
+
 function getHeroHeader(hero, star, arr) {
   let str =
     arr[hero].form[star].name +
@@ -89,6 +91,7 @@ function makeColumnifyData(hero, star, arr) {
   }
   return data;
 }
+
 function getHeroStats(hero, star, arr, footer = '') {
   const columnify = require('columnify');
   const stats =
@@ -102,6 +105,7 @@ function getHeroStats(hero, star, arr, footer = '') {
   }
   return embed;
 }
+
 function getHeroSkill(hero, star, arr, footer = '') {
   let embed = getHeroDataEmbedStarter(hero, star, arr)
     .addField(arr[hero].skillName + ' (Lv.' + arr[hero].form[star].skill.level + ')', arr[hero].skillDescription, true);
@@ -124,6 +128,7 @@ function starWithinBounds(hero, star, arr) {
     return ([1,2,3,4,5,6].includes(star) ? true : false);
   }
 }
+
 function convertStarToIndex(hero, star, arr) {
   const bound = arr[hero].form.length;
   if (bound === 1) {
@@ -134,6 +139,7 @@ function convertStarToIndex(hero, star, arr) {
     return star - 1;
   }
 }
+
 function convertIndexToStar(hero, star, arr) {
   const bound = arr[hero].form.length;
   if (bound === 1) {

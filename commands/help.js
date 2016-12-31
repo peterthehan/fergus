@@ -2,6 +2,7 @@ const COMMANDS = {
   'General': [
     'help',
     'about',
+    //'server',
     'status',
     'user',
   ],
@@ -9,6 +10,7 @@ const COMMANDS = {
     'bread',
     'goddess',
     'hero',
+    //'portrait',
     'sbw',
     //'skill',
     'skin',
