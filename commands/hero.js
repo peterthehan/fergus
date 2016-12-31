@@ -75,7 +75,7 @@ function makeColumnifyData(hero, star, arr) {
   let data = [];
   for (i = 0; i < arr[hero].form[star].atkPower.length; ++i) {
     const row = {
-      'TRN': (i === 6 ? 'MAX' : `+${i + 1}`),
+      'TRN': (i === arr[hero].form[star].atkPower.length - 1 ? 'MAX' : `+${i}`),
       'HA': arr[hero].form[star].atkPower[i],
       'HP': arr[hero].form[star].hp[i],
       'CC': arr[hero].form[star].critChance[i],
