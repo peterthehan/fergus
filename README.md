@@ -8,7 +8,25 @@
 Fergus is a Crusaders Quest Discord server bot.
 
 ## Commands
-!help, !about, !bread, !fergus, !goddess, !hero, !lenny, !ping, !print, !quote, !sbw, !skin, !square, !status, !user, !weapon
+- General:
+  [!help](https://github.com/Johj/fergus/blob/master/commands/help.js),
+  [!about](https://github.com/Johj/fergus/blob/master/commands/about.js),
+  [!status](https://github.com/Johj/fergus/blob/master/commands/status.js),
+  [!user](https://github.com/Johj/fergus/blob/master/commands/user.js)
+- Game:
+  [!bread](https://github.com/Johj/fergus/blob/master/commands/bread.js),
+  [!goddess](https://github.com/Johj/fergus/blob/master/commands/goddess.js),
+  [!hero](https://github.com/Johj/fergus/blob/master/commands/hero.js),
+  [!sbw](https://github.com/Johj/fergus/blob/master/commands/sbw.js),
+  [!skin](https://github.com/Johj/fergus/blob/master/commands/skin.js),
+  [!weapon](https://github.com/Johj/fergus/blob/master/commands/weapon.js)
+- Miscellaneous:
+  [!fergus](https://github.com/Johj/fergus/blob/master/commands/fergus.js),
+  [!lenny](https://github.com/Johj/fergus/blob/master/commands/lenny.js),
+  [!ping](https://github.com/Johj/fergus/blob/master/commands/ping.js),
+  [!print](https://github.com/Johj/fergus/blob/master/commands/print.js),
+  [!quote](https://github.com/Johj/fergus/blob/master/commands/quote.js),
+  [!square](https://github.com/Johj/fergus/blob/master/commands/square.js)
 
 ## Contributing
 See the [contributing guide](https://github.com/Johj/fergus/tree/master/contribute).
