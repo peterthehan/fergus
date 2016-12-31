@@ -1,6 +1,7 @@
 exports.run = function(message, args) {
   const embed = require('../util/embed.js').run()
-    .setThumbnail('https://raw.githubusercontent.com/Johj/fergus/master/assets/fergus.png')
+    .setThumbnail(
+      'https://raw.githubusercontent.com/Johj/fergus/master/assets/fergus.png')
     .setTitle('Fergus')
     .setDescription('by Peter Han (Saarja)')
     .addField(

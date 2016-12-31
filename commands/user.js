@@ -20,7 +20,6 @@ exports.run = function(message, args) {
           'Roles',
           guildMember.roles.array().slice().map(index => index.name).join(', '),
           true)
-
     })
     .catch(error => console.error(`${error.name}: ${error.message}`));
 

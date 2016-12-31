@@ -1,5 +1,5 @@
 function getTime(ms) {
-  let date = new Date(ms);
+  const date = new Date(ms);
   const days = date.getUTCDate() - 1;
   const hours = date.getUTCHours();
   const minutes = date.getUTCMinutes();
@@ -26,17 +26,14 @@ exports.run = function(message, args) {
 
   const embed = require('../util/embed.js').run()
     .addField(
-      'Serving',
-      guilds + ' server' + (guilds !== 1 ? 's, ' : ', ') +
-      channels + ' text channel' + (channels !== 1 ? 's, ' : ', ') + 'and ' +
-      users + ' user' + (users !== 1 ? 's' : ''))
-    .addField(
-      'Uptime',
-      getTime(message.client.uptime),
-      true)
+      `Serving`,
+      `${guilds} server${require('../util/getPlurality.js').run(guilds)}, ` +
+      `${channels} text channel${require('../util/getPlurality.js').run(channels)}, and ` +
+      `${users} user${require('../util/getPlurality.js').run(users)}`)
+    .addField('Uptime', getTime(message.client.uptime), true)
     .addField(
       'Memory Usage',
-      `${Math.round(process.memoryUsage().heapUsed / 1024 / 1024)}MB`,
+      `${Math.round(process.memoryUsage().heapUsed / 1024 / 1024)} MB`,
       true)
     .addField('Commands this Session', require('../util/count').getCount());
   message.channel.sendEmbed(embed);

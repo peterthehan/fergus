@@ -27,11 +27,11 @@ exports.run = function(message, args) {
     embed = require('../util/embed.js').run()
       .setDescription('Type something!');
   } else {
-    if (args[1].length <= 10) {
+    if (args[1].length <= 16) {
       embed = getSquare(args[1]);
     } else {
       embed = require('../util/getError.js')
-        .run(args[1], 10, ' is too long of a message!');
+        .run(args[1], 16, ' is too long of a message!');
     }
   }
   message.channel.sendEmbed(embed);
