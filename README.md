@@ -42,6 +42,7 @@ Special thanks to the following individuals for their contributions to the proje
 - TheEggCake (event skins)
 
 ## Dependencies
+- [columnify 1.5.4](https://github.com/timoxley/columnify)
 - [discord.js 11.0.0](https://github.com/hydrabolt/discord.js)
 
 ## License
