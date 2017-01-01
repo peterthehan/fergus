@@ -14,7 +14,7 @@ function getHeroImageURL(hero, star, arr) {
 function getHeroHeader(hero, star, arr) {
   let str =
     arr[hero].form[star].name +
-    '(' + '★'.repeat(arr[hero].form[star].star) + ') | ';
+    ' (' + '★'.repeat(arr[hero].form[star].star) + ') | ';
   if (arr[hero].faction !== '') {
     str += arr[hero].faction + ', ';
   }

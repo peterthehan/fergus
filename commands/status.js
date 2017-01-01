@@ -19,6 +19,7 @@ function getTime(ms) {
   return str;
 }
 
+const moment = require('moment');
 exports.run = function(message, args) {
   const guilds = message.client.guilds.size;
   const channels = message.client.channels.size;
@@ -28,14 +29,16 @@ exports.run = function(message, args) {
     .addField(
       `Serving`,
       `${guilds} server${require('../util/getPlurality.js').run(guilds)}, ` +
-      `${channels} text channel${require('../util/getPlurality.js').run(channels)}, and ` +
+      `${channels} channel${require('../util/getPlurality.js').run(channels)}, and ` +
       `${users} user${require('../util/getPlurality.js').run(users)}`)
     .addField('Uptime', getTime(message.client.uptime), true)
     .addField(
       'Memory Usage',
       `${Math.round(process.memoryUsage().heapUsed / 1024 / 1024)} MB`,
       true)
-    .addField('Commands this Session', require('../util/count').getCount())
-    .setTimestamp(message.createdAt);
+    .addField(
+      'Commands this Session',
+      require('../util/count').getCount())
+    .setFooter(moment(message.createdAt).format('ddd MMM Do, YYYY [at] HH:mm:ss'));
   message.channel.sendEmbed(embed);
 };

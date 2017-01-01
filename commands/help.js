@@ -2,7 +2,7 @@ const COMMANDS = {
   'General': [
     'help',
     'about',
-    //'server',
+    'server',
     'status',
     'user',
   ],

@@ -5,6 +5,6 @@ module.exports = (client) => {
   console.log(
     `${client.user.username}#${client.user.discriminator}: serving ` +
     `${guilds} server${require('../util/getPlurality.js').run(guilds)}, ` +
-    `${channels} text channel${require('../util/getPlurality.js').run(channels)}, and ` +
+    `${channels} channel${require('../util/getPlurality.js').run(channels)}, and ` +
     `${users} user${require('../util/getPlurality.js').run(users)}`);
 };

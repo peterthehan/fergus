@@ -1,3 +1,4 @@
+const moment = require('moment');
 exports.run = function(message, args) {
   const guild = message.guild;
 
@@ -40,10 +41,14 @@ exports.run = function(message, args) {
       .addField('Members', `${guild.memberCount}${(guild.large ? ' (large)' : '')}`, true)
       .addField(`Bots (${botMember.length})`, botMember.join(', '), true)
       .addField('Server Owner', `${guild.owner} (${guild.ownerID})`, true)
-      .addField('Server Created On', guild.createdAt.toLocaleString(), true)
-      .setTimestamp(message.createdAt);
+      .addField(
+        'Server Created on',
+        `${moment(guild.createdAt).format('ddd MMM Do, YYYY [at] HH:mm:ss')}\n(${moment(guild.createdAt).fromNow()})`
+        ,
+        true)
+      .setFooter(moment(message.createdAt).format('ddd MMM Do, YYYY [at] HH:mm:ss'));
   } else {
-    embed.setDescription('Server information unavailable due to outage.');
+    embed.setDescription('Information unavailable due to server outage.');
     console.error('server outage');
   }
   message.channel.sendEmbed(embed);

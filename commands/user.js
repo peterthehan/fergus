@@ -1,3 +1,4 @@
+const moment = require('moment');
 exports.run = function(message, args) {
   const client = message.client;
   const guild = message.guild;
@@ -23,7 +24,7 @@ exports.run = function(message, args) {
       embed
         .addField(
           'Nickname',
-          guildMember.nickname === null ? 'None' : guildMember.nickname,
+          guildMember.nickname === null ? '-' : guildMember.nickname,
           true)
         .addField(
           `Roles (${guildMember.roles.array().length})`,
@@ -47,9 +48,12 @@ exports.run = function(message, args) {
           true)
         .addField(
           'Playing',
-          user.presence.game === null ? 'Nothing' : user.presence.game.name,
+          user.presence.game === null ? '-' : user.presence.game.name,
           true)
-        .addField('Account Created On', user.createdAt.toLocaleString(), true);
+        .addField(
+          'Joined Discord on',
+          `${moment(user.createdAt).format('ddd MMM Do, YYYY [at] HH:mm:ss')}\n(${moment(user.createdAt).fromNow()})`,
+          true);
     })
     .catch(error => console.error(`${error.name}: ${error.message}`));
 
@@ -57,8 +61,10 @@ exports.run = function(message, args) {
     .then(guildMember => {
       embed
         .addField(
-          'Joined Server On', guildMember.joinedAt.toLocaleString(), true)
-        .setTimestamp(message.createdAt);
+          'Joined Server on',
+          `${moment(guildMember.joinedAt).format('ddd MMM Do, YYYY [at] HH:mm:ss')}\n(${moment(guildMember.joinedAt).fromNow()})`,
+          true)
+        .setFooter(moment(message.createdAt).format('ddd MMM Do, YYYY [at] HH:mm:ss'));
       message.channel.sendEmbed(embed);
     })
     .catch(error => console.error(`${error.name}: ${error.message}`));

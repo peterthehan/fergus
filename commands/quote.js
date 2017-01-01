@@ -1,3 +1,4 @@
+const moment = require('moment');
 exports.run = function(message, args) {
   let embed = require('../util/embed.js').run();
   if (args.length === 1) {
@@ -9,7 +10,7 @@ exports.run = function(message, args) {
         `${message.author.username}#${message.author.discriminator}`,
         message.author.avatarURL)
       .setDescription(args.join(' ').slice(args[0].length))
-      .setTimestamp(message.createdAt);
+      .setFooter(moment(message.createdAt).format('ddd MMM Do, YYYY [at] HH:mm:ss'));
   }
   message.channel.sendEmbed(embed);
 };
