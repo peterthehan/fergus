@@ -28,7 +28,10 @@ exports.run = function(message, args) {
       .addField(`Text Channels (${textChannel.length})`, textChannel.join(', '), true)
       .addField(`Voice Channels (${voiceChannel.length})`, voiceChannel.join(', '), true)
       .addField(`Roles (${guild.roles.array().length})`, guild.roles.map(i => i.name).join(', '), true)
-      .addField(`Emojis (${guild.emojis.array().length})`, guild.emojis.array().join(' '), true)
+      .addField(
+        `Emojis (${guild.emojis.array().length})`, (guild.emojis.array().length === 0 ?
+        '\u200b' : guild.emojis.array().join(' ')),
+        true)
       .addField('Members', `${guild.memberCount}${(guild.large ? ' (large)' : '')}`, true)
       .addField(`Bots (${botMember.length})`, botMember.join(', '), true)
       .addField('Server Owner', `${guild.owner} (${guild.ownerID})`, true)
