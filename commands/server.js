@@ -3,10 +3,6 @@ exports.run = function(message, args) {
 
   let embed = require('../util/embed.js').run();
   if (guild.available) {
-    if (guild.iconURL !== null) {
-      embed.setThumbnail(guild.iconURL);
-    }
-
     let textChannel = [];
     let voiceChannel = [];
     guild.channels.map(i => {
@@ -23,15 +19,24 @@ exports.run = function(message, args) {
       }
     });
 
+    if (guild.iconURL !== null) {
+      embed.setThumbnail(guild.iconURL);
+    }
     embed
       .setTitle(`${guild.name} (${guild.id}) | ${guild.region}`)
       .addField(`Text Channels (${textChannel.length})`, textChannel.join(', '), true)
       .addField(`Voice Channels (${voiceChannel.length})`, voiceChannel.join(', '), true)
-      .addField(`Roles (${guild.roles.array().length})`, guild.roles.map(i => i.name).join(', '), true)
       .addField(
-        `Emojis (${guild.emojis.array().length})`, (guild.emojis.array().length === 0 ?
-        '\u200b' : guild.emojis.array().join(' ')),
-        true)
+        `Roles (${guild.roles.array().length})`,
+        guild.roles.map(i => i.name).join(', '),
+        guild.emojis.array().length !== 0);
+    if (guild.emojis.array().length !== 0) {
+      embed.addField(
+        `Emojis (${guild.emojis.array().length})`,
+        guild.emojis.array().join(' '),
+        true);
+    }
+    embed
       .addField('Members', `${guild.memberCount}${(guild.large ? ' (large)' : '')}`, true)
       .addField(`Bots (${botMember.length})`, botMember.join(', '), true)
       .addField('Server Owner', `${guild.owner} (${guild.ownerID})`, true)
