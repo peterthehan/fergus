@@ -26,8 +26,8 @@ exports.run = function(message, args) {
           guildMember.nickname === null ? 'None' : guildMember.nickname,
           true)
         .addField(
-          'Roles',
-          guildMember.roles.array().slice().map(index => index.name).join(', '),
+          `Roles (${guildMember.roles.array().length})`,
+          guildMember.roles.map(i => i.name).join(', '),
           true)
     })
     .catch(error => console.error(`${error.name}: ${error.message}`));
@@ -39,7 +39,7 @@ exports.run = function(message, args) {
       }
       embed
         .setThumbnail(user.avatarURL)
-        .setAuthor(`${user.username}#${user.discriminator} (${user.id})`)
+        .setTitle(`${user.username}#${user.discriminator} (${user.id})`)
         .addField(
           'Status',
           user.presence.status.toString().charAt(0).toUpperCase() +
