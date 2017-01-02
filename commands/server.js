@@ -1,3 +1,12 @@
+function checkRichEmbedFieldLength(str, delimiter = ' ') {
+  if (str.length > 1024) {
+    str = str.substr(0, 1024);
+    const index = str.lastIndexOf(delimiter);
+    str = str.substr(0, index) + '...';
+  }
+  return str;
+}
+
 const moment = require('moment');
 exports.run = function(message, args) {
   const guild = message.guild;
@@ -34,7 +43,7 @@ exports.run = function(message, args) {
     if (guild.emojis.array().length !== 0) {
       embed.addField(
         `Emojis (${guild.emojis.array().length})`,
-        guild.emojis.array().join(' '),
+        checkRichEmbedFieldLength(guild.emojis.array().join(' ')),
         true);
     }
     embed
