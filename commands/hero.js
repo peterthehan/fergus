@@ -156,7 +156,7 @@ function convertIndexToStar(hero, star, arr) {
 }
 
 const arr = require('../cqdb/heroes.json');
-exports.run = function(message, args) {
+module.exports.run = (message, args) => {
   args = args.join(' ').toLowerCase().split(' ');
   let embed;
   if (args.length === 1) {

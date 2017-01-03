@@ -1,4 +1,4 @@
-exports.run = function(message, args) {
+module.exports.run = (message, args) => {
   if (message.author.id === '206161807491072000') { // limit to me
     let messageCount = 2; // by default, delete one message above
     if (!isNaN(parseInt(args[1])) && parseInt(args[1]) >= messageCount) {

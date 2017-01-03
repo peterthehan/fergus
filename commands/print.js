@@ -1,4 +1,4 @@
-exports.run = function(message, args) {
+module.exports.run = (message, args) => {
   let embed = require('../util/embed.js').run();
   if (args.length === 1) {
     embed.setDescription('Type something!');

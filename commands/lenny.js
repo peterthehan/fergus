@@ -1,4 +1,4 @@
-exports.run = function(message, args) {
+module.exports.run = (message, args) => {
   message.delete();
   let times = 1;
   if (args.length > 1) {

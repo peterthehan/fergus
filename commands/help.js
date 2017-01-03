@@ -12,6 +12,7 @@ const COMMANDS = {
     'hero',
     //'portrait',
     'sbw',
+    'sheets',
     //'skill',
     'skin',
     'weapon',

@@ -21,7 +21,7 @@ function getTime(ms) {
 
 const moment = require('moment');
 const m = require('../events/message.js');
-exports.run = function(message, args) {
+module.exports.run = (message, args) => {
   const guilds = message.client.guilds.size;
   const channels = message.client.channels.size;
   const users = message.client.users.size;

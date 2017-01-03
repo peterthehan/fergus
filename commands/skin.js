@@ -52,7 +52,7 @@ function getSkinInfo(hero, arr) {
 }
 
 const arr = require('../cqdb/skins.json');
-exports.run = function(message, args) {
+module.exports.run = (message, args) => {
   let embed;
   if (args.length === 1) {
     embed = getSkinInstructions();

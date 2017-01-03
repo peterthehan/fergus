@@ -1,5 +1,5 @@
 const moment = require('moment');
-exports.run = function(message, args) {
+module.exports.run = (message, args) => {
   const client = message.client;
   const guild = message.guild;
   let id;

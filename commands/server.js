@@ -1,5 +1,5 @@
 const moment = require('moment');
-exports.run = function(message, args) {
+module.exports.run = (message, args) => {
   const guild = message.guild;
 
   let embed = require('../util/embed.js').run();

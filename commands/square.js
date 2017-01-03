@@ -21,7 +21,7 @@ function getSquare(str) {
   return embed;
 }
 
-exports.run = function(message, args) {
+module.exports.run = (message, args) => {
   let embed;
   if (args.length === 1) {
     embed = require('../util/embed.js').run()

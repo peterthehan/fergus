@@ -39,7 +39,7 @@ function getBreadInfo(bread, arr) {
 }
 
 const arr = require('../cqdb/bread.json');
-exports.run = function(message, args) {
+module.exports.run = (message, args) => {
   let embed;
   if (args.length === 1) {
     embed = getBreadInstructions();
