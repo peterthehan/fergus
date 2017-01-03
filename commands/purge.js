@@ -9,5 +9,7 @@ module.exports.run = (message, args) => {
     }
     message.channel.fetchMessages({limit: messageCount})
       .then((messages) => message.channel.bulkDelete(messages));
+  } else {
+    console.error('access denied');
   }
 };
