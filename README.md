@@ -3,9 +3,9 @@
     <img src="https://raw.githubusercontent.com/Johj/fergus/master/assets/fergus.png" title="Fergus"/>
   </p>
   <p>
-    <a href="https://discord.gg/WjEFnzC"><img src="https://discordapp.com/api/guilds/258167954913361930/widget.png" title="Development Server"/></a>
-    <a href="https://discord.gg/6TRnyhj"><img src="https://discordapp.com/api/guilds/206599473282023424/widget.png" title="Official Server"/></a>
-    <a href="https://david-dm.org/Johj/fergus"><img src="https://david-dm.org/Johj/fergus.svg" title="Dependencies"/></a>
+    <a href="https://discord.gg/WjEFnzC" title="development server"><img src="https://discordapp.com/api/guilds/258167954913361930/embed.png"/></a>
+    <a href="https://discord.gg/6TRnyhj" title="official server"><img src="https://discordapp.com/api/guilds/206599473282023424/embed.png"/></a>
+    <a href="https://david-dm.org/Johj/fergus" title="dependencies status"><img src="https://david-dm.org/Johj/fergus/status.svg"/></a>
   </p>
 </div>
 
