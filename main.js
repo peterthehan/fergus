@@ -2,8 +2,8 @@
 const discord = require('discord.js');
 const client = new discord.Client();
 
-// Run event handlers.
-require('./util/eventLoader.js')(client);
+// Load event handlers.
+require('./util/loadEvents.js')(client);
 
 // Refer to config_example.json.
 client.login(require('./config.json').token);

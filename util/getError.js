@@ -1,6 +1,5 @@
-exports.run = function(error, cap, message) {
+module.exports.run = (error, cap, message) => {
   const embed = require('./embed.js').run()
-    .setDescription(
-      require('./capStringLength.js').run(error, cap) + message);
+    .setDescription(require('./capStringLength.js').run(error, cap) + message);
   return embed;
 };

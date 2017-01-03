@@ -1,12 +1,16 @@
-let count = 0;
-module.exports = {
-  getCount: function() {
-    return count;
-  },
-  incrementCount: function() {
-    ++count;
-  },
-  resetCount: function() {
-    count = 0;
+class Count {
+  constructor() {
+    this.count = 0;
   }
-};
+  getCount() {
+    return this.count;
+  }
+  resetCount() {
+    this.count = 0;
+  }
+  incrementCount() {
+    ++this.count;
+  }
+}
+
+module.exports = Count;

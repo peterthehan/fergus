@@ -1,12 +1,3 @@
-function checkRichEmbedFieldLength(str, delimiter = ' ') {
-  if (str.length > 1024) {
-    str = str.substr(0, 1024);
-    const index = str.lastIndexOf(delimiter);
-    str = str.substr(0, index) + '...';
-  }
-  return str;
-}
-
 const moment = require('moment');
 exports.run = function(message, args) {
   const guild = message.guild;
@@ -34,21 +25,33 @@ exports.run = function(message, args) {
     }
     embed
       .setTitle(`${guild.name} (${guild.id}) | ${guild.region}`)
-      .addField(`Text Channels (${textChannel.length})`, textChannel.join(', '), true)
-      .addField(`Voice Channels (${voiceChannel.length})`, voiceChannel.join(', '), true)
+      .addField(
+        `Text Channels (${textChannel.length})`,
+        require('../util/checkFieldLength.js').run(textChannel.join(', ')),
+        true)
+      .addField(
+        `Voice Channels (${voiceChannel.length})`,
+        require('../util/checkFieldLength.js').run(voiceChannel.join(', ')),
+        true)
       .addField(
         `Roles (${guild.roles.array().length})`,
-        guild.roles.map(i => i.name).join(', '),
+        require('../util/checkFieldLength.js').run(guild.roles.map(i => i.name).join(', ')),
         guild.emojis.array().length !== 0);
     if (guild.emojis.array().length !== 0) {
       embed.addField(
         `Emojis (${guild.emojis.array().length})`,
-        checkRichEmbedFieldLength(guild.emojis.array().join(' ')),
+        require('../util/checkFieldLength.js').run(guild.emojis.array().join(' '), ' '),
         true);
     }
     embed
-      .addField('Members', `${guild.memberCount}${(guild.large ? ' (large)' : '')}`, true)
-      .addField(`Bots (${botMember.length})`, botMember.join(', '), true)
+      .addField(
+        'Members',
+        `${guild.memberCount}${(guild.large ? ' (large)' : '')}`,
+        true)
+      .addField(
+        `Bots (${botMember.length})`,
+        require('../util/checkFieldLength.js').run(botMember.join(', ')),
+        true)
       .addField('Server Owner', `${guild.owner} (${guild.ownerID})`, true)
       .addField(
         'Server Created on',

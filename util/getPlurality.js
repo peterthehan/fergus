@@ -1,3 +1,3 @@
-exports.run = function(n) {
+module.exports.run = (n) => {
   return (n !== 1 ? 's' : '');
 };
