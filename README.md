@@ -23,7 +23,7 @@ Fergus is a Crusaders Quest Discord server bot.
   [!bread](https://github.com/Johj/fergus/blob/master/commands/bread.js),
   [!goddess](https://github.com/Johj/fergus/blob/master/commands/goddess.js),
   [!hero](https://github.com/Johj/fergus/blob/master/commands/hero.js),
-  [!resource](https://github.com/Johj/fergus/blob/master/commands/resource.js),
+  [!links](https://github.com/Johj/fergus/blob/master/commands/links.js),
   [!sbw](https://github.com/Johj/fergus/blob/master/commands/sbw.js),
   [!skin](https://github.com/Johj/fergus/blob/master/commands/skin.js),
   [!weapon](https://github.com/Johj/fergus/blob/master/commands/weapon.js)
