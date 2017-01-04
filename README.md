@@ -40,9 +40,9 @@ See the [contributing guide](https://github.com/Johj/fergus/tree/master/contribu
 
 ### Special Thanks
 Special thanks to the following individuals for their contributions to the project:
-- Poiya (hero entries for all paladins, archers, hunters, and wizards)
+- Poiya (hero entries for all warriors (sans vivian, susanoo, and arita), paladins, archers, hunters, wizards, and the priests, orfeo, yuria, faust, and noel)
 - fioritura (hero portraits for vivian, lionel, mamba, and rachel and sbw abilities for all paladins, archers, hunters, wizards, and priests)
-- Fastrail (hero entries for all priests sans orfeo, yuria, faust, and noel)
+- Fastrail (hero entries for all priests (sans orfeo, yuria, faust, and noel))
 - F1r3man (hero entries for vivian, susanoo, and arita and event skins)
 - Protease (sbw abilities for all warriors)
 - Choveck (hero portrait for remi and event skins)
