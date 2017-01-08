@@ -9,7 +9,7 @@ module.exports.run = (message, args) => {
       .setAuthor(
         `${message.author.username}#${message.author.discriminator}`,
         message.author.avatarURL)
-      .setDescription(args.join(' ').slice(args[0].length))
+      .setDescription(args.join(' ').slice(args[0].length + 1))
       .setFooter(moment(message.createdAt).format('ddd MMM Do, YYYY [at] HH:mm:ss'));
   }
   message.channel.sendEmbed(embed);
