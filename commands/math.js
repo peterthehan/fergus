@@ -21,7 +21,7 @@ module.exports.run = (message, args) => {
         'Boolean',
         '`true and false` → `false`\n' +
         '`isPrime(7)` → `true`\n' +
-        '`not true → `false`',
+        '`not true` → `false`',
         true)
       .addField(
         'Units',
