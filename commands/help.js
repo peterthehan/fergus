@@ -2,6 +2,8 @@ const COMMANDS = {
   'General': [
     'help',
     'about',
+    'math',
+    'ping',
     'server',
     'status',
     'user',
@@ -16,10 +18,6 @@ const COMMANDS = {
     //'skill',
     'skin',
     'weapon',
-  ],
-  'Utility': [
-    'math',
-    'ping',
   ],
   'Miscellaneous': [
     'fergus',

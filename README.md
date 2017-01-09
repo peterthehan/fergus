@@ -16,6 +16,8 @@ Fergus is a Crusaders Quest Discord server bot.
 - General:
   [!help](https://github.com/Johj/fergus/blob/master/commands/help.js),
   [!about](https://github.com/Johj/fergus/blob/master/commands/about.js),
+  [!math](https://github.com/Johj/fergus/blob/master/commands/math.js),
+  [!ping](https://github.com/Johj/fergus/blob/master/commands/ping.js),
   [!server](https://github.com/Johj/fergus/blob/master/commands/server.js),
   [!status](https://github.com/Johj/fergus/blob/master/commands/status.js),
   [!user](https://github.com/Johj/fergus/blob/master/commands/user.js)
@@ -27,9 +29,6 @@ Fergus is a Crusaders Quest Discord server bot.
   [!sbw](https://github.com/Johj/fergus/blob/master/commands/sbw.js),
   [!skin](https://github.com/Johj/fergus/blob/master/commands/skin.js),
   [!weapon](https://github.com/Johj/fergus/blob/master/commands/weapon.js)
-- Utility:
-  [!math](https://github.com/Johj/fergus/blob/master/commands/weapon.js),
-  [!ping](https://github.com/Johj/fergus/blob/master/commands/ping.js)
 - Miscellaneous:
   [!fergus](https://github.com/Johj/fergus/blob/master/commands/fergus.js),
   [!lenny](https://github.com/Johj/fergus/blob/master/commands/lenny.js),
