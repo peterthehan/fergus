@@ -17,10 +17,13 @@ const COMMANDS = {
     'skin',
     'weapon',
   ],
+  'Utility': [
+    'math',
+    'ping',
+  ],
   'Miscellaneous': [
     'fergus',
     'lenny',
-    'ping',
     'print',
     'quote',
     'square',

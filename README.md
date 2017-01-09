@@ -27,10 +27,12 @@ Fergus is a Crusaders Quest Discord server bot.
   [!sbw](https://github.com/Johj/fergus/blob/master/commands/sbw.js),
   [!skin](https://github.com/Johj/fergus/blob/master/commands/skin.js),
   [!weapon](https://github.com/Johj/fergus/blob/master/commands/weapon.js)
+- Utility:
+  [!math](https://github.com/Johj/fergus/blob/master/commands/weapon.js),
+  [!ping](https://github.com/Johj/fergus/blob/master/commands/ping.js)
 - Miscellaneous:
   [!fergus](https://github.com/Johj/fergus/blob/master/commands/fergus.js),
   [!lenny](https://github.com/Johj/fergus/blob/master/commands/lenny.js),
-  [!ping](https://github.com/Johj/fergus/blob/master/commands/ping.js),
   [!print](https://github.com/Johj/fergus/blob/master/commands/print.js),
   [!quote](https://github.com/Johj/fergus/blob/master/commands/quote.js),
   [!square](https://github.com/Johj/fergus/blob/master/commands/square.js)
@@ -52,6 +54,7 @@ Special thanks to the following individuals for their contributions to the proje
 - [columnify 1.5.4](https://github.com/timoxley/columnify)
 - [discord.js 11.0.0](https://github.com/hydrabolt/discord.js)
 - [js-beautify 1.6.8](https://github.com/beautify-web/js-beautify)
+- [mathjs 3.8.1](https://github.com/josdejong/mathjs)
 - [moment 2.17.1](https://github.com/moment/moment/)
 
 ### License

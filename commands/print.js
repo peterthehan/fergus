@@ -4,7 +4,7 @@ module.exports.run = (message, args) => {
     embed.setDescription('Type something!');
   } else {
     message.delete();
-    embed.setDescription(args.join(' ').slice(args[0].length + 1));
+    embed.setDescription(args.slice(1).join(' '));
   }
   message.channel.sendEmbed(embed);
 };
