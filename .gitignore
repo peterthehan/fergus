@@ -2,6 +2,7 @@ assets/heroes/*/*
 !assets/heroes/*/*.png
 assets/portraits/*
 !assets/portraits/*.png
+assets/skins/*
 /cqdb
 /node_modules
 /authorize.txt
