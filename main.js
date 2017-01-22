@@ -1,6 +1,6 @@
 // Create bot.
-const discord = require('discord.js');
-const client = new discord.Client();
+const Discord = require('discord.js');
+const client = new Discord.Client();
 
 // Load event handlers.
 require('./util/loadEvents.js')(client);

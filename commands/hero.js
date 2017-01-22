@@ -95,9 +95,9 @@ function makeColumnifyData(hero, star, arr) {
 function getHeroStats(hero, star, arr, footer = '') {
   const columnify = require('columnify');
   const stats =
-    '`' + columnify(makeColumnifyData(hero, star, arr))
-      .replace(/(?:\r\n|\r|\n)/g, '`\n`') + '`';
-
+    '`' + columnify(makeColumnifyData(hero, star, arr), {paddingChr: ' '}) +
+    '`';
+console.log(stats);
   let embed = getHeroDataEmbedStarter(hero, star, arr)
     .setDescription(stats);
   if (footer !== '') {
