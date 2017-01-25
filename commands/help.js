@@ -24,6 +24,7 @@ const COMMANDS = {
     'lenny',
     'print',
     'quote',
+    'remindme',
     'square',
   ],
 };
