@@ -8,7 +8,7 @@ module.exports.run = (message, args) => {
   if (args.length === 1) {
     id = message.author.id;
   } else {
-    id = args[1].substr(2, args[1].toString().length - 3);
+    id = args[1].substring(3, args[1].toString().length - 1);
     guild.fetchMember(id)
       .then()
       .catch((error) => {
