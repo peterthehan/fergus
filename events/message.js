@@ -1,11 +1,11 @@
-const config = require('../config.json');
+const Config = require('../config.json');
 let Count = require('../util/count.js');
 let messageCount = new Count();
 let commandCount = new Count();
 module.exports = {
   message: (message) => {
     messageCount.incrementCount();
-    if (!message.content.startsWith(config.prefix) || message.author.bot) return;
+    if (!message.content.startsWith(Config.prefix) || message.author.bot) return;
 
     console.log(
       `${message.author.username}#${message.author.discriminator}: ` +
@@ -13,7 +13,7 @@ module.exports = {
 
     let args = message.content.split(' ');
     args[0].toLowerCase(); // case-insensitive
-    const command = args[0].slice(config.prefix.length);
+    const command = args[0].slice(Config.prefix.length);
     try {
       commandCount.incrementCount();
       const commandFile = require(`../commands/${command}`);

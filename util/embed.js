@@ -1,5 +1,5 @@
 module.exports.run = () => {
-  const discord = require('discord.js');
-  const embed = new discord.RichEmbed().setColor('#ebb74e');
+  const Discord = require('discord.js');
+  const embed = new Discord.RichEmbed().setColor('#ebb74e');
   return embed;
 };

@@ -83,3 +83,5 @@ This section concerns where it says `THIS`:
 - Copy the in-game text **AS IS**. This means: include all typos, missing
 punctuations, incorrect grammar, etc; don't put your own interpretation of the
 text.
+- Escape quotation marks inside text.
+  * e.g. `"background": "I am a "bird"",` → `"background": "I am a \"bird\"",`

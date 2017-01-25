@@ -1,6 +1,6 @@
 const moment = require('moment');
 module.exports.run = (message, args) => {
-  let embed = require('../util/embed.js').run();
+  const embed = require('../util/embed.js').run();
   if (args.length === 1) {
     embed.setDescription('Type something!');
   } else {

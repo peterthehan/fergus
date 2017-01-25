@@ -3,7 +3,8 @@ module.exports.run = (message, args) => {
     .setThumbnail(
       'https://raw.githubusercontent.com/Johj/fergus/master/assets/fergus.png')
     .setTitle('Fergus')
-    .setDescription('by Peter Han (Saarja)')
+    .setDescription(
+      `by ${message.guild.members.get('206161807491072000')} (Saarja)`)
     .addField(
       'Special Thanks to',
       'Poiya, fioritura, Fastrail, F1r3man, Protease, Choveck, TheEggCake')
