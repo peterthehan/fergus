@@ -3,9 +3,9 @@
     <img src="https://raw.githubusercontent.com/Johj/fergus/master/assets/fergus.png" title="Fergus"/>
   </p>
   <p>
-    <a href="https://discord.gg/WjEFnzC" title="development server"><img src="https://discordapp.com/api/guilds/258167954913361930/embed.png"/></a>
-    <a href="https://discord.gg/6TRnyhj" title="official server"><img src="https://discordapp.com/api/guilds/206599473282023424/embed.png"/></a>
-    <a href="https://david-dm.org/Johj/fergus" title="dependencies status"><img src="https://david-dm.org/Johj/fergus/status.svg"/></a>
+    <a href="https://discord.gg/WjEFnzC"><img src="https://discordapp.com/api/guilds/258167954913361930/embed.png" title="development server"/></a>
+    <a href="https://discord.gg/6TRnyhj"><img src="https://discordapp.com/api/guilds/206599473282023424/embed.png" title="official server"/></a>
+    <a href="https://david-dm.org/Johj/fergus"><img src="https://david-dm.org/Johj/fergus/status.png" title="dependencies status"/></a>
   </p>
 </div>
 
@@ -13,28 +13,29 @@
 Fergus is a Crusaders Quest Discord server bot.
 
 ### Commands
-- General:
+- Bot:
   [!help](https://github.com/Johj/fergus/blob/master/commands/help.js),
   [!about](https://github.com/Johj/fergus/blob/master/commands/about.js),
-  [!math](https://github.com/Johj/fergus/blob/master/commands/math.js),
-  [!ping](https://github.com/Johj/fergus/blob/master/commands/ping.js),
-  [!server](https://github.com/Johj/fergus/blob/master/commands/server.js),
-  [!status](https://github.com/Johj/fergus/blob/master/commands/status.js),
-  [!user](https://github.com/Johj/fergus/blob/master/commands/user.js)
+  [!status](https://github.com/Johj/fergus/blob/master/commands/status.js)
 - Game:
   [!bread](https://github.com/Johj/fergus/blob/master/commands/bread.js),
   [!goddess](https://github.com/Johj/fergus/blob/master/commands/goddess.js),
   [!hero](https://github.com/Johj/fergus/blob/master/commands/hero.js),
-  [!links](https://github.com/Johj/fergus/blob/master/commands/links.js),
   [!sbw](https://github.com/Johj/fergus/blob/master/commands/sbw.js),
   [!skin](https://github.com/Johj/fergus/blob/master/commands/skin.js),
   [!weapon](https://github.com/Johj/fergus/blob/master/commands/weapon.js)
+- Utility:
+  [!links](https://github.com/Johj/fergus/blob/master/commands/links.js),
+  [!math](https://github.com/Johj/fergus/blob/master/commands/math.js),
+  [!ping](https://github.com/Johj/fergus/blob/master/commands/ping.js),
+  [!remindme](https://github.com/Johj/fergus/blob/master/commands/remindme.js),
+  [!server](https://github.com/Johj/fergus/blob/master/commands/server.js),
+  [!user](https://github.com/Johj/fergus/blob/master/commands/user.js)
 - Miscellaneous:
   [!fergus](https://github.com/Johj/fergus/blob/master/commands/fergus.js),
   [!lenny](https://github.com/Johj/fergus/blob/master/commands/lenny.js),
   [!print](https://github.com/Johj/fergus/blob/master/commands/print.js),
   [!quote](https://github.com/Johj/fergus/blob/master/commands/quote.js),
-  [!remindme](https://github.com/Johj/fergus/blob/master/commands/remindme.js),
   [!square](https://github.com/Johj/fergus/blob/master/commands/square.js)
 
 ### Contributing

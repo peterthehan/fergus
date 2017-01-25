@@ -1,9 +1,16 @@
+# currently unneeded assets
 assets/heroes/*/*
 !assets/heroes/*/*.png
 assets/portraits/*
 !assets/portraits/*.png
 assets/skins/*
+
+# private repository
 /cqdb
+
+# packages
 /node_modules
+
+# privy to me
 /authorize.txt
 /config.json
