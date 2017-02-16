@@ -1,4 +1,4 @@
-module.exports.run = function(message, args) {
+module.exports.run = (message, args) => {
   const embed = require('../util/embed.js').run()
     .setDescription('pinging...');
   message.channel.sendEmbed(embed)
