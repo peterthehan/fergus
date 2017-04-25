@@ -21,6 +21,7 @@ module.exports.run = (message, args) => {
           output = error;
           console.error(error);
         }
+
         msg =
           '```js\nInput\n' + input + '```' +
           '```js\nOutput\n' + output + '```';
@@ -28,6 +29,7 @@ module.exports.run = (message, args) => {
     }
   } else {
     msg = 'Access denied.';
+    console.error(msg);
   }
   message.channel.sendMessage(msg);
 };

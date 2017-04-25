@@ -1,5 +1,6 @@
 const Sherlock = require('sherlockjs');
 const moment = require('moment');
+
 module.exports.run = (message, args) => {
   const embed = require('../util/embed.js').run();
   if (args.length === 1) {

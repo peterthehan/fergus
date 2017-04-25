@@ -1,9 +1,9 @@
-// Create bot.
+// create bot
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
-// Load event handlers.
+// load event handlers
 require('./util/loadEvents.js')(client);
 
-// Refer to config_example.json.
+// refer to config_example.json for setup
 client.login(require('./config.json').token);

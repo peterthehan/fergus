@@ -1,5 +1,8 @@
+const Author = require('../util/author.js');
+
 module.exports.run = (message, args) => {
-  if (message.author.id === '206161807491072000') { // limit to me
+  // limit command to author
+  if (message.author.id === new Author().toString()) {
     let messageCount = 2; // by default, delete one message above
     if (!isNaN(parseInt(args[1])) && parseInt(args[1]) >= messageCount) {
       messageCount = parseInt(args[1]) + 1;
@@ -10,6 +13,6 @@ module.exports.run = (message, args) => {
     message.channel.fetchMessages({limit: messageCount})
       .then((messages) => message.channel.bulkDelete(messages));
   } else {
-    console.error('access denied');
+    console.error('Access denied.');
   }
 };
