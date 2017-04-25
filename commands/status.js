@@ -39,8 +39,8 @@ module.exports.run = (message, args) => {
       'Process Heap Usage',
       `${heapUsed} MB of ${heapTotal} MB (${(100 * heapUsed / heapTotal).toFixed(2)}%)`,
       true)
-    .addField('Commands this Session', m.commandCount.getCount())
-    .addField('Messages this Session', m.messageCount.getCount())
+    .addField('Commands this Session', m.commandCount.toString())
+    .addField('Messages this Session', m.messageCount.toString())
     .setFooter(moment(message.createdAt).format('ddd MMM Do, YYYY [at] HH:mm:ss'));
   message.channel.sendEmbed(embed);
 };

@@ -1,14 +1,17 @@
 class Count {
-  constructor() {
-    this.count = 0;
+  constructor(count = 0) {
+    this.count = count;
   }
-  getCount() {
+
+  toString() {
     return this.count;
   }
-  resetCount() {
+
+  reset() {
     this.count = 0;
   }
-  incrementCount() {
+
+  increment() {
     ++this.count;
   }
 }

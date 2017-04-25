@@ -1,9 +1,9 @@
 {
   "name": "fergus",
   "version": "1.0.0",
-  "description": "Crusaders Quest Discord server bot",
+  "description": "Crusaders Quest Discord server bot.",
   "engines": {
-    "node": "7.4.0"
+    "node": "7.9.0"
   },
   "main": "fergus.js",
   "dependencies": {
@@ -15,7 +15,7 @@
     "sherlockjs": "^0.0.9"
   },
   "scripts": {
-    "test": "node main.js"
+    "test": "node index.js"
   },
   "repository": {
     "type": "git",

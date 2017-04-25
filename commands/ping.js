@@ -1,13 +1,12 @@
 module.exports.run = (message, args) => {
-  const embed = require('../util/embed.js').run()
-    .setDescription('pinging...');
-  message.channel.sendEmbed(embed)
+  message.channel
+    .sendMessage('pinging...')
     .then(newMessage => {
-      embed
-        .setDescription(
-          'pong! ' +
-          `ws: ${Math.round(message.client.ping)} ms, ` +
-          `http: ${newMessage.createdTimestamp - message.createdTimestamp} ms`);
-      newMessage.edit('', {embed});
-    });
+      newMessage.edit(
+        'pong! ' +
+        `ws: ${Math.round(message.client.ping)} ms, ` +
+        `http: ${newMessage.createdTimestamp - message.createdTimestamp} ms`
+      );
+    })
+    .catch(error => console.error(error));
 };

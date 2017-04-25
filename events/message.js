@@ -1,27 +1,29 @@
 const Config = require('../config.json');
-let Count = require('../util/count.js');
-let messageCount = new Count();
-let commandCount = new Count();
+const Count = require('../util/count.js');
+const output = require('../util/output.js');
+
+const messageCount = new Count();
+const commandCount = new Count();
+
 module.exports = {
-  message: (message) => {
-    messageCount.incrementCount();
-    if (!message.content.startsWith(Config.prefix) || message.author.bot) return;
+  message: message => {
+    messageCount.increment();
+    if (!message.content.startsWith(Config.prefix) || message.author.bot)
+      return;
 
-    console.log(
-      `${message.author.username}#${message.author.discriminator}: ` +
-      `(${message.guild.name}/#${message.channel.name}) ${message.content}`);
+    output.run(message); // console.log
 
-    let args = message.content.split(' ');
+    const args = message.content.split(' ');
     args[0].toLowerCase(); // case-insensitive
     const command = args[0].slice(Config.prefix.length);
+
     try {
-      commandCount.incrementCount();
-      const commandFile = require(`../commands/${command}`);
-      commandFile.run(message, args);
+      commandCount.increment();
+      require(`../commands/${command}`).run(message, args);
     } catch (error) {
-      console.error(`${error.name}: ${error.message}`);
+      console.error(error);
     }
   },
   messageCount,
-  commandCount
+  commandCount,
 };
