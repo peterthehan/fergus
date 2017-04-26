@@ -34,7 +34,11 @@ const COMMANDS = {
 const Config = require('../config.json');
 
 module.exports.run = (message, args) => {
-  let msg = '';
+  let embed = {
+    field: Object.keys(COMMANDS).forEach(key =>
+
+    )
+  }
   msg += '```';
   Object.keys(COMMANDS).forEach(key =>
     msg += key + ': ' + COMMANDS[key].map(i => Config.prefix + i).join(', ') + '\n'

@@ -14,8 +14,7 @@ module.exports = {
     output.run(message); // console.log
 
     const args = message.content.split(' ');
-    args[0].toLowerCase(); // case-insensitive
-    const command = args[0].slice(Config.prefix.length);
+    const command = args.shift().slice(Config.prefix.length).toLowerCase();
 
     try {
       commandCount.increment();

@@ -1,15 +1,9 @@
-class Author {
-  constructor(id = '206161807491072000') {
-    this.id = id;
-  }
+const Config = require('../config.json');
 
-  toString() {
-    return this.id;
-  }
-
-  mention(message) {
-    return message.client.users.get(this.id).toString();
-  }
+exports.id = (id = Config.authorId) => {
+  return id;
 }
 
-module.exports = Author;
+exports.mention = (message, id = Config.authorId) => {
+  return message.client.users.get(id).toString();
+}

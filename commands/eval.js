@@ -1,16 +1,16 @@
 const beautify = require('js-beautify').js_beautify;
-const Author = require('../util/author.js');
+const author = require('../util/author.js');
 
 module.exports.run = (message, args) => {
-  let msg = '';
+  let content = '';
 
   // limit command to author because eval is evil
-  if (message.author.id === new Author().toString()) {
-    if (args.length > 1) {
-      let input = args.slice(1).join(' ');
+  if (message.author.id === author.id()) {
+    if (args.length > 0) {
+      let input = args.join(' ');
 
       if (input.includes('token')) {
-        msg = 'This is a bad idea.';
+        content = 'This is a bad idea.';
       } else {
         input = beautify(input, { indent_size: 2 });
         let output = '';
@@ -22,14 +22,14 @@ module.exports.run = (message, args) => {
           console.error(error);
         }
 
-        msg =
+        content =
           '```js\nInput\n' + input + '```' +
           '```js\nOutput\n' + output + '```';
       }
     }
   } else {
-    msg = 'Access denied.';
-    console.error(msg);
+    content = 'Access denied.';
+    console.error(content);
   }
-  message.channel.sendMessage(msg);
+  message.channel.sendMessage(content);
 };

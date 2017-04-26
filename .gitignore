@@ -5,12 +5,19 @@ assets/portraits/*
 !assets/portraits/*.png
 assets/skins/*
 
-# private repository
-/cqdb
+# currently unneeded code
+commands/pick.js
+commands/portrait.js
+commands/trivia.js
+util/replaceAt.js
+util/shuffleArray.js
+
+# private
+cqdb
 
 # packages
-/node_modules
+node_modules
 
 # privy to me
-/authorize.txt
-/config.json
+authorize.txt
+config.json

@@ -1,68 +1,89 @@
-function getBreadInstructions() {
-  const embed = require('../util/embed.js').run()
-    .setTitle('!bread [list|<star>|<name>]')
-    .addField('list', 'List all breads.\n*e.g. !bread list*', true)
-    .addField('<star>', 'List all <star> breads.\n*e.g. !bread 4*', true)
-    .addField('<name>', 'Get bread information.\n*e.g. !bread macaroon*', true);
-  return embed;
+const bread = require('../cqdb/get_bread.json')['bread'];
+
+const error = require('../util/error.js');
+const fuzzy = require('../util/fuzzy.js');
+const list = require('../util/list.js');
+const resolve = require('../util/resolve.js');
+const stars = require('../util/stars.js');
+
+breadInstructions = () => {
+  return {
+    title: '!bread [list|<star>|<name>]',
+    fields: [
+      {
+        name: 'list',
+        value: 'List all breads.\n*e.g. !bread list*',
+        inline: true
+      },
+      {
+        name: '<star>',
+        value: 'List all <star> breads\n*e.g. !bread 4*',
+        inline: true
+      },
+      {
+        name: '<name>',
+        value: 'Get bread information\n*e.g. !bread macaron*',
+        inline: true
+      }
+    ]
+  };
 }
 
-function getBreadList(arr) {
-  const embed = require('../util/embed.js').run()
-    .setDescription(Object.keys(arr).join(', '));
-  return embed;
+breadList = () => {
+  return {
+    description: list.list(bread, 'name')
+  };
 }
 
-function getBreadStarList(star, arr) {
-  let t = [];
-  Object.keys(arr).forEach((key) => {
-    if (arr[key].star === star) {
-      t.push(key);
-    }
-  });
-  const embed = require('../util/embed.js').run()
-    .setTitle('(' + '★'.repeat(star) + ')')
-    .setDescription(t.join(', '));
-  return embed;
+breadStarList = (star) => {
+  return {
+    description: list.list(bread.filter(element => element['grade'] === star), 'name')
+  };
 }
 
-function getBreadInfo(bread, arr) {
-  const embed = require('../util/embed.js').run()
-    .setThumbnail(
-      'https://raw.githubusercontent.com/Johj/fergus/master/assets/bread/' +
-      bread + '.png')
-    .setTitle(arr[bread].name + ' (' + '★'.repeat(arr[bread].star) + ')')
-    .addField('Value', arr[bread].value, true)
-    .addField('Great rate', arr[bread].greatRate * 100 + '%', true)
-    .addField('Sell', arr[bread].sell, true);
-  return embed;
+breadInfo = (args) => {
+  const data = fuzzy.fuzzy(args, bread, 'name');
+  return {
+    image: '',
+    title: `${resolve.resolve(data, 'name')} (${stars.stars(data['grade'])})`,
+    fields: [
+      {
+        name: 'Value',
+        value: data['trainpoint'],
+        inline: true
+      },
+      {
+        name: 'Great rate',
+        value: `${data['critprob'] * 100}%`,
+        inline: true
+      },
+      {
+        name: 'Sell',
+        value: data['sellprice'],
+        inline: true
+      }
+    ]
+  };
 }
 
-const arr = require('../cqdb/bread.json');
 module.exports.run = (message, args) => {
-  let embed;
-  if (args.length === 1) {
-    embed = getBreadInstructions();
+  let content = '';
+  let embed = {};
+  if (args.length === 0) {
+    embed = breadInstructions();
   } else {
-    args = args.join(' ').toLowerCase().split(' ');
-    if (args[1].startsWith('list')) {
-      embed = getBreadList(arr);
-    } else if (!isNaN(parseInt(args[1]))) {
-      args[1] = parseInt(args[1]); // for js' weak typing
-      if (args[1] > 0 && args[1] < 7) {
-        embed = getBreadStarList(args[1], arr);
+    if (args[0].startsWith('list')) {
+      embed = breadList();
+    } else if (!isNaN(parseInt(args[0]))) {
+      args[0] = parseInt(args[0]); // for js' weak typing
+      if (args[0] >= 1 && args[0] <= 6) {
+        embed = breadStarList(args[0]);
       } else {
-        embed = require('../util/getError.js')
-          .run(args[1], 6, '-star breads do not exist!');
+        embed = error.error(args[0], '-star breads do not exist!');
       }
     } else {
-      if (arr[args[1]]) {
-        embed = getBreadInfo(args[1], arr);
-      } else {
-        embed = require('../util/getError.js')
-          .run(args[1], 19, ' is not a valid bread name!');
-      }
+      embed = breadInfo(args);
     }
   }
-  message.channel.sendEmbed(embed);
-};
+  message.channel.sendMessage(content, { embed: embed });
+}

@@ -1,3 +1,5 @@
+const pl = require('../util/determinePlurality.js');
+
 module.exports = (client) => {
   const guilds = client.guilds.size;
   const channels = client.channels.size;
@@ -5,7 +7,7 @@ module.exports = (client) => {
   client.user.setGame('!help');
   console.log(
     `${client.user.username}#${client.user.discriminator}: serving ` +
-    `${guilds} server${require('../util/getPlurality.js').run(guilds)}, ` +
-    `${channels} channel${require('../util/getPlurality.js').run(channels)}, and ` +
-    `${users} user${require('../util/getPlurality.js').run(users)}`);
+    `${guilds} server${pl.determinePlurality(guilds)}, ` +
+    `${channels} channel${pl.determinePlurality(channels)}, and ` +
+    `${users} user${pl.determinePlurality(users)}`);
 };
