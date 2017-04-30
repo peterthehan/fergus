@@ -7,7 +7,7 @@ const re = require('../util/resolve.js');
 
 heroInstructions = () => {
   return {
-    title: '!hero [<name>] [<stars>]',
+    title: '!hero [<name>] [<star>]',
     fields: [
       {
         name: '<name>',
@@ -15,8 +15,8 @@ heroInstructions = () => {
         inline: true
       },
       {
-        name: '<stars>',
-        value: 'Filter hero by stars.\n*e.g. !hero lee 6*',
+        name: '<star>',
+        value: 'Filter heroes by <star>.\n*e.g. !hero lee 6*',
         inline: true
       }
     ]

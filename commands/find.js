@@ -12,7 +12,7 @@ findInstructions = () => {
     fields: [
       {
         name: '[bread|hero] <name>',
-        value: `Find all instances of [bread|hero]'s name.\n*e.g. !find bread donut, !find hero lee*`,
+        value: `List all instances of [bread|hero]'s <name>.\n*e.g. !find bread donut, !find hero lee*`,
         inline: true
       }
     ]

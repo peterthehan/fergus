@@ -1,92 +1,130 @@
-function getWeaponInstructions() {
-  const embed = require('../util/embed.js').run()
-    .setTitle('!weapon [list|<star>|<class>|<name>]')
-    .addField('list', 'List all weapons.\n*e.g. !weapon list*', true)
-    .addField('<star>', 'List all <star> weapons.\n*e.g. !weapon 4*', true)
-    .addField('<class>', 'List all <class> weapons.\n*e.g. !weapon sword*', true)
-    .addField('<name>', 'Get weapon information.\n*e.g. !weapon redfalchion*');
-  return embed;
+const weapon = require('../Decrypted/get_weapon.json')['weapon']
+  .filter(element => element['rarity'] === 'NORMAL' || element['rarity'] === 'ANTIQUE' || (element['rarity'] === 'BAIT' && element['name'] !== 'NULL'));
+
+const de = require('../util/deepCopy.js');
+const fu = require('../util/fuzzy.js');
+const li = require('../util/list.js');
+const re = require('../util/resolve.js');
+
+weaponInstructions = () => {
+  return {
+    title: '!weapon [list|<star>|<name>]',//'!weapon [list|<star>|<category>|<name>]',
+    fields: [
+      {
+        name: 'list',
+        value: 'List all weapons.\n*e.g. !weapon list*',
+        inline: true
+      },
+      {
+        name: '<star>',
+        value: 'List all <star> weapons.\n*e.g. !weapon 4*',
+        inline: true
+      },
+      /*{
+        name: '<category>',
+        value: 'List all <category> weapons.\n*e.g. !weapon bow*',
+        inline: true
+      },*/
+      {
+        name: '<name>',
+        value: 'Get weapon information.\n*e.g. !weapon red falchion*',
+        inline: true
+      }
+    ]
+  };
 }
 
-function getWeaponList(arr) {
-  const embed = require('../util/embed.js').run()
-    .setDescription(Object.keys(arr).join(', '));
-  return embed;
+weaponList = () => {
+  return {
+    description: li.list(weapon, 'name')
+  };
 }
 
-function getWeaponStarList(star, arr) {
-  let t = [];
-  Object.keys(arr).forEach((key) => {
-    if (arr[key].star === star) {
-      t.push(key);
-    }
-  });
-  const embed = require('../util/embed.js').run()
-    .setTitle('(' + '★'.repeat(star) + ')')
-    .setDescription(t.join(', '));
-  return embed;
+weaponGradeList = (grade) => {
+  return {
+    title: `(${grade}★)`,
+    description: li.list(weapon.filter(element => element['grade'] === grade), 'name')
+  };
 }
 
-function getWeaponClassList(weaponClass, arr) {
-  let t = [];
-  Object.keys(arr).forEach((key) => {
-    if (arr[key].class.toLowerCase() === weaponClass) {
-      t.push(key);
-    }
-  });
-  const embed = require('../util/embed.js').run()
-    .setTitle(
-      weaponClass.charAt(0).toUpperCase() +
-      weaponClass.substr(1).toLowerCase())
-    .setDescription(t.join(', '));
-  return embed;
+/*weaponCategoryList = (category) => {
+  return {
+  };
+}*/
+
+weaponInfo = (name) => {
+  const data = de.deepCopy(fu.fuzzy(name, weapon, 'name'));
+
+  data['categoryid'] = 'TEXT_WEAPON_CATE_' + data['categoryid'].substring(4);
+  const conv = [data['convert_slot_1'], data['convert_slot_2'], data['convert_slot_3']]
+    .map(currentValue => re.resolve(modifyKey(currentValue)))
+    .filter(element => element !== null);
+
+  // parallel arrays
+  const names = [
+    'Category',
+    'Atk. Power',
+    'Atk. Speed',
+    'Range',
+    'Conversions',
+    'How to get'
+  ];
+  const values = [
+    re.resolve(data['categoryid']),
+    data['attdmg'].toString(),
+    data['attspd'].toString(),
+    data['range'].toString(),
+    conv.length === 0 ? null : conv.join(', '),
+    data['howtoget'] === null ? null : data['howtoget'].join(', ')
+  ];
+  const inlines = [true, true, true, true, true, false];
+
+  return {
+    image: '',
+    title: `${re.resolve(data['name'])} (${data['grade']}★)`,
+    fields: values.map((currentValue, index) => {
+      return {
+        name: names[index],
+        value: currentValue === null ? '-' : currentValue,
+        inline: inlines[index]
+      };
+    })
+  };
 }
 
-function getWeaponInfo(weapon, arr) {
-  let embed = require('../util/embed.js').run()
-    .setThumbnail(
-      'https://raw.githubusercontent.com/Johj/fergus/master/assets/weapons/' +
-      arr[weapon].class.toLowerCase() + '/' + weapon + '.png')
-    .setTitle(arr[weapon].name + ' (' + '★'.repeat(arr[weapon].star) + ') | ' + arr[weapon].class)
-    .addField('Atk. Power', arr[weapon].atkPower, true)
-    .addField('Atk. Speed', arr[weapon].atkSpeed, true);
-    if (arr[weapon].options.length !== 0) {
-      embed.addField('Options', arr[weapon].options.join(', '), true);
-    }
-    embed.addField('Acquire', arr[weapon].howToGet.join(', '), true);
-  return embed;
-}
-
-const arr = require('../cqdb/weapons.json');
-module.exports.run = (message, args) => {
-  let embed;
-  if (args.length === 1) {
-    embed = getWeaponInstructions();
+modifyKey = (value) => {
+  let conversion;
+  if (value === 'ATTACK') {
+    conversion = 'ATK';
+  } else if (value === 'DEFENSE') {
+    conversion = 'DEF';
+  } else if (value === 'UTILITY') {
+    conversion = 'UTL';
   } else {
-    args = args.join(' ').toLowerCase().split(' ');
-    if (args[1].startsWith('list')) {
-      embed = getWeaponList(arr);
-    } else if (!isNaN(parseInt(args[1]))) {
-      args[1] = parseInt(args[1]); // for js' weak typing
-      if (args[1] > 0 && args[1] < 7) {
-        embed = getWeaponStarList(args[1], arr);
+    return null;
+  }
+  return 'TEXT_WEAPON_CONVERT_INFO_' + conversion;
+}
+
+module.exports.run = (message, args) => {
+  const content = '';
+  let embed = {};
+
+  if (args.length === 0) {
+    embed = weaponInstructions();
+  } else {
+    if (args[0].startsWith('list')) {
+      embed = weaponList();
+    } else if (!isNaN(parseInt(args[0]))) {
+      args[0] = parseInt(args[0]); // for js' weak typing
+      if (args[0] >= 1 && args[0] <= 6) {
+        embed = weaponGradeList(args[0]);
       } else {
-        embed = require('../util/getError.js')
-          .run(args[1], 6, '-star weapons do not exist!');
+        embed = { title: 'Error', description: `${args[0]}-star weapons do not exist!` };
       }
     } else {
-      if (
-        args[1].startsWith('sword') || args[1].startsWith('hammer') ||
-        args[1].startsWith('bow') || args[1].startsWith('gun') ||
-        args[1].startsWith('staff') || args[1].startsWith('orb')) {
-        embed = getWeaponClassList(args[1], arr);
-      } else if (arr[args[1]]) {
-        embed = getWeaponInfo(args[1], arr);
-      } else {
-        embed = require('../util/getError.js')
-          .run(args[1], 15, ' is not a valid weapon class or name!');
-      }
+      embed = weaponInfo(args);
     }
   }
-  message.channel.sendEmbed(embed);
-};
+  message.channel.sendMessage(content, { embed: embed });
+}

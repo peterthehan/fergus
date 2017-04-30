@@ -1,10 +1,8 @@
-const bread = require('../cqdb/get_bread.json')['bread'];
+const bread = require('../Decrypted/get_bread.json')['bread'];
 
-const error = require('../util/error.js');
-const fuzzy = require('../util/fuzzy.js');
-const list = require('../util/list.js');
-const resolve = require('../util/resolve.js');
-const stars = require('../util/stars.js');
+const fu = require('../util/fuzzy.js');
+const li = require('../util/list.js');
+const re = require('../util/resolve.js');
 
 breadInstructions = () => {
   return {
@@ -17,12 +15,12 @@ breadInstructions = () => {
       },
       {
         name: '<star>',
-        value: 'List all <star> breads\n*e.g. !bread 4*',
+        value: 'List all <star> breads.\n*e.g. !bread 4*',
         inline: true
       },
       {
         name: '<name>',
-        value: 'Get bread information\n*e.g. !bread macaron*',
+        value: 'Get bread information.\n*e.g. !bread macaron*',
         inline: true
       }
     ]
@@ -31,21 +29,22 @@ breadInstructions = () => {
 
 breadList = () => {
   return {
-    description: list.list(bread, 'name')
+    description: li.list(bread, 'name')
   };
 }
 
-breadStarList = (star) => {
+breadGradeList = (grade) => {
   return {
-    description: list.list(bread.filter(element => element['grade'] === star), 'name')
+    title: `(${grade}★)`,
+    description: li.list(bread.filter(element => element['grade'] === grade), 'name')
   };
 }
 
-breadInfo = (args) => {
-  const data = fuzzy.fuzzy(args, bread, 'name');
+breadInfo = (name) => {
+  const data = fu.fuzzy(name, bread, 'name');
   return {
     image: '',
-    title: `${resolve.resolve(data, 'name')} (${stars.stars(data['grade'])})`,
+    title: `${re.resolve(data['name'])} (${data['grade']}★)`,
     fields: [
       {
         name: 'Value',
@@ -67,8 +66,9 @@ breadInfo = (args) => {
 }
 
 module.exports.run = (message, args) => {
-  let content = '';
+  const content = '';
   let embed = {};
+
   if (args.length === 0) {
     embed = breadInstructions();
   } else {
@@ -77,9 +77,9 @@ module.exports.run = (message, args) => {
     } else if (!isNaN(parseInt(args[0]))) {
       args[0] = parseInt(args[0]); // for js' weak typing
       if (args[0] >= 1 && args[0] <= 6) {
-        embed = breadStarList(args[0]);
+        embed = breadGradeList(args[0]);
       } else {
-        embed = error.error(args[0], '-star breads do not exist!');
+        embed = { title: 'Error', description: `${args[0]}-star breads do not exist!` };
       }
     } else {
       embed = breadInfo(args);

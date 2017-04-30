@@ -1,6 +1,6 @@
-exports.truncateString = (str, delimiter = ',') => {
-  if (str.length > 1024) {
-    str = str.substr(0, 1024);
+exports.truncateString = (str, delimiter = ',', limit = 1024) => {
+  if (str.length > limit) {
+    str = str.substr(0, limit);
     const index = str.lastIndexOf(delimiter);
     str = str.substr(0, index) + '...';
   }
