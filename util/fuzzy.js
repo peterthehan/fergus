@@ -1,18 +1,28 @@
 const levenshtein = require('fast-levenshtein');
+const fi = require('./filter.js');
+const re = require('./resolve.js');
 
-const resolve = require('./resolve.js');
-
-exports.fuzzy = (args, data, key) => {
+exports.fuzzy = (query, data, key) => {
   // case-insensitive
-  const q = args.join(' ').toLowerCase();
+  query = query.map(currentValue => currentValue.toLowerCase());
+
+  const filtered = fi.filter(query, data, key);
+
+  // reduce search space if there are exact matches found
+  if (filtered.length !== 0) {
+    data = filtered;
+  }
 
   // calculate normalized levenshtein distances
+  query = query.join(' ');
   const distances = data.map(currentValue => {
-    const currentArgs= resolve.resolve(currentValue, key).toLowerCase();
-    return levenshtein.get(q, currentArgs) / Math.max(q.length, currentArgs.length);
+    const resolved = re.resolve(currentValue[key]);
+    return resolved === null
+      ? 1 // largest distance possible
+      : levenshtein.get(query, resolved.toLowerCase()) / Math.max(query.length, resolved.length);
   });
 
-  // get index of the smallest distance
+  // get index of the smallest distance (best match) and return obj
   const index = distances.indexOf(Math.min(...distances));
   return data[index];
 }

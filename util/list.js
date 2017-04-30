@@ -1,5 +1,5 @@
 const resolve = require('../util/resolve.js');
 
-exports.list = (arr, key) => {
-  return arr.map(currentValue => resolve.resolve(currentValue, key)).join(', ');
+exports.list = (data, key) => {
+  return data.map(currentValue => resolve.resolve(currentValue, key)).join(', ');
 }

@@ -8,7 +8,7 @@ module.exports.run = (message, args) => {
       url: 'https://raw.githubusercontent.com/Johj/fergus/master/assets/fergus.png'
     },
     title: 'Fergus',
-    description: 'This bot is not affiliated, associated, authorized by, endorsed by, or in any way officially connected with HANGAME or NHN Entertainment Corp. or LoadComplete, or any of their subsidiaries or their affiliates.',
+    description: 'This bot is not affiliated, associated, authorized by, endorsed by, or in any way officially connected with NHN Entertainment Corp., or LoadComplete Inc., or any of their subsidiaries or their affiliates.',
     fields: [
       {
         name: 'Development Server',
