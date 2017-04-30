@@ -1,38 +1,33 @@
-function getSquare(str) {
-  let ret = '```';
+square = (str) => {
+  let description = '```';
   if (str.length === 1) {
-    ret += str;
+    description += str;
   } else {
-    ret += str.split('').join(' ') + '\n';
+    description += str.split('').join(' ') + '\n';
     if (str.length > 2) {
       for (let i = 1; i < str.length - 1; ++i) {
-        ret +=
+        description +=
           str.charAt(i) +
           ' '.repeat((str.length * 2) - 1 - 2) +
           str.charAt(str.length - i - 1) + '\n';
       }
     }
-    ret += str.split('').reverse().join(' ');
+    description += str.split('').reverse().join(' ');
   }
-  ret += '```';
+  description += '```';
 
-  const embed = require('../util/embed.js').run()
-    .setDescription(ret);
-  return embed;
+  return { description: description };
 }
 
-module.exports.run = (message, args) => {
-  let embed;
-  if (args.length === 1) {
-    embed = require('../util/embed.js').run()
-      .setDescription('Type something!');
+exports.run = (message, args) => {
+  const content = '';
+  let embed = {};
+
+  if (args.length === 0) {
+    embed = { description: 'Type something!' };
   } else {
-    if (args[1].length <= 16) {
-      embed = getSquare(args[1]);
-    } else {
-      embed = require('../util/getError.js')
-        .run(args[1], 16, ' is too long of a message!');
-    }
+    const str = args.join(' ');
+    embed = str.length <= 16 ? square(str) : { description: 'Message is too long!' };
   }
-  message.channel.sendEmbed(embed);
+  message.channel.sendMessage(content, { embed: embed });
 };

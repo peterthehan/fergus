@@ -1,68 +1,85 @@
 const moment = require('moment');
+const pl = require('../util/plurality.js');
+const tr = require('../util/truncateString.js');
 
-module.exports.run = (message, args) => {
+getChannels = (guild) => {
+  const textChannel = [];
+  const voiceChannel = [];
+  guild.channels
+    .map(currentValue => (currentValue.type === 'text' ? textChannel : voiceChannel).push(currentValue));
+  return [textChannel, voiceChannel];
+}
+
+getBotMembers = (guild) => {
+  return guild.members
+    .filter(currentValue => currentValue.user.bot)
+    .map(currentValue => '<@!' + currentValue.user.id + '>');
+}
+
+exports.run = (message, args) => {
+  const content = '';
+  let embed = {};
+
   const guild = message.guild;
-
-  let embed = require('../util/embed.js').run();
   if (guild.available) {
-    let textChannel = [];
-    let voiceChannel = [];
-    guild.channels.map(i => {
-      if (i.type === 'text') {
-        textChannel.push(i);
-      } else if (i.type === 'voice') {
-        voiceChannel.push(i);
-      }
-    });
-    let botMember = [];
-    guild.members.map(i => {
-      if (i.user.bot) {
-        botMember.push(i);
-      }
-    });
+    const channels = getChannels(guild);
+    const botMember = getBotMembers(guild);
 
-    if (guild.iconURL !== null) {
-      embed.setThumbnail(guild.iconURL);
+    // parallel arrays
+    const names = [
+      `Text channels (${channels[0].length})`,
+      `Voice channels (${channels[1].length})`,
+      `Roles (${guild.roles.array().length})`,
+      `Bots (${botMember.length})`,
+      `Members`,
+      'Server owner',
+      'Server created on'
+    ];
+    const values = [
+      channels[0].join(', '),
+      channels[1].join(', '),
+      guild.roles.map(currentValue => currentValue.name).join(', '),
+      botMember.join(', '),
+      `${guild.memberCount}${guild.large ? ' (large)' : ''}`,
+      `${guild.owner} (${guild.ownerID})`,
+      `${moment(guild.createdAt).format('ddd MMM Do, YYYY [at] HH:mm:ss')}\n(${moment(guild.createdAt).fromNow()})`
+    ].map(currentValue => tr.truncateString(currentValue));
+    const inlines = [
+      true,
+      true,
+      true,
+      true,
+      false,
+      true,
+      true
+    ];
+
+    const emojiLength = guild.emojis.array().length;
+    if (emojiLength !== 0) {
+      names.push(`Emojis (${emojiLength})`);
+      values.push(guild.emojis.array().join(' '));
+      inlines.push(false);
     }
-    embed
-      .setTitle(`${guild.name} (${guild.id}) | ${guild.region}`)
-      .addField(
-        `Text Channels (${textChannel.length})`,
-        require('../util/checkFieldLength.js').run(textChannel.join(', ')),
-        true)
-      .addField(
-        `Voice Channels (${voiceChannel.length})`,
-        require('../util/checkFieldLength.js').run(voiceChannel.join(', ')),
-        true)
-      .addField(
-        `Roles (${guild.roles.array().length})`,
-        require('../util/checkFieldLength.js').run(guild.roles.map(i => i.name).join(', ')),
-        guild.emojis.array().length !== 0);
-    if (guild.emojis.array().length !== 0) {
-      embed.addField(
-        `Emojis (${guild.emojis.array().length})`,
-        require('../util/checkFieldLength.js').run(guild.emojis.array().join(' '), ' '),
-        true);
-    }
-    embed
-      .addField(
-        'Members',
-        `${guild.memberCount}${(guild.large ? ' (large)' : '')}`,
-        true)
-      .addField(
-        `Bots (${botMember.length})`,
-        require('../util/checkFieldLength.js').run(botMember.join(', ')),
-        true)
-      .addField('Server Owner', `${guild.owner} (${guild.ownerID})`, true)
-      .addField(
-        'Server Created on',
-        `${moment(guild.createdAt).format('ddd MMM Do, YYYY [at] HH:mm:ss')}\n(${moment(guild.createdAt).fromNow()})`
-        ,
-        true)
-      .setFooter(moment(message.createdAt).format('ddd MMM Do, YYYY [at] HH:mm:ss'));
+
+    embed = {
+      thumbnail: {
+        url: guild.iconURL === null ? '' : guild.iconURL
+      },
+      title: `${guild.name} (${guild.id}) | ${guild.region}`,
+      fields: values.map((currentValue, index) => {
+        return {
+          name: names[index],
+          value: currentValue,
+          inline: inlines[index]
+        };
+      }),
+      footer: {
+        text: moment(message.createdAt).format('ddd MMM Do, YYYY [at] HH:mm:ss')
+      }
+    };
   } else {
-    embed.setDescription('Information unavailable due to server outage.');
+    embed = { title: 'Error', description: 'Server information unavailable due to outage.' };
     console.error('server outage');
   }
-  message.channel.sendEmbed(embed);
+  message.channel.sendMessage(content, { embed: embed });
 };

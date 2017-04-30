@@ -1,4 +1,8 @@
-function getTime(ms) {
+const moment = require('moment');
+const m = require('../events/message.js');
+const pl = require('../util/plurality.js');
+
+getTime = (ms) => {
   const date = new Date(ms);
   const days = date.getUTCDate() - 1;
   const hours = date.getUTCHours();
@@ -19,28 +23,46 @@ function getTime(ms) {
   return str;
 }
 
-const moment = require('moment');
-const m = require('../events/message.js');
-module.exports.run = (message, args) => {
+exports.run = (message, args) => {
+  const content = '';
+  let embed = {};
+
   const guilds = message.client.guilds.size;
   const channels = message.client.channels.size;
   const users = message.client.users.size;
+  const heapUsed = Math.round(process.memoryUsage().heapUsed / (1024 * 1024));
+  const heapTotal = Math.round(process.memoryUsage().heapTotal / (1024 * 1024));
 
-  const heapUsed = Math.round(process.memoryUsage().heapUsed / 1024 / 1024);
-  const heapTotal = Math.round(process.memoryUsage().heapTotal / 1024 / 1024);
-  const embed = require('../util/embed.js').run()
-    .addField(
-      `Serving`,
-      `${guilds} server${require('../util/getPlurality.js').run(guilds)}, ` +
-      `${channels} channel${require('../util/getPlurality.js').run(channels)}, and ` +
-      `${users} user${require('../util/getPlurality.js').run(users)}`)
-    .addField('Session Uptime', getTime(message.client.uptime), true)
-    .addField(
-      'Process Heap Usage',
-      `${heapUsed} MB of ${heapTotal} MB (${(100 * heapUsed / heapTotal).toFixed(2)}%)`,
-      true)
-    .addField('Commands this Session', m.commandCount.toString())
-    .addField('Messages this Session', m.messageCount.toString())
-    .setFooter(moment(message.createdAt).format('ddd MMM Do, YYYY [at] HH:mm:ss'));
-  message.channel.sendEmbed(embed);
+  // parallel arrays
+  const names = [
+    `Serving`,
+    'Session uptime',
+    'Process heap usage',
+    'Commands this session',
+    'Messages this session'
+  ];
+  const values = [
+    `${guilds} server${pl.plurality(guilds)}, ` +
+      `${channels} channel${pl.plurality(channels)}, and ` +
+      `${users} user${pl.plurality(users)}`,
+    getTime(message.client.uptime),
+    `${heapUsed} MB of ${heapTotal} MB (${(100 * heapUsed / heapTotal).toFixed(2)}%)`,
+    m.commandCount.toString(),
+    m.messageCount.toString()
+  ];
+  const inlines = [true, true, false, true, true];
+
+  embed = {
+    fields: values.map((currentValue, index) => {
+      return {
+        name: names[index],
+        value: currentValue,
+        inline: inlines[index]
+      };
+    }),
+    footer: {
+      text: moment(message.createdAt).format('ddd MMM Do, YYYY [at] HH:mm:ss')
+    }
+  };
+  message.channel.sendMessage(content, { embed: embed });
 };

@@ -6,16 +6,14 @@ assets/portraits/*
 assets/skins/*
 
 # currently unneeded code
-commands/pick.js
-commands/portrait.js
-commands/trivia.js
-util/replaceAt.js
-util/shuffleArray.js
+commands/!
+util/!
 
 # packages
 node_modules
 
 # privy to me
+TODO
 authorize.txt
 config.json
 contribute

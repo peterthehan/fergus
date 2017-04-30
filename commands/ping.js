@@ -1,4 +1,4 @@
-module.exports.run = (message, args) => {
+exports.run = (message, args) => {
   message.channel
     .sendMessage('pinging...')
     .then(newMessage => {

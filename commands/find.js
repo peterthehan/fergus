@@ -3,6 +3,7 @@ const character_visual = require('../Decrypted/get_character_visual.json')['char
 const weapon = require('../Decrypted/get_weapon.json')['weapon']
   .filter(element => element['rarity'] === 'NORMAL' || element['rarity'] === 'ANTIQUE' || (element['rarity'] === 'BAIT' && element['name'] !== 'NULL'));
 
+const co = require('../util/countInstances.js');
 const fi = require('../util/filter.js');
 const pl = require('../util/plurality.js');
 const re = require('../util/resolve.js');
@@ -27,7 +28,7 @@ find = (name, data) => {
   const filtered = fi.filter(name, data, 'name');
   const truncatedFilteredString = tr.truncateString(filtered.map(currentValue => re.resolve(currentValue['name'])).join(', '));
   return {
-    title: `Displaying ${(truncatedFilteredString.match(/,/g)||[]).length + 1} of ${filtered.length} result${pl.plurality(filtered.length)} found`,
+    title: `Displaying ${co.countInstances(truncatedFilteredString, ',') + 1} of ${filtered.length} result${pl.plurality(filtered.length)} found`,
     description: truncatedFilteredString
   };
 }

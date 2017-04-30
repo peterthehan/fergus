@@ -29,9 +29,9 @@ blockInfo = (name, grade = null) => {
   const statData = character_stat.filter(element => element['id'] === visualData['default_stat_id'])[0];
 
   // parallel arrays
-  let names = [re.resolve(statData['skill_name'])];
-  let values = [re.resolve(statData['skill_desc'])];
-  let inlines = [false];
+  const names = [re.resolve(statData['skill_name'])];
+  const values = [re.resolve(statData['skill_desc'])];
+  const inlines = [false];
 
   const skill_subname = re.resolve(statData['skill_subname']);
   const skill_subdesc = re.resolve(statData['skill_subdesc']);
