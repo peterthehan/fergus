@@ -1,6 +1,9 @@
 const re = require('./resolve.js');
 
 exports.filter = (query, data, key) => {
+  // case-insensitive
+  query = query.map(currentValue => currentValue.toLowerCase());
+
   // filter any match between data and query
   let filtered = query.map(currentValue => {
     return data.filter(element => {

@@ -3,9 +3,6 @@ const fi = require('./filter.js');
 const re = require('./resolve.js');
 
 exports.fuzzy = (query, data, key) => {
-  // case-insensitive
-  query = query.map(currentValue => currentValue.toLowerCase());
-
   const filtered = fi.filter(query, data, key);
 
   // reduce search space if there are exact matches found
@@ -14,7 +11,7 @@ exports.fuzzy = (query, data, key) => {
   }
 
   // calculate normalized levenshtein distances
-  query = query.join(' ');
+  query = query.join(' ').toLowerCase();
   const distances = data.map(currentValue => {
     const resolved = re.resolve(currentValue[key]);
     return resolved === null
