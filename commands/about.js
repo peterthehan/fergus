@@ -1,6 +1,6 @@
 const author = require('../util/author.js');
 
-module.exports.run = (message, args) => {
+exports.run = (message, args) => {
   let content = '';
   let embed = {};
   embed = {

@@ -65,7 +65,7 @@ breadInfo = (name) => {
   };
 }
 
-module.exports.run = (message, args) => {
+exports.run = (message, args) => {
   const content = '';
   let embed = {};
 

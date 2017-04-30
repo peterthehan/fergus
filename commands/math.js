@@ -1,17 +1,18 @@
 const math = require('mathjs');
 
-module.exports.run = (message, args) => {
-  let msg = '';
+exports.run = (message, args) => {
+  let content = '';
+  const embed = {};
 
-  if (args.length === 1) {
-    msg = 'Examples can be found here: http://mathjs.org/';
+  if (args.length === 0) {
+    content = 'Examples can be found here: http://mathjs.org/';
   } else {
     try {
-      msg = math.eval(args.slice(1).join(' ')).toString();
+      content = math.eval(args.join(' ')).toString();
     } catch (error) {
-      msg = error;
+      content = error;
       console.error(error);
     }
   }
-  message.channel.sendMessage(msg);
+  message.channel.sendMessage(content, { embed: embed });
 };

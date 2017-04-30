@@ -106,7 +106,7 @@ modifyKey = (value) => {
   return 'TEXT_WEAPON_CONVERT_INFO_' + conversion;
 }
 
-module.exports.run = (message, args) => {
+exports.run = (message, args) => {
   const content = '';
   let embed = {};
 

@@ -1,18 +1,22 @@
 const bread = require('../Decrypted/get_bread.json')['bread'];
 const character_visual = require('../Decrypted/get_character_visual.json')['character_visual'].filter(element => element['type'] === 'HERO'); // 662
+const weapon = require('../Decrypted/get_weapon.json')['weapon']
+  .filter(element => element['rarity'] === 'NORMAL' || element['rarity'] === 'ANTIQUE' || (element['rarity'] === 'BAIT' && element['name'] !== 'NULL'));
 
 const fi = require('../util/filter.js');
 const pl = require('../util/plurality.js');
 const re = require('../util/resolve.js');
 const tr = require('../util/truncateString.js');
 
+const options = '[bread|hero|weapon]';
+
 findInstructions = () => {
   return {
-    title: '!find [bread|hero] [<name>]',
+    title: `!find ${options} [<name>]`,
     fields: [
       {
-        name: '[bread|hero] <name>',
-        value: `List all instances of [bread|hero]'s <name>.\n*e.g. !find bread donut, !find hero lee*`,
+        name: `${options} <name>`,
+        value: `List all instances of ${options}'s <name>.\n*e.g. !find bread donut, !find hero lee*`,
         inline: true
       }
     ]
@@ -33,6 +37,8 @@ getData = (data) => {
     return character_visual;
   } else if (data === 'bread') {
     return bread;
+  } else if (data === 'weapon') {
+    return weapon;
   }
   return null;
 }
@@ -49,7 +55,7 @@ exports.run = (message, args) => {
     if (data !== null) {
       embed = find(args, data);
     } else {
-      embed = { title: 'Error', description: `${arg0} is not a valid parameter! Choose from [bread|hero].` };
+      embed = { title: 'Error', description: `${arg0} is not a valid parameter! Choose from ${options}.` };
     }
   }
 
