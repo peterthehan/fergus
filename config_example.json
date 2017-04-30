@@ -1,6 +1,8 @@
 {
   "token": "",
   "authorId": "206161807491072000",
+  "imagePath": "https://raw.githubusercontent.com/Johj/fergus/master/assets/",
+  "imageExt": ".png",
   "prefix": "!",
   "welcomePre": "Welcome to the server, ",
   "welcomePost": "!",

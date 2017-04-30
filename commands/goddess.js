@@ -1,48 +1,73 @@
-function getGoddessInstructions() {
-  const embed = require('../util/embed.js').run()
-    .setTitle('!goddess [list|<name>]')
-    .addField('list', 'List all goddesses.\n*e.g. !goddess list*', true)
-    .addField('<name>', 'Get goddess information.\n*e.g. !goddess sera*', true);
-  return embed;
-}
+const co = require('../util/countInstances.js');
 
-function getGoddessList(arr) {
-  const embed = require('../util/embed.js').run()
-    .setDescription(Object.keys(arr).join(', '));
-  return embed;
-}
+const goddess = require('../Decrypted/get_sister.json')['sister']
+  .filter(element => co.countInstances(element['id'], '_') === 1);
 
-function getGoddessInfo(goddess, arr) {
-  const embed = require('../util/embed.js').run()
-    .setThumbnail(
-      'https://raw.githubusercontent.com/Johj/fergus/master/assets/goddesses/' +
-      goddess + '.png')
-    .setTitle(arr[goddess].name)
-    .addField(
-      arr[goddess].skillName,
-      arr[goddess].skillDescription,
-      true
-    );
-  return embed;
-}
+const de = require('../util/deepCopy.js');
+const fu = require('../util/fuzzy.js');
+const im = require('../util/imagePath.js');
+const li = require('../util/list.js');
+const re = require('../util/resolve.js');
 
-const arr = require('../cqdb/goddesses.json');
-module.exports.run = (message, args) => {
-  let embed;
-  if (args.length === 1) {
-    embed = getGoddessInstructions();
-  } else {
-    args = args.join(' ').toLowerCase().split(' ');
-    if (args[1].startsWith('list')) {
-      embed = getGoddessList(arr);
-    } else {
-      if (arr[args[1]]) {
-        embed = getGoddessInfo(args[1], arr);
-      } else {
-        embed = require('../util/getError.js')
-          .run(args[1], 15, ' is not a valid goddess name!');
+goddessInstructions = () => {
+  return {
+    title: '!goddess [list|<name>]',
+    fields: [
+      {
+        name: 'list',
+        value: 'List all goddesses.\n*e.g. !goddess list*',
+        inline: true
+      },
+      {
+        name: '<name>',
+        value: 'Get goddess information.\n*e.g. !goddess sera*',
+        inline: true
       }
-    }
+    ]
+  };
+}
+
+goddessList = () => {
+  return {
+    description: li.list(goddess, 'name')
+  };
+}
+
+goddessInfo = (name) => {
+  const data = de.deepCopy(fu.fuzzy(name, goddess, 'name'));
+
+  // parallel arrays
+  const names = [
+    re.resolve(data['skillname'])
+  ];
+  const values = [
+    re.resolve(data['skilldesc'])
+  ];
+  const inlines = [true];
+
+  return {
+    thumbnail: {
+      url: im.imagePath('goddess/' + data['id'])
+    },
+    title: re.resolve(data['name']),
+    fields: values.map((currentValue, index) => {
+      return {
+        name: names[index] === null ? '-' : names[index],
+        value: currentValue === null ? '-' : currentValue,
+        inline: inlines[index]
+      };
+    })
+  };
+}
+
+exports.run = (message, args) => {
+  const content = '';
+  let embed = {};
+
+  if (args.length === 0) {
+    embed = goddessInstructions();
+  } else {
+    embed = args[0].startsWith('list') ? goddessList() : goddessInfo(args);
   }
-  message.channel.sendEmbed(embed);
-};
+  message.channel.sendMessage(content, { embed: embed });
+}
