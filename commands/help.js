@@ -1,48 +1,52 @@
-const COMMANDS = {
-  'Bot': [
-    'help',
-    'about',
-    'status',
-  ],
-  'Game': [
-    'bread',
-    'goddess',
-    'hero',
-    //'portrait',
-    'sbw',
-    //'skill',
-    'skin',
-    'weapon',
-  ],
-  'Utility': [
-    'links',
-    'math',
-    'ping',
-    'remindme',
-    'server',
-    'user',
-  ],
-  'Miscellaneous': [
-    'fergus',
-    'lenny',
-    'print',
-    'quote',
-    'square',
-  ],
-};
-
 const Config = require('../config.json');
 
-module.exports.run = (message, args) => {
-  let embed = {
-    field: Object.keys(COMMANDS).forEach(key =>
+exports.run = (message, args) => {
+  const content = '';
+  let embed = {};
 
-    )
+  const cmds = {
+    'Bot': [
+      'help',
+      'about',
+      'status',
+    ],
+    'Game': [
+      'block',
+      'bread',
+      'find',
+      'goddess',
+      'hero',
+      //'portrait',
+      //'sbw',
+      //'skill',
+      //'skin',
+      'weapon',
+    ],
+    'Utility': [
+      'links',
+      'math',
+      'ping',
+      //'remindme',
+      'server',
+      'user',
+    ],
+    'Miscellaneous': [
+      'fergus',
+      'lenny',
+      //'print',
+      //'quote',
+      'square',
+    ],
+  };
+
+  embed = {
+    title: 'Commands',
+    fields: Object.keys(cmds).map(currentValue => {
+      return {
+        name: currentValue,
+        value: cmds[currentValue].map(i => Config.prefix + i).join(', ')
+      };
+    })
   }
-  msg += '```';
-  Object.keys(COMMANDS).forEach(key =>
-    msg += key + ': ' + COMMANDS[key].map(i => Config.prefix + i).join(', ') + '\n'
-  );
-  msg += '```';
-  message.channel.sendMessage(msg);
+  message.channel.sendMessage(content, { embed: embed });
 };

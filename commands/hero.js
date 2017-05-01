@@ -3,6 +3,7 @@ const character_visual = require('../Decrypted/get_character_visual.json')['char
 
 const de = require('../util/deepCopy.js');
 const fu = require('../util/fuzzy.js');
+const im = require('../util/imagePath.js');
 const re = require('../util/resolve.js');
 
 heroInstructions = () => {
@@ -59,7 +60,7 @@ heroInfo = (name, grade = null) => {
 
   return {
     thumbnail: {
-      url: 'http://static.inven.co.kr/image_2011/site_image/game/minidata/25/' + visualData['face_tex'] + '_2.png'
+      url: im.imagePath('heroes/' + visualData['face_tex'])
     },
     title: `${re.resolve(visualData['name'])} (${statData['grade']}★)`,
     description: re.resolve(visualData['desc']),

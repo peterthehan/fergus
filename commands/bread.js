@@ -1,6 +1,7 @@
 const bread = require('../Decrypted/get_bread.json')['bread'];
 
 const fu = require('../util/fuzzy.js');
+const im = require('../util/imagePath.js');
 const li = require('../util/list.js');
 const re = require('../util/resolve.js');
 
@@ -43,7 +44,9 @@ breadGradeList = (grade) => {
 breadInfo = (name) => {
   const data = fu.fuzzy(name, bread, 'name');
   return {
-    image: '',
+    thumbnail: {
+      url: im.imagePath('bread/' + data['texture'])
+    },
     title: `${re.resolve(data['name'])} (${data['grade']}★)`,
     fields: [
       {

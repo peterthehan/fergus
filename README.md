@@ -18,43 +18,32 @@ Fergus is a Crusaders Quest Discord server bot.
   [!about](https://github.com/Johj/fergus/blob/master/commands/about.js),
   [!status](https://github.com/Johj/fergus/blob/master/commands/status.js)
 - Game:
+  [!block](https://github.com/Johj/fergus/blob/master/commands/block.js),
   [!bread](https://github.com/Johj/fergus/blob/master/commands/bread.js),
+  [!find](https://github.com/Johj/fergus/blob/master/commands/find.js),
   [!goddess](https://github.com/Johj/fergus/blob/master/commands/goddess.js),
   [!hero](https://github.com/Johj/fergus/blob/master/commands/hero.js),
-  [!sbw](https://github.com/Johj/fergus/blob/master/commands/sbw.js),
-  [!skin](https://github.com/Johj/fergus/blob/master/commands/skin.js),
   [!weapon](https://github.com/Johj/fergus/blob/master/commands/weapon.js)
 - Utility:
   [!links](https://github.com/Johj/fergus/blob/master/commands/links.js),
   [!math](https://github.com/Johj/fergus/blob/master/commands/math.js),
   [!ping](https://github.com/Johj/fergus/blob/master/commands/ping.js),
-  [!remindme](https://github.com/Johj/fergus/blob/master/commands/remindme.js),
   [!server](https://github.com/Johj/fergus/blob/master/commands/server.js),
   [!user](https://github.com/Johj/fergus/blob/master/commands/user.js)
 - Miscellaneous:
   [!fergus](https://github.com/Johj/fergus/blob/master/commands/fergus.js),
   [!lenny](https://github.com/Johj/fergus/blob/master/commands/lenny.js),
-  [!print](https://github.com/Johj/fergus/blob/master/commands/print.js),
-  [!quote](https://github.com/Johj/fergus/blob/master/commands/quote.js),
   [!square](https://github.com/Johj/fergus/blob/master/commands/square.js)
-
-### Contributing
-See the [contributing guide](https://github.com/Johj/fergus/tree/master/contribute).
 
 ### Special Thanks
 Special thanks to the following individuals for their contributions to the project:
-- Poiya (hero entries for all warriors (sans vivian, susanoo, and arita), paladins, archers, hunters, wizards, and the priests, orfeo, yuria, faust, and noel)
-- fioritura (hero portraits for vivian, lionel, mamba, and rachel and sbw abilities for all paladins, archers, hunters, wizards, and priests)
-- Fastrail (hero entries for all priests (sans orfeo, yuria, faust, and noel))
-- F1r3man (hero entries for vivian, susanoo, and arita and event skins)
-- Protease (sbw abilities for all warriors)
-- Choveck (hero portrait for remi and event skins)
-- TheEggCake (event skins)
+- Poiya, fioritura, Fastrail, F1r3man, Protease, Choveck, TheEggCake
 
 ### Dependencies
 - [columnify 1.5.4](https://github.com/timoxley/columnify)
 - [discord.js 11.0.0](https://github.com/hydrabolt/discord.js)
 - [js-beautify 1.6.8](https://github.com/beautify-web/js-beautify)
+- [fast-levenshtein 2.0.6](https://github.com/hiddentao/fast-levenshtein)
 - [mathjs 3.8.1](https://github.com/josdejong/mathjs)
 - [moment 2.17.1](https://github.com/moment/moment)
 - [sherlockjs 0.0.9](https://www.npmjs.com/package/sherlockjs)

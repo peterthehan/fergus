@@ -27,8 +27,12 @@ findInstructions = () => {
 find = (name, data) => {
   const filtered = fi.filter(name, data, 'name');
   const truncatedFilteredString = tr.truncateString(filtered.map(currentValue => re.resolve(currentValue['name'])).join(', '));
+
+  const title = filtered.length === 0
+    ? 'No results found'
+    : `Displaying ${co.countInstances(truncatedFilteredString, ',') + 1} of ${filtered.length} result${pl.plurality(filtered.length)} found`
   return {
-    title: `Displaying ${co.countInstances(truncatedFilteredString, ',') + 1} of ${filtered.length} result${pl.plurality(filtered.length)} found`,
+    title: title,
     description: truncatedFilteredString
   };
 }

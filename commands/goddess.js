@@ -47,7 +47,7 @@ goddessInfo = (name) => {
 
   return {
     thumbnail: {
-      url: im.imagePath('goddess/' + data['id'])
+      url: im.imagePath('goddesses/' + data['id'])
     },
     title: re.resolve(data['name']),
     fields: values.map((currentValue, index) => {
