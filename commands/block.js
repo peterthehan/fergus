@@ -12,7 +12,7 @@ blockInstructions = () => {
     fields: [
       {
         name: '<name>',
-        value: 'Get block skill and passive information.\n*e.g. !block lee*',
+        value: `Get hero's block information.\n*e.g. !block lee*`,
         inline: true
       },
       {

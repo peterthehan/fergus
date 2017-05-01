@@ -19,7 +19,7 @@ exports.run = (message, args) => {
       //'portrait',
       //'sbw',
       //'skill',
-      //'skin',
+      'skin',
       'weapon',
     ],
     'Utility': [
@@ -28,7 +28,7 @@ exports.run = (message, args) => {
       'ping',
       //'remindme',
       'server',
-      'user',
+      //'user',
     ],
     'Miscellaneous': [
       'fergus',
