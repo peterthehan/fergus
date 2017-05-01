@@ -1,14 +1,15 @@
 const weapon = require('../Decrypted/get_weapon.json')['weapon']
-  .filter(element => element['rarity'] === 'NORMAL' || element['rarity'] === 'ANTIQUE' || (element['rarity'] === 'BAIT' && element['name'] !== 'NULL'));
+  .filter(element => element['type'] === 'HERO' && element['reqhero'] === null && element['howtoget'] !== null); // 99 + 6 + 6 = 111
 
 const de = require('../util/deepCopy.js');
 const fu = require('../util/fuzzy.js');
+const im = require('../util/imagePath.js');
 const li = require('../util/list.js');
 const re = require('../util/resolve.js');
 
 weaponInstructions = () => {
   return {
-    title: '!weapon [list|<star>|<name>]',//'!weapon [list|<star>|<category>|<name>]',
+    title: '!weapon [list|<star>|<name>]', //'!weapon [list|<star>|<category>|<name>]',
     fields: [
       {
         name: 'list',
@@ -35,6 +36,8 @@ weaponInstructions = () => {
 }
 
 weaponList = () => {
+  const temp = li.list(weapon, 'name').split(', ');
+  console.log(weapon.map((i, index) => i['skin_tex'] + ' ' + temp[index] + '\n').join('\n'));
   return {
     description: li.list(weapon, 'name')
   };
@@ -80,7 +83,9 @@ weaponInfo = (name) => {
   const inlines = [true, true, true, true, true, false];
 
   return {
-    image: '',
+    thumbnail: {
+      url: im.imagePath('weapons/' + visualData['face_tex'])
+    },
     title: `${re.resolve(data['name'])} (${data['grade']}★)`,
     fields: values.map((currentValue, index) => {
       return {
