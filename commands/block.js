@@ -3,6 +3,7 @@ const character_visual = require('../Decrypted/get_character_visual.json')['char
 
 const de = require('../util/deepCopy.js');
 const fu = require('../util/fuzzy.js');
+const im = require('../util/imagePath.js');
 const re = require('../util/resolve.js');
 
 blockInstructions = () => {
@@ -29,7 +30,9 @@ blockInfo = (name, grade = null) => {
   const statData = character_stat.filter(element => element['id'] === visualData['default_stat_id'])[0];
 
   // parallel arrays
-  const names = [re.resolve(statData['skill_name'])];
+  const names = [
+    `${re.resolve(statData['skill_name'])} (Lv. ${statData['basicattack'].slice(-1)})`
+  ];
   const values = [re.resolve(statData['skill_desc'])];
   const inlines = [false];
 
@@ -43,7 +46,7 @@ blockInfo = (name, grade = null) => {
 
   return {
     thumbnail: {
-      url: ''
+      url: im.imagePath('blocks/' + statData['skill_icon'])
     },
     title: `${re.resolve(visualData['name'])} (${statData['grade']}★)`,
     fields: values.map((currentValue, index) => {
