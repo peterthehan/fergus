@@ -1,9 +1,7 @@
-const Config = require('../config.json');
-module.exports = (member) => {
-  let msg = Config.farewellPre + member + Config.farewellPost;
-  member.guild.channels.get(member.guild.id).sendMessage(msg);
+const config = require('../config.json');
 
-  console.log(
-    `${member.user.username}#${member.user.discriminator}: ` +
-    `left ${member.guild.name}`);
+module.exports = (member) => {
+  const embed = { description: config.farewellPre + member + config.farewellPost };
+  member.guild.channels.get(member.guild.id).send({ embed: embed });
+  console.log(`${member.guild.name}|${member.user.tag}: Left the server`);
 };

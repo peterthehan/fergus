@@ -1,7 +1,7 @@
-const Message = require('./message.js');
+const message = require('./message.js');
+
 module.exports = (client) => {
-  Message.messageCount.reset();
-  Message.commandCount.reset();
-  console.error(
-    `${client.user.username}#${client.user.discriminator}: reconnecting`);
+  message.messageCount.reset();
+  message.commandCount.reset();
+  console.log(`${client.user.tag}: Reconnecting`);
 };

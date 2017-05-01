@@ -1,3 +1,1 @@
-module.exports = (error) => {
-  console.error(`${error.name}: ${error.message}`);
-};
+module.exports = (error) => console.log(error);

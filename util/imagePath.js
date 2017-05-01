@@ -1,5 +1,3 @@
-const Config = require('../config.json');
+const config = require('../config.json');
 
-exports.imagePath = (path) => {
-  return Config.imagePath + path + Config.imageExt;
-}
+exports.imagePath = (path) => config.imagePath + path + config.imageExt;

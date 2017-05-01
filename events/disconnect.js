@@ -1,4 +1,1 @@
-module.exports = (client) => {
-  console.error(
-    `${client.user.username}#${client.user.discriminator}: disconnected`);
-};
+module.exports = (client) => console.log(`${client.user.tag}: Disconnected`);
