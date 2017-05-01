@@ -26,7 +26,8 @@ exports.run = (message, args) => {
       `[Volume 4](https://goo.gl/T1d729), ` +
       `[Volume 5](https://goo.gl/EikwMq), ` +
       `[Volume 6](https://goo.gl/rkXgXC), `,
-    `[Berry System](https://goo.gl/jbgmLa)`
+    `[Berry System](https://goo.gl/jbgmLa)\n` +
+      `[CQ Hero Illustrations](https://goo.gl/06hnsT) by /u/Cyloz`
   ];
 
   embed = {
