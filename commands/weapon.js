@@ -84,7 +84,7 @@ weaponInfo = (name) => {
 
   return {
     thumbnail: {
-      url: im.imagePath('weapons/' + visualData['face_tex'])
+      url: im.imagePath('weapons/' + data['face_tex'])
     },
     title: `${re.resolve(data['name'])} (${data['grade']}★)`,
     fields: values.map((currentValue, index) => {
