@@ -14,7 +14,7 @@ exports.run = (message, args) => {
       'goddess',
       'hero',
       //'portrait',
-      //'sbw',
+      'sbw',
       //'skill',
       'skin',
       'weapon',
