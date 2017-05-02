@@ -1,9 +1,9 @@
 const bread = require('../Decrypted/get_bread.json')['bread'];
 
-const fu = require('../util/fuzzy.js');
-const im = require('../util/imagePath.js');
-const li = require('../util/list.js');
-const re = require('../util/resolve.js');
+const fuzzy = require('../util/fuzzy.js');
+const imagePath = require('../util/imagePath.js');
+const list = require('../util/list.js');
+const resolve = require('../util/resolve.js');
 
 breadInstructions = () => {
   return {
@@ -29,47 +29,42 @@ breadInstructions = () => {
 }
 
 breadList = () => {
-  return {
-    description: li.list(bread, 'name')
-  };
+  return { description: list(bread, 'name') };
 }
 
 breadGradeList = (grade) => {
   return {
     title: `(${grade}★)`,
-    description: li.list(bread.filter(element => element['grade'] === grade), 'name')
+    description: list(bread.filter(element => element['grade'] === grade), 'name')
   };
 }
 
 breadInfo = (name) => {
-  const data = fu.fuzzy(name, bread, 'name');
+  const data = fuzzy(name, bread, 'name');
+
+  // parallel arrays
+  const names = [
+    'Value',
+    'Great rate',
+    'Sell'
+  ];
+  const values = [
+    data['trainpoint'],
+    `${data['critprob'] * 100}%`,
+    data['sellprice']
+  ];
+  const inlines = [true, true, true];
+
   return {
-    thumbnail: {
-      url: im.imagePath('bread/' + data['texture'])
-    },
-    title: `${re.resolve(data['name'])} (${data['grade']}★)`,
-    fields: [
-      {
-        name: 'Value',
-        value: data['trainpoint'],
-        inline: true
-      },
-      {
-        name: 'Great rate',
-        value: `${data['critprob'] * 100}%`,
-        inline: true
-      },
-      {
-        name: 'Sell',
-        value: data['sellprice'],
-        inline: true
-      }
-    ]
+    thumbnail: { url: imagePath('bread/' + data['texture']) },
+    title: `${resolve(data['name'])} (${data['grade']}★)`,
+    fields: values.map((currentValue, index) => {
+      return { name: names[index], value: currentValue, inline: inlines[index] };
+    })
   };
 }
 
 exports.run = (message, args) => {
-  const content = '';
   let embed = {};
 
   if (args.length === 0) {
@@ -78,15 +73,15 @@ exports.run = (message, args) => {
     if (args[0].startsWith('list')) {
       embed = breadList();
     } else if (!isNaN(parseInt(args[0]))) {
-      args[0] = parseInt(args[0]); // for js' weak typing
-      if (args[0] >= 1 && args[0] <= 6) {
-        embed = breadGradeList(args[0]);
-      } else {
-        embed = { title: 'Error', description: `${args[0]}-star breads do not exist!` };
-      }
+      args[0] = parseInt(args[0]);
+      embed = args[0] >= 1 && args[0] <= 6
+        ? breadGradeList(args[0])
+        : { title: 'Error', description: `${args[0]}-star breads do not exist!` };
     } else {
       embed = breadInfo(args);
     }
   }
-  message.channel.sendMessage(content, { embed: embed });
+
+  message.channel.send({ embed: embed });
+  return true;
 }

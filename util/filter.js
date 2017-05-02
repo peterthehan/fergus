@@ -1,13 +1,13 @@
-const re = require('./resolve.js');
+const resolve = require('./resolve.js');
 
-exports.filter = (query, data, key) => {
+module.exports = filter = (query, data, key) => {
   // case-insensitive
   query = query.map(currentValue => currentValue.toLowerCase());
 
   // filter any match between data and query
   let filtered = query.map(currentValue => {
     return data.filter(element => {
-      const resolved = re.resolve(element[key]);
+      const resolved = resolve(element[key]);
       return resolved === null
         ? false
         : resolved.toLowerCase().includes(currentValue);

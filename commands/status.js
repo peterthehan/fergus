@@ -1,35 +1,9 @@
-const moment = require('moment');
-const m = require('../events/message.js');
-const pl = require('../util/plurality.js');
-
-getTime = (ms) => {
-  const date = new Date(ms);
-  const days = date.getUTCDate() - 1;
-  const hours = date.getUTCHours();
-  const minutes = date.getUTCMinutes();
-  const seconds = date.getUTCSeconds();
-  const times = [days, hours, minutes, seconds];
-  const strings = ['day', 'hour', 'minute', 'second'];
-
-  let index = times.findIndex(i => i !== 0);
-  if (index === -1) {
-    index = times.length - 1;
-  }
-
-  let str = '';
-  for (i = index; i < strings.length; ++i) {
-    str += `${times[i]} ${strings[i]}${times[i] !== 1 ? 's ' : ' '}`
-  }
-  return str;
-}
+const humanizeDuration = require('humanize-duration');
+const me = require('../events/message.js');
+const plurality = require('../util/plurality.js');
+const timestamp = require('../util/timestamp.js');
 
 exports.run = (message, args) => {
-  const content = '';
-  let embed = {};
-
-  const guilds = message.client.guilds.size;
-  const channels = message.client.channels.size;
-  const users = message.client.users.size;
   const heapUsed = Math.round(process.memoryUsage().heapUsed / (1024 * 1024));
   const heapTotal = Math.round(process.memoryUsage().heapTotal / (1024 * 1024));
 
@@ -42,27 +16,23 @@ exports.run = (message, args) => {
     'Messages this session'
   ];
   const values = [
-    `${guilds} server${pl.plurality(guilds)}, ` +
-      `${channels} channel${pl.plurality(channels)}, and ` +
-      `${users} user${pl.plurality(users)}`,
-    getTime(message.client.uptime),
+    `${message.client.guilds.size} server${plurality(message.client.guilds.size)}, ` +
+      `${message.client.channels.size} channel${plurality(message.client.channels.size)}, and ` +
+      `${message.client.users.size} user${plurality(message.client.users.size)}`,
+    humanizeDuration(message.client.uptime),
     `${heapUsed} MB of ${heapTotal} MB (${(100 * heapUsed / heapTotal).toFixed(2)}%)`,
-    m.commandCount.toString(),
-    m.messageCount.toString()
+    me.commandCount.toString(),
+    me.messageCount.toString()
   ];
-  const inlines = [true, true, false, true, true];
+  const inlines = [false, false, false, true, true];
 
-  embed = {
+  const embed = {
     fields: values.map((currentValue, index) => {
-      return {
-        name: names[index],
-        value: currentValue,
-        inline: inlines[index]
-      };
+      return { name: names[index], value: currentValue, inline: inlines[index] };
     }),
-    footer: {
-      text: moment(message.createdAt).format('ddd MMM Do, YYYY [at] HH:mm:ss')
-    }
+    footer: { text: timestamp(message) }
   };
-  message.channel.sendMessage(content, { embed: embed });
+
+  message.channel.send({ embed: embed });
+  return true;
 };

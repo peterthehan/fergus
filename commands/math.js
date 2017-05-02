@@ -2,7 +2,6 @@ const math = require('mathjs');
 
 exports.run = (message, args) => {
   let content = '';
-  const embed = {};
 
   if (args.length === 0) {
     content = 'Examples can be found here: http://mathjs.org/';
@@ -11,8 +10,9 @@ exports.run = (message, args) => {
       content = math.eval(args.join(' ')).toString();
     } catch (error) {
       content = error;
-      console.error(error);
+      console.log(error);
     }
   }
-  message.channel.sendMessage(content, { embed: embed });
+  message.channel.send(content);
+  return true;
 };

@@ -1,13 +1,12 @@
-const co = require('../util/countInstances.js');
+const countInstances = require('../util/countInstances.js');
 
 const goddess = require('../Decrypted/get_sister.json')['sister']
-  .filter(element => co.countInstances(element['id'], '_') === 1);
+  .filter(element => countInstances(element['id'], '_') === 1); // 8
 
-const de = require('../util/deepCopy.js');
-const fu = require('../util/fuzzy.js');
-const im = require('../util/imagePath.js');
-const li = require('../util/list.js');
-const re = require('../util/resolve.js');
+const fuzzy = require('../util/fuzzy.js');
+const imagePath = require('../util/imagePath.js');
+const list = require('../util/list.js');
+const resolve = require('../util/resolve.js');
 
 goddessInstructions = () => {
   return {
@@ -28,40 +27,27 @@ goddessInstructions = () => {
 }
 
 goddessList = () => {
-  return {
-    description: li.list(goddess, 'name')
-  };
+  return { description: list(goddess, 'name') };
 }
 
 goddessInfo = (name) => {
-  const data = de.deepCopy(fu.fuzzy(name, goddess, 'name'));
+  const data = fuzzy(name, goddess, 'name');
 
   // parallel arrays
-  const names = [
-    re.resolve(data['skillname'])
-  ];
-  const values = [
-    re.resolve(data['skilldesc'])
-  ];
+  const names = [resolve(data['skillname'])];
+  const values = [resolve(data['skilldesc'])];
   const inlines = [true];
 
   return {
-    thumbnail: {
-      url: im.imagePath('goddesses/' + data['id'])
-    },
-    title: re.resolve(data['name']),
+    thumbnail: { url: imagePath('goddesses/' + data['id']) },
+    title: resolve(data['name']),
     fields: values.map((currentValue, index) => {
-      return {
-        name: names[index] === null ? '-' : names[index],
-        value: currentValue === null ? '-' : currentValue,
-        inline: inlines[index]
-      };
+      return { name: names[index], value: currentValue, inline: inlines[index] };
     })
   };
 }
 
 exports.run = (message, args) => {
-  const content = '';
   let embed = {};
 
   if (args.length === 0) {
@@ -69,5 +55,7 @@ exports.run = (message, args) => {
   } else {
     embed = args[0].startsWith('list') ? goddessList() : goddessInfo(args);
   }
-  message.channel.sendMessage(content, { embed: embed });
+
+  message.channel.send({ embed: embed });
+  return true;
 }

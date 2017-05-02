@@ -1,11 +1,11 @@
 const weapon = require('../Decrypted/get_weapon.json')['weapon']
   .filter(element => element['type'] === 'HERO' && element['reqhero'] === null && element['howtoget'] !== null); // 99 + 6 + 6 = 111
 
-const de = require('../util/deepCopy.js');
-const fu = require('../util/fuzzy.js');
-const im = require('../util/imagePath.js');
-const li = require('../util/list.js');
-const re = require('../util/resolve.js');
+const deepCopy = require('../util/deepCopy.js');
+const fuzzy = require('../util/fuzzy.js');
+const imagePath = require('../util/imagePath.js');
+const list = require('../util/list.js');
+const resolve = require('../util/resolve.js');
 
 weaponInstructions = () => {
   return {
@@ -21,7 +21,7 @@ weaponInstructions = () => {
         value: 'List all <star> weapons.\n*e.g. !weapon 4*',
         inline: true
       },
-      /*{
+      /*TODO {
         name: '<category>',
         value: 'List all <category> weapons.\n*e.g. !weapon bow*',
         inline: true
@@ -36,57 +36,48 @@ weaponInstructions = () => {
 }
 
 weaponList = () => {
-  const temp = li.list(weapon, 'name').split(', ');
+  const temp = list(weapon, 'name').split(', ');
   console.log(weapon.map((i, index) => i['skin_tex'] + ' ' + temp[index] + '\n').join('\n'));
-  return {
-    description: li.list(weapon, 'name')
-  };
+  return { description: list(weapon, 'name') };
 }
 
 weaponGradeList = (grade) => {
   return {
     title: `(${grade}★)`,
-    description: li.list(weapon.filter(element => element['grade'] === grade), 'name')
+    description: list(weapon.filter(element => element['grade'] === grade), 'name')
   };
 }
 
-/*weaponCategoryList = (category) => {
-  return {
-  };
-}*/
-
 weaponInfo = (name) => {
-  const data = de.deepCopy(fu.fuzzy(name, weapon, 'name'));
+  const data = deepCopy(fuzzy(name, weapon, 'name'));
 
-  data['categoryid'] = 'TEXT_WEAPON_CATE_' + data['categoryid'].substring(4);
+  // key does not resolve as-is, modification necessary
   const conv = [data['convert_slot_1'], data['convert_slot_2'], data['convert_slot_3']]
-    .map(currentValue => re.resolve(modifyKey(currentValue)))
+    .map(currentValue => resolve(modifyKey(currentValue)))
     .filter(element => element !== null);
 
   // parallel arrays
   const names = [
     'Category',
+    'Range',
     'Atk. Power',
     'Atk. Speed',
-    'Range',
     'Conversions',
     'How to get'
   ];
-  const values = [
-    re.resolve(data['categoryid']),
+  const values = [ // key does not resolve as-is, modification necessary
+    resolve('TEXT_WEAPON_CATE_' + data['categoryid'].substring(4)),
+    data['range'].toString(),
     data['attdmg'].toString(),
     data['attspd'].toString(),
-    data['range'].toString(),
     conv.length === 0 ? null : conv.join(', '),
     data['howtoget'] === null ? null : data['howtoget'].join(', ')
   ];
-  const inlines = [true, true, true, true, true, false];
+  const inlines = [true, true, true, true, false, false];
 
   return {
-    thumbnail: {
-      url: im.imagePath('weapons/' + data['face_tex'])
-    },
-    title: `${re.resolve(data['name'])} (${data['grade']}★)`,
+    thumbnail: { url: imagePath('weapons/' + data['face_tex']) },
+    title: `${resolve(data['name'])} (${data['grade']}★)`,
     fields: values.map((currentValue, index) => {
       return {
         name: names[index],
@@ -98,21 +89,18 @@ weaponInfo = (name) => {
 }
 
 modifyKey = (value) => {
-  let conversion;
+  const prefix = 'TEXT_WEAPON_CONVERT_INFO_';
   if (value === 'ATTACK') {
-    conversion = 'ATK';
+    return prefix + 'ATK';
   } else if (value === 'DEFENSE') {
-    conversion = 'DEF';
+    return prefix + 'DEF';
   } else if (value === 'UTILITY') {
-    conversion = 'UTL';
-  } else {
-    return null;
+    return prefix + 'UTL';
   }
-  return 'TEXT_WEAPON_CONVERT_INFO_' + conversion;
+  return null;
 }
 
 exports.run = (message, args) => {
-  const content = '';
   let embed = {};
 
   if (args.length === 0) {
@@ -121,15 +109,15 @@ exports.run = (message, args) => {
     if (args[0].startsWith('list')) {
       embed = weaponList();
     } else if (!isNaN(parseInt(args[0]))) {
-      args[0] = parseInt(args[0]); // for js' weak typing
-      if (args[0] >= 1 && args[0] <= 6) {
-        embed = weaponGradeList(args[0]);
-      } else {
-        embed = { title: 'Error', description: `${args[0]}-star weapons do not exist!` };
-      }
+      args[0] = parseInt(args[0]);
+      embed = args[0] >= 1 && args[0] <= 6
+        ? weaponGradeList(args[0])
+        : { title: 'Error', description: `${args[0]}-star weapons do not exist!` };
     } else {
       embed = weaponInfo(args);
     }
   }
-  message.channel.sendMessage(content, { embed: embed });
+
+  message.channel.send({ embed: embed });
+  return true;
 }

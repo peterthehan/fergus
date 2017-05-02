@@ -1,6 +1,6 @@
 exports.run = (message, args) => {
   message.channel
-    .sendMessage('pinging...')
+    .send('pinging...')
     .then(newMessage => {
       newMessage.edit(
         'pong! ' +
@@ -8,5 +8,6 @@ exports.run = (message, args) => {
         `http: ${newMessage.createdTimestamp - message.createdTimestamp} ms`
       );
     })
-    .catch(error => console.error(error));
+    .catch(error => console.log(error));
+  return true;
 };

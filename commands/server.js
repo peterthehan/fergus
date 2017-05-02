@@ -1,6 +1,7 @@
 const moment = require('moment');
-const pl = require('../util/plurality.js');
-const tr = require('../util/truncateString.js');
+const plurality = require('../util/plurality.js');
+const timestamp = require('../util/timestamp.js');
+const truncateString = require('../util/truncateString.js');
 
 getChannels = (guild) => {
   const textChannel = [];
@@ -17,8 +18,7 @@ getBotMembers = (guild) => {
 }
 
 exports.run = (message, args) => {
-  const content = '';
-  let embed = {};
+  let embed;
 
   const guild = message.guild;
   if (guild.available) {
@@ -43,17 +43,10 @@ exports.run = (message, args) => {
       `${guild.memberCount}${guild.large ? ' (large)' : ''}`,
       `${guild.owner} (${guild.ownerID})`,
       `${moment(guild.createdAt).format('ddd MMM Do, YYYY [at] HH:mm:ss')}\n(${moment(guild.createdAt).fromNow()})`
-    ].map(currentValue => tr.truncateString(currentValue));
-    const inlines = [
-      true,
-      true,
-      true,
-      true,
-      false,
-      true,
-      true
     ];
+    const inlines = [true, true, true, true, false, true, true];
 
+    // add emojis to parallel arrays if they exist
     const emojiLength = guild.emojis.array().length;
     if (emojiLength !== 0) {
       names.push(`Emojis (${emojiLength})`);
@@ -61,25 +54,22 @@ exports.run = (message, args) => {
       inlines.push(false);
     }
 
+    // ensure all values fit
+    values.map(currentValue => truncateString(currentValue));
+
     embed = {
-      thumbnail: {
-        url: guild.iconURL === null ? '' : guild.iconURL
-      },
+      thumbnail: { url: guild.iconURL === null ? '' : guild.iconURL },
       title: `${guild.name} (${guild.id}) | ${guild.region}`,
       fields: values.map((currentValue, index) => {
-        return {
-          name: names[index],
-          value: currentValue,
-          inline: inlines[index]
-        };
+        return { name: names[index], value: currentValue, inline: inlines[index] };
       }),
-      footer: {
-        text: moment(message.createdAt).format('ddd MMM Do, YYYY [at] HH:mm:ss')
-      }
+      footer: { text: timestamp(message) }
     };
   } else {
     embed = { title: 'Error', description: 'Server information unavailable due to outage.' };
-    console.error('server outage');
+    console.log('Server outage');
   }
-  message.channel.sendMessage(content, { embed: embed });
+
+  message.channel.send({ embed: embed });
+  return true;
 };

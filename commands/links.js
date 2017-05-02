@@ -1,7 +1,4 @@
 exports.run = (message, args) => {
-  const content = '';
-  let embed = {};
-
   // parallel arrays
   const names = [
     'Tier Lists',
@@ -30,14 +27,12 @@ exports.run = (message, args) => {
       `[CQ Hero Illustrations](https://goo.gl/06hnsT) by /u/Cyloz`
   ];
 
-  embed = {
+  const embed = {
     title: 'Useful Links',
     fields: values.map((currentValue, index) => {
-      return {
-        name: names[index],
-        value: currentValue
-      };
+      return { name: names[index], value: currentValue };
     })
   };
-  message.channel.sendMessage(content, { embed: embed });
+  message.channel.send({ embed: embed });
+  return true;
 };

@@ -1,9 +1,9 @@
 const costume = require('../Decrypted/get_costume.json')['costume'];
 
-const fu = require('../util/fuzzy.js');
-const im = require('../util/imagePath.js');
-const li = require('../util/list.js');
-const re = require('../util/resolve.js');
+const fuzzy = require('../util/fuzzy.js');
+const imagePath = require('../util/imagePath.js');
+const list = require('../util/list.js');
+const resolve = require('../util/resolve.js');
 
 skinInstructions = () => {
   return {
@@ -11,7 +11,7 @@ skinInstructions = () => {
     fields: [
       {
         name: '<name>',
-        value: `Get hero's skin information.\n*e.g. !skin lee*`,
+        value: `Get skin information.\n*e.g. !skin lee*`,
         inline: true
       }
     ]
@@ -19,9 +19,9 @@ skinInstructions = () => {
 }
 
 skinInfo = (name) => {
-  const data = fu.fuzzy(name, costume, 'costume_name');
+  const data = fuzzy(name, costume, 'costume_name');
 
-  // modify Type value for output
+  // modify 'Type' value for display
   const convert = {
     'AttackPower': 'Atk. Power',
     'CriticalDamage': 'Crit.Damage',
@@ -45,24 +45,18 @@ skinInfo = (name) => {
 
     return label + ': ' + value;
   });
+
   return {
-    thumbnail: {
-      url: im.imagePath('skins/' + data['face_tex'])
-    },
-    title: re.resolve(data['costume_name']),
+    thumbnail: { url: imagePath('skins/' + data['face_tex']) },
+    title: resolve(data['costume_name']),
     description: description.join('\n'),
     fields: values.map((currentValue, index) => {
-      return {
-        name: names[index],
-        value: currentValue,
-        inline: inlines[index]
-      };
+      return { name: names[index], value: currentValue, inline: inlines[index] };
     })
   };
 }
 
 exports.run = (message, args) => {
-  const content = '';
   let embed = {};
 
   if (args.length === 0) {
@@ -70,5 +64,7 @@ exports.run = (message, args) => {
   } else {
     embed = args[0].startsWith('list') ? skinList() : skinInfo(args);
   }
-  message.channel.sendMessage(content, { embed: embed });
+
+  message.channel.send({ embed: embed });
+  return true;
 }

@@ -1,3 +1,1 @@
-exports.plurality = (num) => {
-  return num !== 1 ? 's' : '';
-};
+module.exports = plurality = (num) => num !== 1 ? 's' : '';

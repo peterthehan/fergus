@@ -14,11 +14,15 @@ module.exports = {
 
     const args = message.content.split(' '); // only includes arguments
     const command = args.shift().slice(config.prefix.length).toLowerCase();
+
+    let commandSuccess = false;
     try {
-      commandCount.increment();
-      require(`../commands/${command}`).run(message, args);
+      commandSuccess = require(`../commands/${command}`).run(message, args);
     } catch (error) {
       console.log(error);
+    }
+    if (commandSuccess) {
+      commandCount.increment();
     }
   },
   messageCount,

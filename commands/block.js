@@ -1,10 +1,11 @@
 const character_stat = require('../Decrypted/get_character_stat.json')['character_stat'].filter(element => element['hero_type'] !== null); // 666
 const character_visual = require('../Decrypted/get_character_visual.json')['character_visual'].filter(element => element['type'] === 'HERO'); // 662
 
-const de = require('../util/deepCopy.js');
-const fu = require('../util/fuzzy.js');
-const im = require('../util/imagePath.js');
-const re = require('../util/resolve.js');
+const extractGrade = require('../util/extractGrade.js');
+const filterCharacterVisual = require('../util/filterCharacterVisual.js');
+const fuzzy = require('../util/fuzzy.js');
+const imagePath = require('../util/imagePath.js');
+const resolve = require('../util/resolve.js');
 
 blockInstructions = () => {
   return {
@@ -12,7 +13,7 @@ blockInstructions = () => {
     fields: [
       {
         name: '<name>',
-        value: `Get hero's block information.\n*e.g. !block lee*`,
+        value: `Get block information.\n*e.g. !block lee*`,
         inline: true
       },
       {
@@ -25,57 +26,39 @@ blockInstructions = () => {
 }
 
 blockInfo = (name, grade = null) => {
-  const data = grade === null ? character_visual : filterCharacter(grade);
-  const visualData = de.deepCopy(fu.fuzzy(name, data, 'name'));
+  const data = grade === null ? character_visual : filterCharacterVisual(grade);
+
+  const visualData = fuzzy(name, data, 'name');
   const statData = character_stat.filter(element => element['id'] === visualData['default_stat_id'])[0];
 
   // parallel arrays
-  const names = [
-    `${re.resolve(statData['skill_name'])} (Lv. ${statData['basicattack'].slice(-1)})`
-  ];
-  const values = [re.resolve(statData['skill_desc'])];
+  const names = [`${resolve(statData['skill_name'])} (Lv. ${statData['basicattack'].slice(-1)})`];
+  const values = [resolve(statData['skill_desc'])];
   const inlines = [false];
 
-  const skill_subname = re.resolve(statData['skill_subname']);
-  const skill_subdesc = re.resolve(statData['skill_subdesc']);
+  // add passive to parallel arrays if they exist
+  const skill_subname = resolve(statData['skill_subname']);
+  const skill_subdesc = resolve(statData['skill_subdesc']);
   if (skill_subname !== null && skill_subdesc !== null) {
-    names.push(skill_subname);
+    // key does not resolve as-is, modification necessary
+    const hero_type = resolve('TEXT_PASSIVE_SKILL_TOOLTIP_TYPE_' + statData['hero_type']);
+
+    names.push(`${skill_subname} (${hero_type})`);
     values.push(skill_subdesc);
     inlines.push(false);
   }
 
   return {
-    thumbnail: {
-      url: im.imagePath('blocks/' + statData['skill_icon'])
-    },
-    title: `${re.resolve(visualData['name'])} (${statData['grade']}★)`,
+    thumbnail: { url: imagePath('blocks/' + statData['skill_icon']) },
+    title: `${resolve(visualData['name'])} (${statData['grade']}★)`,
     fields: values.map((currentValue, index) => {
-      return {
-        name: names[index] === null ? '-' : names[index],
-        value: currentValue === null ? '-' : currentValue,
-        inline: inlines[index]
-      };
+      return { name: names[index], value: currentValue, inline: inlines[index] };
     })
   };
 }
 
-getGrade = (args) => {
-  if (args.length >= 2 && !isNaN(args[args.length - 1])) {
-    const potentialGrade = parseInt(args[args.length - 1]);
-    if (potentialGrade >= 1 && potentialGrade <= 6) {
-      args.pop();
-      return potentialGrade;
-    }
-  }
-  return null;
-}
-
-filterCharacter = (grade) => {
-  return character_visual.filter(element => parseInt(element['id'].match(/_\d/)[0].match(/\d/)[0]) === parseInt(grade));
-}
-
 exports.run = (message, args) => {
-  const content = '';
-  const embed = args.length === 0 ? blockInstructions() : blockInfo(args, getGrade(args));
-  message.channel.sendMessage(content, { embed: embed });
+  const embed = args.length === 0 ? blockInstructions() : blockInfo(args, extractGrade(args));
+  message.channel.send({ embed: embed });
+  return true;
 }

@@ -4,11 +4,11 @@ const costume = require('../Decrypted/get_costume.json')['costume'];
 const weapon = require('../Decrypted/get_weapon.json')['weapon']
   .filter(element => element['rarity'] === 'NORMAL' || element['rarity'] === 'ANTIQUE' || (element['rarity'] === 'BAIT' && element['name'] !== 'NULL'));
 
-const co = require('../util/countInstances.js');
-const fi = require('../util/filter.js');
-const pl = require('../util/plurality.js');
-const re = require('../util/resolve.js');
-const tr = require('../util/truncateString.js');
+const countInstances = require('../util/countInstances.js');
+const filter = require('../util/filter.js');
+const plurality = require('../util/plurality.js');
+const resolve = require('../util/resolve.js');
+const truncateString = require('../util/truncateString.js');
 
 const options = '[bread|hero|skin|weapon]';
 
@@ -18,7 +18,7 @@ findInstructions = () => {
     fields: [
       {
         name: `${options} <name>`,
-        value: `List all instances of ${options}'s <name>.\n*e.g. !find bread donut, !find hero lee*`,
+        value: `List all occurences of <name>.\n*e.g. !find bread donut, !find skin halloween*`,
         inline: true
       }
     ]
@@ -26,15 +26,21 @@ findInstructions = () => {
 }
 
 find = (name, data) => {
-  const filtered = fi.filter(name, data[0], data[1]);
-  const truncatedFilteredString = tr.truncateString(filtered.map(currentValue => re.resolve(currentValue[data[1]])).join(', '));
+  const filtered = filter(name, data[0], data[1]);
 
-  const title = filtered.length === 0
-    ? 'No results found'
-    : `Displaying ${co.countInstances(truncatedFilteredString, ',') + 1} of ${filtered.length} result${pl.plurality(filtered.length)} found`
+  let title;
+  let description;
+  if (filtered.length === 0) {
+    description = '';
+    title = 'No results found!';
+  } else {
+    description = truncateString(filtered.map(currentValue => resolve(currentValue[data[1]])).join(', '));
+    title = `Displaying ${countInstances(description, ',') + 1} of ${filtered.length} result${plurality(filtered.length)} found`;
+  }
+
   return {
     title: title,
-    description: truncatedFilteredString
+    description: description
   };
 }
 
@@ -52,7 +58,6 @@ getData = (data) => {
 }
 
 exports.run = (message, args) => {
-  const content = '';
   let embed = {};
 
   if (args.length === 0) {
@@ -60,12 +65,11 @@ exports.run = (message, args) => {
   } else {
     const arg0 = args.shift();
     const data = getData(arg0);
-    if (data !== null) {
-      embed = find(args, data);
-    } else {
-      embed = { title: 'Error', description: `${arg0} is not a valid parameter! Choose from ${options}.` };
-    }
+    embed = data !== null
+      ? find(args, data)
+      : { title: 'Error', description: `${arg0} is not a valid parameter! Choose from ${options}.` };
   }
 
-  message.channel.sendMessage(content, { embed: embed });
+  message.channel.send({ embed: embed });
+  return true;
 }

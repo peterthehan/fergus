@@ -20,14 +20,15 @@ square = (str) => {
 }
 
 exports.run = (message, args) => {
-  const content = '';
   let embed = {};
 
   if (args.length === 0) {
-    embed = { description: 'Type something!' };
+    embed = { title: 'Type something!' };
   } else {
     const str = args.join(' ');
-    embed = str.length <= 16 ? square(str) : { description: 'Message is too long!' };
+    embed = str.length <= 16 ? square(str) : { title: 'Error', description: 'Message is too long!' };
   }
-  message.channel.sendMessage(content, { embed: embed });
+  
+  message.channel.send({ embed: embed });
+  return true;
 };

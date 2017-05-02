@@ -1,4 +1,5 @@
 const requireEvent = (event) => require(`../events/${event}`);
+
 module.exports = (client) => {
   client.on('disconnect', () => requireEvent('disconnect')(client));
   client.on('guildMemberAdd', requireEvent('guildMemberAdd'));

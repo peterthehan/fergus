@@ -1,9 +1,6 @@
-const Config = require('../config.json');
+const config = require('../config.json');
 
 exports.run = (message, args) => {
-  const content = '';
-  let embed = {};
-
   const cmds = {
     'Bot': [
       'help',
@@ -39,14 +36,15 @@ exports.run = (message, args) => {
     ],
   };
 
-  embed = {
+  const embed = {
     title: 'Commands',
     fields: Object.keys(cmds).map(currentValue => {
       return {
         name: currentValue,
-        value: cmds[currentValue].map(i => Config.prefix + i).join(', ')
+        value: cmds[currentValue].map(i => config.prefix + i).join(', ')
       };
     })
   }
-  message.channel.sendMessage(content, { embed: embed });
+  message.channel.send({ embed: embed });
+  return true;
 };

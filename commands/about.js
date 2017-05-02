@@ -1,35 +1,30 @@
 const author = require('../util/author.js');
 
 exports.run = (message, args) => {
-  let content = '';
-  let embed = {};
-  embed = {
-    thumbnail: {
-      url: 'https://raw.githubusercontent.com/Johj/fergus/master/assets/fergus.png'
-    },
+  // parallel arrays
+  const names = [
+    'Development Server',
+    'Official Server',
+    'GitHub',
+    '\u200b'
+  ];
+  const values = [
+    'https://discord.gg/WjEFnzC',
+    'https://discord.gg/6TRnyhj',
+    'https://github.com/Johj/fergus',
+    `Made with love by ${author.mention(message)}.`
+  ];
+  const inlines = [true, true, false, false];
+
+  const embed = {
+    thumbnail: { url: 'https://raw.githubusercontent.com/Johj/fergus/master/assets/fergus.png' },
     title: 'Fergus',
     description: 'This bot is not affiliated, associated, authorized by, endorsed by, or in any way officially connected with NHN Entertainment Corp., or LoadComplete Inc., or any of their subsidiaries or their affiliates.',
-    fields: [
-      {
-        name: 'Development Server',
-        value: 'https://discord.gg/WjEFnzC',
-        inline: true
-      },
-      {
-        name: 'Official Server',
-        value: 'https://discord.gg/6TRnyhj',
-        inline: true
-      },
-      {
-        name: 'GitHub',
-        value: 'https://github.com/Johj/fergus',
-        inline: true
-      },
-      {
-        name: '\u200b',
-        value: `Made with love by ${author.mention(message)}.`
-      }
-    ]
+    fields: values.map((currentValue, index) => {
+      return { name: names[index], value: currentValue, inline: inlines[index] };
+    })
   };
-  message.channel.sendMessage(content, { embed: embed });
+
+  message.channel.send({ embed: embed });
+  return true;
 };

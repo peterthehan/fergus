@@ -1,5 +1,5 @@
-const re = require('../util/resolve.js');
+const resolve = require('../util/resolve.js');
 
-exports.list = (data, key) => {
-  return data.map(currentValue => re.resolve(currentValue[key])).join(', ');
+module.exports = list = (data, key) => {
+  return data.map(currentValue => resolve(currentValue[key])).join(', ');
 }

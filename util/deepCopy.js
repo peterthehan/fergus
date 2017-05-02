@@ -1,3 +1,1 @@
-exports.deepCopy = (obj) => {
-  return JSON.parse(JSON.stringify(obj));
-}
+module.exports = deepCopy = (obj) => JSON.parse(JSON.stringify(obj));

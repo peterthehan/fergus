@@ -3,6 +3,8 @@ assets/blocks/!
 assets/bread/!
 assets/heroes/!
 assets/portraits
+assets/sbws
+assets/skills
 assets/skins
 
 # currently unneeded code
@@ -13,8 +15,8 @@ util/!
 node_modules
 
 # privy to me
-TODO
-authorize.txt
-config.json
 contribute
 Decrypted
+authorize.txt
+config.json
+TODO

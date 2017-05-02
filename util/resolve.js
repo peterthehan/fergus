@@ -17,7 +17,7 @@ r = (value) => {
   return null;
 }
 
-exports.resolve = (value) => {
+module.exports = resolve = (value) => {
   return value !== null && value.constructor === Array
     ? value.map(currentValue => r(currentValue))
     : r(value);
