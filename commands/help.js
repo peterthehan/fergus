@@ -39,12 +39,10 @@ exports.run = (message, args) => {
   const embed = {
     title: 'Commands',
     fields: Object.keys(cmds).map(currentValue => {
-      return {
-        name: currentValue,
-        value: cmds[currentValue].map(i => config.prefix + i).join(', ')
-      };
+      return { name: currentValue, value: cmds[currentValue].map(i => config.prefix + i).join(', ') };
     })
   }
+
   message.channel.send({ embed: embed });
   return true;
 };
