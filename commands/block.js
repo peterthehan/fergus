@@ -1,7 +1,7 @@
 const character_stat = require('../Decrypted/get_character_stat.json')['character_stat'].filter(element => element['hero_type'] !== null); // 666
 const character_visual = require('../Decrypted/get_character_visual.json')['character_visual'].filter(element => element['type'] === 'HERO'); // 662
 
-const extractGrade = require('../util/extractGrade.js');
+const extractGradeArg = require('../util/extractGradeArg.js');
 const filterCharacterVisual = require('../util/filterCharacterVisual.js');
 const fuzzy = require('../util/fuzzy.js');
 const imagePath = require('../util/imagePath.js');
@@ -58,7 +58,7 @@ blockInfo = (name, grade = null) => {
 }
 
 exports.run = (message, args) => {
-  const embed = args.length === 0 ? blockInstructions() : blockInfo(args, extractGrade(args));
+  const embed = args.length === 0 ? blockInstructions() : blockInfo(args, extractGradeArg(args));
   message.channel.send({ embed: embed });
   return true;
 }

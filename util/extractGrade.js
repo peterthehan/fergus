@@ -1,10 +1,1 @@
-module.exports = extractGrade = (args) => {
-  if (args.length >= 2 && !isNaN(args[args.length - 1])) {
-    const potentialGrade = parseInt(args[args.length - 1]);
-    if (potentialGrade >= 1 && potentialGrade <= 6) {
-      args.pop();
-      return potentialGrade;
-    }
-  }
-  return null;
-}
+module.exports = extractGrade = (id) => parseInt(id.match(/_\d/)[0].match(/\d/)[0]);

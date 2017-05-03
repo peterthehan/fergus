@@ -1,6 +1,6 @@
 const resolve = require('./resolve.js');
 
-module.exports = filter = (query, data, key) => {
+module.exports = filter = (query, data, key, isStrongFilter = true) => {
   // case-insensitive
   query = query.map(currentValue => currentValue.toLowerCase());
 
@@ -8,8 +8,13 @@ module.exports = filter = (query, data, key) => {
   let filtered = query.map(currentValue => {
     return data.filter(element => {
       const resolved = resolve(element[key]);
-      return resolved === null
-        ? false
+      if (resolve === null) {
+        return false;
+      }
+      // check equality between each word of query to each word of resolved
+      // check if currentValue is a substring of resolved
+      return isStrongFilter
+        ? resolved.toLowerCase().split(' ').includes(currentValue)
         : resolved.toLowerCase().includes(currentValue);
     });
   });

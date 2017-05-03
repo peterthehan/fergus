@@ -3,6 +3,7 @@ const sbw = require('../Decrypted/get_weapon.json')['weapon']
   .filter(element => element['type'] === 'HERO' && element['reqhero'] !== null && element['howtoget'] !== null); // 48 * 6 + 3 + 16 * 6 + 3 = 378
 
 const extractGrade = require('../util/extractGrade.js');
+const extractGradeArg = require('../util/extractGradeArg.js');
 const filterCharacterVisual = require('../util/filterCharacterVisual.js');
 const fuzzy = require('../util/fuzzy.js');
 const imagePath = require('../util/imagePath.js');
@@ -28,11 +29,12 @@ sbwInstructions = () => {
 
 sbwInfo = (name, grade = null) => {
   const data = grade === null || grade <= 3
-    ? character_visual.filter(element => !(element['rarity'] === 'DESTINY' && ['_1_', '_2_', '_3_'].includes(element['default_stat_id'].match(/_\d_/)[0])))
+    ? filterCharacterVisual([4, 5, 6])
     : filterCharacterVisual(grade);
 
   const visualData = fuzzy(name, data, 'name');
-  const sbwData = (grade === 5
+  // resolve edge case between grade 5 and element['reqhero_ref']
+  const sbwData = (grade === 5 || (grade === null && extractGrade(visualData['id']) === 5)
     ? sbw.filter(element => parseInt(element['grade']) === 5 && element['reqhero'].includes(visualData['id']))
     : sbw.filter(element => element['reqhero_ref'] === visualData['id']))[0];
 
@@ -72,7 +74,7 @@ sbwInfo = (name, grade = null) => {
 }
 
 exports.run = (message, args) => {
-  const embed = args.length === 0 ? sbwInstructions() : sbwInfo(args, extractGrade(args));
+  const embed = args.length === 0 ? sbwInstructions() : sbwInfo(args, extractGradeArg(args));
   message.channel.send({ embed: embed });
   return true;
 }

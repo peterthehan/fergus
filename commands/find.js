@@ -26,7 +26,7 @@ findInstructions = () => {
 }
 
 find = (name, data) => {
-  const filtered = filter(name, data[0], data[1]);
+  const filtered = filter(name, data[0], data[1], false); // isStrongFilter = false
 
   let title;
   let description;
