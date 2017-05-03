@@ -4,7 +4,6 @@ assets/bread/!
 assets/heroes/!
 assets/portraits
 assets/sbws/!
-assets/skills
 
 # currently unneeded code
 commands/!
@@ -18,4 +17,5 @@ contribute
 Decrypted
 authorize.txt
 config.json
+config_example.json
 TODO
