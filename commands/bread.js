@@ -44,21 +44,14 @@ breadInfo = (name) => {
   const data = fuzzy(name, bread, 'name');
 
   // parallel arrays
-  const names = [
-    'Value',
-    'Great rate',
-    'Sell'
-  ];
-  const values = [
-    data['trainpoint'],
-    `${parseInt(data['critprob'] * 100)}%`,
-    data['sellprice']
-  ];
-  const inlines = [true, true, true];
+  const names = ['Sell'];
+  const values = [data['sellprice']];
+  const inlines = [true];
 
   return {
     thumbnail: { url: imagePath('bread/' + data['texture']) },
     title: `${resolve(data['name'])} (${data['grade']}★)`,
+    description: `Value: ${data['trainpoint']}\nGreat rate: ${parseInt(data['critprob'] * 100)}%`,
     fields: values.map((currentValue, index) => {
       return { name: names[index], value: currentValue, inline: inlines[index] };
     })

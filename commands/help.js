@@ -8,6 +8,7 @@ exports.run = (message, args) => {
       'status',
     ],
     'Game': [
+      'berry',
       'block',
       'bread',
       'find',
