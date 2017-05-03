@@ -48,7 +48,7 @@ find = (name, data) => {
     description: description
   };
 }
-const options = '[berry|bread|hero|skill|skin|weapon]';
+
 getData = (data) => {
   if (data === 'berry') {
     return [berry, 'name'];
