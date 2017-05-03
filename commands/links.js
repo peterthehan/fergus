@@ -6,12 +6,13 @@ exports.run = (message, args) => {
     'Manacar',
     'Fortress of Souls',
     'Monuments',
-    'Comics',
+    `Beginner's Guide Comics`,
     'Miscellaneous'
   ];
   const values = [
     `[Hero/SBW/Skill IRC Tier List](https://goo.gl/oNQ2iF) by jaetheho, Viress, sakai4eva, kamakiller\n` +
-      `[Accurina's Inaccurate Tier List](https://goo.gl/bBgMTg) by Accurina`,
+      `[Accurina's Inaccurate Tier List](https://goo.gl/bBgMTg) by Accurina\n` +
+      `[INVEN表翻訳](https://goo.gl/k5PlhB)`,
     `[Vyrlokar's Ultimate Guide to the CQ Champions](https://goo.gl/M37qRm) by Vyrlokar`,
     `[Manacar Rage, Ruin, Void, and End](https://goo.gl/PbpKdG) by kamakiller\n` +
       `[Manacar Comic](https://goo.gl/aJ8Yoy)`,
@@ -22,9 +23,10 @@ exports.run = (message, args) => {
       `[Volume 3](https://goo.gl/OEKdP6), ` +
       `[Volume 4](https://goo.gl/T1d729), ` +
       `[Volume 5](https://goo.gl/EikwMq), ` +
-      `[Volume 6](https://goo.gl/rkXgXC), `,
-    `[Berry System](https://goo.gl/jbgmLa)\n` +
-      `[CQ Hero Illustrations](https://goo.gl/06hnsT) by /u/Cyloz`
+      `[Volume 6](https://goo.gl/rkXgXC), ` +
+      `[Volume 7](https://goo.gl/fsTsgl)\n` +
+      `[Berry System](https://goo.gl/jbgmLa)`,
+    `[CQ Hero Illustrations](https://goo.gl/06hnsT) by /u/Cyloz`
   ];
 
   const embed = {

@@ -40,7 +40,7 @@ skinInfo = (name) => {
       ? convert[currentValue['Type']]
       : currentValue['Type'];
     const value = currentValue['Value'] < 1
-      ? `${currentValue['Value'] * 100}%`
+      ? `${parseInt(currentValue['Value'] * 100)}%`
       : currentValue['Value'];
 
     return label + ': ' + value;

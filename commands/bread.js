@@ -50,7 +50,7 @@ breadInfo = (name) => {
   ];
   const values = [
     data['trainpoint'],
-    `${data['critprob'] * 100}%`,
+    `${parseInt(data['critprob'] * 100)}%`,
     data['sellprice']
   ];
   const inlines = [true, true, true];
