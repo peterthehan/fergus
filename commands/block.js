@@ -1,5 +1,6 @@
-const character_stat = require('../Decrypted/get_character_stat.json')['character_stat'].filter(element => element['hero_type'] !== null); // 666
-const character_visual = require('../Decrypted/get_character_visual.json')['character_visual'].filter(element => element['type'] === 'HERO'); // 662
+const d = require('../data.js');
+const character_stat = d.character_stat();
+const character_visual = d.character_visual();
 
 const extractGradeArg = require('../util/extractGradeArg.js');
 const filterCharacterVisual = require('../util/filterCharacterVisual.js');

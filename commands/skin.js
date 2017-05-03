@@ -1,4 +1,5 @@
-const costume = require('../Decrypted/get_costume.json')['costume'];
+const d = require('../data.js');
+const costume = d.costume();
 
 const fuzzy = require('../util/fuzzy.js');
 const imagePath = require('../util/imagePath.js');

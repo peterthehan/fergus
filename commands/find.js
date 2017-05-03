@@ -1,9 +1,9 @@
-const bread = require('../Decrypted/get_bread.json')['bread'];
-const character_visual = require('../Decrypted/get_character_visual.json')['character_visual'].filter(element => element['type'] === 'HERO'); // 662
-const costume = require('../Decrypted/get_costume.json')['costume'];
-const skill = require('../Decrypted/get_spskill.json')['spskill'];
-const weapon = require('../Decrypted/get_weapon.json')['weapon']
-  .filter(element => element['rarity'] === 'NORMAL' || element['rarity'] === 'ANTIQUE' || (element['rarity'] === 'BAIT' && element['name'] !== 'NULL'));
+const d = require('../data.js');
+const bread = d.bread();
+const character_visual = d.character_visual();
+const costume = d.costume();
+const skill = d.skill();
+const weapon = d.weapon();
 
 const countInstances = require('../util/countInstances.js');
 const filter = require('../util/filter.js');

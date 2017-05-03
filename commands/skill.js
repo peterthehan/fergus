@@ -1,5 +1,6 @@
-const character_visual = require('../Decrypted/get_character_visual.json')['character_visual'].filter(element => element['type'] === 'HERO'); // 662
-const skill = require('../Decrypted/get_spskill.json')['spskill'];
+const d = require('../data.js');
+const character_visual = d.character_visual();
+const skill = d.skill();
 
 const extractGradeArg = require('../util/extractGradeArg.js');
 const filterCharacterVisual = require('../util/filterCharacterVisual.js');

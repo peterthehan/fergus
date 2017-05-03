@@ -1,5 +1,5 @@
-const weapon = require('../Decrypted/get_weapon.json')['weapon']
-  .filter(element => element['type'] === 'HERO' && element['reqhero'] === null && element['howtoget'] !== null); // 99 + 6 + 6 = 111
+const d = require('../data.js');
+const weapon = d.weapon();
 
 const deepCopy = require('../util/deepCopy.js');
 const fuzzy = require('../util/fuzzy.js');
@@ -37,7 +37,6 @@ weaponInstructions = () => {
 
 weaponList = () => {
   const temp = list(weapon, 'name').split(', ');
-  console.log(weapon.map((i, index) => i['skin_tex'] + ' ' + temp[index] + '\n').join('\n'));
   return { description: list(weapon, 'name') };
 }
 

@@ -1,4 +1,5 @@
-const character_visual = require('../Decrypted/get_character_visual.json')['character_visual'].filter(element => element['type'] === 'HERO'); // 662
+const d = require('../data.js');
+const character_visual = d.character_visual();
 
 const extractGrade = require('./extractGrade.js');
 

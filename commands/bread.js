@@ -1,4 +1,5 @@
-const bread = require('../Decrypted/get_bread.json')['bread'];
+const d = require('../data.js');
+const bread = d.bread();
 
 const fuzzy = require('../util/fuzzy.js');
 const imagePath = require('../util/imagePath.js');

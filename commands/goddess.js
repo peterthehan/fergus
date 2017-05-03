@@ -1,7 +1,5 @@
-const countInstances = require('../util/countInstances.js');
-
-const goddess = require('../Decrypted/get_sister.json')['sister']
-  .filter(element => countInstances(element['id'], '_') === 1); // 8
+const d = require('../data.js');
+const goddess = d.goddess();
 
 const fuzzy = require('../util/fuzzy.js');
 const imagePath = require('../util/imagePath.js');

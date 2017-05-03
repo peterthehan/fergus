@@ -1,6 +1,6 @@
-const character_visual = require('../Decrypted/get_character_visual.json')['character_visual'].filter(element => element['type'] === 'HERO'); // 662
-const sbw = require('../Decrypted/get_weapon.json')['weapon']
-  .filter(element => element['type'] === 'HERO' && element['reqhero'] !== null && element['howtoget'] !== null); // 48 * 6 + 3 + 16 * 6 + 3 = 378
+const d = require('../data.js');
+const character_visual = d.character_visual();
+const sbw = d.sbw();
 
 const extractGrade = require('../util/extractGrade.js');
 const extractGradeArg = require('../util/extractGradeArg.js');
