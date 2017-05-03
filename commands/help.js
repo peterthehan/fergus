@@ -15,7 +15,7 @@ exports.run = (message, args) => {
       'hero',
       //'portrait',
       'sbw',
-      //'skill',
+      'skill',
       'skin',
       'weapon',
     ],

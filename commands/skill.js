@@ -1,8 +1,6 @@
-const character_stat = require('../Decrypted/get_character_stat.json')['character_stat'].filter(element => element['hero_type'] !== null); // 666
 const character_visual = require('../Decrypted/get_character_visual.json')['character_visual'].filter(element => element['type'] === 'HERO'); // 662
 const skill = require('../Decrypted/get_spskill.json')['spskill'];
 
-const deepCopy = require('../util/deepCopy.js');
 const extractGradeArg = require('../util/extractGradeArg.js');
 const filterCharacterVisual = require('../util/filterCharacterVisual.js');
 const fuzzy = require('../util/fuzzy.js');
@@ -30,22 +28,24 @@ skillInstructions = () => {
 skillInfo = (name, grade = null) => {
   const data = grade === null ? skill : skill.filter(element => element['level'] === grade);
 
-  const skillData = deepCopy(fuzzy(name, data, 'name'));
+  const skillData = fuzzy(name, data, 'name');
 
   // parallel arrays
   const names = [
     'Class',
+    'Type',
     'Cost',
     'Great rate',
     'Unlock condition'
   ];
   const values = [ // key does not resolve as-is, modification necessary
     resolve('TEXT_CLASS_' + skillData['class'].substring(4)),
+    resolve(skillData['simpledesc']),
     skillData['cost'].map(currentValue => `${resolve('TEXT_' + currentValue['type'])}: ${currentValue['value']}`).join('\n'),
     skillData['huge'] === -1 ? '-' : `${parseInt(skillData['huge'] * 100)}%`,
     unlockCondition(skillData['unlockcond'])
   ];
-  const inlines = [false, true, true, false];
+  const inlines = [true, true, true, true, false];
 
   return {
     thumbnail: { url: imagePath('skills/' + skillData['icon']) },
