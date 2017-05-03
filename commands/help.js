@@ -18,6 +18,7 @@ exports.run = (message, args) => {
       'sbw',
       'skill',
       'skin',
+      //'tip',
       'weapon',
     ],
     'Utility': [

@@ -1,4 +1,5 @@
 const d = require('../data.js');
+const berry = d.berry();
 const bread = d.bread();
 const character_visual = d.character_visual();
 const costume = d.costume();
@@ -12,7 +13,7 @@ const removeDuplicates = require('../util/removeDuplicates.js');
 const resolve = require('../util/resolve.js');
 const truncateString = require('../util/truncateString.js');
 
-const options = '[bread|hero|skill|skin|weapon]';
+const options = '[berry|bread|hero|skill|skin|weapon]';
 
 findInstructions = () => {
   return {
@@ -47,12 +48,14 @@ find = (name, data) => {
     description: description
   };
 }
-
+const options = '[berry|bread|hero|skill|skin|weapon]';
 getData = (data) => {
-  if (data === 'hero') {
-    return [character_visual, 'name'];
+  if (data === 'berry') {
+    return [berry, 'name'];
   } else if (data === 'bread') {
     return [bread, 'name'];
+  } else if (data === 'hero') {
+    return [character_visual, 'name'];
   } else if (data === 'skill') {
     return [skill, 'name'];
   } else if (data === 'skin') {
