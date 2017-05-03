@@ -8,6 +8,7 @@ const weapon = d.weapon();
 const countInstances = require('../util/countInstances.js');
 const filter = require('../util/filter.js');
 const plurality = require('../util/plurality.js');
+const removeDuplicates = require('../util/removeDuplicates.js');
 const resolve = require('../util/resolve.js');
 const truncateString = require('../util/truncateString.js');
 
@@ -36,7 +37,7 @@ find = (name, data) => {
     title = 'No results found!';
   } else {
     // remove duplicate results, particularly from skill
-    const results = [...new Set(filtered.map(currentValue => resolve(currentValue[data[1]])))];
+    const results = removeDuplicates(filtered.map(currentValue => resolve(currentValue[data[1]])));
     description = truncateString(results.join(', '));
     title = `Displaying ${countInstances(description, ',') + 1} of ${results.length} result${plurality(results.length)} found`;
   }

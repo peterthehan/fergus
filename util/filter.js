@@ -1,3 +1,4 @@
+const removeDuplicates = require('./removeDuplicates.js');
 const resolve = require('./resolve.js');
 
 module.exports = filter = (query, data, key, isStrongFilter = true) => {
@@ -22,7 +23,7 @@ module.exports = filter = (query, data, key, isStrongFilter = true) => {
   // flatten array
   filtered = [].concat.apply([], filtered);
   // remove duplicates
-  filtered = [...new Set(filtered)];
+  filtered = removeDuplicates(filtered);
 
   return filtered;
 }
