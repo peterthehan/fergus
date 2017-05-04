@@ -4,7 +4,7 @@
   </p>
 
   <a href="https://www.npmjs.com/package/discord.js">
-    <img src="https://img.shields.io/badge/discord.js-v11.1.0-blue.svg" title="discord.js" />
+    <img src="https://img.shields.io/badge/discord.js-v11.1.0-blue.svg" title="Discord.js" />
   </a>
   <a href="https://david-dm.org/Johj/fergus">
     <img src="https://img.shields.io/david/Johj/fergus.svg" title="Dependencies" />
@@ -14,7 +14,7 @@
 ## About
 Fergus is a Crusaders Quest Discord server bot.
 
-<div style="display:flex; justify-content:space-around;">
+<div align="center">
   <a href="https://discord.gg/WjEFnzC">
     <img src="https://discordapp.com/api/guilds/258167954913361930/embed.png?style=banner2" title="Development Server"/>
   </a>
