@@ -1,6 +1,6 @@
 <div align="center">
   <p>
-    <img src="https://raw.githubusercontent.com/Johj/fergus/master/assets/banner.pg" title="Fergus" />
+    <img src="https://raw.githubusercontent.com/Johj/fergus/master/assets/banner.png" title="Fergus" />
   </p>
 
   <a href="https://www.npmjs.com/package/discord.js">
