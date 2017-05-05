@@ -25,6 +25,7 @@ exports.run = (message, args) => {
       'links',
       'math',
       'ping',
+      'popo',
       //'remindme',
       'server',
       //'user',
