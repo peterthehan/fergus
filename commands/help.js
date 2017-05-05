@@ -7,14 +7,13 @@ exports.run = (message, args) => {
       'about',
       'status',
     ],
-    'Game': [
+    'Database': [
       'berry',
       'block',
       'bread',
       'find',
       'goddess',
       'hero',
-      //'portrait',
       'sbw',
       'skill',
       'skin',
@@ -22,6 +21,7 @@ exports.run = (message, args) => {
       'weapon',
     ],
     'Utility': [
+      'coin',
       'links',
       'math',
       'ping',
@@ -31,6 +31,7 @@ exports.run = (message, args) => {
       //'user',
     ],
     'Miscellaneous': [
+      '8ball',
       'fergus',
       'lenny',
       //'print',

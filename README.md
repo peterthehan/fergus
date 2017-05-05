@@ -28,7 +28,7 @@ Fergus is a Crusaders Quest Discord server bot.
   [!help](https://github.com/Johj/fergus/blob/master/commands/help.js),
   [!about](https://github.com/Johj/fergus/blob/master/commands/about.js),
   [!status](https://github.com/Johj/fergus/blob/master/commands/status.js)
-- Game:
+- Database:
   [!berry](https://github.com/Johj/fergus/blob/master/commands/berry.js),
   [!block](https://github.com/Johj/fergus/blob/master/commands/block.js),
   [!bread](https://github.com/Johj/fergus/blob/master/commands/bread.js),
@@ -40,12 +40,14 @@ Fergus is a Crusaders Quest Discord server bot.
   [!skin](https://github.com/Johj/fergus/blob/master/commands/skin.js),
   [!weapon](https://github.com/Johj/fergus/blob/master/commands/weapon.js)
 - Utility:
+  [!coin](https://github.com/Johj/fergus/blob/master/commands/coin.js),
   [!links](https://github.com/Johj/fergus/blob/master/commands/links.js),
   [!math](https://github.com/Johj/fergus/blob/master/commands/math.js),
   [!popo](https://github.com/Johj/fergus/blob/master/commands/popo.js),
   [!ping](https://github.com/Johj/fergus/blob/master/commands/ping.js),
   [!server](https://github.com/Johj/fergus/blob/master/commands/server.js)
 - Miscellaneous:
+  [!8ball](https://github.com/Johj/fergus/blob/master/commands/8ball.js),
   [!fergus](https://github.com/Johj/fergus/blob/master/commands/fergus.js),
   [!lenny](https://github.com/Johj/fergus/blob/master/commands/lenny.js),
   [!square](https://github.com/Johj/fergus/blob/master/commands/square.js)

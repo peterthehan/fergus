@@ -1,9 +1,13 @@
+const bounds = require('../util/bounds.js');
+const repeat = require('../util/repeat.js');
+
+lenny = () => '( ͡° ͜ʖ ͡°)';
+
 exports.run = (message, args) => {
-  let times = 1;
-  if (args.length > 0 && !isNaN(parseInt(args[0]))) {
-    times = [1, 10, parseInt(args[0])].sort((a, b) => a - b)[1]; // get median
-  }
-  const content = '( ͡° ͜ʖ ͡°)'.repeat(times);
-  message.channel.send(content);
+  const times = args.length > 0 && !isNaN(parseInt(args[0]))
+    ? bounds([1, 10, parseInt(args[0])])
+    : 1;
+  const embed = { description: repeat(times, lenny).join(' ') };
+  message.channel.send({ embed: embed });
   return true;
 };
