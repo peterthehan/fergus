@@ -33,7 +33,7 @@ blockInfo = (name, grade = null) => {
   const statData = character_stat.filter(element => element['id'] === visualData['default_stat_id'])[0];
 
   // parallel arrays
-  const names = [`${resolve(statData['skill_name'])} (Lv. ${statData['basicattack'].slice(-1)})`];
+  const names = [`${resolve(statData['skill_name'])} (Lv. ${[1, 1, 1, 2, 2, 3][statData['grade'] - 1]})`];
   const values = [resolve(statData['skill_desc'])];
   const inlines = [false];
 
