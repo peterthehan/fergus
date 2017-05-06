@@ -31,4 +31,5 @@ exports.run = (message, args) => {
   }
 
   message.channel.send(content);
+  return true;
 };
