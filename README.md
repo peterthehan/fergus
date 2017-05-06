@@ -51,6 +51,7 @@ Fergus is a Crusaders Quest Discord server bot.
   [!8ball](https://github.com/Johj/fergus/blob/master/commands/8ball.js),
   [!fergus](https://github.com/Johj/fergus/blob/master/commands/fergus.js),
   [!lenny](https://github.com/Johj/fergus/blob/master/commands/lenny.js),
+  [!slap](https://github.com/Johj/fergus/blob/master/commands/slap.js),
   [!square](https://github.com/Johj/fergus/blob/master/commands/square.js)
 
 ## Dependencies

@@ -37,6 +37,7 @@ exports.run = (message, args) => {
       'lenny',
       //'print',
       //'quote',
+      'slap',
       'square',
     ],
   };
