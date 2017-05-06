@@ -12,7 +12,7 @@ exports.run = (message, args) => {
     'https://discord.gg/WjEFnzC',
     'https://discord.gg/6TRnyhj',
     'https://github.com/Johj/fergus',
-    `Made with love by ${author.mention(message)}.`
+    `Made with ❤ by ${author.mention(message)}.`
   ];
   const inlines = [true, true, false, false];
 
