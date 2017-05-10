@@ -5,7 +5,7 @@ module.exports = filter = (query, data, key, isStrongFilter = true) => {
   // case-insensitive
   query = query.map(currentValue => currentValue.toLowerCase());
 
-  // filter any match between data and query
+  // filter substring match between data and query
   let filtered = query.map(currentValue => {
     return data.filter(element => {
       const resolved = resolve(element[key]);

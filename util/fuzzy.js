@@ -1,5 +1,5 @@
-const levenshtein = require('fast-levenshtein');
 const filter = require('./filter.js');
+const normalizedLevenshtein = require('./normalizedLevenshtein.js');
 const resolve = require('./resolve.js');
 
 module.exports = fuzzy = (query, data, key) => {
@@ -16,7 +16,7 @@ module.exports = fuzzy = (query, data, key) => {
     const resolved = resolve(currentValue[key]);
     return resolved === null
       ? 1 // largest distance possible
-      : levenshtein.get(query, resolved.toLowerCase()) / Math.max(query.length, resolved.length);
+      : normalizedLevenshtein(query, resolved.toLowerCase());
   });
 
   // get index of the smallest distance (best match) and return obj
