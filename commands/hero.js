@@ -27,7 +27,7 @@ heroInstructions = () => {
 }
 
 heroInfo = (name, grade = null) => {
-  const data = grade === null ? character_visual : filterCharacterVisual(grade);
+  const data = grade === null ? filterCharacterVisual('max') : filterCharacterVisual(grade);
 
   const visualData = fuzzy(name, data, 'name');
   const statData = character_stat.filter(element => element['id'] === visualData['default_stat_id'])[0];
@@ -67,7 +67,8 @@ heroInfo = (name, grade = null) => {
       return {
         name: names[index],
         value: currentValue === null ? '-' : currentValue,
-        inline: inlines[index] };
+        inline: inlines[index]
+      };
     })
   };
 }

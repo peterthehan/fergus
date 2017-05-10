@@ -27,7 +27,7 @@ blockInstructions = () => {
 }
 
 blockInfo = (name, grade = null) => {
-  const data = grade === null ? character_visual : filterCharacterVisual(grade);
+  const data = grade === null ? filterCharacterVisual('max') : filterCharacterVisual(grade);
 
   const visualData = fuzzy(name, data, 'name');
   const statData = character_stat.filter(element => element['id'] === visualData['default_stat_id'])[0];

@@ -29,7 +29,7 @@ sbwInstructions = () => {
 
 sbwInfo = (name, grade = null) => {
   const data = grade === null || grade <= 3
-    ? filterCharacterVisual([4, 5, 6])
+    ? filterCharacterVisual('max')
     : filterCharacterVisual(grade);
 
   const visualData = fuzzy(name, data, 'name');
