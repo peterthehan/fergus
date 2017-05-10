@@ -6,12 +6,19 @@ const extractGradeArg = require('../util/extractGradeArg.js');
 const filterCharacterVisual = require('../util/filterCharacterVisual.js');
 const fuzzy = require('../util/fuzzy.js');
 const imagePath = require('../util/imagePath.js');
+const list = require('../util/list.js');
+const removeDuplicates = require('../util/removeDuplicates.js');
 const resolve = require('../util/resolve.js');
 
 skillInstructions = () => {
   return {
-    title: '!skill [<name>] [<level>]',
+    title: '!skill [list|<name>] [<level>]',
     fields: [
+      {
+        name: 'list',
+        value: 'List all skills.\n*e.g. !skill list*',
+        inline: true
+      },
       {
         name: '<name>',
         value: 'Get skill information.\n*e.g. !skill wind slash*',
@@ -24,6 +31,10 @@ skillInstructions = () => {
       }
     ]
   };
+}
+
+skillList = () => {
+  return { description: removeDuplicates(list(skill, 'name').split(', ')).join(', ') };
 }
 
 skillInfo = (name, grade = null) => {
@@ -94,7 +105,18 @@ unlockCondition = (data) => {
 }
 
 exports.run = (message, args) => {
-  const embed = args.length === 0 ? skillInstructions() : skillInfo(args, extractGradeArg(args, 5));
+  let embed = {};
+
+  if (args.length === 0) {
+    embed = skillInstructions();
+  } else {
+    if (args[0].startsWith('list')) {
+      embed = skillList();
+    } else {
+      embed = skillInfo(args, extractGradeArg(args, 5));
+    }
+  }
+
   message.channel.send({ embed: embed });
   return true;
 }

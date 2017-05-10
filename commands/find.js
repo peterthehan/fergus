@@ -13,11 +13,11 @@ const removeDuplicates = require('../util/removeDuplicates.js');
 const resolve = require('../util/resolve.js');
 const truncateString = require('../util/truncateString.js');
 
-const options = '[berry|bread|hero|skill|skin|weapon]';
+const options = 'berry|bread|hero|skill|skin|weapon';
 
 findInstructions = () => {
   return {
-    title: `!find ${options} [<name>]`,
+    title: `!find [${options}] [<name>]`,
     fields: [
       {
         name: `${options} <name>`,

@@ -36,7 +36,6 @@ weaponInstructions = () => {
 }
 
 weaponList = () => {
-  const temp = list(weapon, 'name').split(', ');
   return { description: list(weapon, 'name') };
 }
 
