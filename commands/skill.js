@@ -27,7 +27,9 @@ skillInstructions = () => {
 }
 
 skillInfo = (name, grade = null) => {
-  const data = grade === null ? skill : skill.filter(element => element['level'] === grade);
+  const data = grade === null
+    ? skill.filter(element => element['unlockcond']['next_id'] === 'MAX')
+    : skill.filter(element => element['level'] === grade);
 
   const skillData = fuzzy(name, data, 'name');
 
