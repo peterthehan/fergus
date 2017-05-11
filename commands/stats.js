@@ -92,7 +92,7 @@ statsInfo = (name, training) => {
   return {
     thumbnail: { url: imagePath('heroes/' + visualData['face_tex']) },
     title: `${resolve(visualData['name'])} (${statData['grade']}★)`,
-    description: `Lv. ${level}, +${bread} bread training, with${addStatMaxData === null ? '' : 'out'} berry training.`,
+    description: `Lv. ${level}, +${bread} bread training, with${addStatMaxData === null ? 'out' : ''} berry training.`,
     fields: values.map((currentValue, index) => {
       return {
         name: names[index],
