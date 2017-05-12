@@ -1,6 +1,6 @@
 const d = require('../data.js');
-// remove legendary and event heroes from the pool
-const character_visual = d.character_visual().filter(element => element['rarity'] !== 'LIMITED' && element['rarity'] !== 'DESTINY');
+// remove event, legendary, and supply heroes from the pool
+const character_visual = d.character_visual().filter(element => element['rarity'] !== 'LIMITED' && element['rarity'] !== 'DESTINY' && element['rarity'] !== 'SUPPORT');
 
 const bounds = require('../util/bounds.js');
 const extractGrade = require('../util/extractGrade.js');
@@ -39,8 +39,15 @@ pickGrade = () => {
 }
 
 pickHero = (forcedGrade = null) => {
-  const grade = forcedGrade === null ? pickGrade() : forcedGrade;
-  const data = filterCharacterVisual(grade, character_visual);
+  const grade = forcedGrade === null
+    ? pickGrade()
+    : forcedGrade;
+  const data = filterCharacterVisual(
+    grade,
+    forcedGrade === null
+      ? character_visual
+      : character_visual.filter(element => element['isgachagolden'])
+  );
   const pulled = data[random(0, data.length - 1)];
   return pulled;
 }
