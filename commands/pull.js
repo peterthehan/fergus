@@ -52,15 +52,18 @@ pickHero = (forcedGrade = null) => {
   return pulled;
 }
 
-pull = (n = 1) => {
-  const description = [];
+pull = (message, n) => {
+  const results = [];
   for (let i = 1; i <= n; ++i) {
-    let hero = pickHero(!(i % 10) ? 4 : null);
-    description.push(`${i}. ${resolve(hero['name'])} (${extractGrade(hero['id'])}★)${!(i % 10) ? ' (Guaranteed)' : ''}`);
+    const hero = pickHero(!(i % 10) ? 4 : null);
+    const grade = extractGrade(hero['id']);
+    const result = `${i}. ${resolve(hero['name'])} (${grade}★)`;
+    // bold results with grades greater than 3
+    results.push(`${grade > 3 ? '**' : ''}${result}${!(i % 10) ? ' (Guaranteed)' : ''}${grade > 3 ? '**' : ''}`);
   }
   return {
-    title: 'You pulled...',
-    description: description.join('\n')
+    title: 'Results',
+    description: `${message.author} (${message.author.tag})\n\n${results.join('\n')}`
   };
 }
 
@@ -73,7 +76,7 @@ exports.run = (message, args) => {
   } else {
     const number = [1, 10];
     number.push(!isNaN(args[0]) ? parseInt(args[0]) : 10);
-    embed = pull(bounds(number));
+    embed = pull(message, bounds(number));
   }
 
   message.channel.send({ embed: embed });
