@@ -14,19 +14,13 @@
 ## About
 Fergus is a Crusaders Quest Discord server bot.
 
-<div style="display:flex; justify-content:space-around;">
-  <div style="display:flex; flex-direction:column; align-items:center;">
-    <a href="https://discord.gg/WjEFnzC" style="position:absolute; z-index:1">
-      <img src="https://discordapp.com/api/guilds/258167954913361930/embed.png?style=banner2" title="Development Server"/>
-    </a>
-    <iframe src="https://discordapp.com/widget?id=258167954913361930&theme=dark" width="320" height="500" allowtransparency="true" frameborder="0"></iframe>
-  </div>
-  <div style="display:flex; flex-direction:column; align-items:center;">
-    <a href="https://discord.gg/6TRnyhj" style="position:absolute; z-index:1">
-      <img src="https://discordapp.com/api/guilds/206599473282023424/embed.png?style=banner2" title="Official Server"/>
-    </a>
-    <iframe src="https://discordapp.com/widget?id=206599473282023424&theme=dark" width="320" height="500" allowtransparency="true" frameborder="0"></iframe>
-  </div>
+<div align="center">
+  <a href="https://discord.gg/WjEFnzC">
+    <img src="https://discordapp.com/api/guilds/258167954913361930/embed.png?style=banner2" title="Development Server"/>
+  </a>
+  <a href="https://discord.gg/6TRnyhj">
+    <img src="https://discordapp.com/api/guilds/206599473282023424/embed.png?style=banner2" title="Official Server"/>
+  </a>
 </div>
 
 ## Commands
