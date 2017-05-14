@@ -23,12 +23,12 @@ exports.run = (message, args) => {
   let embed = {};
 
   if (args.length === 0) {
-    embed = { title: 'Type something!' };
+    embed = { description: 'Type something to squarify!' };
   } else {
     const str = args.join(' ');
     embed = str.length <= 16 ? square(str) : { title: 'Error', description: 'Message is too long!' };
   }
-  
+
   message.channel.send({ embed: embed });
   return true;
 };

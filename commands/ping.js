@@ -1,12 +1,25 @@
 exports.run = (message, args) => {
+  let embed = { description: 'Pinging...'};
+
   message.channel
-    .send('pinging...')
+    .send({ embed: embed })
     .then(newMessage => {
-      newMessage.edit(
-        'pong! ' +
-        `ws: ${Math.round(message.client.ping)} ms, ` +
-        `http: ${newMessage.createdTimestamp - message.createdTimestamp} ms`
-      );
+      embed = {
+        title: 'Pong!',
+        fields: [
+          {
+            name: 'Websocket ping',
+            value: `${Math.round(message.client.ping)} ms`,
+            inline: true
+          },
+          {
+            name: 'HTTP ping',
+            value: `${newMessage.createdTimestamp - message.createdTimestamp} ms`,
+            inline: true
+          }
+        ]
+      };
+      newMessage.edit({ embed: embed });
     })
     .catch(error => console.log(error));
   return true;

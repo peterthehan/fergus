@@ -3,8 +3,8 @@ const author = require('../util/author.js');
 exports.run = (message, args) => {
   // parallel arrays
   const names = [
-    'Development Server',
-    'Official Server',
+    'Development server',
+    'Official server',
     'GitHub',
     '\u200b'
   ];
@@ -12,7 +12,7 @@ exports.run = (message, args) => {
     'https://discord.gg/WjEFnzC',
     'https://discord.gg/6TRnyhj',
     'https://github.com/Johj/fergus',
-    `Made with ❤ by ${author.mention(message)}.`
+    `Made with ❤ by ${author.mention(message)} (${author.mention(message).tag}).`
   ];
   const inlines = [true, true, false, false];
 

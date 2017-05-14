@@ -41,8 +41,8 @@ exports.run = (message, args) => {
       guild.roles.map(currentValue => currentValue.name).join(', '),
       botMember.join(', '),
       `${guild.memberCount}${guild.large ? ' (large)' : ''}`,
-      `${guild.owner} (${guild.ownerID})`,
-      `${moment(guild.createdAt).format('ddd MMM Do, YYYY [at] HH:mm:ss')}\n(${moment(guild.createdAt).fromNow()})`
+      `${guild.owner} (${guild.owner.user.tag})`,
+      `${timestamp(guild.createdAt)}\n(${moment(guild.createdAt).fromNow()})`
     ];
     const inlines = [true, true, true, true, false, true, true];
 
@@ -63,7 +63,7 @@ exports.run = (message, args) => {
       fields: values.map((currentValue, index) => {
         return { name: names[index], value: currentValue, inline: inlines[index] };
       }),
-      footer: { text: timestamp(message) }
+      footer: { text: timestamp(message.createdAt) }
     };
   } else {
     embed = { title: 'Error', description: 'Server information unavailable due to outage.' };

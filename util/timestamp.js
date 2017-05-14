@@ -1,5 +1,5 @@
 const moment = require('moment');
 
-module.exports = timestamp = (message) => {
-  return moment(message.createdAt).format('ddd MMM Do, YYYY [at] HH:mm:ss');
+module.exports = timestamp = (time) => {
+  return moment(time).format('ddd MMM Do, YYYY [at] HH:mm:ss');
 }

@@ -30,7 +30,7 @@ exports.run = (message, args) => {
     fields: values.map((currentValue, index) => {
       return { name: names[index], value: currentValue, inline: inlines[index] };
     }),
-    footer: { text: timestamp(message) }
+    footer: { text: timestamp(message.createdAt) }
   };
 
   message.channel.send({ embed: embed });
