@@ -8,7 +8,7 @@ const filterCharacterVisual = require('../util/filterCharacterVisual.js');
 const random = require('../util/random.js');
 const resolve = require('../util/resolve.js');
 
-pullInfo = () => {
+pullInstructions = () => {
   return {
     title: '!pull [<number>]',
     fields: [
@@ -72,7 +72,7 @@ exports.run = (message, args) => {
   let embed = {};
 
   if (args.length === 0) {
-    embed = pullInfo();
+    embed = pullInstructions();
   } else {
     const number = [1, 10];
     number.push(!isNaN(args[0]) ? parseInt(args[0]) : 10);
