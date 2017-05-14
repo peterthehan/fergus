@@ -40,6 +40,14 @@ heroInfo = (name, grade = null) => {
     }
   });*/
 
+  // rarity
+  let rarity;
+  if (visualData['rarity'] === 'LEGENDARY') {
+    rarity = visualData['isgachagolden'] ? 'IN_GACHA' : 'LAGENDARY';
+  } else {
+    rarity = visualData['rarity'];
+  }
+
   // parallel arrays
   const names = [
     'Class',
@@ -54,7 +62,7 @@ heroInfo = (name, grade = null) => {
     resolve(visualData['domain'] === 'NONEGROUP' ? 'TEXT_CHAMP_DOMAIN_' + visualData['domain'] + '_NAME' : 'TEXT_CHAMPION_DOMAIN_' + visualData['domain']),
     resolve('TEXT_EXPLORE_TOOLTIP_GENDER_' + visualData['gender']),
     //visualData['job'],
-    resolve('TEXT_CONFIRM_SELL_' + (visualData['rarity'] === 'LEGENDARY' ? 'LAGENDARY' : visualData['rarity']) + '_HERO'),
+    resolve('TEXT_CONFIRM_SELL_' + rarity + '_HERO'),
     visualData['howtoget'] === null ? null : visualData['howtoget'].join(', ')
   ];
   const inlines = [true, true, true, /*true,*/ true, false];
