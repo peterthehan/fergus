@@ -14,6 +14,7 @@ exports.run = (message, args) => {
       'find',
       'goddess',
       'hero',
+      'rank',
       'sbw',
       'skill',
       'skin',
@@ -49,7 +50,7 @@ exports.run = (message, args) => {
       return { name: currentValue, value: cmds[currentValue].map(i => config.prefix + i).join(', ') };
     })
   };
-  
+
   message.channel.send({ embed: embed });
   return true;
 };
