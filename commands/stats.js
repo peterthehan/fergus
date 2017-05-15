@@ -3,7 +3,6 @@ const character_addstatmax = d.character_addstatmax();
 const character_stat = d.character_stat();
 const character_visual = d.character_visual();
 
-const extractGradeArg = require('../util/extractGradeArg.js');
 const filterCharacterVisual = require('../util/filterCharacterVisual.js');
 const fuzzy = require('../util/fuzzy.js');
 const getStat = require('../util/getStat.js');
@@ -41,9 +40,14 @@ statsInfo = (name, training) => {
 
   const grade = statData['grade'];
   const berry = training[3];
-  const addStatMaxData = grade === 6 && (berry === null || berry)
+  let addStatMaxData = grade === 6 && (berry === null || berry)
     ? character_addstatmax.filter(element => element['id'] === statData['addstat_max_id'])[0]
     : null;
+
+  // resolve battleloid edge case
+  if (!addStatMaxData) {
+    addStatMaxData = null;
+  }
 
   const level = training[1] === null || training[1] > grade * 10 || training[1] < 1
     ? grade * 10
