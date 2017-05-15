@@ -24,7 +24,7 @@ exports.run = (message, args) => {
       return { name: names[index], value: currentValue, inline: inlines[index] };
     })
   };
-
+  
   message.channel.send({ embed: embed });
   return true;
 };

@@ -32,7 +32,7 @@ exports.run = (message, args) => {
     }),
     footer: { text: timestamp(message.createdAt) }
   };
-
+  
   message.channel.send({ embed: embed });
   return true;
 };

@@ -3,8 +3,8 @@ const config = require('../config.json');
 exports.run = (message, args) => {
   const cmds = {
     'Bot': [
-      'help',
       'about',
+      'help',
       'status',
     ],
     'Database': [
@@ -48,8 +48,8 @@ exports.run = (message, args) => {
     fields: Object.keys(cmds).map(currentValue => {
       return { name: currentValue, value: cmds[currentValue].map(i => config.prefix + i).join(', ') };
     })
-  }
-
+  };
+  
   message.channel.send({ embed: embed });
   return true;
 };

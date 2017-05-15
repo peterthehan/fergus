@@ -70,7 +70,7 @@ berryInfo = (name, grade = null) => {
     `${resolve(berryData['type_name'])}: ` +
     (berryData['add_stat_point'] <= 1 ? (berryData['add_stat_point'] * 100).toFixed(1) : berryData['add_stat_point']) +
     (berryData['category'] === 'All' || berryData['type'].includes('Ratio') ? '%' : '') +
-    `\nGreat rate: ${parseInt(berryData['great_prob'] * 100)}%`
+    `\nGreat rate: ${parseInt(berryData['great_prob'] * 100)}%`;
   return {
     thumbnail: { url: imagePath('berries/' + berryData['texture']) },
     title: `${resolve(berryData['name'])} (${berryData['grade']}★)`,
