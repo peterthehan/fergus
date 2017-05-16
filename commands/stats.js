@@ -20,12 +20,12 @@ statsInstructions = () => {
       },
       {
         name: '<star>',
-        value: 'Filter heroes by <star>.\n*e.g. !stats lee 6*',
+        value: 'Filter heroes by <star>.\n*e.g. !stats lee 4*',
         inline: true
       },
       {
         name: '<level> <bread> <berry>',
-        value: 'Modify training parameters. If missing, defaults to max.\n*e.g. !stats lee 6 60 5 true*',
+        value: 'Modify training parameters. If not specified, defaults to max form.\n*e.g. !stats lee 6 60 5 false*',
         inline: true
       }
     ]

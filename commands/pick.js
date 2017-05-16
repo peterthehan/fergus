@@ -6,7 +6,7 @@ pickInstructions = () => {
     fields: [
       {
         name: '<list>',
-        value: 'Randomly choose one item from a comma-separated list.\n*e.g. !pick milk, bread, eggs*',
+        value: 'Randomly pick one item from a comma-separated list.\n*e.g. !pick milk, bread, eggs*',
         inline: true
       }
     ]

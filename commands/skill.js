@@ -26,7 +26,7 @@ skillInstructions = () => {
       },
       {
         name: '<level>',
-        value: 'Filter skills by <level>.\n*e.g. !skill wind slash 5*',
+        value: 'Filter skills by <level>.\n*e.g. !skill wind slash 1*',
         inline: true
       }
     ]

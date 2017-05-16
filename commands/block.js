@@ -19,7 +19,7 @@ blockInstructions = () => {
       },
       {
         name: '<star>',
-        value: 'Filter heroes by <star>.\n*e.g. !block lee 6*',
+        value: 'Filter heroes by <star>.\n*e.g. !block lee 4*',
         inline: true
       }
     ]
