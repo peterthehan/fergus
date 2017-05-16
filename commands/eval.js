@@ -1,35 +1,45 @@
 const beautify = require('js-beautify').js_beautify;
 const author = require('../util/author.js');
+const embed = require('../util/embed.js');
+const timestamp = require('../util/timestamp.js');
 
-exports.run = (message, args) => {
-  let content = '';
-
+evaluate = (message, args) => {
   // limit command to author because eval is evil
   if (message.author.id === author.id()) {
     if (args.length > 0) {
       let input = args.join(' ');
-
       if (input.includes('token') || input.includes('eval')) {
-        content = 'This is a bad idea.';
+        return embed('This is a bad idea.', '');
       } else {
         input = beautify(input, { indent_size: 2 });
-        let output = '';
+        let output;
         try {
           output = eval(input);
         } catch (error) {
           output = error;
         }
 
-        content =
-          '```js\nInput\n' + input + '```' +
-          '```js\nOutput\n' + output + '```';
+        const names = ['Input', 'Output',];
+        const values = [
+          '```js\n' + input + '```',
+          '```js\n' + output + '```',
+        ];
+        const inlines = [false, false,];
+
+        return embed.process({
+          footer: { text: timestamp(message.createdAt), },
+          fields: embed.fields(names, values, inlines),
+        });
       }
     }
-  } else {
-    content = 'Access denied.';
-    console.log(content);
+    return embed.process({ description: 'Type code!' });
   }
+  return embed.process({ title: 'Error', description: 'Access denied.', });
+}
 
-  message.channel.send(content);
+exports.run = (message, args) => {
+  const e = evaluate(message, args);
+
+  message.channel.send({ embed: e, });
   return true;
-};
+}

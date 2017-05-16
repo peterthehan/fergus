@@ -2,6 +2,7 @@ const d = require('../data.js');
 const character_visual = d.character_visual();
 const skill = d.skill();
 
+const embed = require('../util/embed.js');
 const extractGradeArg = require('../util/extractGradeArg.js');
 const filterCharacterVisual = require('../util/filterCharacterVisual.js');
 const fuzzy = require('../util/fuzzy.js');
@@ -11,67 +12,59 @@ const removeDuplicates = require('../util/removeDuplicates.js');
 const resolve = require('../util/resolve.js');
 
 skillInstructions = () => {
-  return {
+  const names = ['list', '<name>', '<level>',];
+  const values = [
+    'List all skills.\n*e.g. !skill list*',
+    'Get skill information.\n*e.g. !skill wind slash*',
+    'Filter skills by <level>.\n*e.g. !skill wind slash 1*',
+  ];
+  const inlines = [true, true, true,];
+
+  return embed.process({
     title: '!skill [list|<name>] [<level>]',
-    fields: [
-      {
-        name: 'list',
-        value: 'List all skills.\n*e.g. !skill list*',
-        inline: true
-      },
-      {
-        name: '<name>',
-        value: 'Get skill information.\n*e.g. !skill wind slash*',
-        inline: true
-      },
-      {
-        name: '<level>',
-        value: 'Filter skills by <level>.\n*e.g. !skill wind slash 1*',
-        inline: true
-      }
-    ]
-  };
+    fields: embed.fields(names, values, inlines),
+  });
 }
 
 skillList = () => {
-  return { description: removeDuplicates(list(skill, 'name').split(', ')).join(', ') };
+  return embed.process({
+    description: removeDuplicates(list(skill, 'name').split(', ')).join(', '),
+  });
 }
 
 skillInfo = (name, grade = null) => {
   const data = grade === null
-    ? skill.filter(element => element['unlockcond']['next_id'] === 'MAX')
-    : skill.filter(element => element['level'] === grade);
-
+      ? skill.filter(element => element['unlockcond']['next_id'] === 'MAX')
+      : skill.filter(element => element['level'] === grade);
   const skillData = fuzzy(name, data, 'name');
 
-  // parallel arrays
-  const names = [
-    'Class',
-    'Type',
-    'Cost',
-    'Great rate',
-    'Unlock condition'
-  ];
+  const names = ['Class', 'Type', 'Cost', 'Great rate', 'Unlock condition',];
   const values = [ // key does not resolve as-is, modification necessary
     resolve('TEXT_CLASS_' + skillData['class'].substring(4)),
     resolve(skillData['simpledesc']),
-    skillData['cost'].map(currentValue => `${resolve('TEXT_' + currentValue['type'])}: ${currentValue['value']}`).join('\n'),
+    skillData['cost']
+        .map(currentValue => {
+          return `${resolve('TEXT_' + currentValue['type'])}: ` +
+              `${currentValue['value']}`;
+        })
+        .join('\n'),
     skillData['huge'] === -1 ? '-' : `${parseInt(skillData['huge'] * 100)}%`,
-    unlockCondition(skillData['unlockcond'])
+    unlockCondition(skillData['unlockcond']),
   ];
   const inlines = [true, true, true, true, false];
 
-  return {
-    thumbnail: { url: imagePath('skills/' + skillData['icon']) },
-    title: `${resolve(skillData['name'])} (Lv. ${skillData['level']}${skillData['unlockcond']['next_id'] === 'MAX' ? ', Max' : ''})`,
+  return embed.process({
+    title:
+        `${resolve(skillData['name'])} (Lv. ${skillData['level']}` +
+        `${skillData['unlockcond']['next_id'] === 'MAX' ? ', Max' : ''})`,
     description: resolve(skillData['desc']),
-    fields: values.map((currentValue, index) => {
-      return {
-        name: names[index],
-        value: currentValue === null ? '-' : currentValue,
-        inline: inlines[index] };
-    })
-  };
+    thumbnail: { url: imagePath('skills/' + skillData['icon']), },
+    fields: embed.fields(
+      names,
+      values.map(currentValue => currentValue === null ? '-' : currentValue),
+      inlines
+    ),
+  });
 }
 
 unlockCondition = (data) => {
@@ -105,18 +98,12 @@ unlockCondition = (data) => {
 }
 
 exports.run = (message, args) => {
-  let embed = {};
+  const e = args.length === 0
+      ? skillInstructions()
+      : args[0].startsWith('list')
+          ? skillList()
+          : skillInfo(args, extractGradeArg(args, 5));
 
-  if (args.length === 0) {
-    embed = skillInstructions();
-  } else {
-    if (args[0].startsWith('list')) {
-      embed = skillList();
-    } else {
-      embed = skillInfo(args, extractGradeArg(args, 5));
-    }
-  }
-
-  message.channel.send({ embed: embed });
+  message.channel.send({ embed: e, });
   return true;
 }

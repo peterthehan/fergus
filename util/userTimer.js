@@ -9,8 +9,7 @@ module.exports = {
     return userTimers;
   },
 
-  // 900000 ms = 15 minutes
-  addTimer: (message, content, time = 900000) => {
+  addTimer: (message, content, time) => {
     const userTimer = setTimeout(() => {
       module.exports.removeTimer(message.author.id);
       message.author.send(content);

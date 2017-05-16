@@ -1,22 +1,21 @@
 const d = require('../data.js');
 const costume = d.costume();
 
+const embed = require('../util/embed.js');
 const fuzzy = require('../util/fuzzy.js');
 const imagePath = require('../util/imagePath.js');
 const list = require('../util/list.js');
 const resolve = require('../util/resolve.js');
 
 skinInstructions = () => {
-  return {
+  const names = ['<name>',];
+  const values = [`Get skin information.\n*e.g. !skin lee*`,];
+  const inlines = [true,];
+
+  return embed.process({
     title: '!skin [<name>]',
-    fields: [
-      {
-        name: '<name>',
-        value: `Get skin information.\n*e.g. !skin lee*`,
-        inline: true
-      }
-    ]
-  };
+    fields: embed.fields(names, values, inlines),
+  });
 }
 
 skinInfo = (name) => {
@@ -28,44 +27,37 @@ skinInfo = (name) => {
     'CriticalDamage': 'Crit.Damage',
     'CriticalChance': 'Crit.Chance',
     'Dodge': 'Evasion',
-    'All': 'Stats'
+    'All': 'Stats',
   };
-
-  // parallel arrays
-  const names = ['Sell'];
-  const values = [data['sell_price']];
-  const inlines = [true];
 
   const description = data['addstat_json'].map(currentValue => {
     const label = currentValue['Type'] in convert
-      ? convert[currentValue['Type']]
-      : currentValue['Type'];
+        ? convert[currentValue['Type']]
+        : currentValue['Type'];
     const value = currentValue['Value'] < 1
-      ? `${parseInt(currentValue['Value'] * 100)}%`
-      : currentValue['Value'];
+        ? `${parseInt(currentValue['Value'] * 100)}%`
+        : currentValue['Value'];
 
     return label + ': ' + value;
   });
 
-  return {
-    thumbnail: { url: imagePath('skins/' + data['face_tex']) },
+  const names = ['Sell',];
+  const values = [data['sell_price'],];
+  const inlines = [true,];
+
+  return embed.process({
     title: resolve(data['costume_name']),
     description: description.join('\n'),
-    fields: values.map((currentValue, index) => {
-      return { name: names[index], value: currentValue, inline: inlines[index] };
-    })
-  };
+    thumbnail: { url: imagePath('skins/' + data['face_tex']), },
+    fields: embed.fields(names, values, inlines),
+  });
 }
 
 exports.run = (message, args) => {
-  let embed = {};
+  const e = args.length === 0
+      ? skinInstructions()
+      : args[0].startsWith('list') ? skinList() : skinInfo(args);
 
-  if (args.length === 0) {
-    embed = skinInstructions();
-  } else {
-    embed = args[0].startsWith('list') ? skinList() : skinInfo(args);
-  }
-
-  message.channel.send({ embed: embed });
+  message.channel.send({ embed: e, });
   return true;
 }

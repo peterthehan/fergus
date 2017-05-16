@@ -2,6 +2,7 @@ const d = require('../data.js');
 const character_visual = d.character_visual();
 const sbw = d.sbw();
 
+const embed = require('../util/embed.js');
 const extractGrade = require('../util/extractGrade.js');
 const extractGradeArg = require('../util/extractGradeArg.js');
 const filterCharacterVisual = require('../util/filterCharacterVisual.js');
@@ -10,71 +11,76 @@ const imagePath = require('../util/imagePath.js');
 const resolve = require('../util/resolve.js');
 
 sbwInstructions = () => {
-  return {
+  const names = ['<name>', '<star>',];
+  const values = [
+    `Get sbw information.\n*e.g. !sbw lee*`,
+    'Filter heroes by <star>.\n*e.g. !sbw lee 4*',
+  ];
+  const inlines = [true, true,];
+
+  return embed.process({
     title: '!sbw [<name>] [<star>]',
-    fields: [
-      {
-        name: '<name>',
-        value: `Get sbw information.\n*e.g. !sbw lee*`,
-        inline: true
-      },
-      {
-        name: '<star>',
-        value: 'Filter heroes by <star>.\n*e.g. !sbw lee 4*',
-        inline: true
-      }
-    ]
-  };
+    fields: embed.fields(names, values, inlines),
+  });
 }
 
 sbwInfo = (name, grade = null) => {
   const data = grade === null || grade <= 3
-    ? filterCharacterVisual('max')
-    : filterCharacterVisual(grade);
-
+      ? filterCharacterVisual('max')
+      : filterCharacterVisual(grade);
   const visualData = fuzzy(name, data, 'name');
   // resolve edge case between grade 5 and element['reqhero_ref']
-  const sbwData = (grade === 5 || (grade === null && extractGrade(visualData['id']) === 5)
-    ? sbw.filter(element => parseInt(element['grade']) === 5 && element['reqhero'].includes(visualData['id']))
-    : sbw.filter(element => element['reqhero_ref'] === visualData['id']))[0];
+  const sbwData =
+    (grade === 5 || (grade === null && extractGrade(visualData['id']) === 5)
+        ? sbw.filter(element => {
+            return parseInt(element['grade']) === 5
+                && element['reqhero'].includes(visualData['id']);
+          })
+        : sbw.filter(element => {
+            return element['reqhero_ref'] === visualData['id'];
+          })
+    )[0];
 
   if (sbwData == null) {
-    return { title: 'Error', description: 'Hero does not have an sbw yet!' };
+    return embed.process({
+      title: 'Error',
+      description: 'Hero does not have an sbw yet!',
+    });
   }
 
-  // parallel arrays
   const names = [
     'Category',
     'Range',
     'Atk. Power',
     'Atk. Speed',
-    'How to get'
+    'How to get',
   ];
   const values = [ // key does not resolve as-is, modification necessary
     resolve('TEXT_WEAPON_CATE_' + sbwData['categoryid'].substring(4)),
     sbwData['range'].toString(),
     sbwData['attdmg'].toString(),
     sbwData['attspd'].toString(),
-    sbwData['howtoget'] === null ? null : sbwData['howtoget'].join(', ')
+    sbwData['howtoget'] === null ? null : sbwData['howtoget'].join(', '),
   ];
-  const inlines = [true, true, true, true, false];
+  const inlines = [true, true, true, true, false,];
 
-  return {
-    thumbnail: { url: imagePath('sbws/' + sbwData['face_tex']) },
+  return embed.process({
     title: `${resolve(sbwData['name'])} (${sbwData['grade']}★)`,
     description: resolve(sbwData['desc']),
-    fields: values.map((currentValue, index) => {
-      return {
-        name: names[index],
-        value: currentValue === null ? '-' : currentValue,
-        inline: inlines[index]
-      };
-    })
-  };
+    thumbnail: { url: imagePath('sbws/' + sbwData['face_tex']), },
+    fields: embed.fields(
+      names,
+      values.map(currentValue => currentValue === null ? '-' : currentValue),
+      inlines
+    ),
+  });
 }
 
 exports.run = (message, args) => {
-  const embed = args.length === 0 ? sbwInstructions() : sbwInfo(args, extractGradeArg(args));
-  message.channel.send({ embed: embed });
+  const e = args.length === 0
+      ? sbwInstructions()
+      : sbwInfo(args, extractGradeArg(args));
+
+  message.channel.send({ embed: e, });
   return true;
 }

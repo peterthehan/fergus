@@ -1,59 +1,49 @@
 const d = require('../data.js');
 const goddess = d.goddess();
 
+const embed = require('../util/embed.js');
 const fuzzy = require('../util/fuzzy.js');
 const imagePath = require('../util/imagePath.js');
 const list = require('../util/list.js');
 const resolve = require('../util/resolve.js');
 
 goddessInstructions = () => {
-  return {
+  const names = ['list', '<name>',];
+  const values = [
+    'List all goddesses.\n*e.g. !goddess list*',
+    'Get goddess information.\n*e.g. !goddess sera*',
+  ];
+  const inlines = [true, true,];
+
+  return embed.process({
     title: '!goddess [list|<name>]',
-    fields: [
-      {
-        name: 'list',
-        value: 'List all goddesses.\n*e.g. !goddess list*',
-        inline: true
-      },
-      {
-        name: '<name>',
-        value: 'Get goddess information.\n*e.g. !goddess sera*',
-        inline: true
-      }
-    ]
-  };
+    fields: embed.fields(names, values, inlines),
+  });
 }
 
 goddessList = () => {
-  return { description: list(goddess, 'name') };
+  return embed.process({ description: list(goddess, 'name'), });
 }
 
 goddessInfo = (name) => {
   const data = fuzzy(name, goddess, 'name');
 
-  // parallel arrays
-  const names = [resolve(data['skillname'])];
-  const values = [resolve(data['skilldesc'])];
-  const inlines = [true];
+  const names = [resolve(data['skillname']),];
+  const values = [resolve(data['skilldesc']),];
+  const inlines = [true,];
 
-  return {
-    thumbnail: { url: imagePath('goddesses/' + data['id']) },
+  return embed.process({
     title: resolve(data['name']),
-    fields: values.map((currentValue, index) => {
-      return { name: names[index], value: currentValue, inline: inlines[index] };
-    })
-  };
+    thumbnail: { url: imagePath('goddesses/' + data['id']), },
+    fields: embed.fields(names, values, inlines),
+  });
 }
 
 exports.run = (message, args) => {
-  let embed = {};
+  const e = args.length === 0
+      ? goddessInstructions()
+      : args[0].startsWith('list') ? goddessList() : goddessInfo(args);
 
-  if (args.length === 0) {
-    embed = goddessInstructions();
-  } else {
-    embed = args[0].startsWith('list') ? goddessList() : goddessInfo(args);
-  }
-
-  message.channel.send({ embed: embed });
+  message.channel.send({ embed: e, });
   return true;
 }

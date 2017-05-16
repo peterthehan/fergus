@@ -1,4 +1,5 @@
 const config = require('../config.json');
+const embed = require('../util/embed.js');
 
 exports.run = (message, args) => {
   const cmds = {
@@ -44,13 +45,17 @@ exports.run = (message, args) => {
     ],
   };
 
-  const embed = {
+  const e = embed.process({
     title: 'Commands',
     fields: Object.keys(cmds).map(currentValue => {
-      return { name: currentValue, value: cmds[currentValue].map(i => config.prefix + i).join(', ') };
-    })
-  };
+      return {
+        name: currentValue,
+        value: cmds[currentValue].map(i => config.prefix + i).join(', '),
+        inline: false,
+      };
+    }),
+  });
 
-  message.channel.send({ embed: embed });
+  message.channel.send({ embed: e, });
   return true;
-};
+}

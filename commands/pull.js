@@ -1,29 +1,32 @@
 const d = require('../data.js');
 // remove event, legendary, and supply heroes from the pool
-const character_visual = d.character_visual().filter(element => element['rarity'] !== 'LIMITED' && element['rarity'] !== 'DESTINY' && element['rarity'] !== 'SUPPORT');
+const character_visual = d.character_visual()
+  .filter(element => {
+    return element['rarity'] !== 'LIMITED'
+        && element['rarity'] !== 'DESTINY'
+        && element['rarity'] !== 'SUPPORT';
+  });
 
 const bounds = require('../util/bounds.js');
+const embed = require('../util/embed.js');
 const extractGrade = require('../util/extractGrade.js');
 const filterCharacterVisual = require('../util/filterCharacterVisual.js');
 const random = require('../util/random.js');
 const resolve = require('../util/resolve.js');
 
 pullInstructions = () => {
-  return {
+  const names = ['<number>', '\u200b',];
+  const values = [
+    'Simulate pulling <number> heroes via premium contract.\n*e.g. !pull 10*',
+    'As per https://goo.gl/k62wvU, the rates are:\n' +
+        '6★: 0.60%, 5★: 3.50%, 4★: 14.90%, 3★: 81.00%.',
+  ];
+  const inlines = [true, false,];
+
+  return embed.process({
     title: '!pull [<number>]',
-    fields: [
-      {
-        name: '<number>',
-        value: 'Simulate pulling <number> heroes via premium contract.\n*e.g. !pull 10*',
-        inline: true
-      },
-      {
-        name: '\u200b',
-        value: 'As per https://goo.gl/k62wvU, the rates are:\n6★: 0.60%, 5★: 3.50%, 4★: 14.90%, 3★: 81.00%.',
-        inline: false
-      }
-    ]
-  };
+    fields: embed.fields(names, values, inlines),
+  });
 }
 
 pickGrade = () => {
@@ -40,16 +43,16 @@ pickGrade = () => {
 
 pickHero = (forcedGrade = null) => {
   const grade = forcedGrade === null
-    ? pickGrade()
-    : forcedGrade;
+      ? pickGrade()
+      : forcedGrade;
   const data = filterCharacterVisual(
     grade,
     forcedGrade === null
-      ? character_visual
-      : character_visual.filter(element => element['isgachagolden'])
+        ? character_visual
+        : character_visual.filter(element => element['isgachagolden'])
   );
-  const pulled = data[random(0, data.length - 1)];
-  return pulled;
+
+  return data[random(0, data.length - 1)];
 }
 
 pull = (message, n) => {
@@ -59,26 +62,31 @@ pull = (message, n) => {
     const grade = extractGrade(hero['id']);
     const result = `${i}. ${resolve(hero['name'])} (${grade}★)`;
     // bold results with grades greater than 3
-    results.push(`${grade > 3 ? '**' : ''}${result}${!(i % 10) ? ' (Guaranteed)' : ''}${grade > 3 ? '**' : ''}`);
+    results.push(
+      `${grade > 3 ? '**' : ''}${result}` +
+          `${!(i % 10) ? ' (Guaranteed)' : ''}${grade > 3 ? '**' : ''}`
+    );
   }
-  return {
+
+  return embed.process({
     title: 'Results',
-    description: `${message.author} (${message.author.tag})\n\n${results.join('\n')}`
-  };
+    description:
+        `${message.author} (${message.author.tag})\n\n` +
+        `${results.join('\n')}`,
+  });
 }
 
 
 exports.run = (message, args) => {
-  let embed = {};
-
+  let e;
   if (args.length === 0) {
-    embed = pullInstructions();
+    e = pullInstructions();
   } else {
     const number = [1, 10];
     number.push(!isNaN(args[0]) ? parseInt(args[0]) : 10);
-    embed = pull(message, bounds(number));
+    e = pull(message, bounds(number));
   }
 
-  message.channel.send({ embed: embed });
+  message.channel.send({ embed: e, });
   return true;
 }

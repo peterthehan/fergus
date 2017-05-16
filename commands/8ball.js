@@ -1,3 +1,4 @@
+const embed = require('../util/embed.js');
 const random = require('../util/random.js');
 
 exports.run = (message, args) => {
@@ -22,13 +23,15 @@ exports.run = (message, args) => {
     'My reply is no',
     'My sources say no',
     'Outlook not so good',
-    'Very doubtful'
+    'Very doubtful',
   ];
 
-  const embed = {
-    description: `${message.author} (${message.author.tag}), ${answers[random(0, answers.length - 1)].toLowerCase()}.`
-  };
-  
-  message.channel.send({ embed: embed });
+  const e = embed.process({
+    description:
+        `${message.author} (${message.author.tag}), ` +
+        `${answers[random(0, answers.length - 1)].toLowerCase()}.`,
+  });
+
+  message.channel.send({ embed: e, });
   return true;
-};
+}

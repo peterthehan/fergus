@@ -2,30 +2,29 @@ const d = require('../data.js');
 const character_addstatmax = d.character_addstatmax();
 const character_stat = d.character_stat();
 
+const embed = require('../util/embed.js');
 const filterCharacterVisual = require('../util/filterCharacterVisual.js');
 const getStat = require('../util/getStat.js');
 const resolve = require('../util/resolve.js');
 
 rankInstructions = () => {
-  return {
+  const names = ['<stat>', '<class>', '<isDescending>',];
+  const values = [
+    'List the top 10 heroes by <stat>.\nChoose from: ' +
+        'hp, ha, cc, cd, arm, res, acc, eva, ' +
+        'bhp, bha, bcc, bcd, barm, bres, bacc, beva.\n' +
+        '*e.g. !rank hp, !rank bhp*',
+    'Filter heroes by <class>.\n' +
+        '*e.g. !rank hp paladin, !rank hp paladin false*',
+    'Determine sort order. If not specified, defaults to true.\n' +
+        '*e.g. !rank hp false*',
+  ];
+  const inlines = [false, false, false,];
+
+  return embed.process({
     title: '!rank [<stat>] [<class>|<isDescending>] [<isDescending>]',
-    fields: [
-      {
-        name: '<stat>',
-        value: 'List the top 10 heroes by <stat>.\nChoose from: ' +
-          'hp, ha, cc, cd, arm, res, acc, eva, or ' +
-              'bhp, bha, bcc, bcd, barm, bres, bacc, beva.\n*e.g. !rank hp, !rank bhp*'
-      },
-      {
-        name: '<class>',
-        value: 'Filter heroes by <class>.\n*e.g. !rank hp paladin, !rank hp paladin false*'
-      },
-      {
-        name: '<isDescending>',
-        value: 'Determine sort order. If not specified, defaults to true.\n*e.g. !rank hp false*'
-      }
-    ]
-  };
+    fields: embed.fields(names, values, inlines),
+  });
 }
 
 rankInfo = (args) => {
@@ -36,9 +35,15 @@ rankInfo = (args) => {
     args[0] = args[0].replace(/b/, '');
   }
 
-  const key = rankKeys().filter(element => element['match'].includes(args[0]))[0];
+  const key = rankKeys()
+      .filter(element => element['match'].includes(args[0]))[0];
   if (!key) {
-    return { title: 'Error', description: 'Invalid <stat> parameter. Choose from: hp, ha, cc, cd, arm, res, acc, eva, or bhp, bha, bcc, bcd, barm, bres, bacc, beva.' };
+    return embed.process({
+      title: 'Error',
+      description: 'Invalid <stat> parameter. Choose from: ' +
+          'hp, ha, cc, cd, arm, res, acc, eva, ' +
+          'bhp, bha, bcc, bcd, barm, bres, bacc, beva.',
+    });
   }
 
   // reduce calculation space by only considering heroes in their maxed form
@@ -46,8 +51,12 @@ rankInfo = (args) => {
 
   let ranking = data.map(currentValue => {
     // filter out corresponding hero stat and berry stat
-    const statsData = character_stat.filter(i => currentValue['default_stat_id'] === i['id'])[0];
-    const berryData = character_addstatmax.filter(i => statsData['addstat_max_id'] === i['id'])[0];
+    const statsData = character_stat.filter(i => {
+      return currentValue['default_stat_id'] === i['id'];
+    })[0];
+    const berryData = character_addstatmax.filter(i => {
+      return statsData['addstat_max_id'] === i['id']
+    })[0];
 
     // calculate stats
     let statValue;
@@ -55,8 +64,13 @@ rankInfo = (args) => {
       statValue = 0;
     } else {
       statValue = !key['growth']
-        ? statsData[key['base']]
-        : getStat(statsData[key['base']], statsData[key['growth']], statsData['grade'] * 10, statsData['grade'] - 1);
+          ? statsData[key['base']]
+          : getStat(
+              statsData[key['base']],
+              statsData[key['growth']],
+              statsData['grade'] * 10,
+              statsData['grade'] - 1
+            );
     }
     const berryValue = !berryData ? 0 : berryData[key['berry']];
 
@@ -64,7 +78,7 @@ rankInfo = (args) => {
       class: currentValue['classid'],
       grade: statsData['grade'],
       name: currentValue['name'],
-      stat: statValue + berryValue
+      stat: statValue + berryValue,
     };
   });
 
@@ -75,13 +89,17 @@ rankInfo = (args) => {
   if (args.length >= 2) {
     args[1] = args[1].toLowerCase();
     if (['warrior', 'paladin', 'archer', 'hunter', 'wizard', 'priest'].includes(args[1])) {
-      heroClass = args[1].charAt(0).toUpperCase() + args[1].substr(1).toLowerCase() + 's';
+      heroClass = args[1].charAt(0).toUpperCase() +
+          args[1].substr(1).toLowerCase() + 's';
       ranking = ranking.filter(element => element['class'].toLowerCase().includes(args[1]));
     }
     if ('false' === args[1] || (args.length > 2 && 'false' === args[2].toLowerCase())) {
       isDescending = false;
       // filter out non-6 star heroes and edge case with battleloid s-6
-      ranking = ranking.filter(element => element['grade'] === 6 && element['name'] !== 'TEXT_CHA_WA_SUPPORT_6_1_NAME');
+      ranking = ranking.filter(element => {
+        return element['grade'] === 6
+            && element['name'] !== 'TEXT_CHA_WA_SUPPORT_6_1_NAME';
+      });
     }
   }
 
@@ -93,14 +111,17 @@ rankInfo = (args) => {
   // get the first 10 results
   ranking = ranking.slice(0, 10);
 
-  const title = (!heroClass ? 'All heroes' : heroClass) + ' ranked in ' +
-    (isDescending ? 'descending' : 'ascending') + ' order by ' +
-    (berryFlag ? 'berry ' : ' ') + key['name'];
-
-  return {
-    title: title,
-    description: ranking.map((currentValue, index) => `${index + 1}. ${resolve(currentValue['name'])}, ${currentValue['stat'].toFixed(key['rounding'])}`).join('\n'),
-  };
+  return embed.process({
+    title:
+      (!heroClass ? 'All heroes' : heroClass) + ' ranked in ' +
+        (isDescending ? 'descending' : 'ascending') + ' order by ' +
+        (berryFlag ? 'berry ' : ' ') + key['name'],
+    description:
+      ranking.map((currentValue, index) => {
+        return `${index + 1}. ${resolve(currentValue['name'])},` +
+            `${currentValue['stat'].toFixed(key['rounding'])}`
+      }).join('\n'),
+  });
 }
 
 rankKeys = () => {
@@ -111,7 +132,7 @@ rankKeys = () => {
       growth: 'growthhp',
       match: ['hp', 'health'],
       name: 'HP',
-      rounding: 1
+      rounding: 1,
     },
     {
       base: 'initialattdmg',
@@ -119,7 +140,7 @@ rankKeys = () => {
       growth: 'growthattdmg',
       match: ['ha', 'attack'],
       name: 'Atk. Power',
-      rounding: 1
+      rounding: 1,
     },
     {
       base: 'critprob',
@@ -127,7 +148,7 @@ rankKeys = () => {
       growth: null,
       match: ['cc', 'chance'],
       name: 'Crit.Chance',
-      rounding: 2
+      rounding: 2,
 
     },
     {
@@ -136,7 +157,7 @@ rankKeys = () => {
       growth: null,
       match: ['cd', 'damage'],
       name: 'Crit.Damage',
-      rounding: 2
+      rounding: 2,
     },
     {
       base: 'defense',
@@ -144,7 +165,7 @@ rankKeys = () => {
       growth: 'growthdefense',
       match: ['arm', 'armor'],
       name: 'Armor',
-      rounding: 1
+      rounding: 1,
     },
     {
       base: 'resist',
@@ -152,7 +173,7 @@ rankKeys = () => {
       growth: 'growthresist',
       match: ['res', 'resistance'],
       name: 'Resistance',
-      rounding: 1
+      rounding: 1,
     },
     {
       base: 'hitrate',
@@ -160,7 +181,7 @@ rankKeys = () => {
       growth: null,
       match: ['acc', 'accuracy'],
       name: 'Accuracy',
-      rounding: 2
+      rounding: 2,
     },
     {
       base: 'dodgerate',
@@ -168,13 +189,14 @@ rankKeys = () => {
       growth: null,
       match: ['eva', 'evasion'],
       name: 'Evasion',
-      rounding: 2
+      rounding: 2,
     },
   ];
 }
 
 exports.run = (message, args) => {
-  const embed = args.length === 0 ? rankInstructions() : rankInfo(args);
-  message.channel.send({ embed: embed });
+  const e = args.length === 0 ? rankInstructions() : rankInfo(args);
+
+  message.channel.send({ embed: e, });
   return true;
 }

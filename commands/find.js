@@ -7,29 +7,42 @@ const skill = d.skill();
 const weapon = d.weapon();
 
 const countInstances = require('../util/countInstances.js');
+const embed = require('../util/embed.js');
 const filter = require('../util/filter.js');
 const plurality = require('../util/plurality.js');
 const removeDuplicates = require('../util/removeDuplicates.js');
 const resolve = require('../util/resolve.js');
 const truncateString = require('../util/truncateString.js');
 
-const options = 'berry|bread|hero|skill|skin|weapon';
+options = () => {
+  return [
+    'berry',
+    'bread',
+    'hero',
+    'skill',
+    'skin',
+    'weapon',
+  ];
+}
 
 findInstructions = () => {
-  return {
-    title: `!find [${options}] [<name>]`,
-    fields: [
-      {
-        name: `${options} <name>`,
-        value: `List all occurences of <name>.\n*e.g. !find bread donut, !find skin halloween*`,
-        inline: true
-      }
-    ]
-  };
+  const names = [`<database> <name>`,];
+  const values = [
+    'List all occurences of <name> in <database>.\nChoose <database> from: ' +
+        `${options().join(', ')}.\n` +
+        '*e.g. !find bread donut, !find skin halloween*',
+  ];
+  const inlines = [true,];
+
+  return embed.process({
+    title: `!find [<database> <name>]`,
+    fields: embed.fields(names, values, inlines),
+  });
 }
 
 find = (name, data) => {
-  const filtered = filter(name, data[0], data[1], false); // isStrongFilter = false
+  // isStrongFilter = false
+  const filtered = filter(name, data[0], data[1], false);
 
   let title;
   let description;
@@ -38,15 +51,17 @@ find = (name, data) => {
     title = 'No results found!';
   } else {
     // remove duplicate results, particularly from skill
-    const results = removeDuplicates(filtered.map(currentValue => resolve(currentValue[data[1]])));
+    const results = removeDuplicates(
+      filtered.map(currentValue => resolve(currentValue[data[1]]))
+    );
     description = truncateString(results.join(', '));
-    title = `Displaying ${countInstances(description, ',') + 1} of ${results.length} result${plurality(results.length)} found`;
+    title =
+      'Displaying ' +
+      `${countInstances(description, ',') + 1} of ${results.length} ` +
+      `result${plurality(results.length)} found`;
   }
 
-  return {
-    title: title,
-    description: description
-  };
+  return embed.process({ title: title, description: description, });
 }
 
 getData = (data) => {
@@ -67,18 +82,22 @@ getData = (data) => {
 }
 
 exports.run = (message, args) => {
-  let embed = {};
-
+  let e;
   if (args.length === 0) {
-    embed = findInstructions();
+    e = findInstructions();
   } else {
     const arg0 = args.shift();
     const data = getData(arg0);
-    embed = data !== null
-      ? find(args, data)
-      : { title: 'Error', description: `${arg0} is not a valid parameter! Choose from ${options}.` };
+    e = data !== null
+        ? find(args, data)
+        : embed.process({
+            title: 'Error',
+            description:
+                `${arg0} is not a valid parameter! ` +
+                `Choose from: ${options().join(', ')}.`,
+          });
   }
 
-  message.channel.send({ embed: embed });
+  message.channel.send({ embed: e, });
   return true;
 }

@@ -1,3 +1,5 @@
+const embed = require('../util/embed.js');
+
 square = (str) => {
   let description = '```';
   if (str.length === 1) {
@@ -16,19 +18,23 @@ square = (str) => {
   }
   description += '```';
 
-  return { description: description };
+  return embed.process({ description: description, });
 }
 
 exports.run = (message, args) => {
-  let embed = {};
-
+  let e = {};
   if (args.length === 0) {
-    embed = { description: 'Type something to squarify!' };
+    e = embed.process({ description: 'Type something to squarify!', });
   } else {
     const str = args.join(' ');
-    embed = str.length <= 16 ? square(str) : { title: 'Error', description: 'Message is too long!' };
+    e = str.length <= 16
+        ? square(str)
+        : embed.process({
+            title: 'Error',
+            description: 'Message is too long!',
+          });
   }
 
-  message.channel.send({ embed: embed });
+  message.channel.send({ embed: e, });
   return true;
-};
+}

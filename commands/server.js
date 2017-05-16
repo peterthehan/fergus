@@ -1,4 +1,5 @@
 const moment = require('moment');
+const embed = require('../util/embed.js');
 const plurality = require('../util/plurality.js');
 const timestamp = require('../util/timestamp.js');
 const truncateString = require('../util/truncateString.js');
@@ -7,18 +8,22 @@ getChannels = (guild) => {
   const textChannel = [];
   const voiceChannel = [];
   guild.channels
-    .map(currentValue => (currentValue.type === 'text' ? textChannel : voiceChannel).push(currentValue));
+      .map(currentValue => {
+        return (currentValue.type === 'text' ? textChannel : voiceChannel)
+            .push(currentValue);
+      });
+
   return [textChannel, voiceChannel];
 }
 
 getBotMembers = (guild) => {
   return guild.members
-    .filter(currentValue => currentValue.user.bot)
-    .map(currentValue => '<@!' + currentValue.user.id + '>');
+      .filter(currentValue => currentValue.user.bot)
+      .map(currentValue => '<@!' + currentValue.user.id + '>');
 }
 
 exports.run = (message, args) => {
-  let embed;
+  let e;
 
   const guild = message.guild;
   if (guild.available) {
@@ -33,7 +38,7 @@ exports.run = (message, args) => {
       `Bots (${botMember.length})`,
       `Members`,
       'Server owner',
-      'Server created on'
+      'Server created on',
     ];
     const values = [
       channels[0].join(', '),
@@ -42,9 +47,9 @@ exports.run = (message, args) => {
       botMember.join(', '),
       `${guild.memberCount}${guild.large ? ' (large)' : ''}`,
       `${guild.owner} (${guild.owner.user.tag})`,
-      `${timestamp(guild.createdAt)}\n(${moment(guild.createdAt).fromNow()})`
+      `${timestamp(guild.createdAt)}\n(${moment(guild.createdAt).fromNow()})`,
     ];
-    const inlines = [true, true, true, true, false, true, true];
+    const inlines = [true, true, true, true, false, true, true,];
 
     // add emojis to parallel arrays if they exist
     const emojiLength = guild.emojis.array().length;
@@ -57,19 +62,20 @@ exports.run = (message, args) => {
     // ensure all values fit
     values.map(currentValue => truncateString(currentValue));
 
-    embed = {
-      thumbnail: { url: guild.iconURL === null ? '' : guild.iconURL },
+    e = embed.process({
       title: `${guild.name} (${guild.id}) | ${guild.region}`,
-      fields: values.map((currentValue, index) => {
-        return { name: names[index], value: currentValue, inline: inlines[index] };
-      }),
-      footer: { text: timestamp(message.createdAt) }
-    };
+      thumbnail: { url: guild.iconURL === null ? '' : guild.iconURL, },
+      footer: { text: timestamp(message.createdAt), },
+      fields: embed.fields(names, values, inlines),
+    });
   } else {
-    embed = { title: 'Error', description: 'Server information unavailable due to outage.' };
+    e = embed.process({
+      title: 'Error',
+      description: 'Server information unavailable due to outage.',
+    });
     console.log('Server outage');
   }
 
-  message.channel.send({ embed: embed });
+  message.channel.send({ embed: e, });
   return true;
-};
+}

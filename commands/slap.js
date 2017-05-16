@@ -1,4 +1,5 @@
 const author = require('../util/author.js');
+const embed = require('../util/embed.js');
 const random = require('../util/random.js');
 
 const fishList = [
@@ -1053,7 +1054,7 @@ const fishList = [
   'zebrafish',
   'zebra shark',
   'ziege',
-  'zingel'
+  'zingel',
 ];
 
 slapMessage = (zero, one, index) => {
@@ -1061,42 +1062,44 @@ slapMessage = (zero, one, index) => {
     '{0} slaps {1} around a bit with a {2}.',
     '{0} prevents {1} from slapping himself around a bit with a {2}.',
     '{0} counterslaps {1} around a bit with a {2} for trying to slap him.',
-    '{0} counterslaps {1} around a bit with a {2} for trying to slap his master.'
+    '{0} counterslaps {1} around a bit with a {2} for trying to slap ' +
+        'his master.',
   ];
+
   return messages[index]
-    .replace(/\{0\}/, zero)
-    .replace(/\{1\}/, one)
-    .replace(/\{2\}/, fishList[random(0, fishList.length - 1)]);
+      .replace(/\{0\}/, zero)
+      .replace(/\{1\}/, one)
+      .replace(/\{2\}/, fishList[random(0, fishList.length - 1)]);
 }
 
 slapLogic = (message, args) => {
   if (args.length === 0) { // self
     return message.author.id === author.id()
-      ? slapMessage(message.client.user, author.mention(message), 1)
-      : slapMessage(message.author, 'themselves', 0);
+        ? slapMessage(message.client.user, author.mention(message), 1)
+        : slapMessage(message.author, 'themselves', 0);
   } else {
     const mention = args[0].startsWith('<@') && args[0].endsWith('>')
-      ? args[0].replace(/^<@!?|>$/g, '')
-      : args.join(' ');
+        ? args[0].replace(/^<@!?|>$/g, '')
+        : args.join(' ');
 
     if (mention === message.author.id) { // self
       return message.author.id === author.id()
-        ? slapMessage(message.client.user, author.mention(message), 1)
-        : slapMessage(message.author, 'themselves', 0);
+          ? slapMessage(message.client.user, author.mention(message), 1)
+          : slapMessage(message.author, 'themselves', 0);
     } else if (mention === message.client.user.id) { // bot
       return message.author.id === author.id()
-        ? slapMessage(author.mention(message), message.client.user, 0)
-        : slapMessage(message.client.user, message.author, 2);
+          ? slapMessage(author.mention(message), message.client.user, 0)
+          : slapMessage(message.client.user, message.author, 2);
     } else if (mention === author.id()) { // author
       return message.author.id === author.id()
-        ? slapMessage(message.client.user, author.mention(message), 1)
-        : slapMessage(message.client.user, message.author, 3);
+          ? slapMessage(message.client.user, author.mention(message), 1)
+          : slapMessage(message.client.user, message.author, 3);
     } else { // everyone else
       return slapMessage(
         message.author,
         args[0].startsWith('<@') && args[0].endsWith('>')
-          ? args[0]
-          : mention,
+            ? args[0]
+            : mention,
         0
       );
     }
@@ -1104,7 +1107,8 @@ slapLogic = (message, args) => {
 }
 
 exports.run = (message, args) => {
-  const embed = { description: slapLogic(message, args) };
-  message.channel.send({ embed: embed });
+  const e = embed.process({ description: slapLogic(message, args), });
+
+  message.channel.send({ embed: e, });
   return true;
-};
+}

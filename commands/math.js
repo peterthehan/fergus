@@ -1,36 +1,33 @@
 const math = require('mathjs');
+const embed = require('../util/embed.js');
 
 mathInstructions = () => {
-  return {
+  const names = ['<expression>', '\u200b',];
+  const values = [
+    'Resolve <expression>.\n*e.g. !math 2 + 2*',
+    'Examples can be found at http://mathjs.org/.',
+  ];
+  const inlines = [true, false,];
+
+  return embed.process({
     title: '!math [<expression>]',
-    fields: [
-      {
-        name: '<expression>',
-        value: 'Resolve <expression>.\n*e.g. !math 2 + 2*',
-        inline: true
-      },
-      {
-        name: '\u200b',
-        value: 'Examples can be found at http://mathjs.org/.',
-        inline: false
-      }
-    ]
-  };
+    fields: embed.fields(names, values, inlines),
+  });
 }
 
 exports.run = (message, args) => {
-  let embed = {};
-
+  let e;
   if (args.length === 0) {
-    embed = mathInstructions();
+    e = mathInstructions();
   } else {
     try {
-      embed = { description: math.eval(args.join(' ')).toString() };
+      e = embed.process({ description: math.eval(args.join(' ')).toString() });
     } catch (error) {
-      embed = { description: error.toString() };
+      e = embed.process({ description: error.toString() });
       console.log(error);
     }
   }
-  message.channel.send({ embed: embed });
+
+  message.channel.send({ embed: e, });
   return true;
-};
+}

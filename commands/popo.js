@@ -1,67 +1,95 @@
 const humanizeDuration = require('humanize-duration');
-const imagePath = require('../util/imagePath.js');
 const countInstances = require('../util/countInstances.js');
+const embed = require('../util/embed.js');
+const imagePath = require('../util/imagePath.js');
 const random = require('../util/random.js');
 const truncateString = require('../util/truncateString.js');
 const userTimer = require('../util/userTimer.js');
 
+popoImage = () => {
+  return imagePath(`popo%20(${random(1, 4)})`);
+}
+
 popoInstructions = () => {
-  return {
-    thumbnail: { url: imagePath(`popo%20(${random(1, 4)})`) },
+  const names = ['go', 'no', 'me', 'list',];
+  const values = [
+    'Start a 15 minute timer.\n*e.g. !popo go*',
+    'Cancel timer.\n*e.g. !popo no*',
+    'Check remaining time.\n*e.g. !popo me*',
+    `List all user timers.\n*e.g. !popo list*`,
+  ];
+  const inlines = [true, true, true, true,];
+
+  return embed.process({
     title: '!popo [go|no|me|list]',
-    fields: [
-      {
-        name: 'go',
-        value: 'Start a 15 minute timer.\n*e.g. !popo go*',
-        inline: true
-      },
-      {
-        name: 'no',
-        value: 'Cancel timer.\n*e.g. !popo no*',
-        inline: true
-      },
-      {
-        name: 'me',
-        value: 'Check remaining time.\n*e.g. !popo me*',
-        inline: true
-      },
-      {
-        name: 'list',
-        value: `List all user timers.\n*e.g. !popo list*`,
-        inline: true
-      }
-    ]
-  };
+    thumbnail: { url: popoImage(), },
+    fields: embed.fields(names, values, inlines),
+  });
 }
 
 popoGo = (message) => {
   if (userTimer.exists(message.author.id)) {
-    return { thumbnail: { url: imagePath(`popo%20(${random(1, 4)})`) }, title: 'Error', description: `You already have a running timer!` };
+    return embed.process({
+      title: 'Error',
+      description: `You already have a running timer!`,
+      thumbnail: { url: popoImage(), },
+    });
   }
-  userTimer.addTimer(message, `Popo has left!`);
-  return { thumbnail: { url: imagePath(`popo%20(${random(1, 4)})`) }, title: 'Timer started', description: `I'll let you know when 15 minutes have passed!` };
+
+  // 900000 ms = 15 minutes
+  const time = 900000;
+  userTimer.addTimer(message, `Popo has left!`, time);
+  return embed.process({
+    title: 'Timer started',
+    description:
+        `I'll let you know when ` +
+        `${humanizeDuration(time, { round: true })} have passed!`,
+    thumbnail: { url: popoImage(), },
+  });
 }
 
 popoNo = (id) => {
   if (userTimer.exists(id)) {
     userTimer.removeTimer(id);
-    return { thumbnail: { url: imagePath(`popo%20(${random(1, 4)})`) }, title: 'Timer canceled', description: `Your timer has been canceled!` };
+    return embed.process({
+      title: 'Timer canceled',
+      description: `Your timer has been canceled!`,
+      thumbnail: { url: popoImage(), },
+    });
   }
-  return { thumbnail: { url: imagePath(`popo%20(${random(1, 4)})`) }, title: 'Error', description: `You don't have a timer to cancel!` };
+
+  return embed.process({
+    title: 'Error',
+    description: `You don't have a timer to cancel!`,
+    thumbnail: { url: popoImage(), },
+  });
 }
 
 popoMe = (id) => {
   if (userTimer.exists(id)) {
-    return { thumbnail: { url: imagePath(`popo%20(${random(1, 4)})`) }, title: 'Time remaining', description: remainingTimeMessage(id) };
+    return embed.process({
+      title: 'Time remaining',
+      description: remainingTimeMessage(id),
+      thumbnail: { url: popoImage(), },
+    });
   }
-  return { thumbnail: { url: imagePath(`popo%20(${random(1, 4)})`) }, title: 'Error', description: `You don't have a timer to check!` };
+
+  return embed.process({
+    title: 'Error',
+    description: `You don't have a timer to check!`,
+    thumbnail: { url: popoImage(), },
+  });
 }
 
 popoList = () => {
   const timers = userTimer.getTimers();
 
   if (Object.keys(timers).length === 0 && timers.constructor === Object) {
-    return { thumbnail: { url: imagePath(`popo%20(${random(1, 4)})`) }, title: 'Error', description: 'There are no user timers to list!' };
+    return embed.process({
+      title: 'Error',
+      description: 'There are no user timers to list!',
+      thumbnail: { url: popoImage(), },
+    });
   }
 
   const remaining = [];
@@ -73,37 +101,39 @@ popoList = () => {
   }
 
   const description = truncateString(remaining.join('\n'), '\n');
-  return {
-    thumbnail: { url: imagePath(`popo%20(${random(1, 4)})`) },
-    title: `Time remaining list (${countInstances(description, '\n') + 1} of ${remaining.length})`,
-    description: description
-  };
+  return embed.process({
+    title:
+        'Time remaining list ' +
+        `(${countInstances(description, '\n') + 1} of ${remaining.length})`,
+    description: description,
+    thumbnail: { url: popoImage() },
+  });
 }
 
 // helper function
 remainingTimeMessage = (id) => {
-  return `<@!${id}>: ${humanizeDuration(userTimer.getRemainingTime(id), { round: true })}`;
+  return `<@!${id}>: ` +
+      `${humanizeDuration(userTimer.getRemainingTime(id), { round: true })}`;
 }
 
 exports.run = (message, args) => {
-  let embed;
-
+  let e;
   if (args.length === 0) {
-    embed = popoInstructions();
+    e = popoInstructions();
   } else {
     if (args[0].startsWith('go')) {
-      embed = popoGo(message);
+      e = popoGo(message);
     } else if (args[0].startsWith('no')) {
-      embed = popoNo(message.author.id);
+      e = popoNo(message.author.id);
     } else if (args[0].startsWith('me')) {
-      embed = popoMe(message.author.id);
+      e = popoMe(message.author.id);
     } else if (args[0].startsWith('list')) {
-      embed = popoList(message);
+      e = popoList(message);
     } else { // anything else, give instructions again
-      embed = popoInstructions();
+      e = popoInstructions();
     }
   }
 
-  message.channel.send({ embed: embed });
+  message.channel.send({ embed: e, });
   return true;
 }
