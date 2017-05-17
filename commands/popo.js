@@ -6,10 +6,6 @@ const random = require('../util/random.js');
 const truncateString = require('../util/truncateString.js');
 const userTimer = require('../util/userTimer.js');
 
-popoImage = () => {
-  return imagePath(`popo%20(${random(1, 4)})`);
-}
-
 popoInstructions = () => {
   const names = ['go', 'no', 'me', 'list',];
   const values = [
@@ -42,8 +38,8 @@ popoGo = (message) => {
   return embed.process({
     title: 'Timer started',
     description:
-        `I'll let you know when ` +
-        `${humanizeDuration(time, { round: true })} have passed!`,
+      `I'll let you know when ` +
+      `${humanizeDuration(time, { round: true, })} have passed!`,
     thumbnail: { url: popoImage(), },
   });
 }
@@ -84,7 +80,7 @@ popoMe = (id) => {
 popoList = () => {
   const timers = userTimer.getTimers();
 
-  if (Object.keys(timers).length === 0 && timers.constructor === Object) {
+  if (!Object.keys(timers).length && timers.constructor === Object) {
     return embed.process({
       title: 'Error',
       description: 'There are no user timers to list!',
@@ -100,38 +96,41 @@ popoList = () => {
     remaining.push(remainingTimeMessage(id));
   }
 
-  const description = truncateString(remaining.join('\n'), '\n');
+  const description = remaining.join('\n')
   return embed.process({
     title:
-        'Time remaining list ' +
+      'Timer list ' +
         `(${countInstances(description, '\n') + 1} of ${remaining.length})`,
-    description: description,
-    thumbnail: { url: popoImage() },
+    description: truncateString(description, '\n'),
+    thumbnail: { url: popoImage(), },
   });
 }
 
 // helper function
 remainingTimeMessage = (id) => {
   return `<@!${id}>: ` +
-      `${humanizeDuration(userTimer.getRemainingTime(id), { round: true })}`;
+    `${humanizeDuration(userTimer.getRemainingTime(id), { round: true, })}`;
+}
+
+// helper function
+popoImage = () => {
+  return imagePath(`popo%20(${random(1, 4)})`);
 }
 
 exports.run = (message, args) => {
   let e;
-  if (args.length === 0) {
+  if (!args.length) {
     e = popoInstructions();
-  } else {
-    if (args[0].startsWith('go')) {
-      e = popoGo(message);
-    } else if (args[0].startsWith('no')) {
-      e = popoNo(message.author.id);
-    } else if (args[0].startsWith('me')) {
-      e = popoMe(message.author.id);
-    } else if (args[0].startsWith('list')) {
-      e = popoList(message);
-    } else { // anything else, give instructions again
-      e = popoInstructions();
-    }
+  } else if (args[0].toLowerCase().startsWith('go')) {
+    e = popoGo(message);
+  } else if (args[0].toLowerCase().startsWith('no')) {
+    e = popoNo(message.author.id);
+  } else if (args[0].toLowerCase().startsWith('me')) {
+    e = popoMe(message.author.id);
+  } else if (args[0].toLowerCase().startsWith('list')) {
+    e = popoList(message);
+  } else { // anything else, give instructions again
+    e = popoInstructions();
   }
 
   message.channel.send({ embed: e, });

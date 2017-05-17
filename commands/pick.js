@@ -5,7 +5,7 @@ pickInstructions = () => {
   const names = ['<list>',];
   const values = [
     'Randomly pick one item from a comma-separated list.\n' +
-        '*e.g. !pick milk, bread, eggs*',
+      '*e.g. !pick milk, bread, eggs*',
   ];
   const inlines = [true,];
 
@@ -24,9 +24,7 @@ pickItem = (args) => {
 }
 
 exports.run = (message, args) => {
-  const e = args.length === 0
-      ? pickInstructions()
-      : pickItem(args);
+  const e = !args.length ? pickInstructions() : pickItem(args);
 
   message.channel.send({ embed: e, });
   return true;

@@ -40,9 +40,11 @@ goddessInfo = (name) => {
 }
 
 exports.run = (message, args) => {
-  const e = args.length === 0
-      ? goddessInstructions()
-      : args[0].startsWith('list') ? goddessList() : goddessInfo(args);
+  const e = !args.length
+    ? goddessInstructions()
+    : args[0].toLowerCase().startsWith('list')
+        ? goddessList()
+        : goddessInfo(args);
 
   message.channel.send({ embed: e, });
   return true;

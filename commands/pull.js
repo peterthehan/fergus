@@ -3,8 +3,8 @@ const d = require('../data.js');
 const character_visual = d.character_visual()
   .filter(element => {
     return element['rarity'] !== 'LIMITED'
-        && element['rarity'] !== 'DESTINY'
-        && element['rarity'] !== 'SUPPORT';
+      && element['rarity'] !== 'DESTINY'
+      && element['rarity'] !== 'SUPPORT';
   });
 
 const bounds = require('../util/bounds.js');
@@ -18,8 +18,8 @@ pullInstructions = () => {
   const names = ['<number>', '\u200b',];
   const values = [
     'Simulate pulling <number> heroes via premium contract.\n*e.g. !pull 10*',
-    'As per https://goo.gl/k62wvU, the rates are:\n' +
-        '6★: 0.60%, 5★: 3.50%, 4★: 14.90%, 3★: 81.00%.',
+    'The [rates](https://goo.gl/k62wvU) are: ' +
+      '6★: 0.60%, 5★: 3.50%, 4★: 14.90%, 3★: 81.00%.',
   ];
   const inlines = [true, false,];
 
@@ -42,14 +42,14 @@ pickGrade = () => {
 }
 
 pickHero = (forcedGrade = null) => {
-  const grade = forcedGrade === null
-      ? pickGrade()
-      : forcedGrade;
+  const grade = !forcedGrade
+    ? pickGrade()
+    : forcedGrade;
   const data = filterCharacterVisual(
     grade,
-    forcedGrade === null
-        ? character_visual
-        : character_visual.filter(element => element['isgachagolden'])
+    !forcedGrade
+      ? character_visual
+      : character_visual.filter(element => element['isgachagolden'])
   );
 
   return data[random(0, data.length - 1)];
@@ -64,22 +64,21 @@ pull = (message, n) => {
     // bold results with grades greater than 3
     results.push(
       `${grade > 3 ? '**' : ''}${result}` +
-          `${!(i % 10) ? ' (Guaranteed)' : ''}${grade > 3 ? '**' : ''}`
+        `${!(i % 10) ? ' (Guaranteed)' : ''}${grade > 3 ? '**' : ''}`
     );
   }
 
   return embed.process({
     title: 'Results',
     description:
-        `${message.author} (${message.author.tag})\n\n` +
-        `${results.join('\n')}`,
+      `${message.author} (${message.author.tag})\n\n` +
+      `${results.join('\n')}`,
   });
 }
 
-
 exports.run = (message, args) => {
   let e;
-  if (args.length === 0) {
+  if (!args.length) {
     e = pullInstructions();
   } else {
     const number = [1, 10];

@@ -24,30 +24,30 @@ heroInstructions = () => {
 }
 
 heroInfo = (name, grade = null) => {
-  const data = grade === null
-      ? filterCharacterVisual('max')
-      : filterCharacterVisual(grade);
+  const data = !grade
+    ? filterCharacterVisual('max')
+    : filterCharacterVisual(grade);
 
   const visualData = fuzzy(name, data, 'name');
   const statData = character_stat
-      .filter(element => element['id'] === visualData['default_stat_id'])[0];
+    .filter(element => element['id'] === visualData['default_stat_id'])[0];
 
   // rarity
   const rarity = visualData['rarity'] === 'LEGENDARY'
-      ? visualData['isgachagolden'] ? 'IN_GACHA' : 'LAGENDARY'
-      : visualData['rarity'];
+    ? visualData['isgachagolden'] ? 'IN_GACHA' : 'LAGENDARY'
+    : visualData['rarity'];
 
   const names = ['Class', 'Domain', 'Gender', 'Rarity', 'How to get',];
   const values = [ // key does not resolve as-is, modification necessary
     resolve('TEXT_CLASS_' + visualData['classid'].substring(4)),
     resolve(
       visualData['domain'] === 'NONEGROUP'
-          ? 'TEXT_CHAMP_DOMAIN_' + visualData['domain'] + '_NAME'
-          : 'TEXT_CHAMPION_DOMAIN_' + visualData['domain']
+        ? 'TEXT_CHAMP_DOMAIN_' + visualData['domain'] + '_NAME'
+        : 'TEXT_CHAMPION_DOMAIN_' + visualData['domain']
     ),
     resolve('TEXT_EXPLORE_TOOLTIP_GENDER_' + visualData['gender']),
     resolve('TEXT_CONFIRM_SELL_' + rarity + '_HERO'),
-    visualData['howtoget'] === null ? null : visualData['howtoget'].join(', '),
+    !visualData['howtoget'] ? null : visualData['howtoget'].join(', '),
   ];
   const inlines = [true, true, true, true, false,];
 
@@ -57,15 +57,16 @@ heroInfo = (name, grade = null) => {
     thumbnail: { url: imagePath('heroes/' + visualData['face_tex']), },
     fields: embed.fields(
       names,
-      values.map(currentValue => currentValue === null ? '-' : currentValue), inlines
+      values.map(currentValue => !currentValue ? '-' : currentValue),
+      inlines
     ),
   });
 }
 
 exports.run = (message, args) => {
-  const e = args.length === 0
-      ? heroInstructions()
-      : heroInfo(args, extractGradeArg(args));
+  const e = !args.length
+    ? heroInstructions()
+    : heroInfo(args, extractGradeArg(args));
 
   message.channel.send({ embed: e, });
   return true;

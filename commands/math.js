@@ -17,13 +17,13 @@ mathInstructions = () => {
 
 exports.run = (message, args) => {
   let e;
-  if (args.length === 0) {
+  if (!args.length) {
     e = mathInstructions();
   } else {
     try {
-      e = embed.process({ description: math.eval(args.join(' ')).toString() });
+      e = embed.process({ description: math.eval(args.join(' ')).toString(), });
     } catch (error) {
-      e = embed.process({ description: error.toString() });
+      e = embed.process({ description: error.toString(), });
       console.log(error);
     }
   }
