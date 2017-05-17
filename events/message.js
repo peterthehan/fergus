@@ -1,8 +1,8 @@
 const config = require('../config.json');
 
 const Count = require('../util/count.js');
-const messageCount = new Count();
-const commandCount = new Count();
+const commandCount = new Count(1);
+const messageCount = new Count(1);
 
 module.exports = {
   message: (message) => {
@@ -25,6 +25,6 @@ module.exports = {
       commandCount.increment();
     }
   },
-  messageCount,
   commandCount,
+  messageCount,
 };

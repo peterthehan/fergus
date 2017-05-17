@@ -22,17 +22,17 @@ square = (str) => {
 }
 
 exports.run = (message, args) => {
-  let e = {};
-  if (args.length === 0) {
+  let e;
+  if (!args.length) {
     e = embed.process({ description: 'Type something to squarify!', });
   } else {
     const str = args.join(' ');
     e = str.length <= 16
-        ? square(str)
-        : embed.process({
-            title: 'Error',
-            description: 'Message is too long!',
-          });
+      ? square(str)
+      : embed.process({
+          title: 'Error',
+          description: 'Message is too long!',
+        });
   }
 
   message.channel.send({ embed: e, });

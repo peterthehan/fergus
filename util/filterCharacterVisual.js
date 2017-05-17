@@ -9,7 +9,7 @@ const extractGrade = require('./extractGrade.js');
 // an array of integers with each element bounded by [1, 6] with no duplicates
 module.exports = filterCharacterVisual = (grade, data = character_visual) => {
   if (grade === 'max') {
-    return data.filter(element => element['upgradetargethero'] === null);
+    return data.filter(element => !element['upgradetargethero']);
   }
   return grade.constructor === Array // filter by a single grade or an array of grades
     ? data.filter(element => grade.includes(extractGrade(element['id'])))

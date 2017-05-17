@@ -9,7 +9,7 @@ module.exports = filter = (query, data, key, isStrongFilter = true) => {
   let filtered = query.map(currentValue => {
     return data.filter(element => {
       const resolved = resolve(element[key]);
-      if (resolved === null) {
+      if (!resolved) {
         return false;
       }
       // check equality between each word of query to each word of resolved

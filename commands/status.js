@@ -7,7 +7,7 @@ const timestamp = require('../util/timestamp.js');
 exports.run = (message, args) => {
   const heapUsed = Math.round(process.memoryUsage().heapUsed / (1024 * 1024));
   const heapTotal =
-      Math.round(process.memoryUsage().heapTotal / (1024 * 1024));
+    Math.round(process.memoryUsage().heapTotal / (1024 * 1024));
 
   // parallel arrays
   const names = [
@@ -19,14 +19,14 @@ exports.run = (message, args) => {
   ];
   const values = [
     `${message.client.guilds.size} ` +
-        `server${plurality(message.client.guilds.size)}, ` +
-        `${message.client.channels.size} ` +
-        `channel${plurality(message.client.channels.size)}, and ` +
-        `${message.client.users.size} ` +
-        `user${plurality(message.client.users.size)}`,
+      `server${plurality(message.client.guilds.size)}, ` +
+      `${message.client.channels.size} ` +
+      `channel${plurality(message.client.channels.size)}, and ` +
+      `${message.client.users.size} ` +
+      `user${plurality(message.client.users.size)}`,
     humanizeDuration(message.client.uptime),
     `${heapUsed} MB of ${heapTotal} MB ` +
-        `(${(100 * heapUsed / heapTotal).toFixed(2)}%)`,
+      `(${(100 * heapUsed / heapTotal).toFixed(2)}%)`,
     me.commandCount.toString(),
     me.messageCount.toString(),
   ];

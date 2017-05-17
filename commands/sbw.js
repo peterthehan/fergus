@@ -25,23 +25,23 @@ sbwInstructions = () => {
 }
 
 sbwInfo = (name, grade = null) => {
-  const data = grade === null || grade <= 3
-      ? filterCharacterVisual('max')
-      : filterCharacterVisual(grade);
+  const data = !grade || grade <= 3
+    ? filterCharacterVisual('max')
+    : filterCharacterVisual(grade);
   const visualData = fuzzy(name, data, 'name');
   // resolve edge case between grade 5 and element['reqhero_ref']
   const sbwData =
-    (grade === 5 || (grade === null && extractGrade(visualData['id']) === 5)
+    (grade === 5 || (!grade && extractGrade(visualData['id']) === 5)
         ? sbw.filter(element => {
             return parseInt(element['grade']) === 5
-                && element['reqhero'].includes(visualData['id']);
+              && element['reqhero'].includes(visualData['id']);
           })
         : sbw.filter(element => {
             return element['reqhero_ref'] === visualData['id'];
           })
     )[0];
 
-  if (sbwData == null) {
+  if (!sbwData) {
     return embed.process({
       title: 'Error',
       description: 'Hero does not have an sbw yet!',
@@ -60,7 +60,7 @@ sbwInfo = (name, grade = null) => {
     sbwData['range'].toString(),
     sbwData['attdmg'].toString(),
     sbwData['attspd'].toString(),
-    sbwData['howtoget'] === null ? null : sbwData['howtoget'].join(', '),
+    !sbwData['howtoget'] ? null : sbwData['howtoget'].join(', '),
   ];
   const inlines = [true, true, true, true, false,];
 
@@ -70,16 +70,16 @@ sbwInfo = (name, grade = null) => {
     thumbnail: { url: imagePath('sbws/' + sbwData['face_tex']), },
     fields: embed.fields(
       names,
-      values.map(currentValue => currentValue === null ? '-' : currentValue),
+      values.map(currentValue => !currentValue ? '-' : currentValue),
       inlines
     ),
   });
 }
 
 exports.run = (message, args) => {
-  const e = args.length === 0
-      ? sbwInstructions()
-      : sbwInfo(args, extractGradeArg(args));
+  const e = !args.length
+    ? sbwInstructions()
+    : sbwInfo(args, extractGradeArg(args));
 
   message.channel.send({ embed: e, });
   return true;

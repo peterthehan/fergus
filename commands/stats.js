@@ -16,7 +16,7 @@ statsInstructions = () => {
     `Get stats information.\n*e.g. !stats lee*`,
     'Filter heroes by <star>.\n*e.g. !stats lee 4*',
     'Modify training parameters. If not specified, defaults to max form.\n' +
-        '*e.g. !stats lee 6 60 5 false*',
+      '*e.g. !stats lee 6 60 5 false*',
   ];
   const inlines = [true, true, true,];
 
@@ -27,19 +27,19 @@ statsInstructions = () => {
 }
 
 statsInfo = (name, training) => {
-  const data = training[0] === null
-      ? filterCharacterVisual('max')
-      : filterCharacterVisual(training[0]);
+  const data = !training[0]
+    ? filterCharacterVisual('max')
+    : filterCharacterVisual(training[0]);
 
   const visualData = fuzzy(name, data, 'name');
   const statData = character_stat
-      .filter(element => element['id'] === visualData['default_stat_id'])[0];
+    .filter(element => element['id'] === visualData['default_stat_id'])[0];
 
   const grade = statData['grade'];
   const berry = training[3];
   let addStatMaxData = grade === 6 && (berry === null || berry)
     ? character_addstatmax
-        .filter(element => element['id'] === statData['addstat_max_id'])[0]
+      .filter(element => element['id'] === statData['addstat_max_id'])[0]
     : null;
 
   // resolve battleloid edge case
@@ -47,19 +47,15 @@ statsInfo = (name, training) => {
     addStatMaxData = null;
   }
 
-  const level = training[1] === null
-      || training[1] > grade * 10
-      || training[1] < 1
-          ? grade * 10
-          : training[1];
-  const bread = training[2] === null
-      || training[2] > grade - 1
-      || training[2] < 0
-          ? grade - 1
-          : training[2];
+  const level = !training[1] || training[1] > grade * 10 || training[1] < 1
+    ? grade * 10
+    : training[1];
+  const bread = !training[2] || training[2] > grade - 1 || training[2] < 0
+    ? grade - 1
+    : training[2];
 
   // parallel arrays
-  const addBerry = addStatMaxData === null
+  const addBerry = !addStatMaxData
     ? [0, 0, 0, 0, 0, 0, 0, 0,]
     : [
         addStatMaxData['hp'],
@@ -98,7 +94,7 @@ statsInfo = (name, training) => {
   return embed.process({
     title: `${resolve(visualData['name'])} (${statData['grade']}★)`,
     description: `Lv. ${level}, +${bread} bread training, with` +
-        `${addStatMaxData === null ? 'out' : ''} berry training.`,
+      `${!addStatMaxData ? 'out' : ''} berry training.`,
     thumbnail: { url: imagePath('heroes/' + visualData['face_tex']), },
     fields: embed.fields(
       names,
@@ -123,21 +119,22 @@ parseTrainingArgs = (args) => {
     level = parseInt(args.pop());
     grade = args.pop();
   } else if (args.length >= 2
-        && ['1', '2', '3', '4', '5', '6'].includes(args[args.length - 1])) {
+    && ['1', '2', '3', '4', '5', '6'].includes(args[args.length - 1])
+  ) {
     grade = args.pop();
   }
 
   grade = ['1', '2', '3', '4', '5', '6'].includes(grade)
-      ? parseInt(grade)
-      : null;
+    ? parseInt(grade)
+    : null;
 
   return [grade, level, bread, berry,];
 }
 
 exports.run = (message, args) => {
-  const e = args.length === 0
-      ? statsInstructions()
-      : statsInfo(args, parseTrainingArgs(args));
+  const e = !args.length
+    ? statsInstructions()
+    : statsInfo(args, parseTrainingArgs(args));
 
   message.channel.send({ embed: e, });
   return true;

@@ -11,18 +11,18 @@ rankInstructions = () => {
   const names = ['<stat>', '<class>', '<isDescending>',];
   const values = [
     'List the top 10 heroes by <stat>.\nChoose from: ' +
-        'hp, ha, cc, cd, arm, res, acc, eva, ' +
-        'bhp, bha, bcc, bcd, barm, bres, bacc, beva.\n' +
-        '*e.g. !rank hp, !rank bhp*',
+      'hp, ha, cc, cd, arm, res, acc, eva, ' +
+      'bhp, bha, bcc, bcd, barm, bres, bacc, beva.\n' +
+      '*e.g. !rank hp, !rank bhp*',
     'Filter heroes by <class>.\n' +
-        '*e.g. !rank hp paladin, !rank hp paladin false*',
+      '*e.g. !rank hp paladin, !rank hp paladin false*',
     'Determine sort order. If not specified, defaults to true.\n' +
-        '*e.g. !rank hp false*',
+      '*e.g. !rank hp false*',
   ];
   const inlines = [false, false, false,];
 
   return embed.process({
-    title: '!rank [<stat>] [<class>|<isDescending>] [<isDescending>]',
+    title: '!rank [<stat>] [<class>|<isDescending>]',
     fields: embed.fields(names, values, inlines),
   });
 }
@@ -36,13 +36,13 @@ rankInfo = (args) => {
   }
 
   const key = rankKeys()
-      .filter(element => element['match'].includes(args[0]))[0];
+    .filter(element => element['match'].includes(args[0]))[0];
   if (!key) {
     return embed.process({
       title: 'Error',
       description: 'Invalid <stat> parameter. Choose from: ' +
-          'hp, ha, cc, cd, arm, res, acc, eva, ' +
-          'bhp, bha, bcc, bcd, barm, bres, bacc, beva.',
+        'hp, ha, cc, cd, arm, res, acc, eva, ' +
+        'bhp, bha, bcc, bcd, barm, bres, bacc, beva.',
     });
   }
 
@@ -64,13 +64,13 @@ rankInfo = (args) => {
       statValue = 0;
     } else {
       statValue = !key['growth']
-          ? statsData[key['base']]
-          : getStat(
-              statsData[key['base']],
-              statsData[key['growth']],
-              statsData['grade'] * 10,
-              statsData['grade'] - 1
-            );
+        ? statsData[key['base']]
+        : getStat(
+            statsData[key['base']],
+            statsData[key['growth']],
+            statsData['grade'] * 10,
+            statsData['grade'] - 1
+          );
     }
     const berryValue = !berryData ? 0 : berryData[key['berry']];
 
@@ -88,17 +88,21 @@ rankInfo = (args) => {
 
   if (args.length >= 2) {
     args[1] = args[1].toLowerCase();
-    if (['warrior', 'paladin', 'archer', 'hunter', 'wizard', 'priest'].includes(args[1])) {
+    if (['warrior', 'paladin', 'archer', 'hunter', 'wizard', 'priest']
+      .includes(args[1])
+    ) {
       heroClass = args[1].charAt(0).toUpperCase() +
-          args[1].substr(1).toLowerCase() + 's';
+        args[1].substr(1).toLowerCase() + 's';
       ranking = ranking.filter(element => element['class'].toLowerCase().includes(args[1]));
     }
-    if ('false' === args[1] || (args.length > 2 && 'false' === args[2].toLowerCase())) {
+    if ('false' === args[1]
+    || (args.length > 2 && 'false' === args[2].toLowerCase())
+    ) {
       isDescending = false;
       // filter out non-6 star heroes and edge case with battleloid s-6
       ranking = ranking.filter(element => {
         return element['grade'] === 6
-            && element['name'] !== 'TEXT_CHA_WA_SUPPORT_6_1_NAME';
+          && element['name'] !== 'TEXT_CHA_WA_SUPPORT_6_1_NAME';
       });
     }
   }
@@ -117,10 +121,12 @@ rankInfo = (args) => {
         (isDescending ? 'descending' : 'ascending') + ' order by ' +
         (berryFlag ? 'berry ' : ' ') + key['name'],
     description:
-      ranking.map((currentValue, index) => {
-        return `${index + 1}. ${resolve(currentValue['name'])},` +
+      ranking
+        .map((currentValue, index) => {
+          return `${index + 1}. ${resolve(currentValue['name'])}, ` +
             `${currentValue['stat'].toFixed(key['rounding'])}`
-      }).join('\n'),
+        })
+        .join('\n'),
   });
 }
 
@@ -195,7 +201,7 @@ rankKeys = () => {
 }
 
 exports.run = (message, args) => {
-  const e = args.length === 0 ? rankInstructions() : rankInfo(args);
+  const e = !args.length ? rankInstructions() : rankInfo(args);
 
   message.channel.send({ embed: e, });
   return true;

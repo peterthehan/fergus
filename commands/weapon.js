@@ -31,7 +31,7 @@ weaponGradeList = (grade) => {
   return embed.process({
     title: `(${grade}★)`,
     description:
-        list(weapon.filter(element => element['grade'] === grade), 'name'),
+      list(weapon.filter(element => element['grade'] === grade), 'name'),
   });
 }
 
@@ -45,7 +45,7 @@ weaponInfo = (name) => {
     data['convert_slot_3'],
   ]
     .map(currentValue => resolve(modifyKey(currentValue)))
-    .filter(element => element !== null);
+    .filter(element => element);
 
   const names = [
     'Category',
@@ -60,8 +60,8 @@ weaponInfo = (name) => {
     data['range'].toString(),
     data['attdmg'].toString(),
     data['attspd'].toString(),
-    conv.length === 0 ? null : conv.join(', '),
-    data['howtoget'] === null ? null : data['howtoget'].join(', '),
+    !conv.length ? null : conv.join(', '),
+    !data['howtoget'] ? null : data['howtoget'].join(', '),
   ];
   const inlines = [true, true, true, true, false, false,];
 
@@ -70,7 +70,7 @@ weaponInfo = (name) => {
     thumbnail: { url: imagePath('weapons/' + data['face_tex']) },
     fields: embed.fields(
       names,
-      values.map(currentValue => currentValue === null ? '-' : currentValue),
+      values.map(currentValue => !currentValue ? '-' : currentValue),
       inlines
     ),
   });
@@ -90,22 +90,20 @@ modifyKey = (value) => {
 
 exports.run = (message, args) => {
   let e;
-  if (args.length === 0) {
+  if (!args.length) {
     e = weaponInstructions();
+  } else if (args[0].toLowerCase().startsWith('list')) {
+    e = weaponList();
+  } else if (!isNaN(args[0])) {
+    args[0] = parseInt(args[0]);
+    e = args[0] >= 1 && args[0] <= 6
+      ? weaponGradeList(args[0])
+      : embed.process({
+          title: 'Error',
+          description: `${args[0]}-star weapons do not exist!`,
+        });
   } else {
-    if (args[0].startsWith('list')) {
-      e = weaponList();
-    } else if (!isNaN(args[0])) {
-      args[0] = parseInt(args[0]);
-      e = args[0] >= 1 && args[0] <= 6
-          ? weaponGradeList(args[0])
-          : embed.process({
-              title: 'Error',
-              description: `${args[0]}-star weapons do not exist!`,
-            });
-    } else {
-      e = weaponInfo(args);
-    }
+    e = weaponInfo(args);
   }
 
   message.channel.send({ embed: e, });

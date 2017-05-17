@@ -7,8 +7,8 @@ class Count {
     return this.count;
   }
 
-  reset() {
-    this.count = 0;
+  reset(count = 0) {
+    this.count = count;
   }
 
   increment() {

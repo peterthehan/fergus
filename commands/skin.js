@@ -32,11 +32,11 @@ skinInfo = (name) => {
 
   const description = data['addstat_json'].map(currentValue => {
     const label = currentValue['Type'] in convert
-        ? convert[currentValue['Type']]
-        : currentValue['Type'];
+      ? convert[currentValue['Type']]
+      : currentValue['Type'];
     const value = currentValue['Value'] < 1
-        ? `${parseInt(currentValue['Value'] * 100)}%`
-        : currentValue['Value'];
+      ? `${parseInt(currentValue['Value'] * 100)}%`
+      : currentValue['Value'];
 
     return label + ': ' + value;
   });
@@ -54,9 +54,9 @@ skinInfo = (name) => {
 }
 
 exports.run = (message, args) => {
-  const e = args.length === 0
-      ? skinInstructions()
-      : args[0].startsWith('list') ? skinList() : skinInfo(args);
+  const e = !args.length
+    ? skinInstructions()
+    : args[0].toLowerCase().startsWith('list') ? skinList() : skinInfo(args);
 
   message.channel.send({ embed: e, });
   return true;

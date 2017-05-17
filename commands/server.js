@@ -8,23 +8,22 @@ getChannels = (guild) => {
   const textChannel = [];
   const voiceChannel = [];
   guild.channels
-      .map(currentValue => {
-        return (currentValue.type === 'text' ? textChannel : voiceChannel)
-            .push(currentValue);
-      });
+    .map(currentValue => {
+      return (currentValue.type === 'text' ? textChannel : voiceChannel)
+        .push(currentValue);
+    });
 
   return [textChannel, voiceChannel];
 }
 
 getBotMembers = (guild) => {
   return guild.members
-      .filter(currentValue => currentValue.user.bot)
-      .map(currentValue => '<@!' + currentValue.user.id + '>');
+    .filter(currentValue => currentValue.user.bot)
+    .map(currentValue => '<@!' + currentValue.user.id + '>');
 }
 
 exports.run = (message, args) => {
   let e;
-
   const guild = message.guild;
   if (guild.available) {
     const channels = getChannels(guild);
@@ -53,7 +52,7 @@ exports.run = (message, args) => {
 
     // add emojis to parallel arrays if they exist
     const emojiLength = guild.emojis.array().length;
-    if (emojiLength !== 0) {
+    if (emojiLength) {
       names.push(`Emojis (${emojiLength})`);
       values.push(guild.emojis.array().join(' '));
       inlines.push(false);
@@ -64,7 +63,7 @@ exports.run = (message, args) => {
 
     e = embed.process({
       title: `${guild.name} (${guild.id}) | ${guild.region}`,
-      thumbnail: { url: guild.iconURL === null ? '' : guild.iconURL, },
+      thumbnail: { url: !guild.iconURL ? '' : guild.iconURL, },
       footer: { text: timestamp(message.createdAt), },
       fields: embed.fields(names, values, inlines),
     });
