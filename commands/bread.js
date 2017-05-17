@@ -30,7 +30,7 @@ breadGradeList = (grade) => {
   return embed.process({
     title: `(${grade}★)`,
     description:
-        list(bread.filter(element => element['grade'] === grade), 'name'),
+      list(bread.filter(element => element['grade'] === grade), 'name'),
   });
 }
 
@@ -44,8 +44,8 @@ breadInfo = (name) => {
   return embed.process({
     title: `${resolve(data['name'])} (${data['grade']}★)`,
     description:
-        `Value: ${data['trainpoint']}\n` +
-        `Great rate: ${parseInt(data['critprob'] * 100)}%`,
+      `Value: ${data['trainpoint']}\n` +
+      `Great rate: ${parseInt(data['critprob'] * 100)}%`,
     thumbnail: { url: imagePath('bread/' + data['texture']), },
     fields: embed.fields(names, values, inlines),
   });
@@ -53,22 +53,20 @@ breadInfo = (name) => {
 
 exports.run = (message, args) => {
   let e;
-  if (args.length === 0) {
+  if (!args.length) {
     e = breadInstructions();
+  } else if (args[0].toLowerCase().startsWith('list')) {
+    e = breadList();
+  } else if (!isNaN(args[0])) {
+    args[0] = parseInt(args[0]);
+    e = args[0] >= 1 && args[0] <= 6
+      ? breadGradeList(args[0])
+      : embed.process({
+          title: 'Error',
+          description: `${args[0]}-star breads do not exist!`,
+        });
   } else {
-    if (args[0].startsWith('list')) {
-      e = breadList();
-    } else if (!isNaN(args[0])) {
-      args[0] = parseInt(args[0]);
-      e = args[0] >= 1 && args[0] <= 6
-          ? breadGradeList(args[0])
-          : embed.process({
-              title: 'Error',
-              description: `${args[0]}-star breads do not exist!`,
-            });
-    } else {
-      e = breadInfo(args);
-    }
+    e = breadInfo(args);
   }
 
   message.channel.send({ embed: e, });

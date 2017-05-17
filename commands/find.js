@@ -29,8 +29,8 @@ findInstructions = () => {
   const names = [`<database> <name>`,];
   const values = [
     'List all occurences of <name> in <database>.\nChoose <database> from: ' +
-        `${options().join(', ')}.\n` +
-        '*e.g. !find bread donut, !find skin halloween*',
+      `${options().join(', ')}.\n` +
+      '*e.g. !find bread donut, !find skin halloween*',
   ];
   const inlines = [true,];
 
@@ -46,7 +46,7 @@ find = (name, data) => {
 
   let title;
   let description;
-  if (filtered.length === 0) {
+  if (!filtered.length) {
     description = '';
     title = 'No results found!';
   } else {
@@ -83,19 +83,19 @@ getData = (data) => {
 
 exports.run = (message, args) => {
   let e;
-  if (args.length === 0) {
+  if (!args.length) {
     e = findInstructions();
   } else {
     const arg0 = args.shift();
     const data = getData(arg0);
-    e = data !== null
-        ? find(args, data)
-        : embed.process({
-            title: 'Error',
-            description:
-                `${arg0} is not a valid parameter! ` +
-                `Choose from: ${options().join(', ')}.`,
-          });
+    e = data
+      ? find(args, data)
+      : embed.process({
+          title: 'Error',
+          description:
+            `${arg0} is not a valid parameter! ` +
+              `Choose from: ${options().join(', ')}.`,
+        });
   }
 
   message.channel.send({ embed: e, });

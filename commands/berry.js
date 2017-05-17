@@ -32,14 +32,14 @@ berryGradeList = (grade) => {
   return embed.process({
     title: `(${grade}★)`,
     description:
-        list(berry.filter(element => element['grade'] === grade), 'name'),
+      list(berry.filter(element => element['grade'] === grade), 'name'),
   });
 }
 
 berryInfo = (name, grade = null) => {
-  const data = grade === null
-      ? berry
-      : berry.filter(element => element['grade'] === grade);
+  const data = !grade
+    ? berry
+    : berry.filter(element => element['grade'] === grade);
 
   const berryData = fuzzy(name, data, 'name');
   if (!berryData) { // edge case of nonexistent 5-star berries
@@ -56,14 +56,14 @@ berryInfo = (name, grade = null) => {
   return embed.process({
     title: `${resolve(berryData['name'])} (${berryData['grade']}★)`,
     description:
-        `${resolve(berryData['type_name'])}: ` +
-        (berryData['add_stat_point'] <= 1
-            ? (berryData['add_stat_point'] * 100).toFixed(1)
-            : berryData['add_stat_point']) +
-        (berryData['category'] === 'All' || berryData['type'].includes('Ratio')
-            ? '%'
-            : '') +
-        `\nGreat rate: ${parseInt(berryData['great_prob'] * 100)}%`,
+      `${resolve(berryData['type_name'])}: ` +
+      (berryData['add_stat_point'] <= 1
+        ? (berryData['add_stat_point'] * 100).toFixed(1)
+        : berryData['add_stat_point']) +
+      (berryData['category'] === 'All' || berryData['type'].includes('Ratio')
+        ? '%'
+        : '') +
+      `\nGreat rate: ${parseInt(berryData['great_prob'] * 100)}%`,
     thumbnail: { url: imagePath('berries/' + berryData['texture']), },
     fields: embed.fields(names, values, inlines),
   });
@@ -71,22 +71,20 @@ berryInfo = (name, grade = null) => {
 
 exports.run = (message, args) => {
   let e;
-  if (args.length === 0) {
+  if (!args.length) {
     e = berryInstructions();
+  } else if (args[0].toLowerCase().startsWith('list')) {
+    e = berryList();
+  } else if (!isNaN(args[0])) {
+    args[0] = parseInt(args[0]);
+    e = args[0] >= 1 && args[0] <= 6
+      ? berryGradeList(args[0])
+      : embed.process({
+          title: 'Error',
+          description: `${args[0]}-star berries do not exist!`,
+        });
   } else {
-    if (args[0].startsWith('list')) {
-      e = berryList();
-    } else if (!isNaN(args[0])) {
-      args[0] = parseInt(args[0]);
-      e = args[0] >= 1 && args[0] <= 6
-          ? berryGradeList(args[0])
-          : embed.process({
-              title: 'Error',
-              description: `${args[0]}-star berries do not exist!`,
-            });
-    } else {
-      e = berryInfo(args, extractGradeArg(args));
-    }
+    e = berryInfo(args, extractGradeArg(args));
   }
 
   message.channel.send({ embed: e, });

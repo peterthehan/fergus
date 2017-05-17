@@ -5,36 +5,37 @@ const timestamp = require('../util/timestamp.js');
 
 evaluate = (message, args) => {
   // limit command to author because eval is evil
-  if (message.author.id === author.id()) {
-    if (args.length > 0) {
-      let input = args.join(' ');
-      if (input.includes('token') || input.includes('eval')) {
-        return embed('This is a bad idea.', '');
-      } else {
-        input = beautify(input, { indent_size: 2 });
-        let output;
-        try {
-          output = eval(input);
-        } catch (error) {
-          output = error;
-        }
-
-        const names = ['Input', 'Output',];
-        const values = [
-          '```js\n' + input + '```',
-          '```js\n' + output + '```',
-        ];
-        const inlines = [false, false,];
-
-        return embed.process({
-          footer: { text: timestamp(message.createdAt), },
-          fields: embed.fields(names, values, inlines),
-        });
-      }
-    }
-    return embed.process({ description: 'Type code!' });
+  if (message.author.id !== author.id()) {
+    return embed.process({ title: 'Error', description: 'Access denied.', });
   }
-  return embed.process({ title: 'Error', description: 'Access denied.', });
+
+  if (!args.length) {
+    return embed.process({ description: 'Type code!', });
+  }
+
+  let input = args.join(' ');
+  if (input.toLowerCase().includes('token')
+    || input.toLowerCase().includes('eval')
+  ) {
+    return embed.process({ description: 'This is a bad idea.', });
+  }
+
+  input = beautify(input, { indent_size: 2, });
+  let output;
+  try {
+    output = eval(input);
+  } catch (error) {
+    output = error;
+  }
+
+  const names = ['Input', 'Output',];
+  const values = ['```js\n' + input + '```', '```js\n' + output + '```',];
+  const inlines = [false, false,];
+
+  return embed.process({
+    footer: { text: timestamp(message.createdAt), },
+    fields: embed.fields(names, values, inlines),
+  });
 }
 
 exports.run = (message, args) => {

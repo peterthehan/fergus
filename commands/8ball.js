@@ -28,8 +28,8 @@ exports.run = (message, args) => {
 
   const e = embed.process({
     description:
-        `${message.author} (${message.author.tag}), ` +
-        `${answers[random(0, answers.length - 1)].toLowerCase()}.`,
+      `${message.author} (${message.author.tag}), ` +
+      `${answers[random(0, answers.length - 1)].toLowerCase()}.`,
   });
 
   message.channel.send({ embed: e, });
