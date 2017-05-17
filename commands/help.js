@@ -25,6 +25,7 @@ exports.run = (message, args) => {
     ],
     'Utility': [
       'coin',
+      'forge',
       'links',
       'math',
       'pick',
