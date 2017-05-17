@@ -65,6 +65,7 @@ Fergus is a Crusaders Quest Discord server bot.
 - [js-beautify 1.6.12](https://www.npmjs.com/package/js-beautify)
 - [mathjs 3.12.2](https://www.npmjs.com/package/mathjs)
 - [moment 2.18.1](https://www.npmjs.com/package/moment)
+- [randomcolor 0.5.2](https://www.npmjs.com/package/randomcolor)
 
 ## Special Thanks
 Special thanks to the following individuals for their contributions to the project:

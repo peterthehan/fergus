@@ -1,7 +1,9 @@
+const randomColor = require('randomcolor');
+
 // title, description, color, footer, image, thumbnail, fields
 module.exports = {
-  process: (embed, color = 0xFF00FF) => {
-    embed.color = color;
+  process: (embed, color = 0x4F545C) => {
+    embed.color = parseInt('0x' + randomColor().substr(1));
     return embed;
   },
 
