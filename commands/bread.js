@@ -2,51 +2,55 @@ const d = require('../data.js');
 const bread = d.bread();
 
 const embed = require('../util/embed.js');
+const extractGradeArg = require('../util/extractGradeArg.js');
 const fuzzy = require('../util/fuzzy.js');
 const imagePath = require('../util/imagePath.js');
 const list = require('../util/list.js');
 const resolve = require('../util/resolve.js');
 
 breadInstructions = () => {
-  const names = ['list', '<star>', '<name>',];
+  const names = ['list', '<name>', '<star>',];
   const values = [
-    'List all breads.\n*e.g. !bread list*',
-    'List all <star> breads.\n*e.g. !bread 4*',
+    'List all bread.\n*e.g. !bread list*',
     'Get bread information.\n*e.g. !bread macaron*',
+    'Filter bread by <star>.\n*e.g. !bread list 6, !bread donut 6*',
   ];
   const inlines = [true, true, true,];
 
   return embed.process({
-    title: '!bread [list|<star>|<name>]',
+    title: '!bread [list|<name>] [<star>]',
     fields: embed.fields(names, values, inlines),
   });
 }
 
-breadList = () => {
-  return embed.process({ description: list(bread, 'name'), });
-}
+breadList = (grade = null) => {
+  const data = !grade
+    ? bread
+    : bread.filter(element => element['grade'] === grade);
 
-breadGradeList = (grade) => {
   return embed.process({
-    title: `(${grade}★)`,
-    description:
-      list(bread.filter(element => element['grade'] === grade), 'name'),
+    title: !grade ? '' : `(${grade}★)`,
+    description: list(data, 'name'),
   });
 }
 
-breadInfo = (name) => {
-  const data = fuzzy(name, bread, 'name');
+breadInfo = (name, grade = null) => {
+  const data = !grade
+    ? bread
+    : bread.filter(element => element['grade'] === grade);
+
+  const breadData = fuzzy(name, data, 'name');
 
   const names = ['Sell',];
-  const values = [data['sellprice'],];
+  const values = [breadData['sellprice'],];
   const inlines = [true,];
 
   return embed.process({
-    title: `${resolve(data['name'])} (${data['grade']}★)`,
+    title: `${resolve(breadData['name'])} (${breadData['grade']}★)`,
     description:
-      `Value: ${data['trainpoint']}\n` +
-      `Great rate: ${parseInt(data['critprob'] * 100)}%`,
-    thumbnail: { url: imagePath('bread/' + data['texture']), },
+      `Value: ${breadData['trainpoint']}\n` +
+      `Great rate: ${parseInt(breadData['critprob'] * 100)}%`,
+    thumbnail: { url: imagePath('bread/' + breadData['texture']), },
     fields: embed.fields(names, values, inlines),
   });
 }
@@ -55,18 +59,11 @@ exports.run = (message, args) => {
   let e;
   if (!args.length) {
     e = breadInstructions();
-  } else if (args[0].toLowerCase().startsWith('list')) {
-    e = breadList();
-  } else if (!isNaN(args[0])) {
-    args[0] = parseInt(args[0]);
-    e = args[0] >= 1 && args[0] <= 6
-      ? breadGradeList(args[0])
-      : embed.process({
-          title: 'Error',
-          description: `${args[0]}-star breads do not exist!`,
-        });
   } else {
-    e = breadInfo(args);
+    const grade = extractGradeArg(args);
+    e = args[0].toLowerCase().startsWith('list')
+      ? breadList(grade)
+      : breadInfo(args, grade);
   }
 
   message.channel.send({ embed: e, });

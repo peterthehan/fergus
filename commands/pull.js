@@ -18,7 +18,7 @@ pullInstructions = () => {
   const names = ['<number>', '\u200b',];
   const values = [
     'Simulate pulling <number> heroes via premium contract.\n*e.g. !pull 10*',
-    'The [rates](https://goo.gl/k62wvU) are: ' +
+    'Premium contract [rates](https://goo.gl/k62wvU) are: ' +
       '6★: 0.60%, 5★: 3.50%, 4★: 14.90%, 3★: 81.00%.',
   ];
   const inlines = [true, false,];

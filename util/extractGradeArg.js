@@ -1,10 +1,14 @@
 module.exports = extractGradeArg = (args, gradeMax = 6) => {
-  if (args.length >= 2 && !isNaN(args[args.length - 1])) {
-    const potentialGrade = parseInt(args[args.length - 1]);
-    if (potentialGrade >= 1 && potentialGrade <= gradeMax) {
-      args.pop();
-      return potentialGrade;
-    }
+  if (args.length < 2 || isNaN(args[args.length - 1])) {
+    return null;
   }
-  return null;
+
+  const grade = parseInt(args[args.length - 1]);
+
+  if (grade < 1 || grade > gradeMax) {
+    return null;
+  }
+
+  args.pop(); // remove grade from args
+  return grade;
 }

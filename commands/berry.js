@@ -9,30 +9,28 @@ const list = require('../util/list.js');
 const resolve = require('../util/resolve.js');
 
 berryInstructions = () => {
-  const names = ['list', '<star>', '<name>', '<star>',];
+  const names = ['list', '<name>', '<star>',];
   const values = [
     'List all berries.\n*e.g. !berry list*',
-    'List all <star> berries.\n*e.g. !berry 6*',
     'Get berry information.\n*e.g. !berry almighty berry*',
-    'Filter berries by <star>\n*e.g. !berry almighty berry 4*',
+    'Filter berries by <star>.\n*e.g. !berry list 6, !berry almighty berry 4*',
   ];
-  const inlines = [true, true, true, true,];
+  const inlines = [true, true, true,];
 
   return embed.process({
-    title: '!berry [list|<star>|<name>] [<star>]',
+    title: '!berry [list|<name>] [<star>]',
     fields: embed.fields(names, values, inlines),
   });
 }
 
-berryList = () => {
-  return embed.process({ description: list(berry, 'name'), });
-}
+berryList = (grade = null) => {
+  const data = !grade
+    ? berry
+    : berry.filter(element => element['grade'] === grade);
 
-berryGradeList = (grade) => {
   return embed.process({
-    title: `(${grade}★)`,
-    description:
-      list(berry.filter(element => element['grade'] === grade), 'name'),
+    title: !grade ? '' : `(${grade}★)`,
+    description: list(data, 'name'),
   });
 }
 
@@ -73,18 +71,11 @@ exports.run = (message, args) => {
   let e;
   if (!args.length) {
     e = berryInstructions();
-  } else if (args[0].toLowerCase().startsWith('list')) {
-    e = berryList();
-  } else if (!isNaN(args[0])) {
-    args[0] = parseInt(args[0]);
-    e = args[0] >= 1 && args[0] <= 6
-      ? berryGradeList(args[0])
-      : embed.process({
-          title: 'Error',
-          description: `${args[0]}-star berries do not exist!`,
-        });
   } else {
-    e = berryInfo(args, extractGradeArg(args));
+    const grade = extractGradeArg(args);
+    e = args[0].toLowerCase().startsWith('list')
+      ? berryList(grade)
+      : berryInfo(args, grade);
   }
 
   message.channel.send({ embed: e, });
