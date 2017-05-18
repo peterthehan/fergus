@@ -26,19 +26,19 @@ sbwInstructions = () => {
 
 sbwInfo = (name, grade = null) => {
   const data = !grade || grade <= 3
-    ? filterCharacterVisual('max')
+    ? filterCharacterVisual(6)
     : filterCharacterVisual(grade);
   const visualData = fuzzy(name, data, 'name');
   // resolve edge case between grade 5 and element['reqhero_ref']
   const sbwData =
     (grade === 5 || (!grade && extractGrade(visualData['id']) === 5)
-        ? sbw.filter(element => {
-            return parseInt(element['grade']) === 5
-              && element['reqhero'].includes(visualData['id']);
-          })
-        : sbw.filter(element => {
-            return element['reqhero_ref'] === visualData['id'];
-          })
+      ? sbw.filter(element => {
+          return parseInt(element['grade']) === 5
+            && element['reqhero'].includes(visualData['id']);
+        })
+      : sbw.filter(element => {
+          return element['reqhero_ref'] === visualData['id'];
+        })
     )[0];
 
   if (!sbwData) {
