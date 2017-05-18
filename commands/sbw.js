@@ -1,5 +1,4 @@
 const d = require('../data.js');
-const character_visual = d.character_visual();
 const sbw = d.sbw();
 
 const embed = require('../util/embed.js');
@@ -25,9 +24,8 @@ sbwInstructions = () => {
 }
 
 sbwInfo = (name, grade = null) => {
-  const data = !grade || grade <= 3
-    ? filterCharacterVisual(6)
-    : filterCharacterVisual(grade);
+  const data = filterCharacterVisual(!grade || grade <= 3 ? 6 : grade);
+  
   const visualData = fuzzy(name, data, 'name');
   // resolve edge case between grade 5 and element['reqhero_ref']
   const sbwData =

@@ -27,9 +27,7 @@ statsInstructions = () => {
 }
 
 statsInfo = (name, training) => {
-  const data = !training[0]
-    ? filterCharacterVisual('max')
-    : filterCharacterVisual(training[0]);
+  const data = filterCharacterVisual(!training[0] ? 'max' : training[0]);
 
   const visualData = fuzzy(name, data, 'name');
   const statData = character_stat

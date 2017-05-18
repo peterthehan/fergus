@@ -24,9 +24,7 @@ heroInstructions = () => {
 }
 
 heroInfo = (name, grade = null) => {
-  const data = !grade
-    ? filterCharacterVisual('max')
-    : filterCharacterVisual(grade);
+  const data = filterCharacterVisual(!grade ? 'max' : grade);
 
   const visualData = fuzzy(name, data, 'name');
   const statData = character_stat
