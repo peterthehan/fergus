@@ -40,7 +40,7 @@ rankInfo = (args) => {
   if (!key) {
     return embed.process({
       title: 'Error',
-      description: 'Invalid <stat> parameter. Choose from: ' +
+      description: `${args[0]} is not a valid <stat> parameter! Choose from: ` +
         'hp, ha, cc, cd, arm, res, acc, eva, ' +
         'bhp, bha, bcc, bcd, barm, bres, bacc, beva.',
     });

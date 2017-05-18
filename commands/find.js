@@ -93,7 +93,7 @@ exports.run = (message, args) => {
       : embed.process({
           title: 'Error',
           description:
-            `${arg0} is not a valid parameter! ` +
+            `${arg0} is not a valid <database> parameter! ` +
               `Choose from: ${options().join(', ')}.`,
         });
   }

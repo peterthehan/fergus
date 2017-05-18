@@ -13,7 +13,8 @@ const resolve = require('../util/resolve.js');
 forgeInstructions = () => {
   const names = ['<weapon>', '<number>',];
   const values = [
-    'Simulate forging a <weapon>.\n*e.g. !forge bow*',
+    'Simulate forging a <weapon>. Choose from: ' +
+      'sword, hammer, bow, gun, staff, orb.\n*e.g. !forge bow*',
     'Forge <number> weapons.\n*e.g. !forge bow 10*',
   ];
   const inlines = [false, false,];
@@ -42,8 +43,8 @@ forge = (message, args) => {
   ) {
     return embed.process({
       title: 'Error',
-      description: 'Invalid <weapon> parameter. Choose from: ' +
-        'sword, hammer, bow, gun, staff, orb.',
+      description: `${args[0]} is not a valid <weapon> parameter! ` +
+        'Choose from: sword, hammer, bow, gun, staff, orb.',
     });
   }
 
