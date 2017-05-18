@@ -4,11 +4,6 @@ const embed = require('../util/embed.js');
 const timestamp = require('../util/timestamp.js');
 
 evaluate = (message, args) => {
-  // limit command to author because eval is evil
-  if (message.author.id !== author.id()) {
-    return embed.process({ title: 'Error', description: 'Access denied.', });
-  }
-
   if (!args.length) {
     return embed.process({ description: 'Type code!', });
   }
@@ -39,8 +34,11 @@ evaluate = (message, args) => {
 }
 
 exports.run = (message, args) => {
-  const e = evaluate(message, args);
+  const isAuthor = message.author.id === author.id();
+  const e = isAuthor
+    ? evaluate(message, args)
+    : embed.process({ title: 'Error', description: 'Access denied.', });
 
   message.channel.send({ embed: e, });
-  return true;
+  return isAuthor;
 }
