@@ -39,6 +39,7 @@ exports.run = (message, args) => {
       '8ball',
       'fergus',
       'lenny',
+      'mock',
       //'print',
       //'quote',
       'slap',

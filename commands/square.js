@@ -1,5 +1,31 @@
 const embed = require('../util/embed.js');
 
+squareInstructions = () => {
+  const names = ['<text>',];
+  const values = ['Squarify <text>.\n*e.g. !square hello world*',];
+  const inlines = [true,];
+
+  return embed.process({
+    title: '!square [<text>]',
+    fields: embed.fields(names, values, inlines),
+  });
+}
+
+squareMessage = (args) => {
+  const text = args.join(' ');
+  if (text.length >= 32) {
+    return embed.process({
+      title: 'Error',
+      description:
+        `${text} is not a valid <text> parameter! ` +
+        `<text> must be less than 32 characters.`,
+    });
+  }
+
+  return embed.process({ description: square(text), });
+}
+
+// helper function
 square = (str) => {
   let description = '```';
   if (str.length === 1) {
@@ -18,22 +44,11 @@ square = (str) => {
   }
   description += '```';
 
-  return embed.process({ description: description, });
+  return description;
 }
 
 exports.run = (message, args) => {
-  let e;
-  if (!args.length) {
-    e = embed.process({ description: 'Type something to squarify!', });
-  } else {
-    const str = args.join(' ');
-    e = str.length <= 16
-      ? square(str)
-      : embed.process({
-          title: 'Error',
-          description: 'Message is too long!',
-        });
-  }
+  const e = !args.length ? squareInstructions() : squareMessage(args);
 
   message.channel.send({ embed: e, });
   return true;
