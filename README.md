@@ -27,6 +27,7 @@ Fergus is a Crusaders Quest Discord server bot.
 - Bot:
   [!help](https://github.com/Johj/fergus/blob/master/commands/help.js),
   [!about](https://github.com/Johj/fergus/blob/master/commands/about.js),
+  [!ping](https://github.com/Johj/fergus/blob/master/commands/ping.js),
   [!status](https://github.com/Johj/fergus/blob/master/commands/status.js)
 - Database:
   [!berry](https://github.com/Johj/fergus/blob/master/commands/berry.js),
@@ -42,20 +43,21 @@ Fergus is a Crusaders Quest Discord server bot.
   [!stats](https://github.com/Johj/fergus/blob/master/commands/stats.js),
   [!weapon](https://github.com/Johj/fergus/blob/master/commands/weapon.js)
 - Utility:
+  [!8ball](https://github.com/Johj/fergus/blob/master/commands/8ball.js),
   [!coin](https://github.com/Johj/fergus/blob/master/commands/coin.js),
+  [!delete](https://github.com/Johj/fergus/blob/master/commands/delete.js),
   [!forge](https://github.com/Johj/fergus/blob/master/commands/forge.js),
   [!links](https://github.com/Johj/fergus/blob/master/commands/links.js),
   [!math](https://github.com/Johj/fergus/blob/master/commands/math.js),
   [!pick](https://github.com/Johj/fergus/blob/master/commands/pick.js),
-  [!ping](https://github.com/Johj/fergus/blob/master/commands/ping.js),
   [!popo](https://github.com/Johj/fergus/blob/master/commands/popo.js),
   [!pull](https://github.com/Johj/fergus/blob/master/commands/pull.js),
   [!server](https://github.com/Johj/fergus/blob/master/commands/server.js)
 - Miscellaneous:
-  [!8ball](https://github.com/Johj/fergus/blob/master/commands/8ball.js),
   [!fergus](https://github.com/Johj/fergus/blob/master/commands/fergus.js),
   [!lenny](https://github.com/Johj/fergus/blob/master/commands/lenny.js),
   [!mock](https://github.com/Johj/fergus/blob/master/commands/mock.js),
+  [!print](https://github.com/Johj/fergus/blob/master/commands/print.js),
   [!slap](https://github.com/Johj/fergus/blob/master/commands/slap.js),
   [!square](https://github.com/Johj/fergus/blob/master/commands/square.js)
 
