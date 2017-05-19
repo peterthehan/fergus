@@ -29,7 +29,7 @@ exports.run = (message, args) => {
       'coin',
       'delete',
       'forge',
-      'interaction',
+      'interact',
       'links',
       'math',
       'pick',

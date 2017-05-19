@@ -2,6 +2,7 @@ const d = require('../data.js');
 const character_visual = d.character_visual();
 const hero_easteregg = d.hero_easteregg();
 
+const author = require('../util/author.js');
 const embed = require('../util/embed.js');
 const imagePath = require('../util/imagePath.js');
 const random = require('../util/random.js');
@@ -9,10 +10,10 @@ const resolve = require('../util/resolve.js');
 
 const userInteractions = {};
 
-interactionInstructions = () => {
+interactInstructions = () => {
   const names = ['<number>', '\u200b',];
   const values = [
-    'View hero interactions.\n*e.g. !interaction 1*',
+    'View hero interactions.\n*e.g. !interact 46, !interact 59*',
     `Limitations: <number>: [1, ${hero_easteregg.length}] ` +
       '(defaults to random for anything outside this range), ' +
       'once per user per session ' +
@@ -21,12 +22,12 @@ interactionInstructions = () => {
   const inlines = [true, false,];
 
   return embed.process({
-    title: '!interaction [<number>]',
+    title: '!interact [<number>]',
     fields: embed.fields(names, values, inlines),
   });
 }
 
-interaction = (index) => {
+interact = (index) => {
   const regExp = new RegExp(`_${index}$`);
   const filtered = hero_easteregg
     .filter(element => regExp.test(element['id']))[0]['eatereggherotext'];
@@ -51,8 +52,10 @@ interaction = (index) => {
 exports.run = (message, args) => {
   let e;
   if (!args.length) {
-    e = interactionInstructions();
-  } else if (!userInteractions[message.author.id]) {
+    e = interactInstructions();
+  } else if (message.author.id === author.id()
+    || !userInteractions[message.author.id]
+  ) {
     userInteractions[message.author.id] = 1;
 
     const index = !isNaN(args[0])
@@ -61,7 +64,7 @@ exports.run = (message, args) => {
         ? parseInt(args[0])
         : random(0, hero_easteregg.length);
 
-    e = interaction(index);
+    e = interact(index);
   } else {
     e = embed.process({
       title: 'Error',
