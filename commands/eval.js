@@ -24,7 +24,7 @@ evaluate = (message, args) => {
   }
 
   const names = ['Input', 'Output',];
-  const values = ['```js\n' + input + '```', '```js\n' + output + '```',];
+  const values = ['```js\n' + input + '```', '```\n' + output + '```',];
   const inlines = [false, false,];
 
   return embed.process({
