@@ -6,7 +6,6 @@ const costume = d.costume();
 const skill = d.skill();
 const weapon = d.weapon();
 
-const countInstances = require('../util/countInstances.js');
 const embed = require('../util/embed.js');
 const filter = require('../util/filter.js');
 const plurality = require('../util/plurality.js');
@@ -47,21 +46,21 @@ find = (name, data) => {
   let title;
   let description;
   if (!filtered.length) {
-    description = '';
+    description = [];
     title = 'No results found!';
   } else {
     // remove duplicate results, particularly from skill
     const results = removeDuplicates(
       filtered.map(currentValue => resolve(currentValue[data[1]]))
     );
-    description = truncateString(results.join(', '));
+    description = truncateString(results);
     title =
       'Displaying ' +
-      `${countInstances(description, ',') + 1} of ${results.length} ` +
+      `${description.length} of ${results.length} ` +
       `result${plurality(results.length)} found`;
   }
 
-  return embed.process({ title: title, description: description, });
+  return embed.process({ title: title, description: description.join(', '), });
 }
 
 getData = (data) => {

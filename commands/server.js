@@ -40,10 +40,11 @@ exports.run = (message, args) => {
       'Server created on',
     ];
     const values = [
-      channels[0].join(', '),
-      channels[1].join(', '),
-      guild.roles.map(currentValue => currentValue.name).join(', '),
-      botMember.join(', '),
+      truncateString(channels[0]).join(', '),
+      truncateString(channels[1]).join(', '),
+      truncateString(guild.roles.map(currentValue => currentValue.name))
+        .join(', '),
+      truncateString(botMember).join(', '),
       `${guild.memberCount}${guild.large ? ' (large)' : ''}`,
       `${guild.owner} (${guild.owner.user.tag})`,
       `${timestamp(guild.createdAt)}\n(${moment(guild.createdAt).fromNow()})`,
@@ -57,9 +58,6 @@ exports.run = (message, args) => {
       values.push(guild.emojis.array().join(' '));
       inlines.push(false);
     }
-
-    // ensure all values fit
-    values.map(currentValue => truncateString(currentValue));
 
     e = embed.process({
       title: `${guild.name} (${guild.id}) | ${guild.region}`,

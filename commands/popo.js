@@ -1,5 +1,4 @@
 const humanizeDuration = require('humanize-duration');
-const countInstances = require('../util/countInstances.js');
 const embed = require('../util/embed.js');
 const imagePath = require('../util/imagePath.js');
 const random = require('../util/random.js');
@@ -96,12 +95,10 @@ popoList = () => {
     remaining.push(remainingTimeMessage(id));
   }
 
-  const description = remaining.join('\n')
+  const description = truncateString(remaining, '\n', 2048);
   return embed.process({
-    title:
-      'Timer list ' +
-        `(${countInstances(description, '\n') + 1} of ${remaining.length})`,
-    description: truncateString(description, '\n'),
+    title: `Timer list (${description.length} of ${remaining.length})`,
+    description: description.join('\n'),
     thumbnail: { url: popoImage(), },
   });
 }
