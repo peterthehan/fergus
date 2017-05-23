@@ -5,9 +5,9 @@ deleteInstructions = (message) => {
   const names = ['<number>', '\u200b',];
   const values = [
     'Delete your previous <number> messages.\n*e.g. !delete 1*',
-    'Limitations: ' +
-    '<number>: [1, 10] (defaults to 1 for anything outside this range), ' +
-    'cannot delete messages ' +
+    'Note: ' +
+    '<number>: [1, 10] (defaults to 1 for anything outside this range). ' +
+    'This command cannot delete messages ' +
     '[older than 2 weeks](https://discord.js.org/#/docs/main/stable/class/TextChannel?scrollTo=bulkDelete).',
   ];
   const inlines = [true, false,];
@@ -45,7 +45,7 @@ deleteMessage = (message, args) => {
           title: 'Error',
           description: 'You have no more messages to delete!',
         });
-        
+
         message.channel.send({ embed: e, });
       }
     })

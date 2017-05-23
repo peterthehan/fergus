@@ -15,10 +15,10 @@ interactInstructions = () => {
   const names = ['<number>', '\u200b',];
   const values = [
     'View hero interactions.\n*e.g. !interact 46, !interact 59*',
-    `Limitations: <number>: [1, ${hero_easteregg.length}] ` +
-      '(defaults to random for anything outside this range), ' +
-      `this command can only be used ${maxUsage} times per user per session ` +
-      '(~24 hours, clock can be viewed using the status command).',
+    `Note: <number>: [1, ${hero_easteregg.length}] ` +
+      '(defaults to random for anything outside this range). ' +
+      `This command can only be used ${maxUsage} times per user per session ` +
+      '(1 session = ~24 hours, clock can be viewed using the status command).',
   ];
   const inlines = [true, false,];
 
