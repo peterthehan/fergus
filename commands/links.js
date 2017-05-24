@@ -26,7 +26,8 @@ exports.run = (message, args) => {
       `[Volume 4](https://goo.gl/T1d729), ` +
       `[Volume 5](https://goo.gl/EikwMq), ` +
       `[Volume 6](https://goo.gl/rkXgXC), ` +
-      `[Volume 7](https://goo.gl/fsTsgl)`,
+      `[Volume 7](https://goo.gl/fsTsgl), ` +
+      `[Volume 8](https://goo.gl/1dDcVR)`,
     `[CQ Hero Illustrations](https://goo.gl/06hnsT)`,
   ];
   const inlines = [false, false, false, false, false, false, false,];

@@ -3,21 +3,21 @@ const embed = require('../util/embed.js');
 
 exports.run = (message, args) => {
   const names = [
-    'Development server',
-    'Official server',
+    'Fergus server',
+    'Crusaders Quest server',
+    'Bot invite link',
     'GitHub',
-    'Invite link',
     '\u200b',
   ];
   const values = [
-    'https://discord.gg/WjEFnzC',
-    'https://discord.gg/6TRnyhj',
-    'https://github.com/Johj/fergus',
-    'https://goo.gl/nDluCQ',
+    '[discord.gg/WjEFnzC](https://discord.gg/WjEFnzC)',
+    '[discord.gg/6TRnyhj](https://discord.gg/6TRnyhj)',
+    '[goo.gl/nDluCQ](https://goo.gl/nDluCQ)',
+    '[github.com/Johj/fergus](https://github.com/Johj/fergus)',
     'Made with ❤ by ' +
       `${author.mention(message)} (${author.mention(message).tag}).`,
   ];
-  const inlines = [true, true, false, false, false,];
+  const inlines = [true, true, true, true, false,];
 
   const e = embed.process({
     title: 'Fergus',

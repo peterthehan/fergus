@@ -14,7 +14,7 @@
 ## About
 Fergus is a [Discord](https://discordapp.com/) bot for [Crusaders Quest](https://play.google.com/store/apps/details?id=com.nhnent.SKQUEST).
 
-Invite him to your server by clicking this [link](https://goo.gl/nDluCQ) or try him out first in either of the two servers listed below!
+Invite him to your server using [this link](https://goo.gl/nDluCQ) or try him out first in either of the two servers listed below!
 
 <div align="center">
   <a href="https://discord.gg/WjEFnzC">
@@ -26,48 +26,50 @@ Invite him to your server by clicking this [link](https://goo.gl/nDluCQ) or try 
 </div>
 
 ## Commands
+Command prefix: !
+
 - Bot:
-  [!help](https://github.com/Johj/fergus/blob/master/commands/help.js),
-  [!about](https://github.com/Johj/fergus/blob/master/commands/about.js),
-  [!ping](https://github.com/Johj/fergus/blob/master/commands/ping.js),
-  [!status](https://github.com/Johj/fergus/blob/master/commands/status.js)
+  [about](https://github.com/Johj/fergus/blob/master/commands/about.js),
+  [help](https://github.com/Johj/fergus/blob/master/commands/help.js),
+  [ping](https://github.com/Johj/fergus/blob/master/commands/ping.js),
+  [status](https://github.com/Johj/fergus/blob/master/commands/status.js)
 - Database:
-  [!berry](https://github.com/Johj/fergus/blob/master/commands/berry.js),
-  [!block](https://github.com/Johj/fergus/blob/master/commands/block.js),
-  [!bread](https://github.com/Johj/fergus/blob/master/commands/bread.js),
-  [!find](https://github.com/Johj/fergus/blob/master/commands/find.js),
-  [!goddess](https://github.com/Johj/fergus/blob/master/commands/goddess.js),
-  [!hero](https://github.com/Johj/fergus/blob/master/commands/hero.js),
-  [!rank](https://github.com/Johj/fergus/blob/master/commands/rank.js),
-  [!sbw](https://github.com/Johj/fergus/blob/master/commands/sbw.js),
-  [!skill](https://github.com/Johj/fergus/blob/master/commands/skill.js),
-  [!skin](https://github.com/Johj/fergus/blob/master/commands/skin.js),
-  [!stats](https://github.com/Johj/fergus/blob/master/commands/stats.js),
-  [!weapon](https://github.com/Johj/fergus/blob/master/commands/weapon.js)
+  [berry](https://github.com/Johj/fergus/blob/master/commands/berry.js),
+  [block](https://github.com/Johj/fergus/blob/master/commands/block.js),
+  [bread](https://github.com/Johj/fergus/blob/master/commands/bread.js),
+  [find](https://github.com/Johj/fergus/blob/master/commands/find.js),
+  [goddess](https://github.com/Johj/fergus/blob/master/commands/goddess.js),
+  [hero](https://github.com/Johj/fergus/blob/master/commands/hero.js),
+  [rank](https://github.com/Johj/fergus/blob/master/commands/rank.js),
+  [sbw](https://github.com/Johj/fergus/blob/master/commands/sbw.js),
+  [skill](https://github.com/Johj/fergus/blob/master/commands/skill.js),
+  [skin](https://github.com/Johj/fergus/blob/master/commands/skin.js),
+  [stats](https://github.com/Johj/fergus/blob/master/commands/stats.js),
+  [weapon](https://github.com/Johj/fergus/blob/master/commands/weapon.js)
 - Utility:
-  [!8ball](https://github.com/Johj/fergus/blob/master/commands/8ball.js),
-  [!coin](https://github.com/Johj/fergus/blob/master/commands/coin.js),
-  [!delete](https://github.com/Johj/fergus/blob/master/commands/delete.js),
-  [!forge](https://github.com/Johj/fergus/blob/master/commands/forge.js),
-  [!interact](https://github.com/Johj/fergus/blob/master/commands/interact.js),
-  [!links](https://github.com/Johj/fergus/blob/master/commands/links.js),
-  [!math](https://github.com/Johj/fergus/blob/master/commands/math.js),
-  [!pick](https://github.com/Johj/fergus/blob/master/commands/pick.js),
-  [!popo](https://github.com/Johj/fergus/blob/master/commands/popo.js),
-  [!pull](https://github.com/Johj/fergus/blob/master/commands/pull.js),
-  [!server](https://github.com/Johj/fergus/blob/master/commands/server.js)
+  [fergus](https://github.com/Johj/fergus/blob/master/commands/fergus.js),
+  [forge](https://github.com/Johj/fergus/blob/master/commands/forge.js),
+  [interact](https://github.com/Johj/fergus/blob/master/commands/interact.js),
+  [links](https://github.com/Johj/fergus/blob/master/commands/links.js),
+  [pick](https://github.com/Johj/fergus/blob/master/commands/pick.js),
+  [popo](https://github.com/Johj/fergus/blob/master/commands/popo.js),
+  [pull](https://github.com/Johj/fergus/blob/master/commands/pull.js)
 - Miscellaneous:
-  [!fergus](https://github.com/Johj/fergus/blob/master/commands/fergus.js),
-  [!lenny](https://github.com/Johj/fergus/blob/master/commands/lenny.js),
-  [!mock](https://github.com/Johj/fergus/blob/master/commands/mock.js),
-  [!print](https://github.com/Johj/fergus/blob/master/commands/print.js),
-  [!slap](https://github.com/Johj/fergus/blob/master/commands/slap.js),
-  [!square](https://github.com/Johj/fergus/blob/master/commands/square.js)
+  [8ball](https://github.com/Johj/fergus/blob/master/commands/8ball.js),
+  [coin](https://github.com/Johj/fergus/blob/master/commands/coin.js),
+  [delete](https://github.com/Johj/fergus/blob/master/commands/delete.js),
+  [lenny](https://github.com/Johj/fergus/blob/master/commands/lenny.js),
+  [math](https://github.com/Johj/fergus/blob/master/commands/math.js),
+  [mock](https://github.com/Johj/fergus/blob/master/commands/mock.js),
+  [print](https://github.com/Johj/fergus/blob/master/commands/print.js),
+  [server](https://github.com/Johj/fergus/blob/master/commands/server.js),
+  [slap](https://github.com/Johj/fergus/blob/master/commands/slap.js),
+  [square](https://github.com/Johj/fergus/blob/master/commands/square.js)
 - Reserved:
-  [!eval](https://github.com/Johj/fergus/blob/master/commands/eval.js),
-  [!leave](https://github.com/Johj/fergus/blob/master/commands/leave.js),
-  [!playing](https://github.com/Johj/fergus/blob/master/commands/playing.js),
-  [!scrape](https://github.com/Johj/fergus/blob/master/commands/scrape.js),
+  [eval](https://github.com/Johj/fergus/blob/master/commands/eval.js),
+  [leave](https://github.com/Johj/fergus/blob/master/commands/leave.js),
+  [playing](https://github.com/Johj/fergus/blob/master/commands/playing.js),
+  [scrape](https://github.com/Johj/fergus/blob/master/commands/scrape.js),
 
 ## Dependencies
 - [discord.js 11.1.0](https://www.npmjs.com/package/discord.js)
@@ -79,7 +81,7 @@ Invite him to your server by clicking this [link](https://goo.gl/nDluCQ) or try 
 - [randomcolor 0.5.2](https://www.npmjs.com/package/randomcolor)
 
 ## Special Thanks
-Special thanks to the following individuals for their contributions to the project:
+Special thanks to the following individuals for their contributions to the project during its early development:
 - Poiya
 - fioritura
 - Fastrail
