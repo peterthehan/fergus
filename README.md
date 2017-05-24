@@ -14,6 +14,8 @@
 ## About
 Fergus is a [Discord](https://discordapp.com/) bot for [Crusaders Quest](https://play.google.com/store/apps/details?id=com.nhnent.SKQUEST).
 
+Invite him to your server by clicking this [link](https://goo.gl/nDluCQ) or try him out first in either of the two servers listed below!
+
 <div align="center">
   <a href="https://discord.gg/WjEFnzC">
     <img src="https://discordapp.com/api/guilds/258167954913361930/embed.png?style=banner2" title="Development Server"/>
