@@ -12,7 +12,7 @@
 </div>
 
 ## About
-Fergus is a Crusaders Quest Discord server bot.
+Fergus is a [Discord](https://discordapp.com/) bot for [Crusaders Quest](https://play.google.com/store/apps/details?id=com.nhnent.SKQUEST).
 
 <div align="center">
   <a href="https://discord.gg/WjEFnzC">
@@ -61,6 +61,11 @@ Fergus is a Crusaders Quest Discord server bot.
   [!print](https://github.com/Johj/fergus/blob/master/commands/print.js),
   [!slap](https://github.com/Johj/fergus/blob/master/commands/slap.js),
   [!square](https://github.com/Johj/fergus/blob/master/commands/square.js)
+- Reserved:
+  [!eval](https://github.com/Johj/fergus/blob/master/commands/eval.js),
+  [!leave](https://github.com/Johj/fergus/blob/master/commands/leave.js),
+  [!playing](https://github.com/Johj/fergus/blob/master/commands/playing.js),
+  [!scrape](https://github.com/Johj/fergus/blob/master/commands/scrape.js),
 
 ## Dependencies
 - [discord.js 11.1.0](https://www.npmjs.com/package/discord.js)

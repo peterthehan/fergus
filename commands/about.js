@@ -2,15 +2,22 @@ const author = require('../util/author.js');
 const embed = require('../util/embed.js');
 
 exports.run = (message, args) => {
-  const names = ['Development server', 'Official server', 'GitHub', '\u200b',];
+  const names = [
+    'Development server',
+    'Official server',
+    'GitHub',
+    'Invite link',
+    '\u200b',
+  ];
   const values = [
     'https://discord.gg/WjEFnzC',
     'https://discord.gg/6TRnyhj',
     'https://github.com/Johj/fergus',
+    'https://goo.gl/nDluCQ',
     'Made with ❤ by ' +
       `${author.mention(message)} (${author.mention(message).tag}).`,
   ];
-  const inlines = [true, true, false, false,];
+  const inlines = [true, true, false, false, false,];
 
   const e = embed.process({
     title: 'Fergus',

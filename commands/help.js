@@ -47,6 +47,12 @@ exports.run = (message, args) => {
       'slap',
       'square',
     ],
+    'Reserved': [
+      'eval',
+      'leave',
+      'playing',
+      'scrape',
+    ],
   };
 
   const e = embed.process({
