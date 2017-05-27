@@ -12,7 +12,7 @@ module.exports = {
   addTimer: (message, content, time) => {
     const userTimer = setTimeout(() => {
       module.exports.removeTimer(message.author.id);
-      message.author.send(content);
+      message.author.send({ embed: content, });
     }, time);
 
     userTimers[message.author.id] = { 'timer': userTimer, 'start': Date.now() };

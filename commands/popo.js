@@ -33,7 +33,11 @@ popoGo = (message) => {
 
   // 900000 ms = 15 minutes
   const time = 900000;
-  userTimer.addTimer(message, `Popo has left!`, time);
+  userTimer.addTimer(
+    message,
+    embed.process({ description: `Popo has left!`, }),
+    time
+  );
   return embed.process({
     title: 'Timer started',
     description:

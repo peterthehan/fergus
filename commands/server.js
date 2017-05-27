@@ -25,7 +25,7 @@ getBotMembers = (guild) => {
 exports.run = (message, args) => {
   let e;
   const guild = message.guild;
-  if (guild.available) {
+  if (guild && guild.available) {
     const channels = getChannels(guild);
     const botMember = getBotMembers(guild);
 
@@ -68,7 +68,7 @@ exports.run = (message, args) => {
   } else {
     e = embed.process({
       title: 'Error',
-      description: 'Server information unavailable due to outage.',
+      description: 'Server information unavailable.',
     });
     console.log('Server outage');
   }

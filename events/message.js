@@ -10,7 +10,10 @@ module.exports = {
     if (!message.content.startsWith(config.prefix) || message.author.bot)
       return;
 
-    console.log(`${message.guild.name}#${message.channel.name}|${message.author.tag}: ${message.content}`);
+    const log = (message.channel.type === 'text'
+      ? `${message.guild.name}#${message.channel.name}`
+      : message.channel.type) + `|${message.author.tag}: ${message.content}`;
+    console.log(log);
 
     const args = message.content.split(' '); // only includes arguments
     const command = args.shift().slice(config.prefix.length).toLowerCase();

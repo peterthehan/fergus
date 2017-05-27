@@ -15,6 +15,7 @@ util/!
 
 # packages
 node_modules
+Sherlock
 
 # privy to me
 contribute
