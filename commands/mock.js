@@ -1,4 +1,5 @@
 const embed = require('../util/embed.js');
+const imagePath = require('../util/imagePath.js');
 const random = require('../util/random.js');
 
 mockInstructions = () => {
@@ -19,9 +20,7 @@ mockInstructions = () => {
 mockMessage = (args) => {
   return embed.process({
     description: mock(args.join(' ')),
-    thumbnail: {
-      url: 'https://raw.githubusercontent.com/Johj/fergus/master/assets/mock.png',
-    },
+    thumbnail: { url: imagePath('etc/mock'), },
   });
 }
 
