@@ -2,6 +2,7 @@ const d = require('../data.js');
 const character_visual = d.character_visual();
 const hero_easteregg = d.hero_easteregg();
 
+const humanizeDuration = require('humanize-duration');
 const author = require('../util/author.js');
 const embed = require('../util/embed.js');
 const imagePath = require('../util/imagePath.js');
@@ -11,14 +12,18 @@ const resolve = require('../util/resolve.js');
 const userInteractions = {};
 const maxUsage = 3;
 
-interactInstructions = () => {
+interactInstructions = (message) => {
+  const max = 86400000; // 24h = 86400000 ms
+
   const names = ['<number>', '\u200b',];
   const values = [
     'View hero interactions.\n*e.g. !interact 46, !interact 59*',
     `Note: <number>: [1, ${hero_easteregg.length}] ` +
       '(defaults to random for anything outside this range). ' +
-      `This command can only be used ${maxUsage} times per user per session ` +
-      '(1 session = ~24 hours, clock can be viewed using the status command).',
+      `This command can only be used ${maxUsage} times per user per *session*` +
+      ` (bot session will cycle in ` +
+      `${humanizeDuration(max - message.client.uptime, { round: true, })} ` +
+      `+ [up to 216 random minutes](https://devcenter.heroku.com/articles/dynos#restarting)).`,
   ];
   const inlines = [true, false,];
 
@@ -53,7 +58,7 @@ interact = (index) => {
 exports.run = (message, args) => {
   let e;
   if (!args.length) {
-    e = interactInstructions();
+    e = interactInstructions(message);
   } else {
     if (!userInteractions[message.author.id]) {
       userInteractions[message.author.id] = 0;

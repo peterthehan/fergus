@@ -62,6 +62,7 @@ Command prefix: !
   [math](https://github.com/Johj/fergus/blob/master/commands/math.js),
   [mock](https://github.com/Johj/fergus/blob/master/commands/mock.js),
   [print](https://github.com/Johj/fergus/blob/master/commands/print.js),
+  [remindme](https://github.com/Johj/fergus/blob/master/commands/remindme.js),
   [server](https://github.com/Johj/fergus/blob/master/commands/server.js),
   [slap](https://github.com/Johj/fergus/blob/master/commands/slap.js),
   [square](https://github.com/Johj/fergus/blob/master/commands/square.js)
@@ -79,6 +80,7 @@ Command prefix: !
 - [mathjs 3.12.2](https://www.npmjs.com/package/mathjs)
 - [moment 2.18.1](https://www.npmjs.com/package/moment)
 - [randomcolor 0.5.2](https://www.npmjs.com/package/randomcolor)
+- [sherlock 1.3.6](https://github.com/neilgupta/Sherlock)
 
 ## Special Thanks
 Special thanks to the following individuals for their contributions to the project during its early development:
