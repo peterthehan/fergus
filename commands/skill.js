@@ -8,6 +8,7 @@ const filterCharacterVisual = require('../util/filterCharacterVisual.js');
 const fuzzy = require('../util/fuzzy.js');
 const imagePath = require('../util/imagePath.js');
 const list = require('../util/list.js');
+const random = require('../util/random.js');
 const removeDuplicates = require('../util/removeDuplicates.js');
 const resolve = require('../util/resolve.js');
 
@@ -22,6 +23,7 @@ skillInstructions = () => {
 
   return embed.process({
     title: '!skill [list|<name>] [<level>]',
+    thumbnail: { url: imagePath(`etc/skill_${random(1, 2)}`), },
     fields: embed.fields(names, values, inlines),
   });
 }
