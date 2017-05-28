@@ -81,6 +81,7 @@ Command prefix: !
 - [moment 2.18.1](https://www.npmjs.com/package/moment)
 - [randomcolor 0.5.2](https://www.npmjs.com/package/randomcolor)
 - [sherlock 1.3.6](https://github.com/neilgupta/Sherlock)
+- [shortid 2.2.8](https://www.npmjs.com/package/shortid)
 
 ## Special Thanks
 Special thanks to the following individuals for their contributions to the project during its early development:

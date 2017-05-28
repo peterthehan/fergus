@@ -14,6 +14,7 @@ skinInstructions = () => {
 
   return embed.process({
     title: '!skin [<name>]',
+    thumbnail: { url: imagePath('etc/costume_selection'), },
     fields: embed.fields(names, values, inlines),
   });
 }

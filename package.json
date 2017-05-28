@@ -13,7 +13,8 @@
     "js-beautify": "^1.6.12",
     "mathjs": "^3.12.2",
     "moment": "^2.18.1",
-    "randomcolor": "^0.5.2"
+    "randomcolor": "^0.5.2",
+    "shortid": "^2.2.8"
   },
   "scripts": {
     "test": "node index.js"

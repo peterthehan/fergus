@@ -11,6 +11,7 @@ const bounds = require('../util/bounds.js');
 const embed = require('../util/embed.js');
 const extractGrade = require('../util/extractGrade.js');
 const filterCharacterVisual = require('../util/filterCharacterVisual.js');
+const imagePath = require('../util/imagePath.js');
 const random = require('../util/random.js');
 const resolve = require('../util/resolve.js');
 
@@ -25,6 +26,7 @@ pullInstructions = () => {
 
   return embed.process({
     title: '!pull [<number>]',
+    description: { url: imagePath('etc/premium_contract'), },
     fields: embed.fields(names, values, inlines),
   });
 }
