@@ -26,7 +26,7 @@ pullInstructions = () => {
 
   return embed.process({
     title: '!pull [<number>]',
-    description: { url: imagePath('etc/premium_contract'), },
+    thumbnail: { url: imagePath('etc/premium_contract'), },
     fields: embed.fields(names, values, inlines),
   });
 }
