@@ -56,6 +56,7 @@ Command prefix: !
   [pull](https://github.com/Johj/fergus/blob/master/commands/pull.js)
 - Miscellaneous:
   [8ball](https://github.com/Johj/fergus/blob/master/commands/8ball.js),
+  [aesthetic](https://github.com/Johj/fergus/blob/master/commands/aesthetic.js),
   [coin](https://github.com/Johj/fergus/blob/master/commands/coin.js),
   [delete](https://github.com/Johj/fergus/blob/master/commands/delete.js),
   [lenny](https://github.com/Johj/fergus/blob/master/commands/lenny.js),

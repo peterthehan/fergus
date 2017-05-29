@@ -34,6 +34,7 @@ exports.run = (message, args) => {
     ],
     'Miscellaneous': [
       '8ball',
+      'aesthetic',
       'coin',
       'delete',
       'lenny',

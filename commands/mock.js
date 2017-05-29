@@ -8,7 +8,7 @@ mockInstructions = () => {
   const inlines = [true,];
 
   return embed.process({
-    title: ['!mock [<text>]'].map(i => mock(i))[0],
+    title: mock('!mock [<text>]'),
     fields: embed.fields(
       names.map(i => mock(i)),
       values.map(i => mock(i)),
