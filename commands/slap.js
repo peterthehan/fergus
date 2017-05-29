@@ -1075,7 +1075,7 @@ slapMessage = (zero, one, index) => {
 slapLogic = (message, args) => {
   if (!args.length) { // self
     return message.author.id === author.id()
-      ? slapMessage(message.client.user, author.mention(message), 1)
+      ? slapMessage(message.client.user, author.user(message), 1)
       : slapMessage(message.author, 'themselves', 0);
   } else {
     const mention = args[0].startsWith('<@') && args[0].endsWith('>')
@@ -1084,15 +1084,15 @@ slapLogic = (message, args) => {
 
     if (mention === message.author.id) { // self
       return message.author.id === author.id()
-        ? slapMessage(message.client.user, author.mention(message), 1)
+        ? slapMessage(message.client.user, author.user(message), 1)
         : slapMessage(message.author, 'themselves', 0);
     } else if (mention === message.client.user.id) { // bot
       return message.author.id === author.id()
-        ? slapMessage(author.mention(message), message.client.user, 0)
+        ? slapMessage(author.user(message), message.client.user, 0)
         : slapMessage(message.client.user, message.author, 2);
     } else if (mention === author.id()) { // author
       return message.author.id === author.id()
-        ? slapMessage(message.client.user, author.mention(message), 1)
+        ? slapMessage(message.client.user, author.user(message), 1)
         : slapMessage(message.client.user, message.author, 3);
     } else { // everyone else
       return slapMessage(

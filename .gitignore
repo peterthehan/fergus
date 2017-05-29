@@ -26,4 +26,5 @@ authorize.txt
 config.json
 config_example.json
 data.js
+firebase.json
 TODO

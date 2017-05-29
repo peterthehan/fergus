@@ -15,7 +15,7 @@ exports.run = (message, args) => {
     '[goo.gl/nDluCQ](https://goo.gl/nDluCQ)',
     '[github.com/Johj/fergus](https://github.com/Johj/fergus)',
     'Made with ❤ by ' +
-      `${author.mention(message)} (${author.mention(message).tag}).`,
+      `${author.user(message)} (${author.user(message).tag}).`,
   ];
   const inlines = [true, true, true, true, false,];
 

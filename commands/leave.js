@@ -8,7 +8,7 @@ leaveList = (message, args) => {
     })
     .join(', ');
 
-  author.mention(message).send(msg);
+  author.user(message).send(msg);
   console.log(msg);
 }
 
@@ -26,7 +26,7 @@ leaveGuild = (message, args) => {
     guild.leave();
     msg = `Successfully left ${guild}.`;
   }
-  author.mention(message).send(msg);
+  author.user(message).send(msg);
   console.log(msg);
 }
 

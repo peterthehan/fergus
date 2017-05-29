@@ -54,7 +54,8 @@ Command prefix: !
   [links](https://github.com/Johj/fergus/blob/master/commands/links.js),
   [pick](https://github.com/Johj/fergus/blob/master/commands/pick.js),
   [popo](https://github.com/Johj/fergus/blob/master/commands/popo.js),
-  [pull](https://github.com/Johj/fergus/blob/master/commands/pull.js)
+  [pull](https://github.com/Johj/fergus/blob/master/commands/pull.js),
+  [roster](https://github.com/Johj/fergus/blob/master/commands/roster.js)
 - Miscellaneous:
   [8ball](https://github.com/Johj/fergus/blob/master/commands/8ball.js),
   [aesthetic](https://github.com/Johj/fergus/blob/master/commands/aesthetic.js),
@@ -77,6 +78,7 @@ Command prefix: !
 ## Dependencies
 - [discord.js 11.1.0](https://www.npmjs.com/package/discord.js)
 - [fast-levenshtein 2.0.6](https://www.npmjs.com/package/fast-levenshtein)
+- [firebase 4.0.0](https://www.npmjs.com/package/firebase)
 - [humanize-duration 3.10.0](https://www.npmjs.com/package/humanize-duration)
 - [js-beautify 1.6.12](https://www.npmjs.com/package/js-beautify)
 - [mathjs 3.12.2](https://www.npmjs.com/package/mathjs)

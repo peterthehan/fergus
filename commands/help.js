@@ -32,6 +32,7 @@ exports.run = (message, args) => {
       'pick',
       'popo',
       'pull',
+      'roster',
     ],
     'Miscellaneous': [
       '8ball',
