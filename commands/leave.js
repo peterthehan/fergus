@@ -37,7 +37,7 @@ exports.run = (message, args) => {
     if (!args.length) {
       e = embed.process({ description: 'Type something!', });
       message.channel.send({ embed: e, });
-    } else if (args[0].startsWith('list')) {
+    } else if (args[0].toLowerCase().startsWith('list')) {
       leaveList(message, args);
     } else {
       leaveGuild(message, args);
