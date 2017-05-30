@@ -59,10 +59,11 @@ exports.run = (message, args) => {
 
   const e = embed.process({
     title: 'Commands',
+    description: `Prefix: ${config.prefix}, ${message.client.user}`,
     fields: Object.keys(cmds).map(currentValue => {
       return {
         name: currentValue,
-        value: cmds[currentValue].map(i => config.prefix + i).join(', '),
+        value: cmds[currentValue].join(', '),
         inline: false,
       };
     }),
