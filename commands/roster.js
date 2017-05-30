@@ -12,10 +12,10 @@ rosterInstructions = (message) => {
 
   const names = ['w <url>', 'r <user>', 'd', '\u200b',];
   const values = [
-    'Write roster with <url>.\n*e.g. !roster w <url>*',
-    'Read <user> roster.\n' +
+    'Write <url> to database.\n*e.g. !roster w <url>*',
+    'Read <user> data.\n' +
       `*e.g. !roster r ${author.user(message)}*`,
-    'Delete roster.\n*e.g. !roster d*',
+    'Delete data.\n*e.g. !roster d*',
     `Note: <url> must be from one of: ${whiteList().join(', ')}. ` +
     `This command can only be used ${maxUsage} times per user per *session*` +
     ` (bot session will cycle in ` +

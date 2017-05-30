@@ -43,14 +43,15 @@ class Count {
       .reduce(((a, b) => a.concat(b)), [])
     );
 
-    return commandsUsed
+    const sorted = commandsUsed
       .map(currentValue => {
         return { command: currentValue, sum: this.sum(currentValue), };
       })
       .sort((a, b) => b.sum - a.sum)
-      .map(currentValue => `${currentValue.sum} ${currentValue.command}`)
-      .slice(0, size)
-      .join('\n');
+      .map(currentValue => `${currentValue.sum} ${currentValue.command}`);
+
+    console.log(sorted.join(', '));
+    return sorted.slice(0, size).join('\n');
   }
 }
 
