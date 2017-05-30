@@ -3,6 +3,8 @@ const author = require('../util/author.js');
 const embed = require('../util/embed.js');
 
 const database = firebase.database();
+const userInteractions = {};
+const maxUsage = 3;
 
 rosterInstructions = (message) => {
   const names = ['w <url>', 'r <user>', 'd', '\u200b',];
@@ -100,7 +102,26 @@ exports.run = (message, args) => {
   } else {
     const action = args.shift().toLowerCase();
     if (action.startsWith('w')) {
-      e = rosterWrite(message, args);
+      if (!userInteractions[message.author.id]) {
+        userInteractions[message.author.id] = 0;
+      }
+
+      if (message.author.id === author.id()
+        || userInteractions[message.author.id] < maxUsage
+      ) {
+        e = rosterWrite(message, args);
+
+        if (e.title === 'Success') {
+          ++userInteractions[message.author.id];
+        }
+      } else {
+        e = embed.process({
+          title: 'Error',
+          description:
+            `You have used up your ${maxUsage} roster command allowances! ` +
+            'Wait for the session to cycle to use this command again.',
+        });
+      }
     } else if (action.startsWith('r')) {
       e = rosterRead(message, args);
     } else if (action.startsWith('d')) {
