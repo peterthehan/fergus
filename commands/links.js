@@ -7,33 +7,33 @@ exports.run = (message, args) => {
     'Manacar',
     'Fortress of Souls',
     'Monuments',
-    `Beginner's Guide Comics`,
     'Miscellaneous',
+    `Beginner's Guide Comics`,
   ];
   const values = [
-    `[Accurina's Inaccurate Tier List](https://goo.gl/bBgMTg)\n` +
-      `[Hero/SBW/Skill IRC Tier List](https://goo.gl/oNQ2iF)\n` +
-      `[INVEN表翻訳](https://goo.gl/k5PlhB)`,
-    `[Vyrlokar's Ultimate Guide to the CQ Champions](https://goo.gl/M37qRm)`,
-    `[Manacar Comic](https://goo.gl/aJ8Yoy)\n` +
-      `[Manacar Rage, Ruin, Void, and End](https://goo.gl/PbpKdG)`,
-    `[Guide to unlocking "secret" FoS10](https://goo.gl/9BXBkD)`,
-    `[CQ Monuments and How To Get Them](https://goo.gl/UiWxOI)`,
-    `[Berry System](https://goo.gl/jbgmLa)\n` +
-      `[Volume 1](https://goo.gl/JpOluL), ` +
-      `[Volume 2](https://goo.gl/VH83O2), ` +
-      `[Volume 3](https://goo.gl/OEKdP6), ` +
-      `[Volume 4](https://goo.gl/T1d729), ` +
-      `[Volume 5](https://goo.gl/EikwMq), ` +
-      `[Volume 6](https://goo.gl/rkXgXC), ` +
-      `[Volume 7](https://goo.gl/fsTsgl), ` +
-      `[Volume 8](https://goo.gl/1dDcVR)`,
-    `[CQ Hero Illustrations](https://goo.gl/06hnsT)`,
+    `[Accurina's](https://goo.gl/bBgMTg)\n` +
+      `[IRC's](https://goo.gl/oNQ2iF)\n` +
+      `[INVEN's](https://goo.gl/k5PlhB)`,
+    `[Vyrlokar's](https://goo.gl/M37qRm)`,
+    `[kamakiller's](https://goo.gl/PbpKdG)\n` +
+      `[Comic](https://goo.gl/aJ8Yoy)`,
+    `[Unlock Lionel's Skin](https://goo.gl/9BXBkD)`,
+    `[How To Get](https://goo.gl/UiWxOI)`,
+    `[Hero Illustrations](https://goo.gl/06hnsT)`,
+    `[Berry System](https://goo.gl/jbgmLa), ` +
+      `[Vol. 1](https://goo.gl/JpOluL), ` +
+      `[Vol. 2](https://goo.gl/VH83O2), ` +
+      `[Vol. 3](https://goo.gl/OEKdP6), ` +
+      `[Vol. 4](https://goo.gl/T1d729), ` +
+      `[Vol. 5](https://goo.gl/EikwMq), ` +
+      `[Vol. 6](https://goo.gl/rkXgXC), ` +
+      `[Vol. 7](https://goo.gl/fsTsgl), ` +
+      `[Vol. 8](https://goo.gl/1dDcVR)`,
   ];
-  const inlines = [false, false, false, false, false, false, false,];
+  const inlines = [true, true, true, true, true, true, true,];
 
   const e = embed.process({
-    title: 'Useful Links',
+    title: 'Guides',
     fields: embed.fields(names, values, inlines),
   });
 

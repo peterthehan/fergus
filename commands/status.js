@@ -65,13 +65,7 @@ processDetail = () => {
     `(${(100 * heapUsed / heapTotal).toFixed(2)}%)`;
 }
 
-commandDetail = (message) => {
-  const count = msg.commandCount.sum();
-  return `${count}\n(${(count / message.client.uptime * 1000).toFixed(2)}/s)`;
-}
-
-messageDetail = (message) => {
-  const count = msg.messageCount.sum();
+countDetail = (message, count) => {
   return `${count}\n(${(count / message.client.uptime * 1000).toFixed(2)}/s)`;
 }
 
@@ -95,8 +89,8 @@ exports.run = (message, args) => {
     processDetail(),
     `${Math.round(message.client.ping)} ms`,
     msg.commandCount.commandFrequency(3),
-    commandDetail(message),
-    messageDetail(message),
+    countDetail(message, msg.commandCount.sum()),
+    countDetail(message, msg.messageCount.sum()),
   ];
   const inlines = [true, true, true, true, true, true, true, true, true,];
 
