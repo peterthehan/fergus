@@ -93,7 +93,7 @@ exports.run = (message, args) => {
     userDetail(message),
     humanizeDuration(message.client.uptime).split(', ').join('\n'),
     processDetail(),
-    `${message.client.ping} ms`,
+    `${Math.round(message.client.ping)} ms`,
     msg.commandCount.commandFrequency(3),
     commandDetail(message),
     messageDetail(message),
