@@ -6,12 +6,11 @@ exports.run = (message, args) => {
   message.channel
     .send({ embed: e, })
     .then(newMessage => {
-      const names = ['Websocket ping', 'HTTP ping',];
+      const names = ['HTTP ping',];
       const values = [
-        `${Math.round(message.client.ping)} ms`,
         `${newMessage.createdTimestamp - message.createdTimestamp} ms`,
       ];
-      const inlines = [true, true,];
+      const inlines = [true,];
 
       e = embed.process({
         title: 'Pong! 🏓',
@@ -21,5 +20,4 @@ exports.run = (message, args) => {
       newMessage.edit({ embed: e, });
     })
     .catch(error => console.log(error));
-  return true;
 }

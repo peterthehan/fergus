@@ -1,48 +1,115 @@
 const humanizeDuration = require('humanize-duration');
-const me = require('../events/message.js');
+const msg = require('../events/message.js');
+const author = require('../util/author.js');
 const embed = require('../util/embed.js');
-const plurality = require('../util/plurality.js');
+const removeDuplicates = require('../util/removeDuplicates.js');
 const timestamp = require('../util/timestamp.js');
 
-exports.run = (message, args) => {
-  const heapUsed = Math.round(process.memoryUsage().heapUsed / (1024 * 1024));
-  const heapTotal =
-    Math.round(process.memoryUsage().heapTotal / (1024 * 1024));
+channelDetail = (message) => {
+  const channelObj = {};
+  message.client.channels.array().forEach(currentValue => {
+    if (!channelObj[currentValue.type]) {
+      channelObj[currentValue.type] = 0;
+    }
+    ++channelObj[currentValue.type];
+  });
 
-  // parallel arrays
+  return `${message.client.channels.size} total\n` + Object
+    .keys(channelObj)
+    .sort((a, b) => channelObj[b] - channelObj[a])
+    .map(i => `${channelObj[i]} ${i}`)
+    .join('\n');
+}
+
+userDetail = (message) => {
+  const usersTotal = message.client.guilds
+    .map(currentValue => currentValue.memberCount)
+    .reduce(((accumulator, currentValue) => accumulator + currentValue), 0);
+
+  const usersOnline = message.client.guilds
+    .map(currentValue => {
+      return currentValue.members
+        .filter(element => element.presence.status === 'online');
+    })
+    .map(currentValue => currentValue.size)
+    .reduce(((accumulator, currentValue) => accumulator + currentValue), 0);
+
+  const usersUnique = removeDuplicates(
+    message.client.guilds
+      .map(currentValue => currentValue.members.map(i => i.id))
+      .reduce(((a, b) => a.concat(b)), [])
+    ).length;
+
+  const usersUniqueOnline = removeDuplicates(
+    message.client.guilds
+      .map(currentValue => {
+        return currentValue.members
+          .filter(element => element.presence.status === 'online')
+          .map(i => i.id)
+      })
+      .reduce(((a, b) => a.concat(b)), [])
+    ).length;
+
+  return `${usersTotal} total\n` +
+    `${usersOnline} online\n` +
+    `${usersUnique} unique total\n` +
+    `${usersUniqueOnline} unique online`;
+}
+
+processDetail = () => {
+  const n = 1024 * 1024;
+  const heapUsed = Math.round(process.memoryUsage().heapUsed / n);
+  const heapTotal = Math.round(process.memoryUsage().heapTotal / n);
+
+  return `${heapUsed} of ${heapTotal} MB\n` +
+    `(${(100 * heapUsed / heapTotal).toFixed(2)}%)`;
+}
+
+commandDetail = (message) => {
+  const count = msg.commandCount.sum();
+  return `${count}\n(${(count / message.client.uptime * 1000).toFixed(2)}/s)`;
+}
+
+messageDetail = (message) => {
+  const count = msg.messageCount.sum();
+  return `${count}\n(${(count / message.client.uptime * 1000).toFixed(2)}/s)`;
+}
+
+exports.run = (message, args) => {
   const names = [
-    `Serving`,
+    'Servers',
+    'Channels',
+    'Users',
     'Session uptime',
     'Process heap usage',
-    'Commands this session',
-    'Messages this session',
+    'Websocket ping',
+    'Command frequency',
+    'Commands run',
+    'Messages read',
   ];
   const values = [
-    `${message.client.guilds.size} ` +
-      `server${plurality(message.client.guilds.size)}, ` +
-      `${message.client.channels.size} ` +
-      `channel${plurality(message.client.channels.size)}, and ` +
-      `${message.client.users.size} ` +
-      `user${plurality(message.client.users.size)}`,
-    humanizeDuration(message.client.uptime),
-    `${heapUsed} MB of ${heapTotal} MB ` +
-      `(${(100 * heapUsed / heapTotal).toFixed(2)}%)`,
-    me.commandCount.toString(),
-    me.messageCount.toString(),
+    message.client.guilds.size,
+    channelDetail(message),
+    userDetail(message),
+    humanizeDuration(message.client.uptime).split(', ').join('\n'),
+    processDetail(),
+    `${message.client.ping} ms`,
+    msg.commandCount.commandFrequency(3),
+    commandDetail(message),
+    messageDetail(message),
   ];
-  const inlines = [false, false, false, true, true,];
+  const inlines = [true, true, true, true, true, true, true, true, true,];
 
   const e = embed.process({
+    description: 'Made with ❤ by ' +
+      `${author.user(message)} (${author.user(message).tag}).`,
     footer: { text: timestamp(message.createdAt), },
-    fields: values.map((currentValue, index) => {
-      return {
-        name: names[index],
-        value: currentValue,
-        inline: inlines[index],
-      };
-    }),
+    author: {
+      name: message.client.user.username,
+      icon_url: message.client.user.avatarURL,
+    },
+    fields: embed.fields(names, values, inlines),
   });
 
   message.channel.send({ embed: e, });
-  return true;
 }

@@ -20,13 +20,13 @@ exports.run = (message, args) => {
   const inlines = [true, true, true, true, false,];
 
   const e = embed.process({
-    title: 'Fergus',
+    title: message.client.user.username,
     description:
       'This bot is not affiliated, associated, authorized by, endorsed by, ' +
       'or in any way officially connected with NHN Entertainment Corp., or ' +
       'LoadComplete Inc., or any of their subsidiaries or their affiliates.',
     thumbnail: {
-      url: 'https://raw.githubusercontent.com/Johj/fergus/master/assets/fergus.png',
+      url: message.client.user.avatarURL,
     },
     fields: embed.fields(names, values, inlines),
   });
