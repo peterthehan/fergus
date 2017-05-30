@@ -73,7 +73,7 @@ Prefix: !, @mention
   [eval](https://github.com/Johj/fergus/blob/master/commands/eval.js),
   [leave](https://github.com/Johj/fergus/blob/master/commands/leave.js),
   [playing](https://github.com/Johj/fergus/blob/master/commands/playing.js),
-  [scrape](https://github.com/Johj/fergus/blob/master/commands/scrape.js),
+  [scrape](https://github.com/Johj/fergus/blob/master/commands/scrape.js)
 
 ## Dependencies
 - [discord.js 11.1.0](https://www.npmjs.com/package/discord.js)
