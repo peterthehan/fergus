@@ -26,7 +26,7 @@ Invite him to your server using [this link](https://goo.gl/nDluCQ) or try him ou
 </div>
 
 ## Commands
-Command prefix: !
+Prefix: !, @Fergus
 
 - Bot:
   [about](https://github.com/Johj/fergus/blob/master/commands/about.js),
