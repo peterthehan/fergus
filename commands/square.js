@@ -51,5 +51,4 @@ exports.run = (message, args) => {
   const e = !args.length ? squareInstructions() : squareMessage(args);
 
   message.channel.send({ embed: e, });
-  return true;
 }

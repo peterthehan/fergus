@@ -55,5 +55,4 @@ exports.run = (message, args) => {
     : remindMe(message, args);
 
   message.channel.send({ embed: e, });
-  return true;
 };

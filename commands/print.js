@@ -20,5 +20,4 @@ exports.run = (message, args) => {
   const e = !args.length ? printInstructions() : printMessage(message, args);
 
   message.channel.send({ embed: e, });
-  return true;
 }

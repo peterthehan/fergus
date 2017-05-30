@@ -60,5 +60,4 @@ exports.run = (message, args) => {
     : args[0].toLowerCase().startsWith('list') ? skinList() : skinInfo(args);
 
   message.channel.send({ embed: e, });
-  return true;
 }

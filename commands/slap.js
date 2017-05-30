@@ -1110,5 +1110,4 @@ exports.run = (message, args) => {
   const e = embed.process({ description: slapLogic(message, args), });
 
   message.channel.send({ embed: e, });
-  return true;
 }

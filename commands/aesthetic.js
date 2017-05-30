@@ -34,5 +34,4 @@ exports.run = (message, args) => {
   const e = !args.length ? aestheticInstructions() : aestheticMessage(args);
 
   message.channel.send({ embed: e, });
-  return true;
 }

@@ -113,5 +113,4 @@ exports.run = (message, args) => {
   if (e) {
     message.channel.send({ embed: e, });
   }
-  return true;
 }

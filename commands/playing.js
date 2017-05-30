@@ -12,11 +12,9 @@ playing = (message, args) => {
 }
 
 exports.run = (message, args) => {
-  const isAuthor = message.author.id === author.id();
-  const e = isAuthor
+  const e = message.author.id === author.id()
     ? playing(message, args)
     : embed.process({ title: 'Error', description: 'Access denied.', });
 
   message.channel.send({ embed: e, });
-  return isAuthor;
 }

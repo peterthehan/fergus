@@ -47,21 +47,18 @@ scrape = (message, args) => {
         });
         console.log(msg);
       }
-      
+
       message.channel.send({ embed: e, });
     }
   )
 }
 
 exports.run = (message, args) => {
-  const isAuthor = message.author.id === author.id();
   let e;
-  if (isAuthor) {
+  if (message.author.id === author.id()) {
     scrape(message, args);
   } else {
     e = embed.process({ title: 'Error', description: 'Access denied.', });
     message.channel.send({ embed: e, });
   }
-
-  return isAuthor;
 };

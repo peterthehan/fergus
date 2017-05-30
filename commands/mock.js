@@ -41,5 +41,4 @@ exports.run = (message, args) => {
   const e = !args.length ? mockInstructions() : mockMessage(args);
 
   message.channel.send({ embed: e, });
-  return true;
 }

@@ -75,5 +75,4 @@ exports.run = (message, args) => {
   const e = !args.length ? forgeInstructions() : forge(message, args);
 
   message.channel.send({ embed: e, });
-  return true;
 }

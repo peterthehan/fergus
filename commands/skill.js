@@ -107,5 +107,4 @@ exports.run = (message, args) => {
         : skillInfo(args, extractGradeArg(args, 5));
 
   message.channel.send({ embed: e, });
-  return true;
 }

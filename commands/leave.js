@@ -31,9 +31,8 @@ leaveGuild = (message, args) => {
 }
 
 exports.run = (message, args) => {
-  const isAuthor = message.author.id === author.id();
   let e;
-  if (isAuthor) {
+  if (message.author.id === author.id()) {
     if (!args.length) {
       e = embed.process({ description: 'Type something!', });
       message.channel.send({ embed: e, });
@@ -46,6 +45,4 @@ exports.run = (message, args) => {
     e = embed.process({ title: 'Error', description: 'Access denied.', });
     message.channel.send({ embed: e, });
   }
-
-  return isAuthor;
 }

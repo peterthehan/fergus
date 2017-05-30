@@ -89,5 +89,4 @@ exports.run = (message, args) => {
   e.constructor === Array
     ? e.forEach(currentValue => message.channel.send({ embed: currentValue, }))
     : message.channel.send({ embed: e, });
-  return true;
 }

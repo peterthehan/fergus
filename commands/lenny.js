@@ -14,5 +14,4 @@ exports.run = (message, args) => {
   const e = embed.process({ description: repeat(times, lenny).join(' ') });
 
   message.channel.send({ embed: e, });
-  return true;
 }

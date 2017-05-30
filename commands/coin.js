@@ -21,5 +21,4 @@ exports.run = (message, args) => {
   const e = embed.process({ title: title, description: flips, });
 
   message.channel.send({ embed: e, });
-  return true;
 }

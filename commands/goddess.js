@@ -47,5 +47,4 @@ exports.run = (message, args) => {
         : goddessInfo(args);
 
   message.channel.send({ embed: e, });
-  return true;
 }

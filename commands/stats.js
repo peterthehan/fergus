@@ -135,5 +135,4 @@ exports.run = (message, args) => {
     : statsInfo(args, parseTrainingArgs(args));
 
   message.channel.send({ embed: e, });
-  return true;
 }

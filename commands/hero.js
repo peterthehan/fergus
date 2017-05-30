@@ -76,5 +76,4 @@ exports.run = (message, args) => {
     : heroInfo(args, extractGradeArg(args));
 
   message.channel.send({ embed: e, });
-  return true;
 }

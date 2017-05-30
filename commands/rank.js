@@ -204,5 +204,4 @@ exports.run = (message, args) => {
   const e = !args.length ? rankInstructions() : rankInfo(args);
 
   message.channel.send({ embed: e, });
-  return true;
 }

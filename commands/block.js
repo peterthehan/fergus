@@ -64,5 +64,4 @@ exports.run = (message, args) => {
     : blockInfo(args, extractGradeArg(args));
 
   message.channel.send({ embed: e, });
-  return true;
 }

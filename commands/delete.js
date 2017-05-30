@@ -54,6 +54,4 @@ deleteMessage = (message, args) => {
 
 exports.run = (message, args) => {
   !args.length ? deleteInstructions(message) : deleteMessage(message, args);
-
-  return true;
 };

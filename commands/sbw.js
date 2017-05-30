@@ -25,7 +25,7 @@ sbwInstructions = () => {
 
 sbwInfo = (name, grade = null) => {
   const data = filterCharacterVisual(!grade || grade <= 3 ? 6 : grade);
-  
+
   const visualData = fuzzy(name, data, 'name');
   // resolve edge case between grade 5 and element['reqhero_ref']
   const sbwData =
@@ -80,5 +80,4 @@ exports.run = (message, args) => {
     : sbwInfo(args, extractGradeArg(args));
 
   message.channel.send({ embed: e, });
-  return true;
 }
