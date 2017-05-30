@@ -1,4 +1,5 @@
 const firebase = require('firebase');
+const humanizeDuration = require('humanize-duration');
 const author = require('../util/author.js');
 const embed = require('../util/embed.js');
 
@@ -7,13 +8,19 @@ const userInteractions = {};
 const maxUsage = 3;
 
 rosterInstructions = (message) => {
+  const max = 86400000; // 24h = 86400000 ms
+
   const names = ['w <url>', 'r <user>', 'd', '\u200b',];
   const values = [
-    'Write roster with <url>.\n*e.g. !roster w BLAH*',
+    'Write roster with <url>.\n*e.g. !roster w <url>*',
     'Read <user> roster.\n' +
       `*e.g. !roster r ${author.user(message)}*`,
     'Delete roster.\n*e.g. !roster d*',
-    `Note: <url> must be from one of: ${whiteList().join(', ')}.`,
+    `Note: <url> must be from one of: ${whiteList().join(', ')}. ` +
+    `This command can only be used ${maxUsage} times per user per *session*` +
+    ` (bot session will cycle in ` +
+    `${humanizeDuration(max - message.client.uptime, { round: true, })} ` +
+    `+ [up to 216 random minutes](https://devcenter.heroku.com/articles/dynos#restarting)).`,
   ];
   const inlines = [true, true, true, false,];
 
