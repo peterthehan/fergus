@@ -66,7 +66,7 @@ processDetail = () => {
 }
 
 countDetail = (message, count) => {
-  return `${count}\n(${(count / message.client.uptime * 1000).toFixed(2)}/s)`;
+  return `${count}\n(${(count / message.client.uptime * 1000 * 60).toFixed(2)}/min)`;
 }
 
 exports.run = (message, args) => {
