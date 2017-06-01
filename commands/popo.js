@@ -115,7 +115,7 @@ remainingTimeMessage = (id) => {
 
 // helper function
 popoImage = () => {
-  return imagePath(`etc/popo_${random(1, 4)}`);
+  return imagePath(`etc/popo_${random(1, 5)}`);
 }
 
 exports.run = (message, args) => {
