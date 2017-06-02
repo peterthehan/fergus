@@ -21,7 +21,7 @@ exports.run = (message, args) => {
     `[Unlock Lionel's Skin](https://goo.gl/9BXBkD)`,
     `[Shintouyu's](https://goo.gl/4i8nCb)\n` +
       `[Unlock Himiko's Skin](https://goo.gl/5yDbjr)`,
-    `[How To Get](https://goo.gl/UiWxOI)`,
+    `[How To Get](https://goo.gl/e10jeA)`,
     `[Hero Illustrations](https://goo.gl/06hnsT)`,
     `[Berry System](https://goo.gl/jbgmLa), ` +
       `[Vol. 1](https://goo.gl/JpOluL), ` +
