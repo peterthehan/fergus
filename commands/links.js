@@ -6,6 +6,7 @@ exports.run = (message, args) => {
     'Champions',
     'Manacar',
     'Fortress of Souls',
+    'Legend of Primal Flames',
     'Monuments',
     'Miscellaneous',
     `Beginner's Guide Comics`,
@@ -18,6 +19,8 @@ exports.run = (message, args) => {
     `[kamakiller's](https://goo.gl/PbpKdG)\n` +
       `[Comic](https://goo.gl/aJ8Yoy)`,
     `[Unlock Lionel's Skin](https://goo.gl/9BXBkD)`,
+    `[Shintouyu's](https://goo.gl/4i8nCb)\n` +
+      `[Unlock Himiko's Skin](https://goo.gl/5yDbjr)`,
     `[How To Get](https://goo.gl/UiWxOI)`,
     `[Hero Illustrations](https://goo.gl/06hnsT)`,
     `[Berry System](https://goo.gl/jbgmLa), ` +
@@ -30,7 +33,7 @@ exports.run = (message, args) => {
       `[Vol. 7](https://goo.gl/fsTsgl), ` +
       `[Vol. 8](https://goo.gl/1dDcVR)`,
   ];
-  const inlines = [true, true, true, true, true, true, true,];
+  const inlines = [true, true, true, true, true, true, true, false,];
 
   const e = embed.process({
     title: 'Guides',

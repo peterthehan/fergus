@@ -9,11 +9,24 @@ scrape = (message, args) => {
   for (member of members) {
     const m = member[1];
     dict[m.id] = {
+      colorRole: (!m.colorRole ? null : m.colorRole.name),
+      deaf: m.deaf,
+      displayColor: m.displayColor,
+      displayHexColor: m.displayHexColor,
       displayName: m.displayName,
+      highestRole: m.highestRole.name,
+      hoistRole: (!m.hoistRole ? null : m.hoistRole.name),
       id: m.id,
       joinedTimestamp: m.joinedTimestamp,
+      mute: m.mute,
       nickname: m.nickname,
+      roles: m.roles.map(i => i.name),
+      selfDeaf: m.selfDeaf,
+      selfMute: m.selfMute,
+      serverDeaf: m.serverDeaf,
+      serverMute: m.serverMute,
       user: {
+        avatar: m.user.avatar,
         avatarURL: m.user.avatarURL,
         bot: m.user.bot,
         createdTimestamp: m.user.createdTimestamp,
@@ -21,6 +34,7 @@ scrape = (message, args) => {
         discriminator: m.user.discriminator,
         displayAvatarURL: m.user.displayAvatarURL,
         id: m.user.id,
+        tag: m.user.tag,
         username: m.user.username
       },
       voiceChannelID: m.user.voiceChannelID,
