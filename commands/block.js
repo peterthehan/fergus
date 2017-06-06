@@ -1,6 +1,5 @@
 const d = require('../data.js');
 const character_stat = d.character_stat();
-const character_visual = d.character_visual();
 
 const embed = require('../util/embed.js');
 const extractGradeArg = require('../util/extractGradeArg.js');

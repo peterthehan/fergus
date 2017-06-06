@@ -1,7 +1,6 @@
 const d = require('../data.js');
 const character_addstatmax = d.character_addstatmax();
 const character_stat = d.character_stat();
-const character_visual = d.character_visual();
 
 const embed = require('../util/embed.js');
 const filterCharacterVisual = require('../util/filterCharacterVisual.js');
@@ -86,7 +85,9 @@ statsInfo = (name, training) => {
     getStat(statData['resist'], statData['growthresist'], level, bread),
     statData['hitrate'],
     statData['dodgerate'],
-  ];
+  ].map((currentValue, index) => {
+    return (currentValue + addBerry[index]).toFixed(rounding[index]);
+  });
   const inlines = [true, true, true, true, true, true, true, true,];
 
   return embed.process({
@@ -94,13 +95,7 @@ statsInfo = (name, training) => {
     description: `Lv. ${level}, +${bread} bread training, with` +
       `${!addStatMaxData ? 'out' : ''} berry training.`,
     thumbnail: { url: imagePath('heroes/' + visualData['face_tex']), },
-    fields: embed.fields(
-      names,
-      values.map((currentValue, index) => {
-        return (currentValue + addBerry[index]).toFixed(rounding[index])
-      }),
-      inlines
-    ),
+    fields: embed.fields(names, values, inlines),
   });
 }
 
