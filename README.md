@@ -37,6 +37,7 @@ Prefix: !, @mention
   [berry](https://github.com/Johj/fergus/blob/master/commands/berry.js),
   [block](https://github.com/Johj/fergus/blob/master/commands/block.js),
   [bread](https://github.com/Johj/fergus/blob/master/commands/bread.js),
+  [effective](https://github.com/Johj/fergus/blob/master/commands/effective.js),
   [faction](https://github.com/Johj/fergus/blob/master/commands/faction.js),
   [find](https://github.com/Johj/fergus/blob/master/commands/find.js),
   [goddess](https://github.com/Johj/fergus/blob/master/commands/goddess.js),

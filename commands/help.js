@@ -13,6 +13,7 @@ exports.run = (message, args) => {
       'berry',
       'block',
       'bread',
+      'effective',
       'faction',
       'find',
       'goddess',
