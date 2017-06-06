@@ -12,17 +12,20 @@ exports.run = (message, args) => {
     `Beginner's Guide Comics`,
   ];
   const values = [
-    `[Accurina's](https://goo.gl/bBgMTg)\n` +
+    `[Accurina's](https://goo.gl/bBgMTg), ` +
       `[IRC's](https://goo.gl/oNQ2iF)\n` +
       `[INVEN's](https://goo.gl/k5PlhB)`,
     `[Vyrlokar's](https://goo.gl/M37qRm)`,
     `[kamakiller's](https://goo.gl/PbpKdG)\n` +
       `[Comic](https://goo.gl/aJ8Yoy)`,
     `[Unlock Lionel's Skin](https://goo.gl/9BXBkD)`,
-    `[Shintouyu's](https://goo.gl/4i8nCb)\n` +
+    `[Nyaa's](https://goo.gl/iqppI0), ` +
+      `[Shintouyu's](https://goo.gl/4i8nCb)\n` +
+      `[LoPF Map](https://goo.gl/YtlDQH)\n` +
       `[Unlock Himiko's Skin](https://goo.gl/5yDbjr)`,
     `[How To Get](https://goo.gl/e10jeA)`,
-    `[Hero Illustrations](https://goo.gl/06hnsT)`,
+    `[Hero Illustrations](https://goo.gl/06hnsT)\n` +
+      `[CQ Assets](https://goo.gl/VAXQMg)`,
     `[Berry System](https://goo.gl/jbgmLa), ` +
       `[Vol. 1](https://goo.gl/JpOluL), ` +
       `[Vol. 2](https://goo.gl/VH83O2), ` +
