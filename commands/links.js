@@ -14,7 +14,8 @@ exports.run = (message, args) => {
   const values = [
     `[Accurina's](https://goo.gl/bBgMTg), ` +
       `[IRC's](https://goo.gl/oNQ2iF)\n` +
-      `[INVEN's](https://goo.gl/k5PlhB)`,
+      `[TISTORY](https://goo.gl/nOC3NK), ` +
+      `[INVEN](https://goo.gl/k5PlhB)`,
     `[Vyrlokar's](https://goo.gl/M37qRm)`,
     `[kamakiller's](https://goo.gl/PbpKdG)\n` +
       `[Comic](https://goo.gl/aJ8Yoy)`,
