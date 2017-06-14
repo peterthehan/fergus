@@ -48,7 +48,8 @@ statsInfo = (name, training) => {
   const level = !training[1] || training[1] > grade * 10 || training[1] < 1
     ? grade * 10
     : training[1];
-  const bread = !training[2] || training[2] > grade - 1 || training[2] < 0
+  const bread = (!training[2] && training[2] !== 0)
+    || training[2] > grade - 1 || training[2] < 0
     ? grade - 1
     : training[2];
 

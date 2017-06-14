@@ -53,7 +53,7 @@ factionObj = () => {
   );
 
   // remove unreleased domains
-  ['CHEN', 'GODDESS', 'MINO', 'NOS', 'ROMAN',].map(currentValue => {
+  ['CHEN', 'GODDESS', 'MINO', 'NOS',].map(currentValue => {
     const index = factions.indexOf(currentValue);
     factions.splice(index, 1);
   });
