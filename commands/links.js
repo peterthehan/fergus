@@ -25,8 +25,9 @@ exports.run = (message, args) => {
       `[LoPF Map](https://goo.gl/YtlDQH)\n` +
       `[Unlock Himiko's Skin](https://goo.gl/5yDbjr)`,
     `[How To Get](https://goo.gl/e10jeA)`,
-    `[Hero Illustrations](https://goo.gl/06hnsT)\n` +
-      `[CQ Assets](https://goo.gl/VAXQMg)`,
+    `[Hero Illustrations](https://goo.gl/06hnsT), ` +
+      `[CQ Assets](https://goo.gl/VAXQMg), ` +
+      `[Block Map](https://goo.gl/wkYdqt)`,
     `[Berry System](https://goo.gl/jbgmLa), ` +
       `[Vol. 1](https://goo.gl/JpOluL), ` +
       `[Vol. 2](https://goo.gl/VH83O2), ` +
@@ -37,7 +38,7 @@ exports.run = (message, args) => {
       `[Vol. 7](https://goo.gl/fsTsgl), ` +
       `[Vol. 8](https://goo.gl/1dDcVR)`,
   ];
-  const inlines = [true, true, true, true, true, true, true, false,];
+  const inlines = [true, true, true, true, true, true, false, false,];
 
   const e = embed.process({
     title: 'Guides',
