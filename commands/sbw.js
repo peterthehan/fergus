@@ -65,7 +65,7 @@ sbwInfo = (name, grade = null) => {
   return embed.process({
     title: `${resolve(sbwData['name'])} (${sbwData['grade']}★)`,
     description: resolve(sbwData['desc']),
-    thumbnail: { url: imagePath('sbws/' + sbwData['face_tex']), },
+    thumbnail: { url: imagePath('sbws/' + sbwData['skin_tex']), },
     fields: embed.fields(
       names,
       values.map(currentValue => !currentValue ? '-' : currentValue),
