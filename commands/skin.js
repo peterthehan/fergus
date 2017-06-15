@@ -46,12 +46,30 @@ skinInfo = (name) => {
   const values = [data['sell_price'],];
   const inlines = [true,];
 
-  return embed.process({
-    title: resolve(data['costume_name']),
-    description: description.join('\n'),
-    thumbnail: { url: imagePath('skins/' + data['face_tex']), },
-    fields: embed.fields(names, values, inlines),
-  });
+//console.log(data['face_tex']);
+
+  const e = [
+    embed.process({
+      title: resolve(data['costume_name']),
+      description: description.join('\n'),
+      thumbnail: { url: imagePath('skins/' + data['face_tex']), },
+      fields: embed.fields(names, values, inlines),
+    }),
+  ];
+
+  // edge case with joan skin
+  if (data['face_tex'] === 'cos_wa_2_2') {
+    e.push(
+      embed.process({
+        title: resolve(data['costume_name']),
+        description: description.join('\n'),
+        thumbnail: { url: imagePath('skins/' + data['face_tex'] + '_re'), },
+        fields: embed.fields(names, values, inlines),
+      })
+    );
+  }
+
+  return e;
 }
 
 exports.run = (message, args) => {
@@ -59,5 +77,5 @@ exports.run = (message, args) => {
     ? skinInstructions()
     : args[0].toLowerCase().startsWith('list') ? skinList() : skinInfo(args);
 
-  message.channel.send({ embed: e, });
+  e.forEach(currentValue => message.channel.send({ embed: currentValue, }));
 }

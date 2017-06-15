@@ -50,6 +50,8 @@ blockInfo = (name, grade = null) => {
     inlines.push(false);
   }
 
+//console.log(statData['skill_icon']);
+
   return embed.process({
     title: `${resolve(visualData['name'])} (${statData['grade']}★)`,
     thumbnail: { url: imagePath('blocks/' + statData['skill_icon']), },

@@ -57,6 +57,8 @@ heroInfo = (name, grade = null) => {
   ];
   const inlines = [true, true, true, true, false,];
 
+//console.log(visualData['face_tex']);
+
   return embed.process({
     title: `${resolve(visualData['name'])} (${statData['grade']}★)`,
     description: resolve(visualData['desc']),
