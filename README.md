@@ -66,6 +66,7 @@ Prefix: !, @mention
   [math](https://github.com/Johj/fergus/blob/master/commands/math.js),
   [mock](https://github.com/Johj/fergus/blob/master/commands/mock.js),
   [print](https://github.com/Johj/fergus/blob/master/commands/print.js),
+  [quote](https://github.com/Johj/fergus/blob/master/commands/quote.js),
   [remindme](https://github.com/Johj/fergus/blob/master/commands/remindme.js),
   [server](https://github.com/Johj/fergus/blob/master/commands/server.js),
   [slap](https://github.com/Johj/fergus/blob/master/commands/slap.js),

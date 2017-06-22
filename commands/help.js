@@ -44,6 +44,7 @@ exports.run = (message, args) => {
       'math',
       'mock',
       'print',
+      'quote',
       'remindme',
       'server',
       'slap',
