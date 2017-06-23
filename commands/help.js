@@ -40,6 +40,7 @@ exports.run = (message, args) => {
       'aesthetic',
       'coin',
       'delete',
+      'emoji',
       'lenny',
       'math',
       'mock',

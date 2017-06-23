@@ -55,7 +55,7 @@ exports.run = (message, args) => {
     const emojiLength = guild.emojis.array().length;
     if (emojiLength) {
       names.push(`Emojis (${emojiLength})`);
-      values.push(guild.emojis.array().join(' '));
+      values.push(truncateString(guild.emojis.array()).join(' '));
       inlines.push(false);
     }
 
