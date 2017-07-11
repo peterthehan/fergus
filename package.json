@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Crusaders Quest Discord server bot.",
   "engines": {
-    "node": "7.9.0"
+    "node": "8.1.4"
   },
   "main": "fergus.js",
   "dependencies": {
