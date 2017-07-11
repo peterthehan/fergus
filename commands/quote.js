@@ -65,9 +65,10 @@ exports.run = (message, args) => {
   } else {
     const re = new RegExp(/^<@!?|>$/, 'g');
     const id = re.test(args[0])
-      ? args.shift().replace(re, '')
-      : null;
-
+      ? args[0].replace(re, '')
+      : message.author.id;
+    args.shift();
+    
     quote(message, args, id);
   }
 }

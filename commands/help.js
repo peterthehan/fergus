@@ -50,7 +50,7 @@ exports.run = (message, args) => {
       'server',
       'slap',
       'square',
-      //'user',
+      'user',
     ],
     'Reserved': [
       'eval',
