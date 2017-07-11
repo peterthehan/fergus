@@ -71,7 +71,7 @@ Prefix: !, @mention
   [remindme](https://github.com/Johj/fergus/blob/master/commands/remindme.js),
   [server](https://github.com/Johj/fergus/blob/master/commands/server.js),
   [slap](https://github.com/Johj/fergus/blob/master/commands/slap.js),
-  [square](https://github.com/Johj/fergus/blob/master/commands/square.js)
+  [square](https://github.com/Johj/fergus/blob/master/commands/square.js),
   [user](https://github.com/Johj/fergus/blob/master/commands/user.js)
 - Reserved:
   [eval](https://github.com/Johj/fergus/blob/master/commands/eval.js),
