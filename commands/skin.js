@@ -46,8 +46,6 @@ skinInfo = (name) => {
   const values = [data['sell_price'],];
   const inlines = [true,];
 
-//console.log(data['face_tex']);
-
   const e = [
     embed.process({
       title: resolve(data['costume_name']),
@@ -73,6 +71,7 @@ skinInfo = (name) => {
 }
 
 exports.run = (message, args) => {
+  //console.log(costume.map(i => resolve(i.costume_name) + ' ' + i.face_tex).join(', '));
   const e = !args.length
     ? skinInstructions()
     : args[0].toLowerCase().startsWith('list') ? skinList() : skinInfo(args);

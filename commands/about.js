@@ -3,18 +3,20 @@ const embed = require('../util/embed.js');
 
 exports.run = (message, args) => {
   const names = [
-    'Fergus server',
-    'Crusaders Quest server',
     'Bot invite link',
+    'cqdb',
+    'Servers',
     'GitHub',
   ];
   const values = [
-    '[discord.gg/WjEFnzC](https://discord.gg/WjEFnzC)',
-    '[discord.gg/6TRnyhj](https://discord.gg/6TRnyhj)',
     '[goo.gl/nDluCQ](https://goo.gl/nDluCQ)',
-    '[github.com/Johj/fergus](https://github.com/Johj/fergus)',
+    '[goo.gl/fdg6M8](https://goo.gl/fdg6M8)',
+    '[cqdb/Fergus](https://discord.gg/WjEFnzC)\n' +
+      '[Crusaders Quest](https://discord.gg/6TRnyhj)',
+    '[/Johj/cqdb](https://github.com/Johj/cqdb)\n' + 
+      '[/Johj/fergus](https://github.com/Johj/fergus)',
   ];
-  const inlines = [true, true, true, true, false,];
+  const inlines = [true, true, true, true,];
 
   const e = embed.process({
     title: message.client.user.username,

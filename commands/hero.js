@@ -47,12 +47,12 @@ heroInfo = (name, grade = null) => {
     ? visualData['isgachagolden'] ? 'IN_GACHA' : 'LAGENDARY'
     : visualData['rarity'];
 
-  const names = ['Class', 'Domain', 'Gender', 'Rarity', 'How to get',];
+  const names = ['Class', 'Rarity', 'Faction', 'Gender', 'How to get',];
   const values = [ // key does not resolve as-is, modification necessary
     resolve('TEXT_CLASS_' + visualData['classid'].substring(4)),
+    resolve('TEXT_CONFIRM_SELL_' + rarity + '_HERO'),
     domain,
     resolve('TEXT_EXPLORE_TOOLTIP_GENDER_' + visualData['gender']),
-    resolve('TEXT_CONFIRM_SELL_' + rarity + '_HERO'),
     !visualData['howtoget'] ? null : visualData['howtoget'].join(', '),
   ];
   const inlines = [true, true, true, true, false,];
