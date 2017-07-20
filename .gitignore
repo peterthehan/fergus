@@ -1,17 +1,3 @@
-# currently unneeded assets
-assets/!
-assets/berries/!
-assets/blocks/!
-assets/bread/!
-assets/emojis/!
-assets/etc/!
-assets/factions/!
-assets/goddesses/!
-assets/heroes/!
-assets/sbws/!
-assets/skills/!
-assets/skins/!
-
 # currently unneeded code
 commands/!
 util/!
@@ -21,11 +7,8 @@ node_modules
 Sherlock
 
 # privy to me
-contribute
 Decrypted
 authorize.txt
 config.json
-config_example.json
 data.js
 firebase.json
-TODO

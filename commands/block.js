@@ -50,8 +50,6 @@ blockInfo = (name, grade = null) => {
     inlines.push(false);
   }
 
-//console.log(statData['skill_icon']);
-
   return embed.process({
     title: `${resolve(visualData['name'])} (${statData['grade']}★)`,
     thumbnail: { url: imagePath('blocks/' + statData['skill_icon']), },
@@ -60,6 +58,7 @@ blockInfo = (name, grade = null) => {
 }
 
 exports.run = (message, args) => {
+  //console.log(character_stat.map(i => resolve(i.skill_name) + ' ' + i.skill_icon).join(', '));
   const e = !args.length
     ? blockInstructions()
     : blockInfo(args, extractGradeArg(args));

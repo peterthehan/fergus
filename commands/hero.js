@@ -1,5 +1,6 @@
 const d = require('../data.js');
 const character_stat = d.character_stat();
+//const character_visual = d.character_visual();
 
 const embed = require('../util/embed.js');
 const extractGradeArg = require('../util/extractGradeArg.js');
@@ -72,6 +73,7 @@ heroInfo = (name, grade = null) => {
 }
 
 exports.run = (message, args) => {
+  //console.log(character_visual.map(i => resolve(i.name) + ' ' + i.face_tex).join(', '));
   const e = !args.length
     ? heroInstructions()
     : heroInfo(args, extractGradeArg(args));

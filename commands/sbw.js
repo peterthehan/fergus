@@ -75,6 +75,7 @@ sbwInfo = (name, grade = null) => {
 }
 
 exports.run = (message, args) => {
+  //console.log(sbw.map(i => resolve(i.name) + ' ' + i.skin_tex).join(', '));
   const e = !args.length
     ? sbwInstructions()
     : sbwInfo(args, extractGradeArg(args));
