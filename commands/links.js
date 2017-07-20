@@ -25,7 +25,7 @@ exports.run = (message, args) => {
       `[Get Lionel's skin](https://goo.gl/9BXBkD)\n` +
       `[Get Himiko's skin](https://goo.gl/5yDbjr)`,
     `[Illustrations](https://goo.gl/06hnsT)\n` +
-      `[Assets](https://goo.gl/VAXQMg)\n` +
+      `[cq-assets](https://goo.gl/UzKBsq)\n` +
       `[block-map](https://goo.gl/wkYdqt)`,
     `[Vol. 1](https://goo.gl/JpOluL), ` +
       `[2](https://goo.gl/VH83O2), ` +
