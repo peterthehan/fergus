@@ -46,8 +46,20 @@ blockInfo = (name, grade = null) => {
         resolve('TEXT_PASSIVE_SKILL_TOOLTIP_TYPE_' + statData['hero_type']) +
         ')'
     );
-    values.push(skill_subdesc);
-    inlines.push(false);
+    if (skill_subdesc.length > 1024) {
+      const cutoff = Math.floor(skill_subdesc.length / 2);
+      const split = [
+        skill_subdesc.substring(0, cutoff),
+        skill_subdesc.substring(cutoff, skill_subdesc.length),
+      ];
+
+      names.push('\u200b');
+      split.forEach(i => values.push(i));
+      [false, false].forEach(i => inlines.push(i));
+    } else {
+      values.push(skill_subdesc);
+      inlines.push(false);
+    }
   }
 
   return embed.process({
