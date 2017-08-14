@@ -72,9 +72,7 @@ skinInfo = (name) => {
 
 exports.run = (message, args) => {
   //console.log(costume.map(i => resolve(i.costume_name) + ' ' + i.face_tex).join(', '));
-  const e = !args.length
-    ? skinInstructions()
-    : args[0].toLowerCase().startsWith('list') ? skinList() : skinInfo(args);
+  const e = !args.length ? [skinInstructions()] : skinInfo(args);
 
   e.forEach(currentValue => message.channel.send({ embed: currentValue, }));
 }
