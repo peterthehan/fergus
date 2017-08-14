@@ -51,16 +51,14 @@ sbwInfo = (name, grade = null) => {
     'Range',
     'Atk. Power',
     'Atk. Speed',
-    'How to get',
   ];
   const values = [ // key does not resolve as-is, modification necessary
     resolve('TEXT_WEAPON_CATE_' + sbwData['categoryid'].substring(4)),
     sbwData['range'].toString(),
     sbwData['attdmg'].toString(),
     sbwData['attspd'].toString(),
-    !sbwData['howtoget'] ? null : sbwData['howtoget'].join(', '),
   ];
-  const inlines = [true, true, true, true, false,];
+  const inlines = [true, true, true, true,];
 
   return embed.process({
     title: `${resolve(sbwData['name'])} (${sbwData['grade']}★)`,

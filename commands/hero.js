@@ -32,7 +32,7 @@ heroInfo = (name, grade = null) => {
 
   // remove unreleased domains
   let domain;
-  if (['CHEN', 'GODDESS', 'MINO', 'NOS',]
+  if (['CHEN', 'MINO', 'NOS',]
     .includes(visualData['domain'])
   ) {
     domain = 'Unknown';
@@ -48,15 +48,14 @@ heroInfo = (name, grade = null) => {
     ? visualData['isgachagolden'] ? 'IN_GACHA' : 'LAGENDARY'
     : visualData['rarity'];
 
-  const names = ['Class', 'Rarity', 'Faction', 'Gender', 'How to get',];
+  const names = ['Class', 'Rarity', 'Faction', 'Gender',];
   const values = [ // key does not resolve as-is, modification necessary
     resolve('TEXT_CLASS_' + visualData['classid'].substring(4)),
     resolve('TEXT_CONFIRM_SELL_' + rarity + '_HERO'),
     domain,
     resolve('TEXT_EXPLORE_TOOLTIP_GENDER_' + visualData['gender']),
-    !visualData['howtoget'] ? null : visualData['howtoget'].join(', '),
   ];
-  const inlines = [true, true, true, true, false,];
+  const inlines = [true, true, true, true,];
 
 //console.log(visualData['face_tex']);
 

@@ -56,7 +56,6 @@ weaponInfo = (name, grade = null) => {
     'Atk. Power',
     'Atk. Speed',
     'Conversions',
-    'How to get',
   ];
   const values = [ // key does not resolve as-is, modification necessary
     resolve('TEXT_WEAPON_CATE_' + weaponData['categoryid'].substring(4)),
@@ -64,9 +63,8 @@ weaponInfo = (name, grade = null) => {
     weaponData['attdmg'].toString(),
     weaponData['attspd'].toString(),
     !conv.length ? null : conv.join(', '),
-    !weaponData['howtoget'] ? null : weaponData['howtoget'].join(', '),
   ];
-  const inlines = [true, true, true, true, false, false,];
+  const inlines = [true, true, true, true, false,];
 
   return embed.process({
     title: `${resolve(weaponData['name'])} (${weaponData['grade']}★)`,
