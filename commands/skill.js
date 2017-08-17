@@ -11,6 +11,7 @@ const list = require('../util/list.js');
 const random = require('../util/random.js');
 const removeDuplicates = require('../util/removeDuplicates.js');
 const resolve = require('../util/resolve.js');
+const toTitleCase = require('../util/toTitleCase.js');
 
 skillInstructions = () => {
   const names = ['list', '<name>', '<level>',];
@@ -40,16 +41,27 @@ skillInfo = (name, grade = null) => {
     : skill.filter(element => element['level'] === grade);
   const skillData = fuzzy(name, data, 'name');
 
+  // edge case with skill classes
+  let className;
+  if (skillData.class === 'KOF') {
+    className = skillData.class;
+  } else if (skillData.class === 'CLA_OBJECT') {
+    className = 'Unique';
+  } else {
+    className = resolve('TEXT_CLASS_' + skillData.class.substring(4));
+  }
+
+  // edge case with captain skill
+  const cost = skillData.name === 'TEXT_SKILL_PA_CAPTAIN_NAME'
+    ? skillData.cost_json.map(j => `${toTitleCase(j.type)}: ${j.value}`).join(', ')
+    : skillData.cost_json.map(j => `${toTitleCase(j.Cost_Type.replace('ITEM_', ''))}: ${j.Cost_Amount}`).join(', ');
+
+
   const names = ['Class', 'Type', 'Cost', 'Great rate', 'Unlock condition',];
   const values = [ // key does not resolve as-is, modification necessary
-    resolve('TEXT_CLASS_' + skillData['class'].substring(4)),
+    className,
     resolve(skillData['simpledesc']),
-    skillData['cost']
-      .map(currentValue => {
-        return `${resolve('TEXT_' + currentValue['type'])}: ` +
-          `${currentValue['value']}`;
-      })
-      .join('\n'),
+    cost,
     skillData['huge'] === -1 ? '-' : `${parseInt(skillData['huge'] * 100)}%`,
     unlockCondition(skillData['unlockcond']),
   ];
