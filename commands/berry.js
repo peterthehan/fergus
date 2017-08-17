@@ -62,7 +62,7 @@ berryInfo = (name, grade = null) => {
         ? '%'
         : '') +
       `\nGreat rate: ${parseInt(berryData['great_prob'] * 100)}%`,
-    thumbnail: { url: imagePath('berries/' + berryData['texture']), },
+    thumbnail: { url: imagePath('berries/' + berryData['image']), },
     fields: embed.fields(names, values, inlines),
   });
 }

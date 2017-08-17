@@ -68,7 +68,7 @@ weaponInfo = (name, grade = null) => {
 
   return embed.process({
     title: `${resolve(weaponData['name'])} (${weaponData['grade']}★)`,
-    thumbnail: { url: imagePath('weapons/' + weaponData['skin_tex']) },
+    thumbnail: { url: imagePath('weapons/' + weaponData['image']) },
     fields: embed.fields(
       names,
       values.map(currentValue => !currentValue ? '-' : currentValue),

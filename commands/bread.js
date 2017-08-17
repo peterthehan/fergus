@@ -50,7 +50,7 @@ breadInfo = (name, grade = null) => {
     description:
       `Value: ${breadData['trainpoint']}\n` +
       `Great rate: ${parseInt(breadData['critprob'] * 100)}%`,
-    thumbnail: { url: imagePath('bread/' + breadData['texture']), },
+    thumbnail: { url: imagePath('bread/' + breadData['image']), },
     fields: embed.fields(names, values, inlines),
   });
 }
