@@ -1,5 +1,6 @@
 const d = require('../data.js');
 const character_visual = d.character_visual();
+const costume = d.costume();
 const hero_easteregg = d.hero_easteregg();
 
 const humanizeDuration = require('humanize-duration');
@@ -10,7 +11,7 @@ const random = require('../util/random.js');
 const resolve = require('../util/resolve.js');
 
 const userInteractions = {};
-const maxUsage = 3;
+const maxUsage = 10;
 
 interactInstructions = (message) => {
   const max = 86400000; // 24h = 86400000 ms
@@ -35,21 +36,28 @@ interactInstructions = (message) => {
 
 interact = (index) => {
   const regExp = new RegExp(`_${index}$`);
-  const filtered = hero_easteregg
-    .filter(element => regExp.test(element['id']))[0]['eatereggherotext'];
+  const filtered = hero_easteregg[hero_easteregg.findIndex(i => regExp.test(i.id))].eatereggherotext;
 
   const dialogue = [];
   for (i of Object.keys(filtered)) {
-    const hero = character_visual
-      .filter(element => element['id'] === i)[0];
-
-    dialogue.push(
-      embed.process({
-        title: resolve(hero['name']),
+    let e;
+    if (i.startsWith('CHA')) {
+      const hero = character_visual[character_visual.findIndex(j => j.id === i)];
+      e = embed.process({
+        title: resolve(hero.name),
         description: resolve(filtered[i]),
-        thumbnail: { url: imagePath('heroes/' + hero['face_tex']), },
-      })
-    );
+        thumbnail: { url: imagePath('heroes/' + hero.face_tex), },
+      });
+    } else {
+      const hero = costume[costume.findIndex(j => j.costume_name === `TEXT_${i}${j.costume_name.endsWith('_NAME') ? '_NAME' : ''}`)];
+      e = embed.process({
+        title: resolve(hero.costume_name),
+        description: resolve(filtered[i]),
+        thumbnail: { url: imagePath('skins/' + hero.face_tex), },
+      });
+    }
+
+    dialogue.push(e);
   }
 
   return dialogue;
@@ -64,9 +72,7 @@ exports.run = (message, args) => {
       userInteractions[message.author.id] = 0;
     }
 
-    if (message.author.id === author.id()
-      || userInteractions[message.author.id] < maxUsage
-    ) {
+    if (message.author.id === author.id() || userInteractions[message.author.id] < maxUsage) {
       ++userInteractions[message.author.id];
 
       const index = !isNaN(args[0])
