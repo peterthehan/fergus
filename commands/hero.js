@@ -27,40 +27,39 @@ heroInfo = (name, grade = null) => {
   const data = filterCharacterVisual(!grade ? 'max' : grade);
 
   const visualData = fuzzy(name, data, 'name');
-  const statData = character_stat
-    .filter(element => element['id'] === visualData['default_stat_id'])[0];
+  const statData = character_stat[character_stat.findIndex(element => element.id === visualData.default_stat_id)];
 
   // remove unreleased domains
   let domain;
-  if (['CHEN', 'MINO',].includes(visualData['domain'])) {
+  if (['CHEN', 'MINO',].includes(visualData.domain) || !visualData.domain) {
     domain = 'Unknown';
   } else {
     domain = resolve(
-      visualData['domain'] === 'NONEGROUP'
-        ? 'TEXT_CHAMP_DOMAIN_' + visualData['domain'] + '_NAME'
-        : 'TEXT_CHAMPION_DOMAIN_' + visualData['domain']
+      visualData.domain === 'NONEGROUP'
+        ? 'TEXT_CHAMP_DOMAIN_' + visualData.domain + '_NAME'
+        : 'TEXT_CHAMPION_DOMAIN_' + visualData.domain
     );
   }
 
-  const rarity = visualData['rarity'] === 'LEGENDARY'
-    ? visualData['isgachagolden'] ? 'IN_GACHA' : 'LAGENDARY'
-    : visualData['rarity'];
+  const rarity = visualData.rarity === 'LEGENDARY'
+    ? visualData.isgachagolden ? 'IN_GACHA' : 'LAGENDARY'
+    : visualData.rarity;
 
   const names = ['Class', 'Rarity', 'Faction', 'Gender',];
   const values = [ // key does not resolve as-is, modification necessary
-    resolve('TEXT_CLASS_' + visualData['classid'].substring(4)),
+    resolve('TEXT_CLASS_' + visualData.classid.substring(4)),
     resolve('TEXT_CONFIRM_SELL_' + rarity + '_HERO'),
     domain,
-    resolve('TEXT_EXPLORE_TOOLTIP_GENDER_' + visualData['gender']),
+    resolve('TEXT_EXPLORE_TOOLTIP_GENDER_' + visualData.gender),
   ];
   const inlines = [true, true, true, true,];
 
-//console.log(visualData['face_tex']);
+//console.log(visualData.face_tex);
 
   return embed.process({
-    title: `${resolve(visualData['name'])} (${statData['grade']}★)`,
-    description: resolve(visualData['desc']),
-    thumbnail: { url: imagePath('heroes/' + visualData['face_tex']), },
+    title: `${resolve(visualData.name)} (${statData.grade}★)`,
+    description: resolve(visualData.desc),
+    thumbnail: { url: imagePath('heroes/' + visualData.face_tex), },
     fields: embed.fields(
       names,
       values.map(currentValue => !currentValue ? '-' : currentValue),
