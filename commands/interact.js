@@ -41,21 +41,21 @@ interact = (index) => {
   const dialogue = [];
   for (i of Object.keys(filtered)) {
     let e;
-    if (i.startsWith('CHA')) {
-      const hero = character_visual[character_visual.findIndex(j => j.id === i)];
-      e = embed.process({
-        title: resolve(hero.name),
-        description: resolve(filtered[i]),
-        thumbnail: { url: imagePath('heroes/' + hero.face_tex), },
-      });
-    } else {
-      const hero = costume[costume.findIndex(j => j.costume_name === `TEXT_${i}${j.costume_name.endsWith('_NAME') ? '_NAME' : ''}`)];
-      e = embed.process({
-        title: resolve(hero.costume_name),
-        description: resolve(filtered[i]),
-        thumbnail: { url: imagePath('skins/' + hero.face_tex), },
-      });
+
+    const flag = i.startsWith('CHA');
+    const hero = flag
+      ? character_visual[character_visual.findIndex(j => j.id === i)]
+      : costume[costume.findIndex(j => j.costume_name === `TEXT_${i}${j.costume_name.endsWith('_NAME') ? '_NAME' : ''}`)];
+
+    if (hero == null) {
+      continue;
     }
+
+    e = embed.process({
+      title: resolve(flag ? hero.name : hero.costume_name),
+      description: resolve(filtered[i]),
+      thumbnail: { url: imagePath(`${flag ? 'heroes' : 'skins'}/${hero.face_tex}.png`), },
+    });
 
     dialogue.push(e);
   }
@@ -77,7 +77,7 @@ exports.run = (message, args) => {
 
       const index = !isNaN(args[0])
         && parseInt(args[0]) >= 1
-        && parseInt(args[0]) <= hero_easteregg.length
+        && parseInt(args[0]) <= hero_easteregg.length - 1 // temp
           ? parseInt(args[0])
           : random(0, hero_easteregg.length);
 
