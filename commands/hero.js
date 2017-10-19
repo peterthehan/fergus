@@ -31,7 +31,7 @@ heroInfo = (name, grade = null) => {
 
   // remove unreleased domains
   let domain;
-  if (['CHEN', 'MINO',].includes(visualData.domain) || !visualData.domain) {
+  if (['CHEN',].includes(visualData.domain) || !visualData.domain) {
     domain = 'Unknown';
   } else {
     domain = resolve(
