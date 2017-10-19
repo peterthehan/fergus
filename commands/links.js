@@ -25,7 +25,6 @@ exports.run = (message, args) => {
       `[Get Lionel's skin](https://goo.gl/9BXBkD)\n` +
       `[Get Himiko's skin](https://goo.gl/5yDbjr)`,
     `[Corrected descs](https://goo.gl/Bz1DWB)\n` +
-      `[Illustrations](https://goo.gl/06hnsT)\n` +
       `[cq-assets](https://goo.gl/UzKBsq)\n` +
       `[block-map](https://goo.gl/wkYdqt)`,
     `[Vol. 1](https://goo.gl/JpOluL), ` +
@@ -42,7 +41,7 @@ exports.run = (message, args) => {
 
   const e = embed.process({
     title: 'Useful links',
-    description: 'Come check out [Crusaders Quest Database (cqdb)](https://goo.gl/fdg6M8)!\n\u200b',
+    description: 'Visit [Crusaders Quest Database (cqdb)](https://goo.gl/fdg6M8)!\n\u200b',
     fields: embed.fields(names, values, inlines),
   });
 
