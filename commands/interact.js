@@ -35,8 +35,7 @@ interactInstructions = (message) => {
 }
 
 interact = (index) => {
-  const regExp = new RegExp(`_${index}$`);
-  const filtered = hero_easteregg[hero_easteregg.findIndex(i => regExp.test(i.id))].eatereggherotext;
+  const filtered = hero_easteregg[index].eatereggherotext;
 
   const dialogue = [];
   for (i of Object.keys(filtered)) {
@@ -92,10 +91,12 @@ exports.run = (message, args) => {
     if (message.author.id === author.id() || userInteractions[message.author.id] < maxUsage) {
       ++userInteractions[message.author.id];
 
+      // allow user to enter 1 to length
+      // internally use 0 to length - 1
       const index = !isNaN(args[0])
         && parseInt(args[0]) >= 1
         && parseInt(args[0]) <= hero_easteregg.length
-          ? parseInt(args[0])
+          ? parseInt(args[0]) - 1
           : random(0, hero_easteregg.length);
 
       e = interact(index);
