@@ -3,14 +3,14 @@ const embed = require('../util/embed.js');
 
 exports.run = (message, args) => {
   const names = [
-    'Bot invite link',
+    'Invite Fergus',
     'cqdb',
-    'Servers',
+    'Join Servers',
     'GitHub',
   ];
   const values = [
     '[goo.gl/nDluCQ](https://goo.gl/nDluCQ)',
-    '[goo.gl/fdg6M8](https://goo.gl/fdg6M8)',
+    '[johj.github.io/cqdb](https://goo.gl/fdg6M8)',
     '[cqdb/Fergus](https://discord.gg/WjEFnzC)\n' +
       '[Crusaders Quest](https://discord.gg/6TRnyhj)',
     '[/Johj/cqdb](https://github.com/Johj/cqdb)\n' + 
