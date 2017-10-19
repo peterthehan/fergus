@@ -5,7 +5,7 @@
   "engines": {
     "node": "8.1.4"
   },
-  "main": "fergus.js",
+  "main": "index.js",
   "dependencies": {
     "discord.js": "^11.1.0",
     "fast-levenshtein": "^2.0.6",
