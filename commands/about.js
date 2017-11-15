@@ -11,7 +11,7 @@ exports.run = (message, args) => {
   const values = [
     '[goo.gl/nDluCQ](https://goo.gl/nDluCQ)',
     '[johj.github.io/cqdb](https://goo.gl/fdg6M8)',
-    '[cqdb/Fergus](https://discord.gg/WjEFnzC)\n' +
+    '[cqdb](https://discord.gg/WjEFnzC)\n' +
       '[Crusaders Quest](https://discord.gg/6TRnyhj)',
     '[/Johj/cqdb](https://github.com/Johj/cqdb)\n' + 
       '[/Johj/fergus](https://github.com/Johj/fergus)',
@@ -24,7 +24,7 @@ exports.run = (message, args) => {
       'Made with ❤ by ' +
       `${author.user(message)} (${author.user(message).tag}).\n\n` +
       'This bot is not affiliated, associated, authorized by, endorsed by, ' +
-      'or in any way officially connected with NHN Entertainment Corp., or ' +
+      'or in any way officially connected with NHN Entertainment Corp., ' +
       'LoadComplete Inc., or any of their subsidiaries or their affiliates.',
     thumbnail: {
       url: message.client.user.avatarURL,
