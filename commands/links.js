@@ -8,7 +8,7 @@ exports.run = (message, args) => {
     'Manacar',
     'How to get',
     'Miscellaneous',
-    `Beginner's guide comics`,
+    `Hasla Guides`,
   ];
   const values = [
     `[Accurina's](https://goo.gl/bBgMTg)\n` +
@@ -27,21 +27,15 @@ exports.run = (message, args) => {
     `[Corrected descs](https://goo.gl/Bz1DWB)\n` +
       `[cq-assets](https://goo.gl/UzKBsq)\n` +
       `[block-map](https://goo.gl/wkYdqt)`,
-    `[Vol. 1](https://goo.gl/JpOluL), ` +
-      `[2](https://goo.gl/VH83O2), ` +
-      `[3](https://goo.gl/OEKdP6), ` +
-      `[4](https://goo.gl/T1d729), ` +
-      `[5](https://goo.gl/EikwMq), ` +
-      `[6](https://goo.gl/rkXgXC), ` +
-      `[7](https://goo.gl/fsTsgl), ` +
-      `[8](https://goo.gl/1dDcVR), ` +
+    `[Comics](https://goo.gl/HPsANc), ` +
+      `[Season 2](https://goo.gl/UQdjhw), ` +
       `[Berry system](https://goo.gl/jbgmLa)`,
   ];
   const inlines = [true, true, true, true, true, true, false,];
 
   const e = embed.process({
     title: 'Useful links',
-    description: 'Visit [Crusaders Quest Database (cqdb)](https://goo.gl/fdg6M8)!\n\u200b',
+    description: 'Visit the [Crusaders Quest Database (cqdb)](https://goo.gl/fdg6M8)!\n\u200b',
     fields: embed.fields(names, values, inlines),
   });
 
