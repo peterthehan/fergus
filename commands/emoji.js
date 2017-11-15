@@ -13,16 +13,6 @@ emoji = (message) => {
 
   let emojis = guild.emojis;
 
-  // handle Discord bug, remove when bug is fixed
-  if (guild.id === '258167954913361930') {
-    const badEmojis = [
-      '360381896603074561', // 2BLewd
-      '360381897085288469', // ShinobuNyan
-      '360381897278488586', // FeelsBadYukko
-    ];
-    emojis = emojis.filter(i => !badEmojis.includes(i.id));
-  }
-
   if (!emojis.size) {
     return embed.process({
       title: 'Error',
