@@ -62,7 +62,7 @@ Prefix: !, @mention
   [aesthetic](https://github.com/Johj/fergus/blob/master/commands/aesthetic.js),
   [coin](https://github.com/Johj/fergus/blob/master/commands/coin.js),
   [delete](https://github.com/Johj/fergus/blob/master/commands/delete.js),
-  [emoji](https://github.com/Johj/fergus/blob/master/commands/emoji.js),
+  [emojis](https://github.com/Johj/fergus/blob/master/commands/emojis.js),
   [lenny](https://github.com/Johj/fergus/blob/master/commands/lenny.js),
   [math](https://github.com/Johj/fergus/blob/master/commands/math.js),
   [mock](https://github.com/Johj/fergus/blob/master/commands/mock.js),
