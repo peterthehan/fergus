@@ -34,9 +34,11 @@ evaluate = (message, args) => {
 }
 
 exports.run = (message, args) => {
-  const e = message.author.id === author.id()
-    ? evaluate(message, args)
-    : embed.process({ title: 'Error', description: 'Access denied.', });
+  if (message.author.id !== author.id()) {
+    return;
+  }
+  
+  const e = evaluate(message, args);
 
   message.channel.send({ embed: e, });
 }
