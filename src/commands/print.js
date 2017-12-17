@@ -7,7 +7,7 @@ printInstructions = (message) => {
     fields: [
       {
         name: '<text>',
-        value: `Print <text>.\n*e.g. ${prefix}print hello world*`,
+        value: `Print <text> anonymously.\n*e.g. ${prefix}print hello world*`,
       },
     ],
   };
