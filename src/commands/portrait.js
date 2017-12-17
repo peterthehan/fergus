@@ -37,6 +37,16 @@ portraitInfo = (message, args) => {
   let data = filterByGrade(Object.values(heroes), null);
   data = fuzzy(data, query, 'name', languageCode);
 
+  // handle case for heroes without portraits
+  if (!data.portrait_image) {
+    const e = {
+      description: `${localize(data.name, languageCode)} does not have a portrait yet!`,
+    };
+
+    message.channel.send({ embed: e, });
+    return;
+  }
+
   // create hero's promotion graph
   let graph = {};
   const stack = [data];
@@ -53,8 +63,8 @@ portraitInfo = (message, args) => {
     }
   }
   graph = Object.values(graph)
-    .sort((a, b) => a.grade > b.grade)
-    .filter(i => i.portrait_image);
+    .filter(i => i.portrait_image)
+    .sort((a, b) => a.grade > b.grade);
 
   // format for sending
   const formatted = graph.map((i, index) => {

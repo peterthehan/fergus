@@ -40,8 +40,19 @@ sbwInfo = (message, args) => {
   const query = parseQuery(args, [grade, languageCode,]);
 
   // filter data and fuzzy search
-  let data = filterByGrade(Object.values(heroes), grade);
+  let data = filterByGrade(Object.values(heroes), grade)
+    .filter(i => [4, 5, 6,].includes(i.grade));
   data = fuzzy(data, query, 'name', languageCode);
+
+  // handle case for heroes without sbws
+  if (!data.has_sbw) {
+    const e = {
+      description: `${localize(data.name, languageCode)} does not have an sbw yet!`,
+    };
+
+    message.channel.send({ embed: e, });
+    return;
+  }
 
   // create hero's promotion graph
   let graph = {};
@@ -58,7 +69,9 @@ sbwInfo = (message, args) => {
       stack.push(heroes[item.promote]);
     }
   }
-  graph = Object.values(graph).sort((a, b) => a.grade > b.grade);
+  graph = Object.values(graph)
+    .filter(i => i.has_sbw)
+    .sort((a, b) => a.grade > b.grade);
 
   // format for sending
   const sbwGraph = graph.map(i => sbws[i.id]);
