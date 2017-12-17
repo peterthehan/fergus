@@ -16,7 +16,6 @@ pickInstructions = (message) => {
 
 pickItem = (args) => {
   const list = args.join(' ').split(',');
-  
   return {
     title: 'I pick...',
     description: `${list[random(0, list.length - 1)]}!`,

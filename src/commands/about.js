@@ -3,7 +3,7 @@ const config = require('../config.json');
 exports.run = (message, args) => {
   const e = {
     title: message.client.user.username,
-    description: `Made with ❤ by ${message.guild.members.get(config.owner_id)} (${message.guild.members.get(config.owner_id).user.tag}).` + '\n\nThis bot is not affiliated, associated, authorized by, endorsed by, or in any way officially connected with NHN Entertainment Corp. or LoadComplete Inc., or any of their subsidiaries or their affiliates.',
+    description: `Made with ❤ by ${message.guild.members.get(config.owner_id)} (${message.guild.members.get(config.owner_id).user.tag}).` + '\n\nThis bot is not affiliated, associated, authorized by, endorsed by, or in any way officially connected with NHN Entertainment Corp., LoadComplete Inc., or any of their subsidiaries or their affiliates.',
     footer: { text: `Android ${config.android_version} | iOS ${config.ios_version}`, },
     thumbnail: { url: message.client.user.avatarURL, },
     fields: [
