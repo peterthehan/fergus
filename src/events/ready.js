@@ -1,6 +1,7 @@
 const config = require('../config.json');
 
 module.exports = (client) => {
-  client.user.setGame(config.prefix + 'help');
+  const prefix = !config.prefix ? `@${client.user.username} ` : config.prefix;
+  client.user.setGame(`${prefix}help`);
   console.log(`${client.user.tag}: Ready`);
 };
