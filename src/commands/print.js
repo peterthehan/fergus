@@ -2,7 +2,7 @@ const { getPrefix, } = require('../util/get.js');
 
 printInstructions = () => {
   const prefix = getPrefix(message);
-  const e = {
+  return {
     title: `${prefix}print [<text>]`,
     fields: [
       {
@@ -11,8 +11,6 @@ printInstructions = () => {
       },
     ],
   };
-
-  return e;
 }
 
 printMessage = (message, args) => {

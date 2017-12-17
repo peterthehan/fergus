@@ -3,7 +3,7 @@ const { getPrefix, } = require('../util/get.js');
 
 mathInstructions = (message) => {
   const prefix = getPrefix(message);
-  const e = {
+  return {
     title: `${prefix}math [<expression>]`,
     footer: { text: 'Visit http://mathjs.org/ for examples.', },
     fields: [
@@ -13,8 +13,6 @@ mathInstructions = (message) => {
       },
     ],
   };
-
-  return e;
 }
 
 mathInfo = (message, args) => {
