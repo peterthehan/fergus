@@ -15,7 +15,7 @@ mathInstructions = (message) => {
   };
 }
 
-mathInfo = (message, args) => {
+mathInfo = (args) => {
   try {
     return { description: math.eval(args.join(' ')).toString(), };
   } catch (error) {
@@ -25,7 +25,7 @@ mathInfo = (message, args) => {
 }
 
 exports.run = (message, args) => {
-  const e = !args.length ? mathInstructions(message) : mathInfo(message, args);
+  const e = !args.length ? mathInstructions(message) : mathInfo(args);
 
   message.channel.send({ embed: e, });
 }

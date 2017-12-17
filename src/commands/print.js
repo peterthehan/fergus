@@ -1,6 +1,6 @@
 const { getPrefix, } = require('../util/get.js');
 
-printInstructions = () => {
+printInstructions = (message) => {
   const prefix = getPrefix(message);
   return {
     title: `${prefix}print [<text>]`,
