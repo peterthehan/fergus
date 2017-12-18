@@ -1,10 +1,10 @@
 <div align="center">
   <p>
-    <img src="https://raw.githubusercontent.com/Johj/cq-assets/master/etc/banner.png" title="Fergus" />
+    <img src="https://raw.githubusercontent.com/Johj/fergus/master/assets/fergus_banner.png" title="Fergus" />
   </p>
 
   <a href="https://www.npmjs.com/package/discord.js">
-    <img src="https://img.shields.io/badge/discord.js-v11.1.0-blue.svg" title="Discord.js" />
+    <img src="https://img.shields.io/badge/discord.js-v11.2.1-blue.svg" title="Discord.js" />
   </a>
   <a href="https://david-dm.org/Johj/fergus">
     <img src="https://img.shields.io/david/Johj/fergus.svg" title="Dependencies" />
@@ -12,13 +12,13 @@
 </div>
 
 ## About
-Fergus is a [Discord](https://discordapp.com/) bot for [Crusaders Quest](https://play.google.com/store/apps/details?id=com.nhnent.SKQUEST).
+Fergus is a [Discord](https://discordapp.com/) bot for Crusaders Quest ([Android](https://play.google.com/store/apps/details?id=com.nhnent.SKQUEST)/[iOS](https://itunes.apple.com/app/id901858272?mt=8)).
 
 Invite him to your server using [this link](https://goo.gl/nDluCQ) or try him out first in either of the two servers listed below!
 
 <div align="center">
   <a href="https://discord.gg/WjEFnzC">
-    <img src="https://discordapp.com/api/guilds/258167954913361930/embed.png?style=banner2" title="Development Server"/>
+    <img src="https://discordapp.com/api/guilds/258167954913361930/embed.png?style=banner2" title="My Server"/>
   </a>
   <a href="https://discord.gg/6TRnyhj">
     <img src="https://discordapp.com/api/guilds/206599473282023424/embed.png?style=banner2" title="Official Server"/>
@@ -78,28 +78,3 @@ Prefix: !, @mention
   [leave](https://github.com/Johj/fergus/blob/master/commands/leave.js),
   [playing](https://github.com/Johj/fergus/blob/master/commands/playing.js),
   [scrape](https://github.com/Johj/fergus/blob/master/commands/scrape.js)
-
-## Dependencies
-- [discord.js 11.1.0](https://www.npmjs.com/package/discord.js)
-- [fast-levenshtein 2.0.6](https://www.npmjs.com/package/fast-levenshtein)
-- [firebase 4.0.0](https://www.npmjs.com/package/firebase)
-- [humanize-duration 3.10.0](https://www.npmjs.com/package/humanize-duration)
-- [js-beautify 1.6.12](https://www.npmjs.com/package/js-beautify)
-- [mathjs 3.12.2](https://www.npmjs.com/package/mathjs)
-- [moment 2.18.1](https://www.npmjs.com/package/moment)
-- [randomcolor 0.5.2](https://www.npmjs.com/package/randomcolor)
-- [sherlock 1.3.6](https://github.com/neilgupta/Sherlock)
-- [shortid 2.2.8](https://www.npmjs.com/package/shortid)
-
-## Special Thanks
-Special thanks to the following individuals for their contributions to the project during its early development:
-- Poiya
-- fioritura
-- Fastrail
-- F1r3man
-- Protease
-- Choveck
-- TheEggCake
-
-## License
-[GPL-3.0](https://raw.githubusercontent.com/Johj/fergus/master/LICENSE)

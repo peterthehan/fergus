@@ -5,7 +5,12 @@ function filterByExactMatch(data, query, key, languageCode) {
   const querySet = [...new Set(query.split(' '))];
 
   return data.filter(i => {
-    const dataSet = new Set(localize(i[key], languageCode).toLowerCase().split(' '));
+    const localized = localize(i[key], languageCode);
+    if (!localized) {
+      return false;
+    }
+
+    const dataSet = new Set(localized.toLowerCase().split(' '));
     return new Set(querySet.filter(j => dataSet.has(j))).size;
   });
 }

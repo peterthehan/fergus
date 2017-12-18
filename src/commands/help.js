@@ -1,5 +1,4 @@
 const config = require('../config.json');
-const embed = require('../util/embed.js');
 
 exports.run = (message, args) => {
   const cmds = {
@@ -13,11 +12,11 @@ exports.run = (message, args) => {
       'berry',
       'block',
       'bread',
-      'effective',
       'faction',
       'find',
       'goddess',
       'hero',
+      'portrait',
       'rank',
       'sbw',
       'skill',
@@ -33,24 +32,11 @@ exports.run = (message, args) => {
       'pick',
       'popo',
       'pull',
-      'roster',
     ],
     'Miscellaneous': [
-      '8ball',
-      'aesthetic',
-      'coin',
-      'delete',
-      'emojis',
       'lenny',
       'math',
-      'mock',
       'print',
-      'quote',
-      'remindme',
-      'server',
-      'slap',
-      'square',
-      'user',
     ],
     'Reserved': [
       'eval',
@@ -60,7 +46,7 @@ exports.run = (message, args) => {
     ],
   };
 
-  const e = embed.process({
+  const e = {
     title: 'Commands',
     description: `Prefix: ${config.prefix}, ${message.client.user}`,
     fields: Object.keys(cmds).map(currentValue => {
@@ -70,7 +56,8 @@ exports.run = (message, args) => {
         inline: false,
       };
     }),
-  });
+    footer: { text: `Android ${config.android_version} | iOS ${config.ios_version}`, },
+  };
 
   message.channel.send({ embed: e, });
 }
