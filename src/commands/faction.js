@@ -7,20 +7,16 @@ const { parseLanguageCode, parseQuery, } = require('../util/parse.js');
 factionInstructions = (message) => {
   const prefix = getPrefix(message);
   return {
-    title: `${prefix}hero [<name>] [<star>] [<lang>]`,
+    title: `${prefix}faction [<name>] [<lang>]`,
     footer: { text: 'Argument order does not matter.', },
     fields: [
       {
         name: '<name>',
-        value: `Get hero data.\n*e.g. ${prefix}hero lee*`,
-      },
-      {
-        name: '<star>',
-        value: `Filter heroes by <star>. If omitted, defaults to highest form.\n*e.g. ${prefix}hero lee 4*`,
+        value: `Get faction data.\n*e.g. ${prefix}faction han*`,
       },
       {
         name: '<lang>',
-        value: `Localize data (${getValidLanguageCodes().join(', ')}). If omitted, defaults to en.\n*e.g. ${prefix}hero 리 ko*`,
+        value: `Localize data (${getValidLanguageCodes().join(', ')}). If omitted, defaults to en.\n*e.g. ${prefix}faction 한 ko*`,
       },
     ],
   };
@@ -52,12 +48,12 @@ factionInfo = (message, args) => {
     .filter(j => j !== languageCode)
     .map(j => `${localize(data.domain, j)} (${j})`)
     .join(' | ');
-
+console.log(data.domain);
   return {
     title: localize(data.domain, languageCode),
     description: i,
     footer: { text: alternateNames, },
-    thumbnail: { url: getImagePath(`factions/${i.image}`), },
+    thumbnail: { url: getImagePath(`factions/${data.domain}`), },
   };
 }
 

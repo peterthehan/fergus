@@ -6,32 +6,20 @@ exports.run = (message, args) => {
       'about',
       'help',
       'ping',
-      'status',
     ],
     'Database': [
-      'berry',
       'block',
-      'bread',
       'faction',
-      'find',
       'goddess',
       'hero',
       'portrait',
-      'rank',
       'sbw',
-      'skill',
       'skin',
-      'stats',
-      'weapon',
     ],
     'Utility': [
       'fergus',
-      'forge',
-      'interact',
       'links',
       'pick',
-      'popo',
-      'pull',
     ],
     'Miscellaneous': [
       'lenny',
@@ -40,9 +28,6 @@ exports.run = (message, args) => {
     ],
     'Reserved': [
       'eval',
-      'leave',
-      'playing',
-      'scrape',
     ],
   };
 
