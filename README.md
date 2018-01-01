@@ -12,7 +12,7 @@
 </div>
 
 ## About
-Fergus is a [Discord](https://discordapp.com/) bot for Crusaders Quest ([Android](https://play.google.com/store/apps/details?id=com.nhnent.SKQUEST)/[iOS](https://itunes.apple.com/app/id901858272?mt=8)).
+Fergus is a [Discord](https://discordapp.com/) bot for Crusaders Quest ([Android](https://play.google.com/store/apps/details?id=com.nhnent.SKQUEST)/[iOS](https://itunes.apple.com/app/crusaders-quest/id901858272?mt=8)).
 
 Invite him to your server using [this link](https://goo.gl/nDluCQ) or try him out first in either of the two servers listed below!
 
