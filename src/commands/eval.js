@@ -1,7 +1,7 @@
 const beautify = require('js-beautify').js_beautify;
 const config = require('../config.json');
 
-evaluate = (args) => {
+evaluate = (message, args) => {
   let input = args.join(' ');
   if (input.toLowerCase().includes('token') || input.toLowerCase().includes('eval')) {
     return { description: 'This is a bad idea.', };
@@ -34,7 +34,7 @@ exports.run = (message, args) => {
     return;
   }
   
-  const e = evaluate(args);
+  const e = evaluate(message, args);
 
   message.channel.send({ embed: e, });
 }
