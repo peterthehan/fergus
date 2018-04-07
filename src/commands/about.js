@@ -19,7 +19,7 @@ exports.run = (message, args) => {
       },
       {
         name: 'Join Servers',
-        value: '[idk](https://discord.gg/WjEFnzC)\n[Crusaders Quest](https://discord.gg/6TRnyhj)',
+        value: '[owo](https://discord.gg/WjEFnzC)\n[Crusaders Quest](https://discord.gg/6TRnyhj)',
         inline: true,
       },
       {
