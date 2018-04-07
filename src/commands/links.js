@@ -15,12 +15,12 @@ exports.run = (message, args) => {
       },
       {
         name: 'How To Get',
-        value: `[Monuments](https://goo.gl/e10jeA)\n[Get Lionel's skin](https://goo.gl/9BXBkD)\n[Get Himiko's skin](https://goo.gl/5yDbjr)`,
+        value: `[Monuments](https://goo.gl/e10jeA)\n[Lionel's skin](https://goo.gl/9BXBkD)\n[Himiko's skin](https://goo.gl/5yDbjr)`,
         inline: true,
       },
       {
         name: 'Challenge',
-        value: `[kamakiller](https://goo.gl/bkC85j)`,
+        value: `[kamakiller](https://goo.gl/bkC85j)\n[Sigils list](https://bit.ly/cqsigil)`,
         inline: true,
       },
       {
@@ -40,7 +40,7 @@ exports.run = (message, args) => {
       },
       {
         name: 'Miscellaneous',
-        value: `[cq-assets](https://goo.gl/UzKBsq)\n[block-map](https://goo.gl/wkYdqt)`,
+        value: `[Leveling guide](https://i.redd.it/ya5mgw9xvfk01.jpg)\n[cq-assets](https://goo.gl/UzKBsq)\n[block-map](https://goo.gl/wkYdqt)`,
         inline: true,
       },
     ],
