@@ -7,10 +7,10 @@
   },
   "main": "index.js",
   "dependencies": {
-    "discord.js": "^11.2.1",
+    "discord.js": "^11.3.2",
     "js-beautify": "^1.7.5",
     "leven": "^2.1.0",
-    "mathjs": "^3.18.0"
+    "mathjs": "^4.0.1"
   },
   "scripts": {
     "start": "node src/index.js"
